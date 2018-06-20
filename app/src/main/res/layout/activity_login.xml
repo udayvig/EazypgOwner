@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/signup"
+    android:layout_height="match_parent"
+    tools:context="com.example.ainesh.eazypg_owner.LoginActivity">
+
+
+    <EditText
+        android:id="@+id/UsernametextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/passwordtextView"
+        android:layout_below="@+id/signinView"
+        android:layout_marginTop="41dp"
+        android:background="@drawable/roundedcorners"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint=" username"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#9e9e9e"
+        android:textSize="20sp"
+        tools:ignore="RtlHardcoded" />
+
+    <EditText
+        android:id="@+id/passwordtextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UsernametextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/roundedcorners"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint=" password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#9e9e9e"
+        android:textSize="20sp"
+        tools:ignore="TextFields" />
+
+    <TextView
+        android:id="@+id/signinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
+        android:text="Sign in"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp" />
+
+
+</RelativeLayout>
