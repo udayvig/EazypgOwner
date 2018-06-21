@@ -50,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(userEmail.isEmpty()||userPassword.isEmpty()){
                     Toast.makeText(LoginActivity.this, "Enter all the details!", Toast.LENGTH_SHORT).show();
                 }
+
+                
             }
         });
     }
