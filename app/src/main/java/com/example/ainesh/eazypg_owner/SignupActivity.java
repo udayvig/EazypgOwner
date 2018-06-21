@@ -27,6 +27,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText etUserEmail,etUserPassword,etUserContact,etUsername;
     private Button btnSignUp;
 
+    
     private String userEmail, userPassword;
 
     @Override
