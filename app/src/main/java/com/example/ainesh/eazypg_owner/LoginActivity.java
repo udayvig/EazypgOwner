@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Enter all the details!", Toast.LENGTH_SHORT).show();
                 }
 
+
                 
             }
         });
