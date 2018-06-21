@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/walli"
+    android:background="@drawable/signup"
 
     android:layout_height="match_parent"
     tools:context="com.example.ainesh.eazypg_owner.SignupActivity">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -16,7 +17,7 @@
         android:layout_marginTop="28dp"
         android:text="Sign up"
         android:textColor="#FFFFFF"
-        android:textSize="50sp" />
+        android:textSize="60sp" />
 
     <EditText
         android:id="@+id/nametextView"
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="63dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
         android:fontFamily="monospace"
@@ -80,4 +81,13 @@
         android:inputType="textPersonName|phone"
         android:textColor="#FFFFFF"
         android:textColorHint="#9e9e9e" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contactView"
+        android:layout_marginTop="31dp"
+        android:layout_toEndOf="@+id/textView"
+        android:text="Sign Up" />
 </RelativeLayout>

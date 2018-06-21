@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/signup"
+    android:background="@drawable/walli"
     android:layout_height="match_parent"
     tools:context="com.example.ainesh.eazypg_owner.LoginActivity">
 
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/passwordtextView"
         android:layout_below="@+id/signinView"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="92dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
         android:fontFamily="monospace"
@@ -51,7 +51,7 @@
         android:layout_marginTop="51dp"
         android:text="Sign in"
         android:textColor="#FFFFFF"
-        android:textSize="50sp" />
+        android:textSize="60sp" />
 
     <Button
         android:id="@+id/btnSignIn"
@@ -62,6 +62,17 @@
         android:layout_marginTop="37dp"
         android:layout_toEndOf="@+id/signinView"
         android:text="Sign In" />
+
+    <TextView
+        android:id="@+id/tvLoginToSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:text="New User? Sign Up."
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
 
 </RelativeLayout>
