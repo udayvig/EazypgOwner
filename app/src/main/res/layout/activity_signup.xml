@@ -86,8 +86,9 @@
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/contactView"
-        android:layout_marginTop="31dp"
-        android:layout_toEndOf="@+id/textView"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="100dp"
         android:text="Sign Up" />
 </RelativeLayout>
