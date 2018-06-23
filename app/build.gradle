@@ -30,6 +30,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-analytics:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.1'
     implementation 'com.firebaseui:firebase-ui-auth:3.2.2'
+    implementation 'com.github.paolorotolo:appintro:3.3.0'
+
 }
 
 configurations.all

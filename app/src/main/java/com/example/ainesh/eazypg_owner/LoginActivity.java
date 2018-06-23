@@ -1,6 +1,7 @@
 package com.example.ainesh.eazypg_owner;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         loginToSignIn=(TextView) findViewById(R.id.tvLoginToSignUp);
         btnSignIn=(Button) findViewById(R.id.btnSignIn);

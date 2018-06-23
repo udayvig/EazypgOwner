@@ -17,7 +17,7 @@
         android:layout_marginTop="92dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="monospace"
+        android:fontFamily="@font/muli_extralight"
         android:hint=" username"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
@@ -34,7 +34,7 @@
         android:layout_marginTop="26dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="monospace"
+        android:fontFamily="@font/muli_extralight"
         android:hint=" password"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
@@ -49,8 +49,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
-        android:text="Sign in"
-        android:textColor="#FFFFFF"
+        android:fontFamily="@font/muli_extralight"
+        android:text="Login"
+        android:textColor="#ffffff"
         android:textSize="60sp" />
 
     <Button
@@ -70,8 +71,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="17dp"
+        android:fontFamily="@font/muli_extralight"
         android:text="New User? Sign Up."
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="24sp" />
 
 

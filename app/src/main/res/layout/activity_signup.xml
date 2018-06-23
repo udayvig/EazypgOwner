@@ -11,10 +11,11 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/muli_extralight"
         android:text="Sign up"
         android:textColor="#FFFFFF"
         android:textSize="60sp" />
@@ -23,12 +24,13 @@
         android:id="@+id/nametextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="181dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="monospace"
+
+        android:fontFamily="@font/muli_extralight"
         android:hint=" Name"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
@@ -44,7 +46,8 @@
         android:layout_marginTop="17dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="monospace"
+
+        android:fontFamily="@font/muli_extralight"
         android:hint=" Email Address"
         android:inputType="textEmailAddress|textPersonName"
         android:textColor="#FFFFFF"
@@ -60,7 +63,8 @@
         android:layout_marginTop="18dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="monospace"
+
+        android:fontFamily="@font/muli_extralight"
         android:hint=" Locality"
         android:inputType="textMultiLine|textPersonName"
         android:textColor="#FFFFFF"
@@ -76,7 +80,8 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="monospace"
+
+        android:fontFamily="@font/muli_extralight"
         android:hint=" Contact"
         android:inputType="textPersonName|phone"
         android:textColor="#FFFFFF"
@@ -86,9 +91,9 @@
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/contactView"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="175dp"
+        android:layout_marginEnd="28dp"
         android:text="Sign Up" />
 </RelativeLayout>
