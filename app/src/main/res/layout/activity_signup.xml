@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/signup"
-
     android:layout_height="match_parent"
     tools:context="com.example.ainesh.eazypg_owner.SignupActivity">
 
@@ -21,7 +20,7 @@
         android:textSize="60sp" />
 
     <EditText
-        android:id="@+id/nametextView"
+        android:id="@+id/usernameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -29,7 +28,6 @@
         android:layout_marginTop="181dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-
         android:fontFamily="@font/muli_extralight"
         android:hint=" Name"
         android:inputType="textPersonName"
@@ -37,16 +35,15 @@
         android:textColorHint="#9e9e9e" />
 
     <EditText
-        android:id="@+id/emailtextView"
+        android:id="@+id/emailEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/nametextView"
-        android:layout_alignRight="@+id/nametextView"
-        android:layout_below="@+id/nametextView"
+        android:layout_alignEnd="@+id/usernameEditText"
+        android:layout_alignRight="@+id/usernameEditText"
+        android:layout_below="@+id/usernameEditText"
         android:layout_marginTop="17dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-
         android:fontFamily="@font/muli_extralight"
         android:hint=" Email Address"
         android:inputType="textEmailAddress|textPersonName"
@@ -54,46 +51,45 @@
         android:textColorHint="#9e9e9e" />
 
     <EditText
-        android:id="@+id/localitytextView"
+        android:id="@+id/localityEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/emailtextView"
-        android:layout_alignStart="@+id/emailtextView"
-        android:layout_below="@+id/emailtextView"
+        android:layout_alignLeft="@+id/emailEditText"
+        android:layout_alignStart="@+id/emailEditText"
+        android:layout_below="@+id/emailEditText"
         android:layout_marginTop="18dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-
         android:fontFamily="@font/muli_extralight"
         android:hint=" Locality"
-        android:inputType="textMultiLine|textPersonName"
+        android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#9e9e9e" />
 
     <EditText
-        android:id="@+id/contactView"
+        android:id="@+id/contactEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/localitytextView"
-        android:layout_alignStart="@+id/localitytextView"
-        android:layout_below="@+id/localitytextView"
+        android:layout_alignLeft="@+id/localityEditText"
+        android:layout_alignStart="@+id/localityEditText"
+        android:layout_below="@+id/localityEditText"
         android:layout_marginTop="16dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-
         android:fontFamily="@font/muli_extralight"
         android:hint=" Contact"
         android:inputType="textPersonName|phone"
         android:textColor="#FFFFFF"
         android:textColorHint="#9e9e9e" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="94dp"
+        android:layout_height="138dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="175dp"
-        android:layout_marginEnd="28dp"
-        android:text="Sign Up" />
+        android:layout_marginBottom="110dp"
+        android:layout_marginEnd="27dp"
+        app:srcCompat="@drawable/enabled" />
+
 </RelativeLayout>

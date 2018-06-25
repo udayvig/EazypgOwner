@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         });
         t.start();
 
+        if(isFirstStart==false)
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+
     }
 }
 
