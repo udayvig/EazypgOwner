@@ -45,8 +45,7 @@
         android:gravity="center"
         android:paddingLeft="64dp"
         android:paddingRight="64dp"
-        android:text="70+ Unimaginable Features
-    100% free"
+        android:text="70+ Amazing Features 100% free"
         android:textColor="#ffffff"
         android:fontFamily="@font/muli_extralight"
         android:textSize="16sp" />
