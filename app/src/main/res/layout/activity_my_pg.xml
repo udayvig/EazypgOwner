@@ -11,8 +11,8 @@
         android:id="@+id/bathroomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/numberBatheditText"
-        android:layout_toEndOf="@+id/contacteditText"
+        android:layout_alignBottom="@+id/noOfBathEditText"
+        android:layout_toEndOf="@+id/contactEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
@@ -27,7 +27,7 @@
         android:id="@+id/pgNameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/pgNameEditText"
         android:layout_alignParentEnd="true"
         android:elevation="5dp"
         app:srcCompat="@drawable/edit" />
@@ -36,100 +36,100 @@
         android:id="@+id/roomsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/noofRoomseditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/noOfRoomsEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/staffCountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/staffnumbereditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/staffNumberEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/landDistButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/distlandeditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/distLandEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/lastEntryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/lastentryeditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/lastEntryEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/mailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pgemaileditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/pgEmailEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/genderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/gendereditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/genderEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/occupancyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/occupancyeditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/occupancyEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <EditText
-        android:id="@+id/numberBatheditText"
+        android:id="@+id/noOfBathEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/noofRoomseditText"
+        android:layout_below="@+id/noOfRoomsEditText"
         android:ems="10"
         android:hint="Number of Bathrooms"
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/noofRoomseditText"
+        android:id="@+id/noOfRoomsEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/staffnumbereditText"
+        android:layout_below="@+id/staffNumberEditText"
         android:ems="10"
         android:hint="Number of Rooms"
         android:inputType="numberSigned" />
 
     <EditText
-        android:id="@+id/staffnumbereditText"
+        android:id="@+id/staffNumberEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/occupancyeditText"
+        android:layout_below="@+id/occupancyEditText"
         android:ems="10"
         android:hint="Staff Count"
         android:inputType="textPersonName|numberSigned" />
 
     <EditText
-        android:id="@+id/occupancyeditText"
+        android:id="@+id/occupancyEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/gendereditText"
+        android:layout_below="@+id/genderEditText"
         android:ems="10"
         android:hint="Max Occupancy"
         android:inputType="textPersonName|numberSigned" />
 
     <EditText
-        android:id="@+id/locationeditText"
+        android:id="@+id/locationEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -139,67 +139,67 @@
         android:inputType="textPostalAddress" />
 
     <EditText
-        android:id="@+id/gendereditText"
+        android:id="@+id/genderEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/lastentryeditText"
+        android:layout_below="@+id/lastEntryEditText"
         android:ems="10"
         android:hint="Gender"
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/lastentryeditText"
+        android:id="@+id/lastEntryEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/pgemaileditText"
+        android:layout_below="@+id/pgEmailEditText"
         android:ems="10"
         android:hint="Last Entry till ?"
         android:inputType="time" />
 
     <EditText
-        android:id="@+id/pgemaileditText"
+        android:id="@+id/pgEmailEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/distlandeditText"
+        android:layout_below="@+id/distLandEditText"
         android:ems="10"
         android:hint="PG Email"
         android:inputType="textWebEmailAddress" />
 
     <EditText
-        android:id="@+id/distlandeditText"
+        android:id="@+id/distLandEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/contacteditText"
+        android:layout_below="@+id/contactEditText"
         android:ems="10"
         android:hint="Distance from landmark"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/ownernameEditText"
+        android:id="@+id/ownerNameEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/locationeditText"
+        android:layout_below="@+id/locationEditText"
         android:ems="10"
         android:hint="Owner Name"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/contacteditText"
+        android:id="@+id/contactEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/ownernameEditText"
+        android:layout_below="@+id/ownerNameEditText"
         android:ems="10"
         android:hint="PG contact "
         android:inputType="phone" />
 
     <EditText
-        android:id="@+id/pgNameeditText"
+        android:id="@+id/pgNameEditText"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -213,7 +213,7 @@
         android:id="@+id/bioEditText"
         android:layout_width="325dp"
         android:layout_height="68dp"
-        android:layout_below="@+id/pgNameeditText"
+        android:layout_below="@+id/pgNameEditText"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="BIO"
@@ -223,7 +223,7 @@
         android:id="@+id/locationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         android:layout_below="@+id/bioEditText"
         app:srcCompat="@drawable/edit" />
 
@@ -231,15 +231,15 @@
         android:id="@+id/ownerNameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/contacteditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_above="@+id/contactEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 
     <ImageButton
         android:id="@+id/contactButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/contacteditText"
-        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_alignBottom="@+id/contactEditText"
+        android:layout_alignEnd="@+id/pgNameEditText"
         app:srcCompat="@drawable/edit" />
 </RelativeLayout>
