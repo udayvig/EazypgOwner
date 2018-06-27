@@ -67,5 +67,7 @@ public class MyPGActivity extends AppCompatActivity {
         contactButton = findViewById(R.id.contactButton);
         ownerNameButton = findViewById(R.id.ownerNameButton);
         locationButton = findViewById(R.id.locationButton);
+
+
     }
 }
