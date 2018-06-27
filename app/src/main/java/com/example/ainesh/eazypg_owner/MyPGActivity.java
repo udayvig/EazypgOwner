@@ -41,5 +41,19 @@ public class MyPGActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pg);
+
+        noOfBathEditText=findViewById(R.id.noOfBathEditText);
+        noOfRoomsEditText=findViewById(R.id.noOfRoomsEditText);
+        staffNumberEditText=findViewById(R.id.staffNumberEditText);
+        occupancyEditText=findViewById(R.id.occupancyEditText);
+        genderEditText=findViewById(R.id.genderEditText);
+        locationEditText=findViewById(R.id.locationEditText);
+        lastEntryEditText=findViewById(R.id.lastEntryEditText);
+        pgEmailEditText=findViewById(R.id.pgEmailEditText);
+        distLandEditText=findViewById(R.id.distLandEditText);
+        ownerNameEditText=findViewById(R.id.ownerNameEditText);
+        contactEditText=findViewById(R.id.contactEditText);
+        pgNameEditText=findViewById(R.id.pgNameEditText);
+        bioEditText=findViewById(R.id.bioEditText);
     }
 }
