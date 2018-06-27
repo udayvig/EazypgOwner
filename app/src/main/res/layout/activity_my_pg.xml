@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyPGActivity">
+
+
+    <ImageButton
+        android:id="@+id/bathroomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/numberBatheditText"
+        android:layout_toEndOf="@+id/contacteditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/bioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bioEditText"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/pgNameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pgNameeditText"
+        android:layout_alignParentEnd="true"
+        android:elevation="5dp"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/roomsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/noofRoomseditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/staffCountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/staffnumbereditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/landDistButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/distlandeditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/lastEntryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lastentryeditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/mailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pgemaileditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/genderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/gendereditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/occupancyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/occupancyeditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <EditText
+        android:id="@+id/numberBatheditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/noofRoomseditText"
+        android:ems="10"
+        android:hint="Number of Bathrooms"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/noofRoomseditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/staffnumbereditText"
+        android:ems="10"
+        android:hint="Number of Rooms"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/staffnumbereditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/occupancyeditText"
+        android:ems="10"
+        android:hint="Staff Count"
+        android:inputType="textPersonName|numberSigned" />
+
+    <EditText
+        android:id="@+id/occupancyeditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/gendereditText"
+        android:ems="10"
+        android:hint="Max Occupancy"
+        android:inputType="textPersonName|numberSigned" />
+
+    <EditText
+        android:id="@+id/locationeditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/bioEditText"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="textPostalAddress" />
+
+    <EditText
+        android:id="@+id/gendereditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lastentryeditText"
+        android:ems="10"
+        android:hint="Gender"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/lastentryeditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/pgemaileditText"
+        android:ems="10"
+        android:hint="Last Entry till ?"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/pgemaileditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/distlandeditText"
+        android:ems="10"
+        android:hint="PG Email"
+        android:inputType="textWebEmailAddress" />
+
+    <EditText
+        android:id="@+id/distlandeditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/contacteditText"
+        android:ems="10"
+        android:hint="Distance from landmark"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/ownernameEditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/locationeditText"
+        android:ems="10"
+        android:hint="Owner Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/contacteditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ownernameEditText"
+        android:ems="10"
+        android:hint="PG contact "
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/pgNameeditText"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Pg Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/bioEditText"
+        android:layout_width="325dp"
+        android:layout_height="68dp"
+        android:layout_below="@+id/pgNameeditText"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="BIO"
+        android:inputType="textMultiLine" />
+
+    <ImageButton
+        android:id="@+id/locationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        android:layout_below="@+id/bioEditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/ownerNameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/contacteditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/contactButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/contacteditText"
+        android:layout_alignEnd="@+id/pgNameeditText"
+        app:srcCompat="@drawable/edit" />
+</RelativeLayout>
