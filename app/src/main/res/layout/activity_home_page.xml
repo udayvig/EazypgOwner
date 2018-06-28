@@ -1,68 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePageActivity">
 
-    <com.imangazaliev.circlemenu.CircleMenu
-        android:id="@+id/circleMenu"
+    <ImageView
+        android:id="@+id/yourPgImageView"
+        android:layout_width="114dp"
+        android:layout_height="104dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="174dp"
+        android:elevation="100dp"
+        app:srcCompat="@drawable/yourpg" />
+
+    <ImageView
+        android:id="@+id/passbookImageView"
+        android:layout_width="132dp"
+        android:layout_height="75dp"
+        android:layout_alignTop="@+id/foodImageView"
+        android:layout_toStartOf="@+id/yourPgImageView"
+        android:elevation="100dp"
+        app:srcCompat="@drawable/bank" />
+
+    <ImageView
+        android:id="@+id/foodImageView"
+        android:layout_width="82dp"
+        android:layout_height="77dp"
+        android:layout_above="@+id/leadsTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="-200dp"
+        android:layout_marginStart="42dp"
+        app:srcCompat="@drawable/hamburger" />
+
+    <ImageView
+        android:id="@+id/tenantImageView"
+        android:layout_width="84dp"
+        android:layout_height="74dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        app:srcCompat="@drawable/boy" />
+
+    <ImageView
+        android:id="@+id/leadsImageView"
+        android:layout_width="88dp"
+        android:layout_height="63dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/leadsTextView"
+        android:layout_marginTop="129dp"
+        app:srcCompat="@drawable/link" />
+
+    <ImageView
+        android:id="@+id/complaintImageView"
+        android:layout_width="73dp"
+        android:layout_height="74dp"
+        android:layout_above="@+id/complaintTextView"
+        android:layout_alignEnd="@+id/leadsImageView"
+        app:srcCompat="@drawable/complaintsbook" />
+
+    <TextView
+        android:id="@+id/complaintTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_alignStart="@+id/foodImageView"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/muli"
+        android:text="COMPLAINTS"
+        android:textColor="#000000" />
 
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/cashflowView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="#2196F3"
-            app:colorPressed="#1E88E5"
-            android:tooltipText="hello"
-            app:icon="@drawable/head" />
+    <TextView
+        android:id="@+id/foodTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/leadsTextView"
+        android:layout_marginStart="54dp"
+        android:fontFamily="@font/muli"
+        android:text="  FOOD"
+        android:textColor="#000000" />
 
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/complainView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="#4CAF50"
-            app:colorPressed="#43A047"
-            app:icon="@drawable/head" />
 
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/staffView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="#F44336"
-            app:colorPressed="#E53935"
-            app:icon="@drawable/head" />
+    <TextView
+        android:id="@+id/leadsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/muli"
+        android:text=" NEW LEADS"
+        android:textColor="#000000" />
 
-       <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/pgView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="@color/colorPrimaryDark"
-            app:colorPressed="@color/colorPrimary"
-            app:icon="@drawable/head" />
+    <TextView
+        android:id="@+id/passbookTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="309dp"
+        android:layout_marginStart="34dp"
+        android:fontFamily="@font/muli"
+        android:text="PASSBOOK"
+        android:textColor="#000000" />
 
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/subscriptionView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:colorNormal="@color/colorPrimaryDark"
-            app:colorPressed="@color/colorPrimary"
-            app:icon="@drawable/head" />
+    <TextView
+        android:id="@+id/tenantTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tenantImageView"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/muli"
+        android:text="TENANT"
+        android:textColor="#000000" />
 
-        <com.imangazaliev.circlemenu.CircleMenuButton
-            android:id="@+id/tenantView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#ffff06"
-            android:elevation="0dp"
-            app:colorNormal="@color/colorPrimaryDark"
-            app:colorPressed="@color/colorPrimary"
-            app:icon="@drawable/head" />
+    <TextView
+        android:id="@+id/yourPgTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="290dp"
+        android:fontFamily="@font/muli"
+        android:text="YOUR PG"
+        android:textColor="#000000" />
 
-    </com.imangazaliev.circlemenu.CircleMenu>
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -9,14 +9,14 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="77dp"
         android:layout_gravity="center"
         android:layout_weight="3"
+        android:fontFamily="@font/muli_extralight"
         android:gravity="center"
         android:paddingLeft="32dp"
         android:paddingRight="29dp"
         android:text="EazyPG"
-        android:fontFamily="@font/muli_extralight"
         android:textColor="#FFFFFF"
         android:textSize="48sp" />
 

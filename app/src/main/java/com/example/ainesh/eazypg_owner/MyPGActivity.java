@@ -28,7 +28,6 @@ public class MyPGActivity extends AppCompatActivity {
     EditText genderEditText;
     EditText locationEditText;
     EditText lastEntryEditText;
-    EditText pgEmailEditText;
     EditText distLandEditText;
     EditText ownerNameEditText;
     EditText contactEditText;
@@ -47,7 +46,6 @@ public class MyPGActivity extends AppCompatActivity {
         genderEditText = findViewById(R.id.genderEditText);
         locationEditText = findViewById(R.id.locationEditText);
         lastEntryEditText = findViewById(R.id.lastEntryEditText);
-        pgEmailEditText = findViewById(R.id.pgEmailEditText);
         distLandEditText = findViewById(R.id.distLandEditText);
         ownerNameEditText = findViewById(R.id.ownerNameEditText);
         contactEditText = findViewById(R.id.contactEditText);
@@ -61,7 +59,6 @@ public class MyPGActivity extends AppCompatActivity {
         staffCountButton = findViewById(R.id.staffCountButton);
         landDistButton = findViewById(R.id.landDistButton);
         lastEntryButton = findViewById(R.id.lastEntryButton);
-        emailButton = findViewById(R.id.mailButton);
         genderButton = findViewById(R.id.genderButton);
         occupancyButton = findViewById(R.id.occupancyButton);
         contactButton = findViewById(R.id.contactButton);
