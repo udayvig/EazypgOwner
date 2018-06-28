@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private int RC_SIGN_IN = 1;
 
     private EditText etUserEmail,etUserPassword;
-    private Button btnSignIn;
+    private ImageView btnSignIn;
     private TextView loginToSignIn;
 
     private String userEmail, userPassword;
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this,DummyActivity.class));
+                            startActivity(new Intent(LoginActivity.this, MyPGActivity.class));
                             Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();
@@ -75,7 +76,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this,SignupActivity.class));
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }

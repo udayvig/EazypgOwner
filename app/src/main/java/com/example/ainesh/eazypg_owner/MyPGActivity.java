@@ -1,25 +1,22 @@
 package com.example.ainesh.eazypg_owner;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MyPGActivity extends AppCompatActivity {
 
-    ImageButton bathroomButton;
-    ImageButton bioButton;
-    ImageButton pgNameButton;
-    ImageButton roomsButton;
-    ImageButton staffCountButton;
-    ImageButton landDistButton;
-    ImageButton lastEntryButton;
-    ImageButton emailButton;
-    ImageButton genderButton;
-    ImageButton occupancyButton;
-    ImageButton contactButton;
-    ImageButton ownerNameButton;
-    ImageButton locationButton;
+    DatabaseReference databaseReference;
+
+    FloatingActionButton saveButton;
 
     EditText noOfBathEditText;
     EditText noOfRoomsEditText;;
@@ -52,19 +49,39 @@ public class MyPGActivity extends AppCompatActivity {
         pgNameEditText = findViewById(R.id.pgNameEditText);
         bioEditText = findViewById(R.id.bioEditText);
 
-        bathroomButton = findViewById(R.id.bathroomButton);
-        bioButton = findViewById(R.id.bioButton);
-        pgNameButton = findViewById(R.id.pgNameButton);
-        roomsButton = findViewById(R.id.roomsButton);
-        staffCountButton = findViewById(R.id.staffCountButton);
-        landDistButton = findViewById(R.id.landDistButton);
-        lastEntryButton = findViewById(R.id.lastEntryButton);
-        genderButton = findViewById(R.id.genderButton);
-        occupancyButton = findViewById(R.id.occupancyButton);
-        contactButton = findViewById(R.id.contactButton);
-        ownerNameButton = findViewById(R.id.ownerNameButton);
-        locationButton = findViewById(R.id.locationButton);
+        saveButton = findViewById(R.id.saveButton);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addingPg();
+            }
+        });
+
+    }
+
+    private void addingPg() {
+
+        String pgName = pgNameEditText.getText().toString().trim();
+        String bio = bioEditText.getText().toString().trim();
+        String Location = locationEditText.getText().toString().trim();
+        String ownerName = ownerNameEditText.getText().toString().trim();
+        String pgContact = contactEditText.getText().toString().trim();
+        String Landmark = distLandEditText.getText().toString().trim();
+        String lastEntry = lastEntryEditText.getText().toString().trim();
+        String Gender = genderEditText.getText().toString().trim();
+        String occupancy = occupancyEditText.getText().toString().trim();
+        String StaffCount = staffNumberEditText.getText().toString().trim();
+        String room = noOfRoomsEditText.getText().toString().trim();
+        String bath = noOfBathEditText.getText().toString().trim();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
 
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("MyPG").child(uid);
+
+        PG pg = new PG(pgName, bio, Location, ownerName, pgContact, Landmark, lastEntry, Gender, occupancy, StaffCount, room, bath);
+        databaseReference.child("PG Details").setValue(pg);
     }
 }
