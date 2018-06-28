@@ -20,8 +20,8 @@
         android:id="@+id/passbookImageView"
         android:layout_width="132dp"
         android:layout_height="75dp"
-        android:layout_alignTop="@+id/foodImageView"
-        android:layout_toStartOf="@+id/yourPgImageView"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/complaintImageView"
         android:elevation="100dp"
         app:srcCompat="@drawable/bank" />
 
@@ -65,8 +65,9 @@
         android:id="@+id/complaintTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/foodImageView"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="27dp"
         android:fontFamily="@font/muli"
         android:text="COMPLAINTS"
         android:textColor="#000000" />
