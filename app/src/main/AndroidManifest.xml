@@ -13,19 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MyIntro" />
-        <activity android:name=".DummyActivity" />
-        <activity android:name=".HomePageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MyIntro" />
+        <activity android:name=".DummyActivity" />
+        <activity android:name=".HomePageActivity"/>
         <activity android:name=".TenantActivity" />
         <activity android:name=".StaffActivity" />
         <activity android:name=".MyPGActivity" />

@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EazypgOwner.iml" filepath="$PROJECT_DIR$/EazypgOwner.iml" />
-      <module fileurl="file://C:\Users\Uday Vig\AndroidStudioProjects\EazypgOwner\EazypgOwner1.iml" filepath="C:\Users\Uday Vig\AndroidStudioProjects\EazypgOwner\EazypgOwner1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EazypgOwner1.iml" filepath="$PROJECT_DIR$/EazypgOwner1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Uday Vig/AndroidStudioProjects/EazypgOwner/EazypgOwner1.iml" filepath="$PROJECT_DIR$/../../../Uday Vig/AndroidStudioProjects/EazypgOwner/EazypgOwner1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
