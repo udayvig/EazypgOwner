@@ -16,51 +16,13 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        CircleMenu circleMenu = (CircleMenu) findViewById(R.id.circleMenu);
-        circleMenu.setOnItemClickListener(new CircleMenu.OnItemClickListener() {
-            @Override
-            public void onItemClick(CircleMenuButton menuButton) {
-                switch (menuButton.getId()) {
-                    case R.id.pgView:
-                        showMessage("YOUR PG");
-                        startActivity(new Intent(HomePageActivity.this,MyPGActivity.class));
-                        break;
-                    case R.id.tenantView:
-                        showMessage("TENANTS");
-                        startActivity(new Intent(HomePageActivity.this,TenantActivity.class));
-                        break;
-                    case R.id.staffView:
-                        showMessage("STAFF");
-                        startActivity(new Intent(HomePageActivity.this,StaffActivity.class));
-                        break;
-                    case R.id.complainView:
-                        showMessage("COMPLAINTS");
-                        startActivity(new Intent(HomePageActivity.this,ComplaintActivity.class));
-                        break;
-                    case R.id.subscriptionView:
-                        showMessage("SUBSCRIPTIONS");
-                        startActivity(new Intent(HomePageActivity.this,SubscriptionActivity.class));
-                        break;
-                    case R.id.cashflowView:
-                        showMessage("CASHFLOW");
-                        startActivity(new Intent(HomePageActivity.this,CashflowActivity.class));
-                }
-            }
-        });
-
-        circleMenu.setStateUpdateListener(new CircleMenu.OnStateUpdateListener() {
-            @Override
-            public void onMenuExpanded() {
-                Log.d("CircleMenuStatus", "Expanded");
-            }
-
-            @Override
-            public void onMenuCollapsed() {
-                Log.d("CircleMenuStatus", "Collapsed");
-            }
-        });
 
     }
-    private void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }}
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
+}

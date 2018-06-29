@@ -1,5 +1,6 @@
 package com.example.ainesh.eazypg_owner;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,8 @@ public class MyPGActivity extends AppCompatActivity {
     FloatingActionButton saveButton;
 
     EditText noOfBathEditText;
-    EditText noOfRoomsEditText;;
+    EditText noOfRoomsEditText;
+    ;
     EditText staffNumberEditText;
     EditText occupancyEditText;
     EditText genderEditText;
@@ -75,13 +77,15 @@ public class MyPGActivity extends AppCompatActivity {
         String room = noOfRoomsEditText.getText().toString().trim();
         String bath = noOfBathEditText.getText().toString().trim();
 
+        //Getting current user information
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-
+        //adding database info for the current user
         databaseReference = FirebaseDatabase.getInstance().getReference("MyPG").child(uid);
 
         PG pg = new PG(pgName, bio, Location, ownerName, pgContact, Landmark, lastEntry, Gender, occupancy, StaffCount, room, bath);
         databaseReference.child("PG Details").setValue(pg);
     }
+
 }

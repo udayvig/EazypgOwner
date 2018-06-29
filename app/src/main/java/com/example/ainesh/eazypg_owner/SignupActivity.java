@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -66,8 +65,34 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(SignupActivity.this, "Registered!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignupActivity.this,DummyActivity.class));
+                                Toast.makeText(SignupActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                            /*    mFirebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful())
+                                        {
+                                            Toast.makeText(SignupActivity.this, "Email Sent", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(SignupActivity.this,NotVerifiedActivity.class));
+                                        }
+                                    }
+                                });
+                            */
+                                mFirebaseAuth.sendPasswordResetEmail(userEmail)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                if (task.isSuccessful()){
+
+                                                    Toast.makeText(SignupActivity.this, "Email sent", Toast.LENGTH_LONG).show();
+                                                }
+                                                else if (!task.isSuccessful()){
+
+                                                    Toast.makeText(SignupActivity.this, "Email Not sent", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+
                             }else{
                                 Toast.makeText(SignupActivity.this, "Failed.", Toast.LENGTH_SHORT).show();
                             }

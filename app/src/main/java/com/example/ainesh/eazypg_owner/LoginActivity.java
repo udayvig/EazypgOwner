@@ -1,12 +1,10 @@
 package com.example.ainesh.eazypg_owner;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,13 +41,13 @@ public class LoginActivity extends AppCompatActivity {
         etUserEmail = findViewById(R.id.usernametextView);
         etUserPassword = findViewById(R.id.passwordtextView);
 
-        mFirebaseAuth=FirebaseAuth.getInstance();
-        mFirebaseUser=mFirebaseAuth.getCurrentUser();
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         //If user kills the app without logging out, he/she should need not to login again.
         if(mFirebaseUser!=null){
             finish();
-            startActivity(new Intent(LoginActivity.this,DummyActivity.class));
+            startActivity(new Intent(LoginActivity.this,NotVerifiedActivity.class));
         }
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +60,18 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this, MyPGActivity.class));
+
+                            mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+                            if (mFirebaseUser.isEmailVerified()){
+                                startActivity(new Intent(LoginActivity.this, MyPGActivity.class));
+                                finish();
+                            }
+                            else {
+                                startActivity(new Intent(LoginActivity.this, NotVerifiedActivity.class));
+                                finish();
+                            }
+
                             Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();
