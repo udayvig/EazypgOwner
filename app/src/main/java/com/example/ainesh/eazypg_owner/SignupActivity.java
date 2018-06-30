@@ -1,9 +1,14 @@
 package com.example.ainesh.eazypg_owner;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,10 +58,10 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                userEmail=etUserEmail.getText().toString();
-                userLocality=etUserLocality.getText().toString();
-                userContact=etUserContact.getText().toString();
-                userName=etUserName.getText().toString();
+                userEmail = etUserEmail.getText().toString();
+                userLocality = etUserLocality.getText().toString();
+                userContact = etUserContact.getText().toString();
+                userName = etUserName.getText().toString();
 
                 if (!userEmail.isEmpty() && !userLocality.isEmpty() && !userContact.isEmpty() && !userName.isEmpty()) {
 
@@ -84,7 +89,28 @@ public class SignupActivity extends AppCompatActivity {
 
                                                 if (task.isSuccessful()){
 
-                                                    Toast.makeText(SignupActivity.this, "Email sent", Toast.LENGTH_LONG).show();
+                                                    etUserEmail.setText("");
+                                                    etUserContact.setText("");
+                                                    etUserName.setText("");
+                                                    etUserLocality.setText("");
+                                                    etUserName.requestFocus(1);
+
+                                                    mFirebaseAuth.signOut();
+
+                                                    final AlertDialog dialog = new AlertDialog.Builder(SignupActivity.this)
+                                                            .setTitle("Welcome " + etUserName.getText().toString())
+                                                            .setMessage("Check your Email to reset password.")
+                                                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                                                    finish();
+                                                                }
+                                                            }).setIcon(R.drawable.ic_check_green_24dp)
+                                                            .show();
+                                                    dialog.setCanceledOnTouchOutside(false);
+
+
                                                 }
                                                 else if (!task.isSuccessful()){
 
@@ -144,4 +170,5 @@ public class SignupActivity extends AppCompatActivity {
         }
         return password.toString();
     }
+
 }

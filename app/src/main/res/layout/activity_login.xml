@@ -77,5 +77,16 @@
         android:layout_marginEnd="39dp"
         app:srcCompat="@drawable/enabled" />
 
+    <TextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="277dp"
+        android:text="Forgot Password? Click Here."
+        android:textColor="#FFFFFF"
+        android:visibility="visible" />
+
 
 </RelativeLayout>

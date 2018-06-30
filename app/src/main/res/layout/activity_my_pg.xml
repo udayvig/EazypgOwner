@@ -6,240 +6,239 @@
     android:layout_height="match_parent"
     tools:context=".MyPGActivity">
 
-
-    <ImageButton
-        android:id="@+id/bathroomButton"
+    <TextView
+        android:id="@+id/pgName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/noOfBathEditText"
-        android:layout_toEndOf="@+id/contactEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="PG Name: "/>
 
-    <ImageButton
-        android:id="@+id/bioButton"
+    <TextView
+        android:id="@+id/pgNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/bioEditText"
-        android:layout_alignParentEnd="true"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_toEndOf="@id/pgName"
+        android:text="This is PG Name"/>
 
-    <ImageButton
-        android:id="@+id/pgNameButton"
+    <TextView
+        android:id="@+id/bio"
+        android:layout_below="@id/pgName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pgNameEditText"
-        android:layout_alignParentEnd="true"
-        android:elevation="5dp"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Bio: "/>
 
-    <ImageButton
-        android:id="@+id/roomsButton"
+    <TextView
+        android:id="@+id/bioTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/noOfRoomsEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/pgNameTextView"
+        android:layout_toEndOf="@id/bio"
+        android:text="This is bio"/>
 
-    <ImageButton
-        android:id="@+id/staffCountButton"
+    <TextView
+        android:id="@+id/gender"
+        android:layout_below="@id/bio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/staffNumberEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Gender: "/>
 
-    <ImageButton
-        android:id="@+id/landDistButton"
+    <TextView
+        android:id="@+id/genderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/distLandEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/bioTextView"
+        android:layout_toEndOf="@id/gender"
+        android:text="This is gender"/>
 
-    <ImageButton
-        android:id="@+id/lastEntryButton"
+    <TextView
+        android:id="@+id/landmark"
+        android:layout_below="@id/gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/lastEntryEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Landmark: "/>
 
-    <ImageButton
-        android:id="@+id/mailButton"
+    <TextView
+        android:id="@+id/landmarkTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pgEmailEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/genderTextView"
+        android:layout_toEndOf="@id/landmark"
+        android:text="This is landmark"/>
 
-    <ImageButton
-        android:id="@+id/genderButton"
+    <TextView
+        android:id="@+id/lastEntryTime"
+        android:layout_below="@id/landmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/genderEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Last Entry time: "/>
 
-    <ImageButton
-        android:id="@+id/occupancyButton"
+    <TextView
+        android:id="@+id/lastEntryTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/occupancyEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/landmarkTextView"
+        android:layout_toEndOf="@id/lastEntryTime"
+        android:text="This is last Entry time"/>
 
-    <EditText
-        android:id="@+id/noOfBathEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/noOfRoomsEditText"
-        android:ems="10"
-        android:hint="Number of Bathrooms"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/noOfRoomsEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/staffNumberEditText"
-        android:ems="10"
-        android:hint="Number of Rooms"
-        android:inputType="numberSigned" />
-
-    <EditText
-        android:id="@+id/staffNumberEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/occupancyEditText"
-        android:ems="10"
-        android:hint="Staff Count"
-        android:inputType="textPersonName|numberSigned" />
-
-    <EditText
-        android:id="@+id/occupancyEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/genderEditText"
-        android:ems="10"
-        android:hint="Max Occupancy"
-        android:inputType="textPersonName|numberSigned" />
-
-    <EditText
-        android:id="@+id/locationEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/bioEditText"
-        android:ems="10"
-        android:hint="Location"
-        android:inputType="textPostalAddress" />
-
-    <EditText
-        android:id="@+id/genderEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/lastEntryEditText"
-        android:ems="10"
-        android:hint="Gender"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/lastEntryEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/pgEmailEditText"
-        android:ems="10"
-        android:hint="Last Entry till ?"
-        android:inputType="time" />
-
-    <EditText
-        android:id="@+id/pgEmailEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/distLandEditText"
-        android:ems="10"
-        android:hint="PG Email"
-        android:inputType="textWebEmailAddress" />
-
-    <EditText
-        android:id="@+id/distLandEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/contactEditText"
-        android:ems="10"
-        android:hint="Distance from landmark"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/ownerNameEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/locationEditText"
-        android:ems="10"
-        android:hint="Owner Name"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/contactEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ownerNameEditText"
-        android:ems="10"
-        android:hint="PG contact "
-        android:inputType="phone" />
-
-    <EditText
-        android:id="@+id/pgNameEditText"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:hint="Pg Name"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/bioEditText"
-        android:layout_width="325dp"
-        android:layout_height="68dp"
-        android:layout_below="@+id/pgNameEditText"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="BIO"
-        android:inputType="textMultiLine" />
-
-    <ImageButton
-        android:id="@+id/locationButton"
+    <TextView
+        android:id="@+id/location"
+        android:layout_below="@id/lastEntryTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        android:layout_below="@+id/bioEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Location: "/>
 
-    <ImageButton
-        android:id="@+id/ownerNameButton"
+    <TextView
+        android:id="@+id/locationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/contactEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/lastEntryTimeTextView"
+        android:layout_toEndOf="@id/location"
+        android:text="This is location"/>
 
-    <ImageButton
-        android:id="@+id/contactButton"
+    <TextView
+        android:id="@+id/maxOccupancy"
+        android:layout_below="@id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/contactEditText"
-        android:layout_alignEnd="@+id/pgNameEditText"
-        app:srcCompat="@drawable/edit" />
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Max Occupancy: "/>
+
+    <TextView
+        android:id="@+id/maxOccupancyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/locationTextView"
+        android:layout_toEndOf="@id/maxOccupancy"
+        android:text="This is mac occupancy"/>
+
+    <TextView
+        android:id="@+id/noOfBathroom"
+        android:layout_below="@id/maxOccupancy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="No of bathrooms: "/>
+
+    <TextView
+        android:id="@+id/noOfBathroomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/maxOccupancy"
+        android:layout_toEndOf="@id/noOfBathroom"
+        android:text="This is no of bathroom"/>
+
+    <TextView
+        android:id="@+id/noOfRoom"
+        android:layout_below="@id/noOfBathroom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="No of rooms: "/>
+
+    <TextView
+        android:id="@+id/noOfRoomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/noOfBathroom"
+        android:layout_toEndOf="@id/noOfRoom"
+        android:text="This is no of rooms"/>
+
+    <TextView
+        android:id="@+id/ownerName"
+        android:layout_below="@id/noOfRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Owner Name: "/>
+
+    <TextView
+        android:id="@+id/ownerNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/noOfRoom"
+        android:layout_toEndOf="@id/ownerName"
+        android:text="This is owner name"/>
+
+    <TextView
+        android:id="@+id/pgContact"
+        android:layout_below="@id/ownerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Contact: "/>
+
+    <TextView
+        android:id="@+id/pgContactTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/ownerName"
+        android:layout_toEndOf="@id/pgContact"
+        android:text="This is PG Contact"/>
+
+    <TextView
+        android:id="@+id/staffCount"
+        android:layout_below="@id/pgContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Staff Count: "/>
+
+    <TextView
+        android:id="@+id/staffCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_below="@id/pgContactTextView"
+        android:layout_toEndOf="@id/staffCount"
+        android:text="This is Staff Count"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/staffCount"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="20dp"/>
+
+
 </RelativeLayout>

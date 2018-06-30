@@ -51,7 +51,7 @@ public class PG {
     public String getNoOfBathroom() {
         return NoOfBathroom;
     }
-
+    
     public PG(String PGName, String bio, String location, String ownername, String PGContact, String landmark, String lastEntryTime, String gender, String maxOccupancy, String staffCount, String noOfRooms, String noOfBathroom) {
         this.PGName = PGName;
         this.bio = bio;
@@ -65,5 +65,20 @@ public class PG {
         StaffCount = staffCount;
         NoOfRooms = noOfRooms;
         NoOfBathroom = noOfBathroom;
+    }
+
+    public PG() {
+        PGName = "";
+        bio = "";
+        Location = "";
+        Ownername = "";
+        PGContact = "";
+        landmark = "";
+        LastEntryTime = "";
+        gender = "";
+        MaxOccupancy = "";
+        StaffCount = "";
+        NoOfRooms = "";
+        NoOfBathroom = "";
     }
 }
