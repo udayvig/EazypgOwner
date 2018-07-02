@@ -78,6 +78,7 @@
         android:ems="10"
         android:fontFamily="@font/muli_extralight"
         android:hint=" Contact"
+        android:maxLength="10"
         android:inputType="textPersonName|phone"
         android:textColor="#FFFFFF"
         android:textColorHint="#9e9e9e" />

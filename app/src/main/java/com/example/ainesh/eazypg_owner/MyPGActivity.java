@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +31,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MyPGActivity extends AppCompatActivity {
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
+
+    FirebaseUser firebaseUser;
 
     TextView pgName;
     TextView bio;
@@ -56,7 +58,10 @@ public class MyPGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pg);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = firebaseDatabase.getReference();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        final String id = firebaseUser.getUid();
 
         pgName = findViewById(R.id.pgNameTextView);
         bio = findViewById(R.id.bioTextView);
@@ -86,6 +91,44 @@ public class MyPGActivity extends AppCompatActivity {
         input11 = new EditText(this);
         input12 = new EditText(this);
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                //databaseReference.keepSynced(true);
+                String name1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("pgName").getValue(String.class);
+                String bio1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("bio").getValue(String.class);
+                String gender1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("gender").getValue(String.class);
+                String landmark1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("landmark").getValue(String.class);
+                String lastEntryTime1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("lastEntryTime").getValue(String.class);
+                String location1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("location").getValue(String.class);
+                String maxOccupancy1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("maxOccupancy").getValue(String.class);
+                String bathroom1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("noOfBathroom").getValue(String.class);
+                String room1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("noOfRooms").getValue(String.class);
+                String ownername1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("ownername").getValue(String.class);
+                String contact1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("pgContact").getValue(String.class);
+                String staffCount1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("staffCount").getValue(String.class);
+
+                pgName.setText(name1);
+                bio.setText(bio1);
+                gender.setText(gender1);
+                landmark.setText(landmark1);
+                lastEntry.setText(lastEntryTime1);
+                location.setText(location1);
+                maxOccupancy.setText(maxOccupancy1);
+                bathroom.setText(bathroom1);
+                room.setText(room1);
+                ownerName.setText(ownername1);
+                contact.setText(contact1);
+                staffCount.setText(staffCount1);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(MyPGActivity.this, "Failed to update!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         pgName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,21 +161,6 @@ public class MyPGActivity extends AppCompatActivity {
 
                 builder.create().show();
 
-
-
-
-               /* AlertDialog a = builder.create();
-                a.show();
-                a.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        if(pgName.getParent()!=null){
-                            ((ViewGroup)pgName.getParent()).removeView(pgName);
-                        }*/
-                       /* RelativeLayout relativeLayout=new RelativeLayout(getApplicationContext());
-                        relativeLayout.addView(pgName);*/
-                    //}
-                //});
             }
         });
 
@@ -422,6 +450,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input11.getParent()!=null) {
                     ((ViewGroup) input11.getParent()).removeView(input11);
                 }
+                input11.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -485,7 +514,6 @@ public class MyPGActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void addingPg() {
 

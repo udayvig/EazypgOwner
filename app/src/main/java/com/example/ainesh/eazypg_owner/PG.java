@@ -2,10 +2,10 @@ package com.example.ainesh.eazypg_owner;
 
 public class PG {
 
-    private String PGName, bio, Location, Ownername, PGContact, landmark, LastEntryTime, gender, MaxOccupancy, StaffCount, NoOfRooms, NoOfBathroom;
+    public String pgName, bio, location, ownername, pgContact, landmark, lastEntryTime, gender, maxOccupancy, staffCount, noOfRooms, noOfBathroom;
 
-    public String getPGName() {
-        return PGName;
+    /*public String getPGName() {
+        return pgName;
     }
 
     public String getBio() {
@@ -13,15 +13,15 @@ public class PG {
     }
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     public String getOwnername() {
-        return Ownername;
+        return ownername;
     }
 
-    public String getPGContact() {
-        return PGContact;
+    public String getpgContact() {
+        return pgContact;
     }
 
     public String getLandmark() {
@@ -29,7 +29,7 @@ public class PG {
     }
 
     public String getLastEntryTime() {
-        return LastEntryTime;
+        return lastEntryTime;
     }
 
     public String getGender() {
@@ -37,48 +37,48 @@ public class PG {
     }
 
     public String getMaxOccupancy() {
-        return MaxOccupancy;
+        return maxOccupancy;
     }
 
     public String getStaffCount() {
-        return StaffCount;
+        return staffCount;
     }
 
     public String getNoOfRooms() {
-        return NoOfRooms;
+        return noOfRooms;
     }
 
     public String getNoOfBathroom() {
-        return NoOfBathroom;
+        return noOfBathroom;
     }
-    
+    */
     public PG(String PGName, String bio, String location, String ownername, String PGContact, String landmark, String lastEntryTime, String gender, String maxOccupancy, String staffCount, String noOfRooms, String noOfBathroom) {
-        this.PGName = PGName;
+        this.pgName = PGName;
         this.bio = bio;
-        Location = location;
-        Ownername = ownername;
-        this.PGContact = PGContact;
+        this.location = location;
+        this.ownername = ownername;
+        this.pgContact = PGContact;
         this.landmark = landmark;
-        LastEntryTime = lastEntryTime;
+        this.lastEntryTime = lastEntryTime;
         this.gender = gender;
-        MaxOccupancy = maxOccupancy;
-        StaffCount = staffCount;
-        NoOfRooms = noOfRooms;
-        NoOfBathroom = noOfBathroom;
+        this.maxOccupancy = maxOccupancy;
+        this.staffCount = staffCount;
+        this.noOfRooms = noOfRooms;
+        this.noOfBathroom = noOfBathroom;
     }
 
     public PG() {
-        PGName = "";
+        pgName = "";
         bio = "";
-        Location = "";
-        Ownername = "";
-        PGContact = "";
+        location = "";
+        ownername = "";
+        pgContact = "";
         landmark = "";
-        LastEntryTime = "";
+        lastEntryTime = "";
         gender = "";
-        MaxOccupancy = "";
-        StaffCount = "";
-        NoOfRooms = "";
-        NoOfBathroom = "";
+        maxOccupancy = "";
+        staffCount = "";
+        noOfRooms = "";
+        noOfBathroom = "";
     }
 }

@@ -20,8 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="20dp"
-        android:layout_toEndOf="@id/pgName"
-        android:text="This is PG Name"/>
+        android:layout_toEndOf="@id/pgName" />
 
     <TextView
         android:id="@+id/bio"
@@ -39,8 +38,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/pgNameTextView"
-        android:layout_toEndOf="@id/bio"
-        android:text="This is bio"/>
+        android:layout_toEndOf="@id/bio" />
 
     <TextView
         android:id="@+id/gender"
@@ -58,8 +56,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/bioTextView"
-        android:layout_toEndOf="@id/gender"
-        android:text="This is gender"/>
+        android:layout_toEndOf="@id/gender" />
 
     <TextView
         android:id="@+id/landmark"
@@ -77,8 +74,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/genderTextView"
-        android:layout_toEndOf="@id/landmark"
-        android:text="This is landmark"/>
+        android:layout_toEndOf="@id/landmark" />
 
     <TextView
         android:id="@+id/lastEntryTime"
@@ -96,8 +92,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/landmarkTextView"
-        android:layout_toEndOf="@id/lastEntryTime"
-        android:text="This is last Entry time"/>
+        android:layout_toEndOf="@id/lastEntryTime" />
 
     <TextView
         android:id="@+id/location"
@@ -115,8 +110,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/lastEntryTimeTextView"
-        android:layout_toEndOf="@id/location"
-        android:text="This is location"/>
+        android:layout_toEndOf="@id/location" />
 
     <TextView
         android:id="@+id/maxOccupancy"
@@ -134,8 +128,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/locationTextView"
-        android:layout_toEndOf="@id/maxOccupancy"
-        android:text="This is mac occupancy"/>
+        android:layout_toEndOf="@id/maxOccupancy" />
 
     <TextView
         android:id="@+id/noOfBathroom"
@@ -153,8 +146,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/maxOccupancy"
-        android:layout_toEndOf="@id/noOfBathroom"
-        android:text="This is no of bathroom"/>
+        android:layout_toEndOf="@id/noOfBathroom" />
 
     <TextView
         android:id="@+id/noOfRoom"
@@ -172,8 +164,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/noOfBathroom"
-        android:layout_toEndOf="@id/noOfRoom"
-        android:text="This is no of rooms"/>
+        android:layout_toEndOf="@id/noOfRoom" />
 
     <TextView
         android:id="@+id/ownerName"
@@ -191,8 +182,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/noOfRoom"
-        android:layout_toEndOf="@id/ownerName"
-        android:text="This is owner name"/>
+        android:layout_toEndOf="@id/ownerName" />
 
     <TextView
         android:id="@+id/pgContact"
@@ -210,8 +200,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/ownerName"
-        android:layout_toEndOf="@id/pgContact"
-        android:text="This is PG Contact"/>
+        android:layout_toEndOf="@id/pgContact" />
 
     <TextView
         android:id="@+id/staffCount"
@@ -229,8 +218,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:layout_below="@id/pgContactTextView"
-        android:layout_toEndOf="@id/staffCount"
-        android:text="This is Staff Count"/>
+        android:layout_toEndOf="@id/staffCount" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/saveButton"
