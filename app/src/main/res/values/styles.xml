@@ -5,8 +5,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
-
 
     <!-- Fullscreen application theme. -->
     <style name="FullscreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -15,6 +16,10 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-
+    <style name = "actionBarVisible" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
 </resources>

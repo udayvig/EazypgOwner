@@ -12,12 +12,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.w3c.dom.Text;
 
 import java.util.Random;
 
@@ -28,6 +31,8 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
 
     private int RC_SIGN_IN=1;
+
+    TextView signupToLogin;
 
     private EditText etUserEmail,etUserLocality,etUserContact,etUserName;
     private ImageView btnSignUp;
@@ -51,6 +56,7 @@ public class SignupActivity extends AppCompatActivity {
         etUserLocality=(EditText) findViewById(R.id.localityEditText); //Test
         etUserContact=(EditText) findViewById(R.id.contactEditText);       //Test
         etUserName=(EditText)findViewById(R.id.usernameEditText);      //Test
+        signupToLogin = findViewById(R.id.signupToLoginTextView);
 
         mFirebaseAuth=FirebaseAuth.getInstance();
 
@@ -143,6 +149,15 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
+
+        signupToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
+
     }
 
     public static String passwordGeneration(){

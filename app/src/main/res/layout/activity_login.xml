@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,14 +15,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="189dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
         android:fontFamily="@font/muli_extralight"
-        android:hint=" Username"
+        android:hint="  Username"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#9e9e9e"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signinView"
         tools:ignore="RtlHardcoded" />
 
     <EditText
@@ -31,14 +36,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/usernametextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
         android:fontFamily="@font/muli_extralight"
-        android:hint=" Password"
+        android:hint="  Password"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
-        android:textColorHint="#9e9e9e"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernametextView"
         tools:ignore="TextFields" />
 
     <TextView
@@ -47,46 +57,97 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
-        android:fontFamily="@font/muli_extralight"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/muli"
         android:text="Login"
         android:textColor="#ffffff"
-        android:textSize="60sp" />
-
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/tvLoginToSignUp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:fontFamily="@font/muli_extralight"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/muli"
         android:text="New User? Sign Up."
         android:textColor="#000000"
-        android:textSize="24sp" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/btnSignIn"
-        android:layout_width="78dp"
-        android:layout_height="76dp"
+        android:layout_width="86dp"
+        android:layout_height="82dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="165dp"
-        android:layout_marginEnd="39dp"
-        app:srcCompat="@drawable/enabled" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.885"
+        app:srcCompat="@drawable/greengo" />
 
     <TextView
         android:id="@+id/forgotPasswordTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="30dp"
+        android:layout_above="@+id/btnSignIn"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="277dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/muli_extralight"
         android:text="Forgot Password? Click Here."
         android:textColor="#FFFFFF"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordtextView" />
+
+    <ImageView
+        android:id="@+id/usernameImageView"
+        android:layout_width="38dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="168dp"
+        app:layout_constraintEnd_toStartOf="@+id/usernametextView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/usernamegreen" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="39dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="244dp"
+        app:layout_constraintEnd_toStartOf="@+id/passwordtextView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/password" />
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

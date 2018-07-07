@@ -24,4 +24,24 @@
     <string name="contact">Contact</string>
     <string name="app_intro_skip">app_intro_skip</string>
     <string name="amazing_android_app_with_cool_features">Amazing android app with cool features.</string>
+
+    <string-array name="applianceList">
+        <item>AC</item>
+        <item>Fan</item>
+        <item>Lift</item>
+        <item>Geyser</item>
+        <item>Washing Machine</item>
+        <item>RO</item>
+        <item>Dishwasher</item>
+        <item>Microwave</item>
+        <item>Refrigerator</item>
+        <item>TV</item>
+        <item>CCTV</item>
+        <item>Iron</item>
+        <item>Induction</item>
+        <item>Router</item>
+        <item>Heater</item>
+        <item>D2H</item>
+        <item>Other</item>
+    </string-array>
 </resources>

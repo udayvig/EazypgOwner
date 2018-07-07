@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/signup"
+    android:background="@drawable/signupwalli"
     android:layout_height="match_parent"
     tools:context="com.example.ainesh.eazypg_owner.SignupActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="110dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/muli_extralight"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/muli"
         android:text="Sign up"
-        android:textColor="#FFFFFF"
-        android:textSize="60sp" />
+        android:textColor="#000000"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058" />
 
     <EditText
         android:id="@+id/usernameEditText"
@@ -25,14 +33,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="181dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="176dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="@font/muli_extralight"
+        android:fontFamily="@font/muli"
         android:hint=" Name"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#9e9e9e" />
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -41,30 +54,40 @@
         android:layout_alignEnd="@+id/usernameEditText"
         android:layout_alignRight="@+id/usernameEditText"
         android:layout_below="@+id/usernameEditText"
-        android:layout_marginTop="17dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="@font/muli_extralight"
+        android:fontFamily="@font/muli"
         android:hint=" Email Address"
         android:inputType="textEmailAddress|textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#9e9e9e" />
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
 
     <EditText
         android:id="@+id/localityEditText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:layout_alignLeft="@+id/emailEditText"
         android:layout_alignStart="@+id/emailEditText"
         android:layout_below="@+id/emailEditText"
-        android:layout_marginTop="18dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="@font/muli_extralight"
+        android:fontFamily="@font/muli"
         android:hint=" Locality"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#9e9e9e" />
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
     <EditText
         android:id="@+id/contactEditText"
@@ -73,24 +96,105 @@
         android:layout_alignLeft="@+id/localityEditText"
         android:layout_alignStart="@+id/localityEditText"
         android:layout_below="@+id/localityEditText"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:fontFamily="@font/muli_extralight"
-        android:hint=" Contact"
         android:maxLength="10"
+        android:fontFamily="@font/muli"
+        android:hint=" Contact"
         android:inputType="textPersonName|phone"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#9e9e9e" />
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/localityEditText" />
 
     <ImageView
         android:id="@+id/btnSignUp"
         android:layout_width="80dp"
         android:layout_height="117dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="101dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.902"
         app:srcCompat="@drawable/enabled" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/nameIcon"
+        android:layout_width="51dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="176dp"
+        app:layout_constraintEnd_toStartOf="@+id/usernameEditText"
+        app:layout_constraintHorizontal_bias="0.812"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nameblack" />
+
+    <ImageView
+        android:id="@+id/emailIcon"
+        android:layout_width="35dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="250dp"
+        app:layout_constraintEnd_toStartOf="@+id/emailEditText"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/emailblack" />
+
+    <ImageView
+        android:id="@+id/localityIcon"
+        android:layout_width="35dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="316dp"
+        app:layout_constraintEnd_toStartOf="@+id/localityEditText"
+        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/localityblack" />
+
+    <ImageView
+        android:id="@+id/contactIcon"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="388dp"
+        app:layout_constraintEnd_toStartOf="@+id/contactEditText"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/contactblack" />
+
+    <TextView
+        android:id="@+id/signupToLoginTextView"
+        android:layout_width="310dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/muli"
+        android:text="Already Registered? Login"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

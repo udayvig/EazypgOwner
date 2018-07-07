@@ -12,9 +12,12 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +52,8 @@ public class MyPGActivity extends AppCompatActivity {
     TextView contact;
     TextView staffCount;
 
+    TextView appliance;
+
     FloatingActionButton saveButton;
 
     EditText input1,input2,input3,input4,input5,input6,input7,input8,input9,input10,input11,input12;
@@ -61,7 +66,7 @@ public class MyPGActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        final String id = firebaseUser.getUid();
+     //   final String id = firebaseUser.getUid();
 
         pgName = findViewById(R.id.pgNameTextView);
         bio = findViewById(R.id.bioTextView);
@@ -75,6 +80,8 @@ public class MyPGActivity extends AppCompatActivity {
         ownerName = findViewById(R.id.ownerNameTextView);
         contact = findViewById(R.id.pgContactTextView);
         staffCount = findViewById(R.id.staffCountTextView);
+
+        appliance = findViewById(R.id.applianceTextView);
 
         saveButton = findViewById(R.id.saveButton);
 
@@ -507,10 +514,28 @@ public class MyPGActivity extends AppCompatActivity {
             }
         });
 
+        appliance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MyPGActivity.this, ApplianceActivity.class));
+
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addingPg();
+            }
+        });
+
+        saveButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Toast.makeText(MyPGActivity.this, "Save", Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
     }
@@ -556,7 +581,7 @@ public class MyPGActivity extends AppCompatActivity {
     public void onBackPressed() {
    //     AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
         new AlertDialog.Builder(MyPGActivity.this).setTitle("Save Details")
-                .setMessage("Do you want details before going to home page?")
+                .setMessage("Do you want to save details before going to home page?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

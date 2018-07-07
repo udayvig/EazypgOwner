@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <RelativeLayout
+        android:id="@+id/ACLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/ACCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/ACModelEditText"
+            android:layout_below="@id/ACCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/ACCapacityEditText"
+            android:layout_below="@id/ACModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Capacity"/>
+        <EditText
+            android:id="@+id/ACLastServiceDateEditText"
+            android:layout_below="@id/ACCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Service Date"/>
+        <EditText
+            android:id="@+id/ACStarRatingEditText"
+            android:layout_below="@id/ACLastServiceDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Star Rating"/>
+        <EditText
+            android:id="@+id/ACTypeEditText"
+            android:layout_below="@id/ACStarRatingEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Window/Split"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fanLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/fanCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/fanModelEditText"
+            android:layout_below="@id/fanCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/fanDaysEditText"
+            android:layout_below="@id/fanModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/fanBladesEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fanDaysEditText"
+            android:hint="Number of Blades"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/liftLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/liftCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/liftModelEditText"
+            android:layout_below="@id/liftCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/liftDaysEditText"
+            android:layout_below="@id/liftModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/liftCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/liftDaysEditText"
+            android:hint="Capacity"/>
+        <EditText
+            android:id="@+id/liftDoorEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/liftCapacityEditText"
+            android:hint="Door (Manual/Automatic)"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/geyserLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/geyserCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/geyserModelEditText"
+            android:layout_below="@id/geyserCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/geyserDaysEditText"
+            android:layout_below="@id/geyserModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/geyserCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/geyserDaysEditText"
+            android:hint="Capacity (litres)"/>
+        <EditText
+            android:id="@+id/geyserPowerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/geyserCapacityEditText"
+            android:hint="Input Power"/>
+        <EditText
+            android:id="@+id/geyserRatingEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/geyserPowerEditText"
+            android:hint="Star Rating"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/washingMachineLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/wmCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/wmModelEditText"
+            android:layout_below="@id/wmCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/wmDaysEditText"
+            android:layout_below="@id/wmModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/wmCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wmDaysEditText"
+            android:hint="Capacity (kg)"/>
+        <EditText
+            android:id="@+id/wmPowerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wmCapacityEditText"
+            android:hint="Input Power"/>
+        <EditText
+            android:id="@+id/wmRatingEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wmPowerEditText"
+            android:hint="Star Rating"/>
+        <EditText
+            android:id="@+id/wmTypeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wmRatingEditText"
+            android:hint="Type"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ROLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/ROCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/ROModelEditText"
+            android:layout_below="@id/ROCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/RODaysEditText"
+            android:layout_below="@id/ROModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/ROCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/RODaysEditText"
+            android:hint="Capacity (litres)"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dishwasherLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/dishwasherCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/dishwasherModelEditText"
+            android:layout_below="@id/dishwasherCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/dishwasherDaysEditText"
+            android:layout_below="@id/dishwasherModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/dishwasherCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dishwasherDaysEditText"
+            android:hint="Capacity"/>
+        <EditText
+            android:id="@+id/dishwasherTypeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dishwasherCapacityEditText"
+            android:hint="Type"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/microwaveLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/microwaveCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/microwaveModelEditText"
+            android:layout_below="@id/microwaveCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/microwaveDaysEditText"
+            android:layout_below="@id/microwaveModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/microwaveCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/microwaveDaysEditText"
+            android:hint="Capacity (litres)"/>
+        <EditText
+            android:id="@+id/microwaveTypeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/microwaveCapacityEditText"
+            android:hint="Control Type"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fridgeLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/fridgeCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/fridgeModelEditText"
+            android:layout_below="@id/fridgeCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/fridgeDaysEditText"
+            android:layout_below="@id/fridgeModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/fridgeCapacityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fridgeDaysEditText"
+            android:hint="Capacity (litres)"/>
+        <EditText
+            android:id="@+id/fridgeTypeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fridgeCapacityEditText"
+            android:hint="Type"/>
+        <EditText
+            android:id="@+id/fridgeRatingEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fridgeTypeEditText"
+            android:hint="Star Rating"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/TVLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/TVCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/TVModelEditText"
+            android:layout_below="@id/TVCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/TVDaysEditText"
+            android:layout_below="@id/TVModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/TVTypeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TVDaysEditText"
+            android:hint="Type"/>
+        <EditText
+            android:id="@+id/TVSizeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TVTypeEditText"
+            android:hint="Screen Size"/>
+        <EditText
+            android:id="@+id/TVResolutionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TVSizeEditText"
+            android:hint="Resolution"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/CCTVLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/CCTVCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/CCTVModelEditText"
+            android:layout_below="@id/CCTVCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/CCTVDaysEditText"
+            android:layout_below="@id/CCTVModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/CCTVNightEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CCTVDaysEditText"
+            android:hint="Night Vision"/>
+        <EditText
+            android:id="@+id/CCTVChannelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CCTVNightEditText"
+            android:hint="Number Of Channels"/>
+        <EditText
+            android:id="@+id/CCTVResolutionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CCTVChannelEditText"
+            android:hint="Recording Resolution"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ironLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/ironCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/ironModelEditText"
+            android:layout_below="@id/ironCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/ironDaysEditText"
+            android:layout_below="@id/ironModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/ironPowerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ironDaysEditText"
+            android:hint="Input Power"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/inductionLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/inductionCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/inductionModelEditText"
+            android:layout_below="@id/inductionCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/inductionDaysEditText"
+            android:layout_below="@id/inductionModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/inductionPowerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inductionDaysEditText"
+            android:hint="Input Power"/>
+        <EditText
+            android:id="@+id/inductionControlTypeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inductionPowerEditText"
+            android:hint="Control Type"/>
+        <EditText
+            android:id="@+id/inductionNumberCooktopEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inductionControlTypeEditText"
+            android:hint="Number Of Cooktops"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/routerLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/routerCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/routerModelEditText"
+            android:layout_below="@id/routerCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/routerDaysEditText"
+            android:layout_below="@id/routerModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/routerAntennaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/routerDaysEditText"
+            android:hint="Number Of Antenna(e)"/>
+        <EditText
+            android:id="@+id/routerSpeedEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/routerAntennaEditText"
+            android:hint="Wireless Speed"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/heaterLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/heaterCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+        <EditText
+            android:id="@+id/heaterModelEditText"
+            android:layout_below="@id/heaterCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Model"/>
+        <EditText
+            android:id="@+id/heaterDaysEditText"
+            android:layout_below="@id/heaterModelEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+        <EditText
+            android:id="@+id/heaterPowerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heaterDaysEditText"
+            android:hint="Input Power"/>
+        <EditText
+            android:id="@+id/heaterWeightEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heaterPowerEditText"
+            android:hint="Weight"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/D2HLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/D2HCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Name"/>
+        <EditText
+            android:id="@+id/D2HDaysEditText"
+            android:layout_below="@id/D2HCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Since Installation"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/otherLayout"
+        android:layout_below="@id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/otherNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Appliance Name"/>
+        <EditText
+            android:id="@+id/otherCompanyNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"/>
+    </RelativeLayout>
+</RelativeLayout>
