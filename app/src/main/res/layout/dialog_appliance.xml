@@ -5,19 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="16dp" />
-
     <RelativeLayout
         android:id="@+id/ACLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -60,7 +49,6 @@
 
     <RelativeLayout
         android:id="@+id/fanLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -91,7 +79,6 @@
 
     <RelativeLayout
         android:id="@+id/liftLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -128,7 +115,6 @@
 
     <RelativeLayout
         android:id="@+id/geyserLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -171,7 +157,6 @@
 
     <RelativeLayout
         android:id="@+id/washingMachineLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -220,7 +205,6 @@
 
     <RelativeLayout
         android:id="@+id/ROLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -251,7 +235,6 @@
 
     <RelativeLayout
         android:id="@+id/dishwasherLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -288,7 +271,6 @@
 
     <RelativeLayout
         android:id="@+id/microwaveLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -325,7 +307,6 @@
 
     <RelativeLayout
         android:id="@+id/fridgeLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -368,7 +349,6 @@
 
     <RelativeLayout
         android:id="@+id/TVLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -411,7 +391,6 @@
 
     <RelativeLayout
         android:id="@+id/CCTVLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -454,7 +433,6 @@
 
     <RelativeLayout
         android:id="@+id/ironLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -485,7 +463,6 @@
 
     <RelativeLayout
         android:id="@+id/inductionLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -528,7 +505,6 @@
 
     <RelativeLayout
         android:id="@+id/routerLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -565,7 +541,6 @@
 
     <RelativeLayout
         android:id="@+id/heaterLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -602,7 +577,6 @@
 
     <RelativeLayout
         android:id="@+id/D2HLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -621,7 +595,6 @@
 
     <RelativeLayout
         android:id="@+id/otherLayout"
-        android:layout_below="@id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">

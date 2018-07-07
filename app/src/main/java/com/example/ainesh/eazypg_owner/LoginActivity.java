@@ -77,13 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-                }else{
-                    if(userEmail.isEmpty()){
-                        etUserEmail.setError("Field cannot be empty.");
-                    }
-                    if(userPassword.isEmpty()){
-                        etUserPassword.setError("Field cannot be empty.");
-                    }
                 }
             }
         });

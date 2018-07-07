@@ -8,48 +8,78 @@
     android:layout_height="match_parent"
     tools:context="com.example.ainesh.eazypg_owner.LoginActivity">
 
-
-    <EditText
-        android:id="@+id/usernametextView"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/roundedcorners"
-        android:ems="10"
-        android:fontFamily="@font/muli_extralight"
-        android:hint="  Username"
-        android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:layout_marginTop="50dp"
+        android:textColorHint="#BDBDBD"
+        app:hintTextAppearance="@style/TextLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signinView"
-        tools:ignore="RtlHardcoded" />
+        app:layout_constraintTop_toBottomOf="@+id/signinView">
 
-    <EditText
-        android:id="@+id/passwordtextView"
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/usernametextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/roundedcorners"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="5dp"
+            android:translationY="1.75dp"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/muli"
+            android:hint="  Username"
+            android:inputType="textPersonName"
+            tools:ignore="RtlHardcoded" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/usernametextView"
-        android:layout_centerHorizontal="true"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/roundedcorners"
-        android:ems="10"
-        android:fontFamily="@font/muli_extralight"
-        android:hint="  Password"
-        android:inputType="textPassword"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:layout_marginTop="48dp"
+        android:textColorHint="#BDBDBD"
+        app:hintTextAppearance="@style/TextLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernametextView"
-        tools:ignore="TextFields" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#FFFFFF">
+
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/passwordtextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/usernametextView"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/roundedcorners"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/muli_extralight"
+            android:hint="  Password"
+            android:translationY="1.75dp"
+            android:inputType="textPassword"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="5dp"
+            tools:ignore="TextFields"
+            tools:layout_editor_absoluteY="196dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
 
     <TextView
         android:id="@+id/signinView"
@@ -112,42 +142,41 @@
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/muli_extralight"
         android:text="Forgot Password? Click Here."
         android:textColor="#FFFFFF"
-        android:visibility="visible"
         android:textSize="15dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordtextView" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
     <ImageView
         android:id="@+id/usernameImageView"
-        android:layout_width="38dp"
-        android:layout_height="28dp"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="168dp"
-        app:layout_constraintEnd_toStartOf="@+id/usernametextView"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="184dp"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout4"
+        app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/usernamegreen" />
+        app:srcCompat="@drawable/ic_account_circle_green_24dp" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="39dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="38dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="244dp"
-        app:layout_constraintEnd_toStartOf="@+id/passwordtextView"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout3"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
         app:srcCompat="@drawable/password" />
-
 
 </android.support.constraint.ConstraintLayout>
