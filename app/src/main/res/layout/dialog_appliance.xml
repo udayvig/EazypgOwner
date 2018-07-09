@@ -11,9 +11,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/ACRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/ACCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/ACRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/ACModelEditText"
@@ -53,9 +59,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/fanRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/fanCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/fanRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/fanModelEditText"
@@ -83,9 +95,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/liftRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/liftCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/liftRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/liftModelEditText"
@@ -119,9 +137,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/geyserRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/geyserCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/geyserRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/geyserModelEditText"
@@ -161,9 +185,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/wmRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/wmCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/wmRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/wmModelEditText"
@@ -209,9 +239,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/RORoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/ROCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/RORoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/ROModelEditText"
@@ -239,9 +275,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/dishwasherRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/dishwasherCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/dishwasherRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/dishwasherModelEditText"
@@ -275,9 +317,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/microwaveRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/microwaveCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/microwaveRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/microwaveModelEditText"
@@ -311,9 +359,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/fridgeRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/fridgeCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/fridgeRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/fridgeModelEditText"
@@ -353,9 +407,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/TVRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/TVCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/TVRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/TVModelEditText"
@@ -395,9 +455,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/CCTVRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/CCTVCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/CCTVRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/CCTVModelEditText"
@@ -437,9 +503,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/ironRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/ironCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/ironRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/ironModelEditText"
@@ -467,9 +539,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/inductionRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/inductionCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/inductionRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/inductionModelEditText"
@@ -509,9 +587,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/routerRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/routerCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/routerRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/routerModelEditText"
@@ -545,9 +629,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/heaterRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/heaterCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/heaterRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/heaterModelEditText"
@@ -581,9 +671,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/D2HRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/D2HCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/D2HRoomNumberEditText"
             android:hint="Company Name"/>
         <EditText
             android:id="@+id/D2HDaysEditText"
@@ -599,9 +695,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <EditText
+            android:id="@+id/otherRoomNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"/>
+        <EditText
             android:id="@+id/otherNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/otherRoomNumberEditText"
             android:hint="Appliance Name"/>
         <EditText
             android:id="@+id/otherCompanyNameEditText"
