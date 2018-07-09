@@ -73,10 +73,16 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                                 Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                             } else {
+
                                 Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+                }
+                else {
+                    if (userEmail.isEmpty()) {
+                        etUserEmail.setError("Required");
+                    }
                 }
             }
         });
