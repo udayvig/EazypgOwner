@@ -27,15 +27,12 @@
                 android:id="@+id/pgName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/productsans"
                 android:text="PG Name "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/pgNameTextView"
-                app:layout_constraintHorizontal_bias="0.15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,15 +59,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/pgName"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Bio"
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/bioTextView"
-                app:layout_constraintHorizontal_bias="0.099"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/landmarkTextView" />
 
@@ -98,15 +92,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/bio"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Gender  "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/genderTextView"
-                app:layout_constraintHorizontal_bias="0.136"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/maxOccupancyTextView" />
 
@@ -134,15 +125,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/gender"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Landmark  "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/landmarkTextView"
-                app:layout_constraintHorizontal_bias="0.16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/locationTextView" />
 
@@ -170,15 +158,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:layout_below="@id/landmark"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Last Entry time "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/lastEntryTimeTextView"
-                app:layout_constraintHorizontal_bias="0.246"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noOfRoomTextView" />
 
@@ -203,18 +188,15 @@
 
             <TextView
                 android:id="@+id/location"
-                android:layout_width="wrap_content"
+                android:layout_width="81dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lastEntryTime"
-                android:layout_marginEnd="112dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Location  "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/locationTextView"
-                app:layout_constraintHorizontal_bias="0.947"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pgContactTextView" />
 
@@ -242,15 +224,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/location"
-                android:layout_marginEnd="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Max Occupancy  "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/maxOccupancyTextView"
-                app:layout_constraintHorizontal_bias="0.72"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bioTextView" />
 
@@ -278,15 +257,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/maxOccupancy"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Bathroom Count"
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/noOfBathroomTextView"
-                app:layout_constraintHorizontal_bias="0.295"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/staffCountTextView" />
 
@@ -317,15 +293,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/noOfBathroom"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="No of rooms  "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/noOfRoomTextView"
-                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/genderTextView" />
 
@@ -353,15 +326,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/noOfRoom"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Owner Name  "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/ownerNameTextView"
-                app:layout_constraintHorizontal_bias="0.216"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pgNameTextView" />
 
@@ -390,15 +360,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ownerName"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Contact "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/pgContactTextView"
-                app:layout_constraintHorizontal_bias="0.166"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ownerNameTextView" />
 
@@ -427,16 +394,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/pgContact"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/productsans"
                 android:inputType="text"
                 android:text="Staff Count  "
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/staffCountTextView"
-                app:layout_constraintHorizontal_bias="0.187"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lastEntryTimeTextView" />
 
@@ -499,7 +463,6 @@
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
-
         android:id="@+id/saveButton"
         android:layout_width="54dp"
         android:layout_height="55dp"
