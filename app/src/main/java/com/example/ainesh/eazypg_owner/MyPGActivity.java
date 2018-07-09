@@ -143,6 +143,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input1.getParent()!=null) {
                     ((ViewGroup) input1.getParent()).removeView(input1);
                 }
+                input1.setText(pgName.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -177,6 +178,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input2.getParent()!=null) {
                     ((ViewGroup) input2.getParent()).removeView(input2);
                 }
+                input2.setText(bio.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -209,6 +211,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input3.getParent()!=null) {
                     ((ViewGroup) input3.getParent()).removeView(input3);
                 }
+                input3.setText(gender.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -240,6 +243,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input4.getParent()!=null) {
                     ((ViewGroup) input4.getParent()).removeView(input4);
                 }
+                input4.setText(landmark.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -271,6 +275,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input5.getParent()!=null) {
                     ((ViewGroup) input5.getParent()).removeView(input5);
                 }
+                input5.setText(lastEntry.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -302,6 +307,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input6.getParent()!=null) {
                     ((ViewGroup) input6.getParent()).removeView(input6);
                 }
+                input6.setText(location.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -333,6 +339,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input7.getParent()!=null) {
                     ((ViewGroup) input7.getParent()).removeView(input7);
                 }
+                input7.setText(maxOccupancy.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -364,6 +371,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input8.getParent()!=null) {
                     ((ViewGroup) input8.getParent()).removeView(input8);
                 }
+                input8.setText(bathroom.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -392,6 +400,7 @@ public class MyPGActivity extends AppCompatActivity {
         room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                input9.setText(room.getText().toString().trim());
                 if(input9.getParent()!=null) {
                     ((ViewGroup) input9.getParent()).removeView(input9);
                 }
@@ -426,6 +435,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input10.getParent()!=null) {
                     ((ViewGroup) input10.getParent()).removeView(input10);
                 }
+                input10.setText(ownerName.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -457,6 +467,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input11.getParent()!=null) {
                     ((ViewGroup) input11.getParent()).removeView(input11);
                 }
+                input11.setText(contact.getText().toString().trim());
                 input11.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
@@ -489,6 +500,7 @@ public class MyPGActivity extends AppCompatActivity {
                 if(input12.getParent()!=null) {
                     ((ViewGroup) input12.getParent()).removeView(input12);
                 }
+                input12.setText(staffCount.getText().toString().trim());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
