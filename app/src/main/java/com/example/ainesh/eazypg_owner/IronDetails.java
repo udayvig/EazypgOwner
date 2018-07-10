@@ -1,25 +1,25 @@
 package com.example.ainesh.eazypg_owner;
 
-public class LiftDetails {
+public class IronDetails {
 
-    private String roomNo, brand, model, timeSinceInstallation, capacity, doorType;
+    private String roomNo, brand, model, timeSinceInstallation, capacity, inputPower;
 
-    public LiftDetails(String roomNo, String brand, String model, String timeSinceInstallation, String capacity, String doorType) {
+    public IronDetails(String roomNo, String brand, String model, String timeSinceInstallation, String capacity, String inputPower) {
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;
         this.timeSinceInstallation = timeSinceInstallation;
         this.capacity = capacity;
-        this.doorType = doorType;
-
+        this.inputPower = inputPower;
     }
 
-    public LiftDetails() {
+    public IronDetails() {
+
         roomNo = "";
         brand = "";
         model = "";
         timeSinceInstallation = "";
         capacity = "";
-        doorType = "";
+        inputPower = "";
     }
 }

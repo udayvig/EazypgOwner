@@ -2,7 +2,7 @@ package com.example.ainesh.eazypg_owner;
 
 public class GeyserDetails {
 
-    String roomNo, brand, model, timeSinceInstallation, capacity, inoutPower, starRating;
+    private String roomNo, brand, model, timeSinceInstallation, capacity, inoutPower, starRating;
 
     public GeyserDetails(String roomNo, String brand, String model, String timeSinceInstallation, String capacity, String inoutPower, String starRating) {
         this.roomNo = roomNo;

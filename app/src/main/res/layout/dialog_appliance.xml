@@ -709,6 +709,7 @@
             android:id="@+id/otherCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/otherNameEditText"
             android:hint="Brand"/>
     </RelativeLayout>
 </RelativeLayout>

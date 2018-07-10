@@ -330,7 +330,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 otherLayout.setVisibility(View.GONE);
 
                 break;
-            case "Dish Washer":
+            case "Dishwasher":
                 if(dishwasherLayout.getParent().getParent()!=null) {
                     ((ViewGroup) dishwasherLayout.getParent().getParent()).removeView((ViewGroup)dishwasherLayout.getParent());
                 }
@@ -364,7 +364,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 washingMachineLayout.setVisibility(View.GONE);
                 ROLayout.setVisibility(View.GONE);
                 dishwasherLayout.setVisibility(View.GONE);
-                microwaveLayout.setVisibility(View.GONE);
+                microwaveLayout.setVisibility(View.VISIBLE);
                 fridgeLayout.setVisibility(View.GONE);
                 TVLayout.setVisibility(View.GONE);
                 CCTVLayout.setVisibility(View.GONE);

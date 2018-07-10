@@ -2,7 +2,7 @@ package com.example.ainesh.eazypg_owner;
 
 public class ACDetails {
 
-    String roomNo, brand, model, capacity, lastServiceData, starRating, typeOfRating;
+    private String roomNo, brand, model, capacity, lastServiceData, starRating, typeOfRating;
 
     public ACDetails(String roomNo, String brand, String model, String capacity, String lastServiceData, String starRating, String typeOfRating) {
         this.roomNo = roomNo;
