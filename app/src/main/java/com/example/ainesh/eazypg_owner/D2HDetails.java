@@ -2,7 +2,7 @@ package com.example.ainesh.eazypg_owner;
 
 public class D2HDetails {
 
-    private String roomNo, companyName, timeSinceInstallation;
+    public String roomNo, companyName, timeSinceInstallation;
 
     public D2HDetails(String roomNo, String companyName, String timeSinceInstallation) {
         this.roomNo = roomNo;

@@ -15,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +48,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     private EditText TVRoomNo, TVCompanyName, TVModel, TVDays, TVType, TVSize, TVResolution;
     private EditText CCTVRoomNo, CCTVCompanyName, CCTVModel, CCTVDays, CCTVNight, CCTVChanel, CCTVResolution;
     private EditText IronRoomNo, IronComanyName, IronModel, IronDays, IronPower;
-    private EditText InductionRoomNo, InductionCompanyName, InductionModel, InductionDays, InductionPower, InductionControl, InductionType, InductionNoCooktop;
+    private EditText InductionRoomNo, InductionCompanyName, InductionModel, InductionDays, InductionPower, InductionType, InductionNoCooktop;
     private EditText RouterRoomNo, RouterCompanyName, RouterModel, RouterDays, RouterAntenna, RouterSpeed;
     private EditText HeaterRoomNo, HeaterCompanyName, HeaterModel, HeaterDays, HeaterPower, HeaterWeight;
     private EditText D2HRoomNo, D2HCompanyName, D2HDays;
@@ -113,73 +116,58 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     databaseReference = firebaseDatabase.getReference(firebaseUser.getUid());
 
-                    if (iconTextView.getText().toString().equals("AC")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add AC", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Fan")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Fan", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Lift")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Lift", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Geyser")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Geyser", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Washing Machine")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Washing Machine", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("RO")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add RO", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Dishwasher")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Dish Washer", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Microwave")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Microwave", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Refrigerator")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Refrigerator", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("TV")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add TV", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("CCTV")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add CCTV", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Iron")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Iron", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Induction")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Induction", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Router")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Router", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Heater")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Heater", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("D2H")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add D2H", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (iconTextView.getText().toString().equals("Other")) {
-                        showDialog(iconTextView.getText().toString(), view.getContext());
-                        Toast.makeText(view.getContext(), "Add Other", Toast.LENGTH_SHORT).show();
+                    switch (iconTextView.getText().toString()) {
+                        case "AC":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Fan":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Lift":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Geyser":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Washing Machine":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "RO":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Dishwasher":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Microwave":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Refrigerator":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "TV":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "CCTV":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Iron":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Induction":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Router":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Heater":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "D2H":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
+                        case "Other":
+                            showDialog(iconTextView.getText().toString(), view.getContext());
+                            break;
                     }
                 }
             });
@@ -187,7 +175,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     }
 
 
-    private void showDialog(final String applianceName, Context context) {
+    private void showDialog(final String applianceName, final Context context) {
 
         final View view = inflater.inflate(R.layout.dialog_appliance, null);
 
@@ -238,13 +226,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                ACRoomNo = view.findViewById(R.id.ACRoomNumberEditText);
-                ACCompanyName = view.findViewById(R.id.ACCompanyNameEditText);
-                ACModel = view.findViewById(R.id.ACModelEditText);
-                ACCapacity = view.findViewById(R.id.ACCapacityEditText);
-                ACLastServiceDate = view.findViewById(R.id.ACLastServiceDateEditText);
-                ACStarRating = view.findViewById(R.id.ACStarRatingEditText);
-                ACType = view.findViewById(R.id.ACTypeEditText);
 
                 break;
             case "Fan":
@@ -269,12 +250,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
-
-                FanRoomNo = view.findViewById(R.id.fanRoomNumberEditText);
-                FanCompanyName = view.findViewById(R.id.fanCompanyNameEditText);
-                FanModel = view.findViewById(R.id.fanModelEditText);
-                FanDays = view.findViewById(R.id.fanDaysEditText);
-                FanBlades = view.findViewById(R.id.fanBladesEditText);
 
 
                 break;
@@ -301,11 +276,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                LiftCompanyName = view.findViewById(R.id.liftCompanyNameEditText);
-                LiftModel = view.findViewById(R.id.liftModelEditText);
-                LiftDays = view.findViewById(R.id.liftDaysEditText);
-                LiftCapacity = view.findViewById(R.id.liftCapacityEditText);
-                LiftDoor = view.findViewById(R.id.liftDoorEditText);
 
                 break;
             case "Geyser":
@@ -331,14 +301,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                GeyserRoomNo = view.findViewById(R.id.geyserRoomNumberEditText);
-                GeyserCompanyName = view.findViewById(R.id.geyserCompanyNameEditText);
-                GeyserModel = view.findViewById(R.id.geyserModelEditText);
-                GeyserDays = view.findViewById(R.id.geyserDaysEditText);
-                GeyserCapacity = view.findViewById(R.id.geyserCapacityEditText);
-                GeyserPower = view.findViewById(R.id.geyserPowerEditText);
-                GeyserRating = view.findViewById(R.id.geyserRatingEditText);
-
                 break;
             case "Washing Machine":
 
@@ -363,14 +325,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                WashingMachineRoomNo = view.findViewById(R.id.wmRoomNumberEditText);
-                WashingMachineCompanyName = view.findViewById(R.id.wmCompanyNameEditText);
-                WashingMachineModel = view.findViewById(R.id.wmModelEditText);
-                WashingMachineDays = view.findViewById(R.id.wmDaysEditText);
-                WashingMachineCapacity = view.findViewById(R.id.wmCapacityEditText);
-                WashingMachinePower = view.findViewById(R.id.wmPowerEditText);
-                WashingMachineRating = view.findViewById(R.id.wmRatingEditText);
-                WashingMachineType = view.findViewById(R.id.wmTypeEditText);
 
                 break;
             case "RO":
@@ -396,11 +350,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                ROCapacity = view.findViewById(R.id.ROCapacityEditText);
-                ROCompanyName = view.findViewById(R.id.ROCompanyNameEditText);
-                RODays = view.findViewById(R.id.RODaysEditText);
-                ROModel = view.findViewById(R.id.ROModelEditText);
-                RORoomNo = view.findViewById(R.id.RORoomNumberEditText);
 
                 break;
             case "Dishwasher":
@@ -425,12 +374,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                DishwasherCapacity = view.findViewById(R.id.dishwasherCapacityEditText);
-                DishwasherCompanyName = view.findViewById(R.id.dishwasherCompanyNameEditText);
-                DishwasherDays = view.findViewById(R.id.dishwasherDaysEditText);
-                DishwasherModel = view.findViewById(R.id.dishwasherModelEditText);
-                DishwasherRoomNo = view.findViewById(R.id.dishwasherRoomNumberEditText);
-                DishwasherType = view.findViewById(R.id.dishwasherTypeEditText);
 
                 break;
             case "Microwave":
@@ -455,12 +398,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                MicrowaveCapacity = view.findViewById(R.id.microwaveCapacityEditText);
-                MicrowaveCompanyName = view.findViewById(R.id.microwaveCompanyNameEditText);
-                MicrowaveDays = view.findViewById(R.id.microwaveDaysEditText);
-                MicrowaveModel = view.findViewById(R.id.microwaveModelEditText);
-                MicrowaveType = view.findViewById(R.id.microwaveTypeEditText);
-                MicrowaveRoomNo = view.findViewById(R.id.microwaveRoomNumberEditText);
 
                 break;
             case "Refrigerator":
@@ -485,13 +422,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                FridgeCapacity = view.findViewById(R.id.fridgeCapacityEditText);
-                FridgeCompanyName = view.findViewById(R.id.fridgeCompanyNameEditText);
-                FridgeDays = view.findViewById(R.id.fridgeDaysEditText);
-                FridgeModel = view.findViewById(R.id.fridgeModelEditText);
-                FridgeRoomNo = view.findViewById(R.id.fridgeRoomNumberEditText);
-                FridgeType = view.findViewById(R.id.fridgeTypeEditText);
-                FridgeRating = view.findViewById(R.id.fridgeRatingEditText);
 
                 break;
             case "TV":
@@ -516,13 +446,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                TVCompanyName = view.findViewById(R.id.TVCompanyNameEditText);
-                TVDays = view.findViewById(R.id.TVDaysEditText);
-                TVModel = view.findViewById(R.id.TVModelEditText);
-                TVResolution = view.findViewById(R.id.TVResolutionEditText);
-                TVRoomNo = view.findViewById(R.id.TVRoomNumberEditText);
-                TVSize = view.findViewById(R.id.TVSizeEditText);
-                TVType = view.findViewById(R.id.TVTypeEditText);
 
                 break;
             case "CCTV":
@@ -547,13 +470,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                CCTVChanel = view.findViewById(R.id.CCTVChannelEditText);
-                CCTVCompanyName = view.findViewById(R.id.CCTVCompanyNameEditText);
-                CCTVDays = view.findViewById(R.id.CCTVDaysEditText);
-                CCTVModel = view.findViewById(R.id.CCTVModelEditText);
-                CCTVNight = view.findViewById(R.id.CCTVNightEditText);
-                CCTVResolution = view.findViewById(R.id.CCTVResolutionEditText);
-                CCTVRoomNo = view.findViewById(R.id.CCTVRoomNumberEditText);
 
                 break;
             case "Iron":
@@ -578,7 +494,9 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
                 break;
+
             case "Induction":
 
                 if(inductionLayout.getParent().getParent()!=null) {
@@ -673,6 +591,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.VISIBLE);
                 otherLayout.setVisibility(View.GONE);
 
+
                 break;
             case "Other":
                 if(otherLayout.getParent().getParent()!=null) {
@@ -696,6 +615,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.VISIBLE);
 
+
                 break;
         }
 
@@ -703,9 +623,528 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                if (applianceName.equals("AC")) {
+                switch (applianceName) {
+                    case "AC":
+
+                        ACRoomNo = view.findViewById(R.id.ACRoomNumberEditText);
+                        ACCompanyName = view.findViewById(R.id.ACCompanyNameEditText);
+                        ACModel = view.findViewById(R.id.ACModelEditText);
+                        ACCapacity = view.findViewById(R.id.ACCapacityEditText);
+                        ACLastServiceDate = view.findViewById(R.id.ACLastServiceDateEditText);
+                        ACStarRating = view.findViewById(R.id.ACStarRatingEditText);
+                        ACType = view.findViewById(R.id.ACTypeEditText);
+
+                        String roomNoAC = ACRoomNo.getText().toString();
+                        String brandAC = ACCompanyName.getText().toString();
+                        String modelAC = ACModel.getText().toString();
+                        String capacityAC = ACCapacity.getText().toString();
+                        String lastServiceDateAC = ACLastServiceDate.getText().toString();
+                        String starRatingAC = ACStarRating.getText().toString();
+                        String ratingAC = ACType.getText().toString();
+
+                        ACDetails acDetails = new ACDetails(roomNoAC, brandAC, modelAC, capacityAC, lastServiceDateAC, starRatingAC, ratingAC);
+                        databaseReference.child("PG Details").child("Appliances").child("AC").child(databaseReference.push().getKey()).setValue(acDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        break;
+                    case "Fan":
+
+                        FanRoomNo = view.findViewById(R.id.fanRoomNumberEditText);
+                        FanCompanyName = view.findViewById(R.id.fanCompanyNameEditText);
+                        FanModel = view.findViewById(R.id.fanModelEditText);
+                        FanDays = view.findViewById(R.id.fanDaysEditText);
+                        FanBlades = view.findViewById(R.id.fanBladesEditText);
+
+                        String roomNoFan = FanRoomNo.getText().toString();
+                        String brandFan = FanCompanyName.getText().toString();
+                        String modelFan = FanModel.getText().toString();
+                        String timeSinceInstallationFan = FanDays.getText().toString();
+                        String noOfBladesFan = FanBlades.getText().toString();
+
+                        FanDetails fanDetails = new FanDetails(roomNoFan, brandFan, modelFan, timeSinceInstallationFan, noOfBladesFan);
+                        databaseReference.child("PG Details").child("Appliances").child("Fan").child(databaseReference.push().getKey()).setValue(fanDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        break;
+                    case "Lift":
+
+                        LiftCompanyName = view.findViewById(R.id.liftCompanyNameEditText);
+                        LiftModel = view.findViewById(R.id.liftModelEditText);
+                        LiftDays = view.findViewById(R.id.liftDaysEditText);
+                        LiftCapacity = view.findViewById(R.id.liftCapacityEditText);
+                        LiftDoor = view.findViewById(R.id.liftDoorEditText);
+
+                        String brandLift = LiftCompanyName.getText().toString();
+                        String modelLift = LiftModel.getText().toString();
+                        String daysLift = LiftDays.getText().toString();
+                        String capacityLift = LiftCapacity.getText().toString();
+                        String doorLift = LiftDoor.getText().toString();
+
+                        LiftDetails liftDetails = new LiftDetails(brandLift, modelLift, daysLift, capacityLift, doorLift);
+
+                        databaseReference.child("PG Details").child("Appliances").child("Lift").child(databaseReference.push().getKey()).setValue(liftDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
 
+                        break;
+                    case "Geyser":
+
+                        GeyserRoomNo = view.findViewById(R.id.geyserRoomNumberEditText);
+                        GeyserCompanyName = view.findViewById(R.id.geyserCompanyNameEditText);
+                        GeyserModel = view.findViewById(R.id.geyserModelEditText);
+                        GeyserDays = view.findViewById(R.id.geyserDaysEditText);
+                        GeyserCapacity = view.findViewById(R.id.geyserCapacityEditText);
+                        GeyserPower = view.findViewById(R.id.geyserPowerEditText);
+                        GeyserRating = view.findViewById(R.id.geyserRatingEditText);
+
+                        String roomNoGeyser = GeyserRoomNo.getText().toString();
+                        String brandGeyser = GeyserCompanyName.getText().toString();
+                        String modelGeyser = GeyserModel.getText().toString();
+                        String daysGeyser = GeyserDays.getText().toString();
+                        String capacityGeyser = GeyserCapacity.getText().toString();
+                        String powerGeyser = GeyserPower.getText().toString();
+                        String ratingGeyser = GeyserRating.getText().toString();
+
+                        GeyserDetails geyserDetails = new GeyserDetails(roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
+                        databaseReference.child("PG Details").child("Appliances").child("Geyser").child(databaseReference.push().getKey()).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Washing Machine":
+
+                        WashingMachineRoomNo = view.findViewById(R.id.wmRoomNumberEditText);
+                        WashingMachineCompanyName = view.findViewById(R.id.wmCompanyNameEditText);
+                        WashingMachineModel = view.findViewById(R.id.wmModelEditText);
+                        WashingMachineDays = view.findViewById(R.id.wmDaysEditText);
+                        WashingMachineCapacity = view.findViewById(R.id.wmCapacityEditText);
+                        WashingMachinePower = view.findViewById(R.id.wmPowerEditText);
+                        WashingMachineRating = view.findViewById(R.id.wmRatingEditText);
+                        WashingMachineType = view.findViewById(R.id.wmTypeEditText);
+
+                        String roomNoWashingMachine = WashingMachineRoomNo.getText().toString();
+                        String brandWashingMachine = WashingMachineCompanyName.getText().toString();
+                        String modelWashingMachine = WashingMachineModel.getText().toString();
+                        String daysWashingMachine = WashingMachineDays.getText().toString();
+                        String capacityWashingMachine = WashingMachineCapacity.getText().toString();
+                        String powerWashingMachine = WashingMachinePower.getText().toString();
+                        String ratingWashingMachine = WashingMachineRating.getText().toString();
+                        String typeWashingMachine = WashingMachineType.getText().toString();
+
+                        WashingMachineDetails washingMachineDetails = new WashingMachineDetails(roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
+                        databaseReference.child("PG Details").child("Appliances").child("Washing Machine").child(databaseReference.push().getKey()).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "RO":
+
+                        ROCapacity = view.findViewById(R.id.ROCapacityEditText);
+                        ROCompanyName = view.findViewById(R.id.ROCompanyNameEditText);
+                        RODays = view.findViewById(R.id.RODaysEditText);
+                        ROModel = view.findViewById(R.id.ROModelEditText);
+                        RORoomNo = view.findViewById(R.id.RORoomNumberEditText);
+
+                        String capacityRO = ROCapacity.getText().toString();
+                        String brandRO = ROCompanyName.getText().toString();
+                        String daysRO = RODays.getText().toString();
+                        String modelRO = ROModel.getText().toString();
+                        String roomNoRO = RORoomNo.getText().toString();
+
+                        RODetails roDetails = new RODetails(roomNoRO, brandRO, modelRO, daysRO, capacityRO);
+                        databaseReference.child("PG Details").child("Appliances").child("RO").child(databaseReference.push().getKey()).setValue(roDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Dishwasher":
+
+                        DishwasherCapacity = view.findViewById(R.id.dishwasherCapacityEditText);
+                        DishwasherCompanyName = view.findViewById(R.id.dishwasherCompanyNameEditText);
+                        DishwasherDays = view.findViewById(R.id.dishwasherDaysEditText);
+                        DishwasherModel = view.findViewById(R.id.dishwasherModelEditText);
+                        DishwasherRoomNo = view.findViewById(R.id.dishwasherRoomNumberEditText);
+                        DishwasherType = view.findViewById(R.id.dishwasherTypeEditText);
+
+                        String capacityDishwasher = DishwasherCapacity.getText().toString();
+                        String brandDishwasher = DishwasherCompanyName.getText().toString();
+                        String daysDishwasher = DishwasherDays.getText().toString();
+                        String modelDishwasher = DishwasherModel.getText().toString();
+                        String roomNoDishwasher = DishwasherRoomNo.getText().toString();
+                        String typeDishwasher = DishwasherType.getText().toString();
+
+                        DishwasherDetails dishwasherDetails = new DishwasherDetails(roomNoDishwasher, brandDishwasher, modelDishwasher, daysDishwasher, capacityDishwasher, typeDishwasher);
+                        databaseReference.child("PG Details").child("Appliances").child("Dishwasher").child(databaseReference.push().getKey()).setValue(dishwasherDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Microwave":
+
+                        MicrowaveCapacity = view.findViewById(R.id.microwaveCapacityEditText);
+                        MicrowaveCompanyName = view.findViewById(R.id.microwaveCompanyNameEditText);
+                        MicrowaveDays = view.findViewById(R.id.microwaveDaysEditText);
+                        MicrowaveModel = view.findViewById(R.id.microwaveModelEditText);
+                        MicrowaveType = view.findViewById(R.id.microwaveTypeEditText);
+                        MicrowaveRoomNo = view.findViewById(R.id.microwaveRoomNumberEditText);
+
+                        String capacityMicrowave = MicrowaveCapacity.getText().toString();
+                        String brandMicrowave = MicrowaveCompanyName.getText().toString();
+                        String daysMicrowave = MicrowaveDays.getText().toString();
+                        String modelMicrowave = MicrowaveModel.getText().toString();
+                        String typeMicrowave = MicrowaveType.getText().toString();
+                        String roomNoMicrowave = MicrowaveRoomNo.getText().toString();
+
+                        MicrowaveDetails microwaveDetails = new MicrowaveDetails(roomNoMicrowave, brandMicrowave, modelMicrowave, daysMicrowave, capacityMicrowave, typeMicrowave);
+                        databaseReference.child("PG Details").child("Appliances").child("Microwave").child(databaseReference.push().getKey()).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        break;
+                    case "Refrigerator":
+
+                        FridgeCapacity = view.findViewById(R.id.fridgeCapacityEditText);
+                        FridgeCompanyName = view.findViewById(R.id.fridgeCompanyNameEditText);
+                        FridgeDays = view.findViewById(R.id.fridgeDaysEditText);
+                        FridgeModel = view.findViewById(R.id.fridgeModelEditText);
+                        FridgeRoomNo = view.findViewById(R.id.fridgeRoomNumberEditText);
+                        FridgeType = view.findViewById(R.id.fridgeTypeEditText);
+                        FridgeRating = view.findViewById(R.id.fridgeRatingEditText);
+
+                        String capacityFridge = FridgeCapacity.getText().toString();
+                        String brandFridge = FridgeCompanyName.getText().toString();
+                        String daysFridge = FridgeDays.getText().toString();
+                        String modelFridge = FridgeModel.getText().toString();
+                        String roomNoFridge = FridgeRoomNo.getText().toString();
+                        String typeFridge = FridgeType.getText().toString();
+                        String ratingFridge = FridgeRating.getText().toString();
+
+                        RefrigeratorDetails refrigeratorDetails = new RefrigeratorDetails(roomNoFridge, brandFridge, modelFridge, daysFridge, capacityFridge, typeFridge, ratingFridge);
+                        databaseReference.child("PG Details").child("Appliances").child("Refrigerator").child(databaseReference.push().getKey()).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "TV":
+
+                        TVCompanyName = view.findViewById(R.id.TVCompanyNameEditText);
+                        TVDays = view.findViewById(R.id.TVDaysEditText);
+                        TVModel = view.findViewById(R.id.TVModelEditText);
+                        TVResolution = view.findViewById(R.id.TVResolutionEditText);
+                        TVRoomNo = view.findViewById(R.id.TVRoomNumberEditText);
+                        TVSize = view.findViewById(R.id.TVSizeEditText);
+                        TVType = view.findViewById(R.id.TVTypeEditText);
+
+                        String brandTV = TVCompanyName.getText().toString();
+                        String daysTV = TVDays.getText().toString();
+                        String modelTV = TVModel.getText().toString();
+                        String resolutionTV = TVResolution.getText().toString();
+                        String roomNoTV = TVRoomNo.getText().toString();
+                        String sizeTV = TVSize.getText().toString();
+                        String typeTV = TVType.getText().toString();
+
+                        TVDetails tvDetails = new TVDetails(roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
+                        databaseReference.child("PG Details").child("Appliances").child("TV").child(databaseReference.push().getKey()).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "CCTV":
+
+                        CCTVChanel = view.findViewById(R.id.CCTVChannelEditText);
+                        CCTVCompanyName = view.findViewById(R.id.CCTVCompanyNameEditText);
+                        CCTVDays = view.findViewById(R.id.CCTVDaysEditText);
+                        CCTVModel = view.findViewById(R.id.CCTVModelEditText);
+                        CCTVNight = view.findViewById(R.id.CCTVNightEditText);
+                        CCTVResolution = view.findViewById(R.id.CCTVResolutionEditText);
+                        CCTVRoomNo = view.findViewById(R.id.CCTVRoomNumberEditText);
+
+                        String channelCCTV = CCTVChanel.getText().toString();
+                        String brandCCTV = CCTVCompanyName.getText().toString();
+                        String daysCCTV = CCTVDays.getText().toString();
+                        String modelCCTV = CCTVModel.getText().toString();
+                        String nightCCTV = CCTVNight.getText().toString();
+                        String resolutionCCTV = CCTVResolution.getText().toString();
+                        String roomNoCCTV = CCTVRoomNo.getText().toString();
+
+                        CCTVDetails cctvDetails = new CCTVDetails(roomNoCCTV, brandCCTV, modelCCTV, daysCCTV, nightCCTV, channelCCTV, resolutionCCTV);
+                        databaseReference.child("PG Details").child("Appliances").child("CCTV Details").child(databaseReference.push().getKey()).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Iron":
+
+                        IronComanyName = view.findViewById(R.id.ironCompanyNameEditText);
+                        IronDays = view.findViewById(R.id.ironDaysEditText);
+                        IronModel = view.findViewById(R.id.ironModelEditText);
+                        IronPower = view.findViewById(R.id.ironPowerEditText);
+                        IronRoomNo = view.findViewById(R.id.ironRoomNumberEditText);
+
+                        String brandIron = IronComanyName.getText().toString();
+                        String daysIron = IronDays.getText().toString();
+                        String modelIron = IronModel.getText().toString();
+                        String powerIron = IronPower.getText().toString();
+                        String roomNoIron = IronRoomNo.getText().toString();
+
+                        IronDetails ironDetails = new IronDetails(roomNoIron, brandIron, modelIron, daysIron, powerIron);
+                        databaseReference.child("PG Details").child("Appliances").child("Iron Details").child(databaseReference.push().getKey()).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Induction":
+
+                        InductionCompanyName = view.findViewById(R.id.inductionCompanyNameEditText);
+                        InductionDays = view.findViewById(R.id.inductionDaysEditText);
+                        InductionModel = view.findViewById(R.id.inductionModelEditText);
+                        InductionNoCooktop = view.findViewById(R.id.inductionNumberCooktopEditText);
+                        InductionPower = view.findViewById(R.id.inductionPowerEditText);
+                        InductionRoomNo = view.findViewById(R.id.inductionRoomNumberEditText);
+                        InductionType = view.findViewById(R.id.inductionControlTypeEditText);
+
+                        String brandInduction = InductionCompanyName.getText().toString();
+                        String daysInduction = InductionDays.getText().toString();
+                        String modelInduction = InductionModel.getText().toString();
+                        String noCooktopInduction = InductionNoCooktop.getText().toString();
+                        String powerInduction = InductionPower.getText().toString();
+                        String roomNoInduction = InductionRoomNo.getText().toString();
+                        String typeInduction = InductionType.getText().toString();
+
+                        InductionDetails inductionDetails = new InductionDetails(roomNoInduction, brandInduction, modelInduction, daysInduction, powerInduction, typeInduction, noCooktopInduction);
+                        databaseReference.child("PG Details").child("Appliances").child("Induction").child(databaseReference.push().getKey()).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Router":
+
+                        RouterAntenna = view.findViewById(R.id.routerAntennaEditText);
+                        RouterCompanyName = view.findViewById(R.id.routerCompanyNameEditText);
+                        RouterDays = view.findViewById(R.id.routerDaysEditText);
+                        RouterModel = view.findViewById(R.id.routerModelEditText);
+                        RouterRoomNo = view.findViewById(R.id.routerRoomNumberEditText);
+                        RouterSpeed = view.findViewById(R.id.routerSpeedEditText);
+
+                        String antennaRouter = RouterAntenna.getText().toString();
+                        String brandRouter = RouterCompanyName.getText().toString();
+                        String daysRouter = RouterDays.getText().toString();
+                        String modelRouter = RouterModel.getText().toString();
+                        String roomNoRouter = RouterRoomNo.getText().toString();
+                        String speedRouter = RouterSpeed.getText().toString();
+
+                        RouterDetails routerDetails = new RouterDetails(roomNoRouter, brandRouter, modelRouter, daysRouter, antennaRouter, speedRouter);
+                        databaseReference.child("PG Details").child("Appliances").child("Router").child(databaseReference.push().getKey()).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Heater":
+
+                        HeaterCompanyName = view.findViewById(R.id.heaterCompanyNameEditText);
+                        HeaterDays = view.findViewById(R.id.heaterDaysEditText);
+                        HeaterModel = view.findViewById(R.id.heaterModelEditText);
+                        HeaterPower = view.findViewById(R.id.heaterPowerEditText);
+                        HeaterRoomNo = view.findViewById(R.id.heaterRoomNumberEditText);
+                        HeaterWeight = view.findViewById(R.id.heaterWeightEditText);
+
+                        String brandHeater = HeaterCompanyName.getText().toString();
+                        String daysHeater = HeaterDays.getText().toString();
+                        String modelHeater = HeaterModel.getText().toString();
+                        String powerHeater = HeaterPower.getText().toString();
+                        String roomNoHeater = HeaterRoomNo.getText().toString();
+                        String weightHeater = HeaterWeight.getText().toString();
+
+                        HeaterDetails heaterDetails = new HeaterDetails(roomNoHeater, brandHeater, modelHeater, daysHeater, powerHeater, weightHeater);
+                        databaseReference.child("PG Details").child("Appliances").child("Heater").child(databaseReference.push().getKey()).setValue(heaterDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "D2H":
+
+                        D2HCompanyName = view.findViewById(R.id.D2HCompanyNameEditText);
+                        D2HDays = view.findViewById(R.id.D2HDaysEditText);
+                        D2HRoomNo = view.findViewById(R.id.D2HRoomNumberEditText);
+
+                        String brandD2H = D2HCompanyName.getText().toString();
+                        String daysD2H = D2HDays.getText().toString();
+                        String roomNoD2H = D2HRoomNo.getText().toString();
+
+                        D2HDetails d2HDetails = new D2HDetails(roomNoD2H, brandD2H, daysD2H);
+                        databaseReference.child("PG Details").child("Appliances").child("D2H").child(databaseReference.push().getKey()).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
+                    case "Other":
+
+                        OtherCompanyName = view.findViewById(R.id.otherCompanyNameEditText);
+                        OtherName = view.findViewById(R.id.otherNameEditText);
+                        OtherRoomNo = view.findViewById(R.id.otherRoomNumberEditText);
+
+                        String brandOther = OtherCompanyName.getText().toString();
+                        String nameOther = OtherName.getText().toString();
+                        String roomNoOther = OtherRoomNo.getText().toString();
+
+                        OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(roomNoOther, nameOther, brandOther);
+                        databaseReference.child("PG Details").child("Appliances").child("Other Appliance").child(databaseReference.push().getKey()).setValue(otherApplianceDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        break;
                 }
 
             }

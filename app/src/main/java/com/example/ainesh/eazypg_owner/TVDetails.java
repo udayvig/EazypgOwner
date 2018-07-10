@@ -2,7 +2,7 @@ package com.example.ainesh.eazypg_owner;
 
 public class TVDetails {
 
-    private String roomNo, brand, model, timeSinceInstallation, typeOfTV, screenSize, resolution;
+    public String roomNo, brand, model, timeSinceInstallation, typeOfTV, screenSize, resolution;
 
     public TVDetails(String roomNo, String brand, String model, String timeSinceInstallation, String typeOfTV, String screenSize, String resolution) {
         this.roomNo = roomNo;

@@ -2,7 +2,7 @@ package com.example.ainesh.eazypg_owner;
 
 public class LiftDetails {
 
-    private String brand, model, timeSinceInstallation, capacity, doorType;
+    public String brand, model, timeSinceInstallation, capacity, doorType;
 
     public LiftDetails(String brand, String model, String timeSinceInstallation, String capacity, String doorType) {
 

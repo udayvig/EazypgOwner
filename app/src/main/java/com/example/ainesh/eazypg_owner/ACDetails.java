@@ -2,14 +2,14 @@ package com.example.ainesh.eazypg_owner;
 
 public class ACDetails {
 
-    private String roomNo, brand, model, capacity, lastServiceData, starRating, typeOfRating;
+    public String roomNo, brand, model, capacity, lastServiceDate, starRating, typeOfRating;
 
-    public ACDetails(String roomNo, String brand, String model, String capacity, String lastServiceData, String starRating, String typeOfRating) {
+    public ACDetails(String roomNo, String brand, String model, String capacity, String lastServiceDate, String starRating, String typeOfRating) {
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;
         this.capacity = capacity;
-        this.lastServiceData = lastServiceData;
+        this.lastServiceDate = lastServiceDate;
         this.starRating = starRating;
         this.typeOfRating = typeOfRating;
     }
@@ -19,7 +19,7 @@ public class ACDetails {
         brand = "";
         model = "";
         capacity = "";
-        lastServiceData = "";
+        lastServiceDate = "";
         starRating = "";
         typeOfRating = "";
 
