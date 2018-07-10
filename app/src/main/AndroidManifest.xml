@@ -15,13 +15,14 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MyIntro" />
-        <activity android:name=".HomePageActivity"/>
+        <activity android:name=".HomePageActivity" />
         <activity android:name=".TenantActivity" />
         <activity android:name=".StaffActivity" />
         <activity android:name=".MyPGActivity" />
@@ -33,6 +34,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".ApplianceDetailsActivity"></activity>
     </application>
 
 </manifest>

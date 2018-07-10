@@ -2,6 +2,7 @@ package com.example.ainesh.eazypg_owner;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -84,27 +85,38 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         public String[] appliances={"AC","Fan","Lift","Geyser","Washing Machine",
                 "RO","Dishwasher","Microwave","Refrigerator","TV","CCTV","Iron",
                 "Induction","Router","Heater","D2H","Other"};
         private TextView iconTextView;
         private Button iconButton;
-
+        private final Context context;
 
         public MyViewHolder(final View itemView, ClickListener listener){
             super(itemView);
 
-            iconTextView=itemView.findViewById(R.id.iconTextView);
-            iconButton=itemView.findViewById(R.id.iconButton);
-            itemView.setOnClickListener(this);
+            iconTextView = itemView.findViewById(R.id.iconTextView);
+            iconButton = itemView.findViewById(R.id.iconButton);
+
+            Intent intent;
+            context = itemView.getContext();
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (getAdapterPosition()) {
+
+                        case 0:
+                            context.startActivity(new Intent(context, ApplianceDetailsActivity.class));
+
+                    }
+                }
+
+            });
         }
 
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Whole Item Clicked.", Toast.LENGTH_SHORT).show();
-        }
 
         public void bind(MyViewHolder holder, int index){
             iconTextView.setText(appliances[index]);

@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class ApplianceActivity extends AppCompatActivity{
 
-    private Toolbar toolbar ;
+    private Toolbar toolbar;
     private Button addBtn ;
 
     private static View viewDialog;
@@ -41,11 +41,8 @@ public class ApplianceActivity extends AppCompatActivity{
 
         toolbar = findViewById(R.id.applianceToolbar);
         setSupportActionBar(toolbar);
-        //  getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        // menu = findViewById(R.id.)
-        // addBtn = findViewById(R.id.addMoreBtn);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         RecyclerView mAppliancesList = findViewById(R.id.rv);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -53,13 +50,7 @@ public class ApplianceActivity extends AppCompatActivity{
 
         mAppliancesList.setHasFixedSize(true);
 
-        ApplianceAdapter adapter=new ApplianceAdapter(appliances, getLayoutInflater(),new ApplianceAdapter.ClickListener(){
-            @Override
-            public void onPositionClicked(int position) {
-
-                Toast.makeText(ApplianceActivity.this, "Test", Toast.LENGTH_SHORT).show();
-            }
-        });
+        ApplianceAdapter adapter = new ApplianceAdapter(appliances, getLayoutInflater(),null);
 
         mAppliancesList.setAdapter(adapter);
 
