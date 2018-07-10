@@ -10,9 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Uday Vig on 09-Jul-18.
@@ -20,21 +26,41 @@ import android.widget.Toast;
 
 public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyViewHolder>{
 
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference;
+    FirebaseUser firebaseUser;
+
     private RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
             fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
+
+    private EditText ACRoomNo, ACCompanyName, ACModel, ACCapacity, ACLastServiceDate, ACStarRating, ACType;
+    private EditText FanRoomNo, FanCompanyName, FanModel, FanDays, FanBlades;
+    private EditText LiftCompanyName, LiftModel, LiftDays, LiftCapacity, LiftDoor;
+    private EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserDays, GeyserCapacity, GeyserPower, GeyserRating;
+    private EditText WashingMachineRoomNo, WashingMachineCompanyName, WashingMachineModel, WashingMachineDays, WashingMachineCapacity, WashingMachinePower, WashingMachineRating, WashingMachineType;
+    private EditText RORoomNo, ROCompanyName, ROModel, RODays, ROCapacity;
+    private EditText DishwasherRoomNo, DishwasherCompanyName, DishwasherModel, DishwasherDays, DishwasherCapacity, DishwasherType;
+    private EditText MicrowaveRoomNo, MicrowaveCompanyName, MicrowaveModel, MicrowaveDays, MicrowaveCapacity, MicrowaveType;
+    private EditText FridgeRoomNo, FridgeCompanyName, FridgeModel, FridgeDays, FridgeCapacity, FridgeType, FridgeRating;
+    private EditText TVRoomNo, TVCompanyName, TVModel, TVDays, TVType, TVSize, TVResolution;
+    private EditText CCTVRoomNo, CCTVCompanyName, CCTVModel, CCTVDays, CCTVNight, CCTVChanel, CCTVResolution;
+    private EditText IronRoomNo, IronComanyName, IronModel, IronDays, IronPower;
+    private EditText InductionRoomNo, InductionCompanyName, InductionModel, InductionDays, InductionPower, InductionControl, InductionType, InductionNoCooktop;
+    private EditText RouterRoomNo, RouterCompanyName, RouterModel, RouterDays, RouterAntenna, RouterSpeed;
+    private EditText HeaterRoomNo, HeaterCompanyName, HeaterModel, HeaterDays, HeaterPower, HeaterWeight;
+    private EditText D2HRoomNo, D2HCompanyName, D2HDays;
+    private EditText OtherRoomNo, OtherName, OtherCompanyName;
 
     //Interface
     public interface ClickListener {
         void onPositionClicked(int position);
     }
 
-    LayoutInflater inflater;
+    private LayoutInflater inflater;
     private final ClickListener clickListener;
-    public String[] appliances;
 
-    public ApplianceAdapter(String[] app, LayoutInflater inflater, ClickListener listener){
+    ApplianceAdapter(String[] app, LayoutInflater inflater, ClickListener listener){
         this.clickListener=listener;
-        this.appliances=app;
         this.inflater=inflater;
     }
 
@@ -83,6 +109,9 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
             holder.iconButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    databaseReference = firebaseDatabase.getReference(firebaseUser.getUid());
 
                     if (iconTextView.getText().toString().equals("AC")) {
                         showDialog(iconTextView.getText().toString(), view.getContext());
@@ -158,9 +187,9 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     }
 
 
-    private void showDialog(String applianceName, Context context) {
+    private void showDialog(final String applianceName, Context context) {
 
-        View view = inflater.inflate(R.layout.dialog_appliance, null);
+        final View view = inflater.inflate(R.layout.dialog_appliance, null);
 
         ACLayout = view.findViewById(R.id.ACLayout);
         fanLayout = view.findViewById(R.id.fanLayout);
@@ -209,6 +238,14 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                ACRoomNo = view.findViewById(R.id.ACRoomNumberEditText);
+                ACCompanyName = view.findViewById(R.id.ACCompanyNameEditText);
+                ACModel = view.findViewById(R.id.ACModelEditText);
+                ACCapacity = view.findViewById(R.id.ACCapacityEditText);
+                ACLastServiceDate = view.findViewById(R.id.ACLastServiceDateEditText);
+                ACStarRating = view.findViewById(R.id.ACStarRatingEditText);
+                ACType = view.findViewById(R.id.ACTypeEditText);
+
                 break;
             case "Fan":
 
@@ -232,6 +269,13 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
+
+                FanRoomNo = view.findViewById(R.id.fanRoomNumberEditText);
+                FanCompanyName = view.findViewById(R.id.fanCompanyNameEditText);
+                FanModel = view.findViewById(R.id.fanModelEditText);
+                FanDays = view.findViewById(R.id.fanDaysEditText);
+                FanBlades = view.findViewById(R.id.fanBladesEditText);
+
 
                 break;
             case "Lift":
@@ -257,6 +301,12 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                LiftCompanyName = view.findViewById(R.id.liftCompanyNameEditText);
+                LiftModel = view.findViewById(R.id.liftModelEditText);
+                LiftDays = view.findViewById(R.id.liftDaysEditText);
+                LiftCapacity = view.findViewById(R.id.liftCapacityEditText);
+                LiftDoor = view.findViewById(R.id.liftDoorEditText);
+
                 break;
             case "Geyser":
 
@@ -280,6 +330,14 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
+
+                GeyserRoomNo = view.findViewById(R.id.geyserRoomNumberEditText);
+                GeyserCompanyName = view.findViewById(R.id.geyserCompanyNameEditText);
+                GeyserModel = view.findViewById(R.id.geyserModelEditText);
+                GeyserDays = view.findViewById(R.id.geyserDaysEditText);
+                GeyserCapacity = view.findViewById(R.id.geyserCapacityEditText);
+                GeyserPower = view.findViewById(R.id.geyserPowerEditText);
+                GeyserRating = view.findViewById(R.id.geyserRatingEditText);
 
                 break;
             case "Washing Machine":
@@ -305,6 +363,15 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                WashingMachineRoomNo = view.findViewById(R.id.wmRoomNumberEditText);
+                WashingMachineCompanyName = view.findViewById(R.id.wmCompanyNameEditText);
+                WashingMachineModel = view.findViewById(R.id.wmModelEditText);
+                WashingMachineDays = view.findViewById(R.id.wmDaysEditText);
+                WashingMachineCapacity = view.findViewById(R.id.wmCapacityEditText);
+                WashingMachinePower = view.findViewById(R.id.wmPowerEditText);
+                WashingMachineRating = view.findViewById(R.id.wmRatingEditText);
+                WashingMachineType = view.findViewById(R.id.wmTypeEditText);
+
                 break;
             case "RO":
 
@@ -329,6 +396,12 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                ROCapacity = view.findViewById(R.id.ROCapacityEditText);
+                ROCompanyName = view.findViewById(R.id.ROCompanyNameEditText);
+                RODays = view.findViewById(R.id.RODaysEditText);
+                ROModel = view.findViewById(R.id.ROModelEditText);
+                RORoomNo = view.findViewById(R.id.RORoomNumberEditText);
+
                 break;
             case "Dishwasher":
                 if(dishwasherLayout.getParent().getParent()!=null) {
@@ -351,6 +424,13 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
+
+                DishwasherCapacity = view.findViewById(R.id.dishwasherCapacityEditText);
+                DishwasherCompanyName = view.findViewById(R.id.dishwasherCompanyNameEditText);
+                DishwasherDays = view.findViewById(R.id.dishwasherDaysEditText);
+                DishwasherModel = view.findViewById(R.id.dishwasherModelEditText);
+                DishwasherRoomNo = view.findViewById(R.id.dishwasherRoomNumberEditText);
+                DishwasherType = view.findViewById(R.id.dishwasherTypeEditText);
 
                 break;
             case "Microwave":
@@ -375,6 +455,13 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                MicrowaveCapacity = view.findViewById(R.id.microwaveCapacityEditText);
+                MicrowaveCompanyName = view.findViewById(R.id.microwaveCompanyNameEditText);
+                MicrowaveDays = view.findViewById(R.id.microwaveDaysEditText);
+                MicrowaveModel = view.findViewById(R.id.microwaveModelEditText);
+                MicrowaveType = view.findViewById(R.id.microwaveTypeEditText);
+                MicrowaveRoomNo = view.findViewById(R.id.microwaveRoomNumberEditText);
+
                 break;
             case "Refrigerator":
                 if(fridgeLayout.getParent().getParent()!=null) {
@@ -397,6 +484,14 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
+
+                FridgeCapacity = view.findViewById(R.id.fridgeCapacityEditText);
+                FridgeCompanyName = view.findViewById(R.id.fridgeCompanyNameEditText);
+                FridgeDays = view.findViewById(R.id.fridgeDaysEditText);
+                FridgeModel = view.findViewById(R.id.fridgeModelEditText);
+                FridgeRoomNo = view.findViewById(R.id.fridgeRoomNumberEditText);
+                FridgeType = view.findViewById(R.id.fridgeTypeEditText);
+                FridgeRating = view.findViewById(R.id.fridgeRatingEditText);
 
                 break;
             case "TV":
@@ -421,6 +516,14 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                TVCompanyName = view.findViewById(R.id.TVCompanyNameEditText);
+                TVDays = view.findViewById(R.id.TVDaysEditText);
+                TVModel = view.findViewById(R.id.TVModelEditText);
+                TVResolution = view.findViewById(R.id.TVResolutionEditText);
+                TVRoomNo = view.findViewById(R.id.TVRoomNumberEditText);
+                TVSize = view.findViewById(R.id.TVSizeEditText);
+                TVType = view.findViewById(R.id.TVTypeEditText);
+
                 break;
             case "CCTV":
                 if(CCTVLayout.getParent().getParent()!=null) {
@@ -443,6 +546,14 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
+
+                CCTVChanel = view.findViewById(R.id.CCTVChannelEditText);
+                CCTVCompanyName = view.findViewById(R.id.CCTVCompanyNameEditText);
+                CCTVDays = view.findViewById(R.id.CCTVDaysEditText);
+                CCTVModel = view.findViewById(R.id.CCTVModelEditText);
+                CCTVNight = view.findViewById(R.id.CCTVNightEditText);
+                CCTVResolution = view.findViewById(R.id.CCTVResolutionEditText);
+                CCTVRoomNo = view.findViewById(R.id.CCTVRoomNumberEditText);
 
                 break;
             case "Iron":
@@ -591,6 +702,11 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+                if (applianceName.equals("AC")) {
+
+
+                }
 
             }
         });

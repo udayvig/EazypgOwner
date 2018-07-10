@@ -94,16 +94,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
-        <EditText
-            android:id="@+id/liftRoomNumberEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Room Number"/>
+
         <EditText
             android:id="@+id/liftCompanyNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/liftRoomNumberEditText"
             android:hint="Brand"/>
         <EditText
             android:id="@+id/liftModelEditText"
