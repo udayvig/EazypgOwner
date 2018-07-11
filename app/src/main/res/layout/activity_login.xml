@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/walli"
     android:layout_height="match_parent"
-    tools:context="com.example.ainesh.eazypg_owner.LoginActivity">
+    tools:context="com.example.EazyPG.owner.Activities.LoginActivity">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout4"

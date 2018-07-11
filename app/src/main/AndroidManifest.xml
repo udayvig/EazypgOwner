@@ -12,30 +12,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.EazyPG.owner.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MyIntro" />
-        <activity android:name=".HomePageActivity" />
-        <activity android:name=".TenantActivity" />
-        <activity android:name=".StaffActivity" />
-        <activity android:name=".MyPGActivity" />
-        <activity android:name=".ComplaintActivity" />
-        <activity android:name=".SubscriptionActivity" />
-        <activity android:name=".CashflowActivity" />
-        <activity android:name=".ApplianceActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.SignupActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.LoginActivity" />
+        <activity android:name="com.example.EazyPG.owner.MyIntro" />
+        <activity android:name="com.example.EazyPG.owner.Activities.HomePageActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.TenantActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.StaffActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.MyPGActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.ComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.SubscriptionActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.CashflowActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.ApplianceActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ApplianceDetailsActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.ApplianceDetailsActivity"></activity>
     </application>
 
 </manifest>
