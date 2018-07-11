@@ -1,4 +1,4 @@
-package com.example.ainesh.eazypg_owner;
+package com.example.ainesh.eazypg_owner.Appliances;
 
 public class ACDetails {
 
@@ -25,5 +25,31 @@ public class ACDetails {
 
     }
 
+    public String getRoomNo() {
+        return roomNo;
+    }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public String getLastServiceDate() {
+        return lastServiceDate;
+    }
+
+    public String getStarRating() {
+        return starRating;
+    }
+
+    public String getTypeOfRating() {
+        return typeOfRating;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.ainesh.eazypg_owner;
+package com.example.ainesh.eazypg_owner.Appliances;
 
 public class RouterDetails {
 

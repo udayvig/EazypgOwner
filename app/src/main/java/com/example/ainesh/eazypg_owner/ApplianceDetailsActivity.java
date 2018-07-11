@@ -1,5 +1,6 @@
 package com.example.ainesh.eazypg_owner;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,13 +29,18 @@ import java.util.List;
 public class ApplianceDetailsActivity extends AppCompatActivity {
 
     private Toolbar toolbar ;
-    ListView listViewAC;
+    ListView listView;
 
     List<ApplianceDetailAC> acList;
+    List<ApplianceDetailFan> fanList;
 
 
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
+
+    private Intent intent;
+    private String message;
+
 
 
     @Override
@@ -46,42 +52,70 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        listViewAC = findViewById(R.id.listView);
+        listView = findViewById(R.id.listView);
+
         acList = new ArrayList<>();
+        fanList = new ArrayList<>();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = firebaseUser.getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/AC");
+        intent = getIntent();
+        message = intent.getStringExtra(ApplianceAdapter.EXTRA_MESSAGE);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        if (message.equals("AC")) {
+            databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/AC");
 
-                acList.clear();
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot dataSnapshotAC : dataSnapshot.getChildren()) {
+                    acList.clear();
 
-                    ApplianceDetailAC applianceDetailAC = dataSnapshotAC.getValue(ApplianceDetailAC.class);
-                    acList.add(applianceDetailAC);
+                    for (DataSnapshot dataSnapshotAC : dataSnapshot.getChildren()) {
+
+                        ApplianceDetailAC applianceDetailAC = dataSnapshotAC.getValue(ApplianceDetailAC.class);
+                        acList.add(applianceDetailAC);
+                    }
+
+                    ACDetailList adapter = new ACDetailList(ApplianceDetailsActivity.this, acList);
+                    listView.setAdapter(adapter);
                 }
 
-                ACDetailList adapter = new ACDetailList(ApplianceDetailsActivity.this, acList);
-                listViewAC.setAdapter(adapter);
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+        }
+        else if (message.equals("Fan")) {
 
+            databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Fan");
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    fanList.clear();
+
+                    for (DataSnapshot dataSnapshotAC : dataSnapshot.getChildren()) {
+
+                        ApplianceDetailFan applianceDetailFan = dataSnapshotAC.getValue(ApplianceDetailFan.class);
+                        fanList.add(applianceDetailFan);
+                    }
+
+                    FanDetailList adapter = new FanDetailList(ApplianceDetailsActivity.this, fanList);
+                    listView.setAdapter(adapter);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
 }
