@@ -1,6 +1,7 @@
 package com.example.ainesh.eazypg_owner;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -65,8 +66,6 @@ public class MyPGActivity extends AppCompatActivity {
 
         databaseReference = firebaseDatabase.getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-     //   final String id = firebaseUser.getUid();
 
         pgName = findViewById(R.id.pgNameTextView);
         bio = findViewById(R.id.bioTextView);
@@ -574,15 +573,20 @@ public class MyPGActivity extends AppCompatActivity {
         //adding database info for the current user
         databaseReference = FirebaseDatabase.getInstance().getReference(uid);
 
+        final ProgressDialog progressDialog = ProgressDialog.show(MyPGActivity.this,"","Saving..",true);
+
         PG pg = new PG(pgNameString, bioString, locationString, ownerNameString, contactString, landmarkString, lastEntryString, genderString, maxOccupancyString, staffCountString, roomString, bathroomString);
         databaseReference.child("PG Details").setValue(pg).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+
+                progressDialog.dismiss();
                 Toast.makeText(MyPGActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
                 Toast.makeText(MyPGActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
             }
         });

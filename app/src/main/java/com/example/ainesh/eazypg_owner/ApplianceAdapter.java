@@ -84,7 +84,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
         return 17;
     }
 
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         public String[] appliances={"AC","Fan","Lift","Geyser","Washing Machine",
@@ -99,8 +98,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
             iconTextView = itemView.findViewById(R.id.iconTextView);
             iconButton = itemView.findViewById(R.id.iconButton);
-
-            Intent intent;
+            
             context = itemView.getContext();
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -655,7 +653,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String ratingAC = ACType.getText().toString();
 
                         ACDetails acDetails = new ACDetails(roomNoAC, brandAC, modelAC, capacityAC, lastServiceDateAC, starRatingAC, ratingAC);
-                        databaseReference.child("PG Details").child("Appliances").child("AC").child(databaseReference.push().getKey()).setValue(acDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("AC").child(databaseReference.push().getKey()).setValue(acDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -683,7 +681,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String noOfBladesFan = FanBlades.getText().toString();
 
                         FanDetails fanDetails = new FanDetails(roomNoFan, brandFan, modelFan, timeSinceInstallationFan, noOfBladesFan);
-                        databaseReference.child("PG Details").child("Appliances").child("Fan").child(databaseReference.push().getKey()).setValue(fanDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Fan").child(databaseReference.push().getKey()).setValue(fanDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -712,7 +710,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         LiftDetails liftDetails = new LiftDetails(brandLift, modelLift, daysLift, capacityLift, doorLift);
 
-                        databaseReference.child("PG Details").child("Appliances").child("Lift").child(databaseReference.push().getKey()).setValue(liftDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Lift").child(databaseReference.push().getKey()).setValue(liftDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -745,7 +743,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String ratingGeyser = GeyserRating.getText().toString();
 
                         GeyserDetails geyserDetails = new GeyserDetails(roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
-                        databaseReference.child("PG Details").child("Appliances").child("Geyser").child(databaseReference.push().getKey()).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("PG Details").child("Geyser").child(databaseReference.push().getKey()).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -780,7 +778,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String typeWashingMachine = WashingMachineType.getText().toString();
 
                         WashingMachineDetails washingMachineDetails = new WashingMachineDetails(roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
-                        databaseReference.child("PG Details").child("Appliances").child("Washing Machine").child(databaseReference.push().getKey()).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("PG Details").child("Washing Machine").child(databaseReference.push().getKey()).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -809,7 +807,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoRO = RORoomNo.getText().toString();
 
                         RODetails roDetails = new RODetails(roomNoRO, brandRO, modelRO, daysRO, capacityRO);
-                        databaseReference.child("PG Details").child("Appliances").child("RO").child(databaseReference.push().getKey()).setValue(roDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("RO").child(databaseReference.push().getKey()).setValue(roDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -840,7 +838,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String typeDishwasher = DishwasherType.getText().toString();
 
                         DishwasherDetails dishwasherDetails = new DishwasherDetails(roomNoDishwasher, brandDishwasher, modelDishwasher, daysDishwasher, capacityDishwasher, typeDishwasher);
-                        databaseReference.child("PG Details").child("Appliances").child("Dishwasher").child(databaseReference.push().getKey()).setValue(dishwasherDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Dishwasher").child(databaseReference.push().getKey()).setValue(dishwasherDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -871,7 +869,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoMicrowave = MicrowaveRoomNo.getText().toString();
 
                         MicrowaveDetails microwaveDetails = new MicrowaveDetails(roomNoMicrowave, brandMicrowave, modelMicrowave, daysMicrowave, capacityMicrowave, typeMicrowave);
-                        databaseReference.child("PG Details").child("Appliances").child("Microwave").child(databaseReference.push().getKey()).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Microwave").child(databaseReference.push().getKey()).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -903,7 +901,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String ratingFridge = FridgeRating.getText().toString();
 
                         RefrigeratorDetails refrigeratorDetails = new RefrigeratorDetails(roomNoFridge, brandFridge, modelFridge, daysFridge, capacityFridge, typeFridge, ratingFridge);
-                        databaseReference.child("PG Details").child("Appliances").child("Refrigerator").child(databaseReference.push().getKey()).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Refrigerator").child(databaseReference.push().getKey()).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -936,7 +934,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String typeTV = TVType.getText().toString();
 
                         TVDetails tvDetails = new TVDetails(roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
-                        databaseReference.child("PG Details").child("Appliances").child("TV").child(databaseReference.push().getKey()).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("TV").child(databaseReference.push().getKey()).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -969,7 +967,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoCCTV = CCTVRoomNo.getText().toString();
 
                         CCTVDetails cctvDetails = new CCTVDetails(roomNoCCTV, brandCCTV, modelCCTV, daysCCTV, nightCCTV, channelCCTV, resolutionCCTV);
-                        databaseReference.child("PG Details").child("Appliances").child("CCTV Details").child(databaseReference.push().getKey()).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("CCTV Details").child(databaseReference.push().getKey()).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -998,7 +996,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoIron = IronRoomNo.getText().toString();
 
                         IronDetails ironDetails = new IronDetails(roomNoIron, brandIron, modelIron, daysIron, powerIron);
-                        databaseReference.child("PG Details").child("Appliances").child("Iron Details").child(databaseReference.push().getKey()).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Iron Details").child(databaseReference.push().getKey()).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -1031,7 +1029,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String typeInduction = InductionType.getText().toString();
 
                         InductionDetails inductionDetails = new InductionDetails(roomNoInduction, brandInduction, modelInduction, daysInduction, powerInduction, typeInduction, noCooktopInduction);
-                        databaseReference.child("PG Details").child("Appliances").child("Induction").child(databaseReference.push().getKey()).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Induction").child(databaseReference.push().getKey()).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -1062,7 +1060,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String speedRouter = RouterSpeed.getText().toString();
 
                         RouterDetails routerDetails = new RouterDetails(roomNoRouter, brandRouter, modelRouter, daysRouter, antennaRouter, speedRouter);
-                        databaseReference.child("PG Details").child("Appliances").child("Router").child(databaseReference.push().getKey()).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Router").child(databaseReference.push().getKey()).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -1093,7 +1091,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String weightHeater = HeaterWeight.getText().toString();
 
                         HeaterDetails heaterDetails = new HeaterDetails(roomNoHeater, brandHeater, modelHeater, daysHeater, powerHeater, weightHeater);
-                        databaseReference.child("PG Details").child("Appliances").child("Heater").child(databaseReference.push().getKey()).setValue(heaterDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Heater").child(databaseReference.push().getKey()).setValue(heaterDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -1118,7 +1116,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoD2H = D2HRoomNo.getText().toString();
 
                         D2HDetails d2HDetails = new D2HDetails(roomNoD2H, brandD2H, daysD2H);
-                        databaseReference.child("PG Details").child("Appliances").child("D2H").child(databaseReference.push().getKey()).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("D2H").child(databaseReference.push().getKey()).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
@@ -1143,7 +1141,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoOther = OtherRoomNo.getText().toString();
 
                         OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(roomNoOther, nameOther, brandOther);
-                        databaseReference.child("PG Details").child("Appliances").child("Other Appliance").child(databaseReference.push().getKey()).setValue(otherApplianceDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Other Appliance").child(databaseReference.push().getKey()).setValue(otherApplianceDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();

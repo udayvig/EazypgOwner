@@ -2,6 +2,7 @@ package com.example.ainesh.eazypg_owner;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,6 +65,8 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "","Creating User..", true);
+
                 userEmail = etUserEmail.getText().toString();
                 userLocality = etUserLocality.getText().toString();
                 userContact = etUserContact.getText().toString();
@@ -71,23 +74,17 @@ public class SignupActivity extends AppCompatActivity {
 
                 if (!userEmail.isEmpty() && !userLocality.isEmpty() && !userContact.isEmpty() && !userName.isEmpty()) {
 
-                    String password=passwordGeneration();
+                    String password = passwordGeneration();
                     mFirebaseAuth.createUserWithEmailAndPassword(userEmail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             if(task.isSuccessful()){
-                                Toast.makeText(SignupActivity.this, "Done", Toast.LENGTH_SHORT).show();
-                            /*    mFirebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful())
-                                        {
-                                            Toast.makeText(SignupActivity.this, "Email Sent", Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(SignupActivity.this,NotVerifiedActivity.class));
-                                        }
-                                    }
-                                });
-                            */
+
+                                progressDialog.dismiss();
+
+                                final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "","Loading..", true);
+
                                 mFirebaseAuth.sendPasswordResetEmail(userEmail)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -102,6 +99,8 @@ public class SignupActivity extends AppCompatActivity {
                                                     etUserName.requestFocus(1);
 
                                                     mFirebaseAuth.signOut();
+
+                                                    progressDialog.dismiss();
 
                                                     final AlertDialog dialog = new AlertDialog.Builder(SignupActivity.this)
                                                             .setTitle("Welcome " + etUserName.getText().toString())
@@ -127,6 +126,7 @@ public class SignupActivity extends AppCompatActivity {
 
                             }else{
                                 Toast.makeText(SignupActivity.this, "Failed.", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             }
                         }
                     });

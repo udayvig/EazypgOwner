@@ -1,8 +1,10 @@
 package com.example.ainesh.eazypg_owner;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.sql.Time;
+import java.util.Timer;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
         etUserEmail = findViewById(R.id.usernametextView);
         etUserPassword = findViewById(R.id.passwordtextView);
-        forgotPassword=findViewById(R.id.forgotPasswordTextView);
+        forgotPassword = findViewById(R.id.forgotPasswordTextView);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -56,22 +62,29 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this,HomePageActivity.class));
         }
 
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userEmail=etUserEmail.getText().toString().trim();
-                userPassword=etUserPassword.getText().toString().trim();
+
+                userEmail = etUserEmail.getText().toString().trim();
+                userPassword = etUserPassword.getText().toString().trim();
 
                 if(!userEmail.isEmpty()&&!userPassword.isEmpty()) {
                     mFirebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                        ProgressDialog progressDialog = ProgressDialog.show(LoginActivity.this, "","Signing in..", true);
+
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
 
+                                progressDialog.dismiss();
+
                                 mFirebaseUser = mFirebaseAuth.getCurrentUser();
                                 startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
                                 finish();
-                                Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+
                             } else {
 
                                 Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();

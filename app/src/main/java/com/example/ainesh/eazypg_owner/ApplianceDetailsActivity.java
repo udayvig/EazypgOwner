@@ -1,28 +1,39 @@
 package com.example.ainesh.eazypg_owner;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ainesh.eazypg_owner.Adapter.MyAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApplianceDetailsActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private Toolbar toolbar ;
+    ListView listViewAC;
+
+    List<ApplianceDetailAC> acList;
 
 
+    FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
 
 
@@ -33,63 +44,44 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.detailToolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Appliances");
+        listViewAC = findViewById(R.id.listView);
+        acList = new ArrayList<>();
 
-        recyclerView = findViewById(R.id.detailRecycler);
-        recyclerView.setHasFixedSize(true);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = firebaseUser.getUid();
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/AC");
 
-
-
-        FirebaseRecyclerAdapter<ApplianceDetail, ApplianceViewHolder> detailAdapter
-                = new FirebaseRecyclerAdapter<ApplianceDetail, ApplianceViewHolder>(ApplianceDetail.class, R.layout.appliance_row,ApplianceViewHolder.class, databaseReference) {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            protected void populateViewHolder(ApplianceViewHolder viewHolder, ApplianceDetail model, int position) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                viewHolder.setFirst(model.getRoomNo());
-                viewHolder.setSecond(model.getBrand());
-                viewHolder.setThird(model.getLastServiceDate());
+                acList.clear();
+
+                for (DataSnapshot dataSnapshotAC : dataSnapshot.getChildren()) {
+
+                    ApplianceDetailAC applianceDetailAC = dataSnapshotAC.getValue(ApplianceDetailAC.class);
+                    acList.add(applianceDetailAC);
+                }
+
+                ACDetailList adapter = new ACDetailList(ApplianceDetailsActivity.this, acList);
+                listViewAC.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        };
+        });
 
-        recyclerView.setAdapter(detailAdapter);
+
     }
 
-    public static class ApplianceViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-        TextView firstTextView;
-        TextView secondTextView;
-        TextView thirdTextView;
-
-        public ApplianceViewHolder(View itemView) {
-            super(itemView);
-
-            firstTextView = itemView.findViewById(R.id.firstTextView);
-            secondTextView = itemView.findViewById(R.id.secondTextView);
-            thirdTextView = itemView.findViewById(R.id.thirdTextView);
-
-
-        }
-
-        public void setFirst(String roomNo) {
-
-            firstTextView.setText(roomNo);
-        }
-
-        public void setSecond(String brand) {
-
-            secondTextView.setText(brand);
-        }
-
-        public void setThird(String lastServiceDate) {
-
-            thirdTextView.setText(lastServiceDate);
-        }
     }
 }

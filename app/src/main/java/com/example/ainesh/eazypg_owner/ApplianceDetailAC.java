@@ -1,13 +1,14 @@
 package com.example.ainesh.eazypg_owner;
 
-public class ApplianceDetail {
+public class ApplianceDetailAC {
 
-    private String roomNo, brand, lastServiceDate;
+    public String roomNo, brand, lastServiceDate;
 
-    public ApplianceDetail() {
+    public ApplianceDetailAC() {
+
     }
 
-    public ApplianceDetail(String roomNo, String brand, String lastServiceDate) {
+    public ApplianceDetailAC(String roomNo, String brand, String lastServiceDate) {
         this.roomNo = roomNo;
         this.brand = brand;
         this.lastServiceDate = lastServiceDate;
@@ -36,6 +37,5 @@ public class ApplianceDetail {
     public void setLastServiceDate(String lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
     }
-
 
 }
