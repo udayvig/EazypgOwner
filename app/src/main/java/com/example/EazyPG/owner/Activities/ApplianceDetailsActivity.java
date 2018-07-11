@@ -229,7 +229,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 break;
             case "Washing Machine":
 
-                databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Wahing Machine");
+                databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Washing Machine");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
