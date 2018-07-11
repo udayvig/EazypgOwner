@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailAC;
 import com.example.ainesh.eazypg_owner.R;
@@ -33,6 +34,13 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
 
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemAC = inflater.inflate(R.layout.appliance_row, null, true);
+
+        listViewItemAC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Clicked.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         TextView first = listViewItemAC.findViewById(R.id.firstTextView);
         TextView second = listViewItemAC.findViewById(R.id.secondTextView);
