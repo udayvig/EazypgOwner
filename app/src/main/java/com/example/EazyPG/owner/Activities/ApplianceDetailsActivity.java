@@ -5,7 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailList.D2HDetailList;
 import com.example.EazyPG.owner.DetailList.OtherDetailList;
@@ -229,7 +234,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 break;
             case "Washing Machine":
 
-                databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Wahing Machine");
+                databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Washing Machine");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -567,7 +572,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 break;
         }
 
-
     }
+
 
 }

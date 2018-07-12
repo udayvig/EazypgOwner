@@ -123,6 +123,7 @@ public class MyPGActivity extends AppCompatActivity {
                 contact.setText(contact1);
                 staffCount.setText(staffCount1);
 
+
             }
 
             @Override
