@@ -16,9 +16,6 @@ public class ApplianceActivity extends AppCompatActivity{
     private Toolbar toolbar;
     private Button addBtn ;
 
-    private static View viewDialog;
-    private RecyclerView applianceRecycler;
-    Menu menu;
     public String[] appliances={"AC","Fan","Lift","Geyser","Washing Machine",
             "RO","Dishwasher","Microwave","Refrigerator","TV","CCTV","Iron",
             "Induction","Router","Heater","D2H","Other"};
