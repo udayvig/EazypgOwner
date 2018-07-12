@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/signupwalli"
     android:layout_height="match_parent"
+    android:background="@drawable/signupwalli"
     tools:context="com.example.EazyPG.owner.Activities.SignupActivity">
 
     <TextView
@@ -13,14 +13,19 @@
         android:layout_height="110dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/productsansbold"
         android:text="Sign up"
         android:textColor="#000000"
         android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058" />
 
     <EditText
         android:id="@+id/usernameEditText"
@@ -30,17 +35,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
         android:fontFamily="@font/productsans"
-        android:hint=" Name"
+        android:hint="  Name"
         android:inputType="textPersonName"
         android:textColor="#000000"
         android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -55,7 +61,7 @@
         android:background="@drawable/roundedcorners"
         android:ems="10"
         android:fontFamily="@font/productsans"
-        android:hint=" Email Address"
+        android:hint="  Email Address"
         android:inputType="textEmailAddress|textPersonName"
         android:textColor="#000000"
         android:textColorHint="#000000"
@@ -76,7 +82,7 @@
         android:background="@drawable/roundedcorners"
         android:ems="10"
         android:fontFamily="@font/productsans"
-        android:hint=" Locality"
+        android:hint="  Locality"
         android:inputType="textPersonName"
         android:textColor="#000000"
         android:textColorHint="#000000"
@@ -96,83 +102,76 @@
         android:layout_marginTop="36dp"
         android:background="@drawable/roundedcorners"
         android:ems="10"
-        android:maxLength="10"
         android:fontFamily="@font/productsans"
-        android:hint=" Contact"
+        android:hint="  Contact"
         android:inputType="textPersonName|phone"
+        android:maxLength="10"
         android:textColor="#000000"
         android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/localityEditText" />
 
-    <ImageView
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnSignUp"
-        android:layout_width="80dp"
-        android:layout_height="117dp"
+        android:layout_width="71dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#ffffff"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/enabled"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.902"
-        app:srcCompat="@drawable/enabled" />
+        app:layout_constraintVertical_bias="0.862" />
 
     <ImageView
         android:id="@+id/nameIcon"
         android:layout_width="51dp"
         android:layout_height="33dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/usernameEditText"
-        app:layout_constraintHorizontal_bias="0.812"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:srcCompat="@drawable/nameblack" />
 
     <ImageView
         android:id="@+id/emailIcon"
         android:layout_width="35dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginTop="38dp"
         app:layout_constraintEnd_toStartOf="@+id/emailEditText"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
         app:srcCompat="@drawable/emailblack" />
 
     <ImageView
         android:id="@+id/localityIcon"
         android:layout_width="35dp"
         android:layout_height="31dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toStartOf="@+id/localityEditText"
-        app:layout_constraintHorizontal_bias="0.633"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
         app:srcCompat="@drawable/localityblack" />
 
     <ImageView
         android:id="@+id/contactIcon"
         android:layout_width="33dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toStartOf="@+id/contactEditText"
-        app:layout_constraintHorizontal_bias="0.69"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/localityEditText"
         app:srcCompat="@drawable/contactblack" />
 
     <TextView
