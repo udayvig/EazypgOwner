@@ -16,6 +16,18 @@ public class ApplianceDetailD2H {
         return timeSinceInstallation;
     }
 
+    public void setRoomNo(String roomNo) {
+        this.roomNo = roomNo;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setTimeSinceInstallation(String timeSinceInstallation) {
+        this.timeSinceInstallation = timeSinceInstallation;
+    }
+
     public ApplianceDetailD2H(String roomNo, String brand, String timeSinceInstallation) {
         this.roomNo = roomNo;
         this.brand = brand;

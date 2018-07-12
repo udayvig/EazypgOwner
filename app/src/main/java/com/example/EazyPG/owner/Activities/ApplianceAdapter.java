@@ -1,5 +1,6 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -772,6 +773,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving..", true);
+
                 switch (applianceName) {
                     case "AC":
 
@@ -791,18 +794,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String starRatingAC = ACStarRating.getText().toString();
                         String ratingAC = ACType.getText().toString();
 
-                        ACDetails acDetails = new ACDetails(roomNoAC, brandAC, modelAC, capacityAC, lastServiceDateAC, starRatingAC, ratingAC);
-                        databaseReference.child("Appliances").child("AC").child(databaseReference.push().getKey()).setValue(acDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (roomNoAC.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        } else {
+
+                            ACDetails acDetails = new ACDetails(roomNoAC, brandAC, modelAC, capacityAC, lastServiceDateAC, starRatingAC, ratingAC);
+                            databaseReference.child("Appliances").child("AC").child(databaseReference.push().getKey()).setValue(acDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                         break;
                     case "Fan":
@@ -819,18 +833,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String timeSinceInstallationFan = FanDays.getText().toString();
                         String noOfBladesFan = FanBlades.getText().toString();
 
-                        FanDetails fanDetails = new FanDetails(roomNoFan, brandFan, modelFan, timeSinceInstallationFan, noOfBladesFan);
-                        databaseReference.child("Appliances").child("Fan").child(databaseReference.push().getKey()).setValue(fanDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (roomNoFan.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        } else {
+
+                            FanDetails fanDetails = new FanDetails(roomNoFan, brandFan, modelFan, timeSinceInstallationFan, noOfBladesFan);
+                            databaseReference.child("Appliances").child("Fan").child(databaseReference.push().getKey()).setValue(fanDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                         break;
                     case "Lift":
@@ -852,11 +877,13 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         databaseReference.child("Appliances").child("Lift").child(databaseReference.push().getKey()).setValue(liftDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+                                progressDialog.dismiss();
                                 Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
                                 Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -881,21 +908,31 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String powerGeyser = GeyserPower.getText().toString();
                         String ratingGeyser = GeyserRating.getText().toString();
 
-                        GeyserDetails geyserDetails = new GeyserDetails(roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
-                        databaseReference.child("Appliances").child("Geyser").child(databaseReference.push().getKey()).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (roomNoGeyser.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        } else {
+
+                            GeyserDetails geyserDetails = new GeyserDetails(roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
+                            databaseReference.child("Appliances").child("Geyser").child(databaseReference.push().getKey()).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                         break;
+
                     case "Washing Machine":
 
                         WashingMachineRoomNo = view.findViewById(R.id.wmRoomNumberEditText);
@@ -916,19 +953,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String ratingWashingMachine = WashingMachineRating.getText().toString();
                         String typeWashingMachine = WashingMachineType.getText().toString();
 
-                        WashingMachineDetails washingMachineDetails = new WashingMachineDetails(roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
-                        databaseReference.child("Appliances").child("Washing Machine").child(databaseReference.push().getKey()).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandWashingMachine.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        } else {
+
+                            WashingMachineDetails washingMachineDetails = new WashingMachineDetails(roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
+                            databaseReference.child("Appliances").child("Washing Machine").child(databaseReference.push().getKey()).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                         break;
                     case "RO":
@@ -945,19 +992,30 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String modelRO = ROModel.getText().toString();
                         String roomNoRO = RORoomNo.getText().toString();
 
-                        RODetails roDetails = new RODetails(roomNoRO, brandRO, modelRO, daysRO, capacityRO);
-                        databaseReference.child("Appliances").child("RO").child(databaseReference.push().getKey()).setValue(roDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandRO.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        }
+
+                        else {
+                            RODetails roDetails = new RODetails(roomNoRO, brandRO, modelRO, daysRO, capacityRO);
+                            databaseReference.child("Appliances").child("RO").child(databaseReference.push().getKey()).setValue(roDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                         break;
                     case "Dishwasher":
@@ -976,20 +1034,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoDishwasher = DishwasherRoomNo.getText().toString();
                         String typeDishwasher = DishwasherType.getText().toString();
 
-                        DishwasherDetails dishwasherDetails = new DishwasherDetails(roomNoDishwasher, brandDishwasher, modelDishwasher, daysDishwasher, capacityDishwasher, typeDishwasher);
-                        databaseReference.child("Appliances").child("Dishwasher").child(databaseReference.push().getKey()).setValue(dishwasherDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandDishwasher.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
 
+                        }
+                        else {
+                            DishwasherDetails dishwasherDetails = new DishwasherDetails(roomNoDishwasher, brandDishwasher, modelDishwasher, daysDishwasher, capacityDishwasher, typeDishwasher);
+                            databaseReference.child("Appliances").child("Dishwasher").child(databaseReference.push().getKey()).setValue(dishwasherDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                         break;
                     case "Microwave":
 
@@ -1007,18 +1074,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String typeMicrowave = MicrowaveType.getText().toString();
                         String roomNoMicrowave = MicrowaveRoomNo.getText().toString();
 
-                        MicrowaveDetails microwaveDetails = new MicrowaveDetails(roomNoMicrowave, brandMicrowave, modelMicrowave, daysMicrowave, capacityMicrowave, typeMicrowave);
-                        databaseReference.child("Appliances").child("Microwave").child(databaseReference.push().getKey()).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandMicrowave.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        }
+
+                        else {
+                            MicrowaveDetails microwaveDetails = new MicrowaveDetails(roomNoMicrowave, brandMicrowave, modelMicrowave, daysMicrowave, capacityMicrowave, typeMicrowave);
+                            databaseReference.child("Appliances").child("Microwave").child(databaseReference.push().getKey()).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
                         break;
                     case "Refrigerator":
@@ -1039,19 +1117,28 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String typeFridge = FridgeType.getText().toString();
                         String ratingFridge = FridgeRating.getText().toString();
 
-                        RefrigeratorDetails refrigeratorDetails = new RefrigeratorDetails(roomNoFridge, brandFridge, modelFridge, daysFridge, capacityFridge, typeFridge, ratingFridge);
-                        databaseReference.child("Appliances").child("Refrigerator").child(databaseReference.push().getKey()).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandFridge.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+
+                            RefrigeratorDetails refrigeratorDetails = new RefrigeratorDetails(roomNoFridge, brandFridge, modelFridge, daysFridge, capacityFridge, typeFridge, ratingFridge);
+                            databaseReference.child("Appliances").child("Refrigerator").child(databaseReference.push().getKey()).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
                         break;
                     case "TV":
@@ -1072,19 +1159,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String sizeTV = TVSize.getText().toString();
                         String typeTV = TVType.getText().toString();
 
-                        TVDetails tvDetails = new TVDetails(roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
-                        databaseReference.child("Appliances").child("TV").child(databaseReference.push().getKey()).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandTV.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+
+                            TVDetails tvDetails = new TVDetails(roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
+                            databaseReference.child("Appliances").child("TV").child(databaseReference.push().getKey()).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                         break;
                     case "CCTV":
@@ -1105,19 +1202,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String resolutionCCTV = CCTVResolution.getText().toString();
                         String roomNoCCTV = CCTVRoomNo.getText().toString();
 
-                        CCTVDetails cctvDetails = new CCTVDetails(roomNoCCTV, brandCCTV, modelCCTV, daysCCTV, nightCCTV, channelCCTV, resolutionCCTV);
-                        databaseReference.child("Appliances").child("CCTV").child(databaseReference.push().getKey()).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (roomNoCCTV.equals("") && brandCCTV.equals("") && daysCCTV.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        }
+                        else {
+
+                            CCTVDetails cctvDetails = new CCTVDetails(roomNoCCTV, brandCCTV, modelCCTV, daysCCTV, nightCCTV, channelCCTV, resolutionCCTV);
+                            databaseReference.child("Appliances").child("CCTV").child(databaseReference.push().getKey()).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
                         break;
                     case "Iron":
@@ -1134,19 +1241,27 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String powerIron = IronPower.getText().toString();
                         String roomNoIron = IronRoomNo.getText().toString();
 
-                        IronDetails ironDetails = new IronDetails(roomNoIron, brandIron, modelIron, daysIron, powerIron);
-                        databaseReference.child("Appliances").child("Iron").child(databaseReference.push().getKey()).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandIron.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+                            IronDetails ironDetails = new IronDetails(roomNoIron, brandIron, modelIron, daysIron, powerIron);
+                            databaseReference.child("Appliances").child("Iron").child(databaseReference.push().getKey()).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
                         break;
                     case "Induction":
@@ -1167,19 +1282,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoInduction = InductionRoomNo.getText().toString();
                         String typeInduction = InductionType.getText().toString();
 
-                        InductionDetails inductionDetails = new InductionDetails(roomNoInduction, brandInduction, modelInduction, daysInduction, powerInduction, typeInduction, noCooktopInduction);
-                        databaseReference.child("Appliances").child("Induction").child(databaseReference.push().getKey()).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandInduction.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+
+                            InductionDetails inductionDetails = new InductionDetails(roomNoInduction, brandInduction, modelInduction, daysInduction, powerInduction, typeInduction, noCooktopInduction);
+                            databaseReference.child("Appliances").child("Induction").child(databaseReference.push().getKey()).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                         break;
                     case "Router":
@@ -1198,20 +1323,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoRouter = RouterRoomNo.getText().toString();
                         String speedRouter = RouterSpeed.getText().toString();
 
-                        RouterDetails routerDetails = new RouterDetails(roomNoRouter, brandRouter, modelRouter, daysRouter, antennaRouter, speedRouter);
-                        databaseReference.child("Appliances").child("Router").child(databaseReference.push().getKey()).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (daysRouter.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
 
+                            RouterDetails routerDetails = new RouterDetails(roomNoRouter, brandRouter, modelRouter, daysRouter, antennaRouter, speedRouter);
+                            databaseReference.child("Appliances").child("Router").child(databaseReference.push().getKey()).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                         break;
                     case "Heater":
 
@@ -1229,20 +1363,31 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoHeater = HeaterRoomNo.getText().toString();
                         String weightHeater = HeaterWeight.getText().toString();
 
-                        HeaterDetails heaterDetails = new HeaterDetails(roomNoHeater, brandHeater, modelHeater, daysHeater, powerHeater, weightHeater);
-                        databaseReference.child("Appliances").child("Heater").child(databaseReference.push().getKey()).setValue(heaterDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (roomNoHeater.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
 
+                        }
+
+                        else {
+
+                            HeaterDetails heaterDetails = new HeaterDetails(roomNoHeater, brandHeater, modelHeater, daysHeater, powerHeater, weightHeater);
+                            databaseReference.child("Appliances").child("Heater").child(databaseReference.push().getKey()).setValue(heaterDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                         break;
                     case "D2H":
 
@@ -1254,20 +1399,30 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String daysD2H = D2HDays.getText().toString();
                         String roomNoD2H = D2HRoomNo.getText().toString();
 
-                        D2HDetails d2HDetails = new D2HDetails(roomNoD2H, brandD2H, daysD2H);
-                        databaseReference.child("Appliances").child("D2H").child(databaseReference.push().getKey()).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandD2H.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
 
+                        else {
+
+                            D2HDetails d2HDetails = new D2HDetails(roomNoD2H, brandD2H, daysD2H);
+                            databaseReference.child("Appliances").child("D2H").child(databaseReference.push().getKey()).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                         break;
                     case "Other":
 
@@ -1279,20 +1434,29 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String nameOther = OtherName.getText().toString();
                         String roomNoOther = OtherRoomNo.getText().toString();
 
-                        OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(roomNoOther, nameOther, brandOther);
-                        databaseReference.child("Appliances").child("Other").child(databaseReference.push().getKey()).setValue(otherApplianceDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (brandOther.equals("") && nameOther.equals("")) {
 
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
 
+                        else {
+                            OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(roomNoOther, nameOther, brandOther);
+                            databaseReference.child("Appliances").child("Other").child(databaseReference.push().getKey()).setValue(otherApplianceDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                         break;
                 }
 

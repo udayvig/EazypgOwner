@@ -1,14 +1,17 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailAC;
 import com.example.ainesh.eazypg_owner.R;
@@ -32,21 +35,92 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemAC = inflater.inflate(R.layout.appliance_row, null, true);
+        final ApplianceDetailAC applianceDetailAC = acList.get(position);
 
         listViewItemAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Clicked.", Toast.LENGTH_SHORT).show();
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+
+                EditText ACRoomNo,ACCompanyName,ACModel,ACCapacity,ACLastServiceDate,ACStarRating,ACType;
+                RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
+                        fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
+
+                ACLayout = viewDialog.findViewById(R.id.ACLayout);
+                fanLayout = viewDialog.findViewById(R.id.fanLayout);
+                liftLayout = viewDialog.findViewById(R.id.liftLayout);
+                geyserLayout = viewDialog.findViewById(R.id.geyserLayout);
+                washingMachineLayout = viewDialog.findViewById(R.id.washingMachineLayout);
+                ROLayout = viewDialog.findViewById(R.id.ROLayout);
+                dishwasherLayout = viewDialog.findViewById(R.id.dishwasherLayout);
+                microwaveLayout = viewDialog.findViewById(R.id.microwaveLayout);
+                fridgeLayout = viewDialog.findViewById(R.id.fridgeLayout);
+                TVLayout = viewDialog.findViewById(R.id.TVLayout);
+                CCTVLayout = viewDialog.findViewById(R.id.CCTVLayout);
+                ironLayout = viewDialog.findViewById(R.id.ironLayout);
+                inductionLayout = viewDialog.findViewById(R.id.inductionLayout);
+                routerLayout = viewDialog.findViewById(R.id.routerLayout);
+                heaterLayout = viewDialog.findViewById(R.id.heaterLayout);
+                D2HLayout = viewDialog.findViewById(R.id.D2HLayout);
+                otherLayout = viewDialog.findViewById(R.id.otherLayout);
+
+                ACLayout.setVisibility(View.VISIBLE);
+                fanLayout.setVisibility(View.GONE);
+                liftLayout.setVisibility(View.GONE);
+                geyserLayout.setVisibility(View.GONE);
+                washingMachineLayout.setVisibility(View.GONE);
+                ROLayout.setVisibility(View.GONE);
+                dishwasherLayout.setVisibility(View.GONE);
+                microwaveLayout.setVisibility(View.GONE);
+                fridgeLayout.setVisibility(View.GONE);
+                TVLayout.setVisibility(View.GONE);
+                CCTVLayout.setVisibility(View.GONE);
+                ironLayout.setVisibility(View.GONE);
+                inductionLayout.setVisibility(View.GONE);
+                routerLayout.setVisibility(View.GONE);
+                heaterLayout.setVisibility(View.GONE);
+                D2HLayout.setVisibility(View.GONE);
+                otherLayout.setVisibility(View.GONE);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("AC" + " details");
+
+                ACRoomNo = viewDialog.findViewById(R.id.ACRoomNumberEditText);
+                ACCompanyName = viewDialog.findViewById(R.id.ACCompanyNameEditText);
+                ACModel = viewDialog.findViewById(R.id.ACModelEditText);
+                ACCapacity = viewDialog.findViewById(R.id.ACCapacityEditText);
+                ACLastServiceDate = viewDialog.findViewById(R.id.ACLastServiceDateEditText);
+                ACStarRating = viewDialog.findViewById(R.id.ACStarRatingEditText);
+                ACType = viewDialog.findViewById(R.id.ACTypeEditText);
+
+                ACRoomNo.setText(applianceDetailAC.roomNo);
+                ACCompanyName.setText(applianceDetailAC.brand);
+                ACModel.setText(applianceDetailAC.model);
+                ACCapacity.setText(applianceDetailAC.capacity);
+                ACLastServiceDate.setText(applianceDetailAC.lastServiceDate);
+                ACStarRating.setText(applianceDetailAC.starRating);
+                ACType.setText(applianceDetailAC.typeOfRating);
+
+                builder.setView(viewDialog);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                builder.setNegativeButton("Cancel",null);
+
+                builder.show();
             }
         });
 
         TextView first = listViewItemAC.findViewById(R.id.firstTextView);
         TextView second = listViewItemAC.findViewById(R.id.secondTextView);
         TextView third = listViewItemAC.findViewById(R.id.thirdTextView);
-
-        ApplianceDetailAC applianceDetailAC = acList.get(position);
 
         first.setText(applianceDetailAC.getRoomNo());
         second.setText(applianceDetailAC.getBrand());
