@@ -12,10 +12,19 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailAC;
+import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
@@ -31,6 +40,9 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
 
     }
 
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/AC");
+    List<String> ids = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -38,6 +50,29 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemAC = inflater.inflate(R.layout.appliance_row, null, true);
         final ApplianceDetailAC applianceDetailAC = acList.get(position);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ids.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    ACDetails acDetails = snapshot.getValue(ACDetails.class);
+
+                    String id = acDetails.id;
+
+                    ids.add(id);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         listViewItemAC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,37 +143,8 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                       /* FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid() + "/Appliances/AC");
 
-                        databaseReference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot dataSnapshotAC : dataSnapshot.getChildren()) {
-
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });*/
-
-                       /* ApplianceDetailAC ac = new ApplianceDetailAC(ACRoomNo.getText().toString(), ACCompanyName.getText().toString(),
-                                ACModel.getText().toString(), ACCapacity.getText().toString(), ACLastServiceDate.getText().toString(),
-                                ACStarRating.getText().toString(), ACType.getText().toString());
-                        databaseReference.child("Appliances").child("AC").child(neededUid).setValue(ac).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(context, "Updated!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Failed.", Toast.LENGTH_SHORT).show();
-                            }
-                        });*/
+                        Toast.makeText(context, ids.get(position), Toast.LENGTH_SHORT).show();
                     }
                 });
 

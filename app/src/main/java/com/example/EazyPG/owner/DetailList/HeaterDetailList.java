@@ -15,7 +15,11 @@ import android.widget.TextView;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailHeater;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
@@ -30,6 +34,9 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
         this.HeaterList = HeaterList;
 
     }
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Heater");
+    List<String> ids = new ArrayList<>();
 
     @NonNull
     @Override
