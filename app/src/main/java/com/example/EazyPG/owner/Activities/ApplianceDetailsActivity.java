@@ -2,6 +2,7 @@ package com.example.EazyPG.owner.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -88,7 +89,8 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
     private Intent intent;
     private String message;
 
-
+    Snackbar snackbar;
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,10 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         listView = findViewById(R.id.listView);
+        view = findViewById(R.id.applianceNameLayout);
+
+        snackbar = Snackbar.make(view, "Tap item to edit and hold to delete", Snackbar.LENGTH_LONG);
+        snackbar.show();
 
         acList = new ArrayList<>();
         fanList = new ArrayList<>();
