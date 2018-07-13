@@ -89,13 +89,13 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
             public void onClick(View view) {
                 final EditText InductionCompanyName, InductionDays, InductionModel, InductionNoCooktop, InductionPower, InductionRoomNo, InductionType;
 
-                InductionCompanyName = view.findViewById(R.id.inductionCompanyNameEditText);
-                InductionDays = view.findViewById(R.id.inductionDaysEditText);
-                InductionModel = view.findViewById(R.id.inductionModelEditText);
-                InductionNoCooktop = view.findViewById(R.id.inductionNumberCooktopEditText);
-                InductionPower = view.findViewById(R.id.inductionPowerEditText);
-                InductionRoomNo = view.findViewById(R.id.inductionRoomNumberEditText);
-                InductionType = view.findViewById(R.id.inductionControlTypeEditText);
+                InductionCompanyName = viewDialog.findViewById(R.id.inductionCompanyNameEditText);
+                InductionDays = viewDialog.findViewById(R.id.inductionDaysEditText);
+                InductionModel = viewDialog.findViewById(R.id.inductionModelEditText);
+                InductionNoCooktop = viewDialog.findViewById(R.id.inductionNumberCooktopEditText);
+                InductionPower = viewDialog.findViewById(R.id.inductionPowerEditText);
+                InductionRoomNo = viewDialog.findViewById(R.id.inductionRoomNumberEditText);
+                InductionType = viewDialog.findViewById(R.id.inductionControlTypeEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

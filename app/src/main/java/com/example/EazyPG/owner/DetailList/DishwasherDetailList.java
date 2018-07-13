@@ -90,12 +90,12 @@ public class DishwasherDetailList extends ArrayAdapter<ApplianceDetailDishwasher
             public void onClick(View view) {
                 final EditText DishwasherCompanyName,DishwasherDays,DishwasherCapacity, DishwasherModel, DishwasherRoomNo, DishwasherType;
 
-                DishwasherCapacity = view.findViewById(R.id.dishwasherCapacityEditText);
-                DishwasherCompanyName = view.findViewById(R.id.dishwasherCompanyNameEditText);
-                DishwasherDays = view.findViewById(R.id.dishwasherDaysEditText);
-                DishwasherModel = view.findViewById(R.id.dishwasherModelEditText);
-                DishwasherRoomNo = view.findViewById(R.id.dishwasherRoomNumberEditText);
-                DishwasherType = view.findViewById(R.id.dishwasherTypeEditText);
+                DishwasherCapacity = viewDialog.findViewById(R.id.dishwasherCapacityEditText);
+                DishwasherCompanyName = viewDialog.findViewById(R.id.dishwasherCompanyNameEditText);
+                DishwasherDays = viewDialog.findViewById(R.id.dishwasherDaysEditText);
+                DishwasherModel = viewDialog.findViewById(R.id.dishwasherModelEditText);
+                DishwasherRoomNo = viewDialog.findViewById(R.id.dishwasherRoomNumberEditText);
+                DishwasherType = viewDialog.findViewById(R.id.dishwasherTypeEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

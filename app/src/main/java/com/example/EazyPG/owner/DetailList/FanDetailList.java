@@ -52,14 +52,8 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemFan = inflater.inflate(R.layout.appliance_row, null, true);
-
-        TextView first = listViewItemFan.findViewById(R.id.firstTextView);
-        TextView second = listViewItemFan.findViewById(R.id.secondTextView);
-        TextView third = listViewItemFan.findViewById(R.id.thirdTextView);
-
         final ApplianceDetailFan applianceDetailFan = fanList.get(position);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -88,16 +82,14 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
         listViewItemFan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final EditText FanRoomNo, FanCompanyName, FanModel, FanDays, FanBlades;
 
-                FanRoomNo = view.findViewById(R.id.fanRoomNumberEditText);
-                FanCompanyName = view.findViewById(R.id.fanCompanyNameEditText);
-                FanModel = view.findViewById(R.id.fanModelEditText);
-                FanDays = view.findViewById(R.id.fanDaysEditText);
-                FanBlades = view.findViewById(R.id.fanBladesEditText);
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+
+                final EditText FanRoomNo, FanCompanyName, FanModel, FanDays, FanBlades;
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
+
 
                 ACLayout = viewDialog.findViewById(R.id.ACLayout);
                 fanLayout = viewDialog.findViewById(R.id.fanLayout);
@@ -137,6 +129,12 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Fan" + " details");
+
+                FanRoomNo = viewDialog.findViewById(R.id.fanRoomNumberEditText);
+                FanCompanyName = viewDialog.findViewById(R.id.fanCompanyNameEditText);
+                FanModel = viewDialog.findViewById(R.id.fanModelEditText);
+                FanDays = viewDialog.findViewById(R.id.fanDaysEditText);
+                FanBlades = viewDialog.findViewById(R.id.fanBladesEditText);
 
                 FanBlades.setText(applianceDetailFan.noOfBlades);
                 FanCompanyName.setText(applianceDetailFan.brand);
@@ -190,6 +188,10 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
                 builder.show();
             }
         });
+
+        TextView first = listViewItemFan.findViewById(R.id.firstTextView);
+        TextView second = listViewItemFan.findViewById(R.id.secondTextView);
+        TextView third = listViewItemFan.findViewById(R.id.thirdTextView);
 
         first.setText(applianceDetailFan.getRoomNo());
         second.setText(applianceDetailFan.getBrand());

@@ -89,11 +89,11 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
             public void onClick(View view) {
                 final EditText IronComanyName, IronDays, IronModel, IronPower, IronRoomNo;
 
-                IronComanyName = view.findViewById(R.id.ironCompanyNameEditText);
-                IronDays = view.findViewById(R.id.ironDaysEditText);
-                IronModel = view.findViewById(R.id.ironModelEditText);
-                IronPower = view.findViewById(R.id.ironPowerEditText);
-                IronRoomNo = view.findViewById(R.id.ironRoomNumberEditText);
+                IronComanyName = viewDialog.findViewById(R.id.ironCompanyNameEditText);
+                IronDays = viewDialog.findViewById(R.id.ironDaysEditText);
+                IronModel = viewDialog.findViewById(R.id.ironModelEditText);
+                IronPower = viewDialog.findViewById(R.id.ironPowerEditText);
+                IronRoomNo = viewDialog.findViewById(R.id.ironRoomNumberEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

@@ -78,6 +78,34 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
             }
         });
 
+        listViewItemAC.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+               // AlertDialog.Builder builder = new AlertDialog.Builder(new DialogInterface)
+
+                final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+
+                String id = ids.get(position);
+
+                databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                return true;
+            }
+        });
+
         listViewItemAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

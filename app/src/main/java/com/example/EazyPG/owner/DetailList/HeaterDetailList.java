@@ -89,12 +89,12 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
             public void onClick(View view) {
                 final EditText HeaterCompanyName, HeaterDays, HeaterModel, HeaterPower, HeaterRoomNo,HeaterWeight;
 
-                HeaterCompanyName = view.findViewById(R.id.heaterCompanyNameEditText);
-                HeaterDays = view.findViewById(R.id.heaterDaysEditText);
-                HeaterModel = view.findViewById(R.id.heaterModelEditText);
-                HeaterPower = view.findViewById(R.id.heaterPowerEditText);
-                HeaterRoomNo = view.findViewById(R.id.heaterRoomNumberEditText);
-                HeaterWeight = view.findViewById(R.id.heaterWeightEditText);
+                HeaterCompanyName = viewDialog.findViewById(R.id.heaterCompanyNameEditText);
+                HeaterDays = viewDialog.findViewById(R.id.heaterDaysEditText);
+                HeaterModel = viewDialog.findViewById(R.id.heaterModelEditText);
+                HeaterPower = viewDialog.findViewById(R.id.heaterPowerEditText);
+                HeaterRoomNo = viewDialog.findViewById(R.id.heaterRoomNumberEditText);
+                HeaterWeight = viewDialog.findViewById(R.id.heaterWeightEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

@@ -90,13 +90,13 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
             public void onClick(View view) {
                 final EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserDays, GeyserCapacity, GeyserPower, GeyserRating;
 
-                GeyserRoomNo = view.findViewById(R.id.geyserRoomNumberEditText);
-                GeyserCompanyName = view.findViewById(R.id.geyserCompanyNameEditText);
-                GeyserModel = view.findViewById(R.id.geyserModelEditText);
-                GeyserDays = view.findViewById(R.id.geyserDaysEditText);
-                GeyserCapacity = view.findViewById(R.id.geyserCapacityEditText);
-                GeyserPower = view.findViewById(R.id.geyserPowerEditText);
-                GeyserRating = view.findViewById(R.id.geyserRatingEditText);
+                GeyserRoomNo = viewDialog.findViewById(R.id.geyserRoomNumberEditText);
+                GeyserCompanyName = viewDialog.findViewById(R.id.geyserCompanyNameEditText);
+                GeyserModel = viewDialog.findViewById(R.id.geyserModelEditText);
+                GeyserDays = viewDialog.findViewById(R.id.geyserDaysEditText);
+                GeyserCapacity = viewDialog.findViewById(R.id.geyserCapacityEditText);
+                GeyserPower = viewDialog.findViewById(R.id.geyserPowerEditText);
+                GeyserRating = viewDialog.findViewById(R.id.geyserRatingEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
