@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class ACDetails {
 
-    public String roomNo, brand, model, capacity, lastServiceDate, starRating, typeOfRating;
+    public String id, roomNo, brand, model, capacity, lastServiceDate, starRating, typeOfRating;
 
-    public ACDetails(String roomNo, String brand, String model, String capacity, String lastServiceDate, String starRating, String typeOfRating) {
+    public ACDetails(String id, String roomNo, String brand, String model, String capacity, String lastServiceDate, String starRating, String typeOfRating) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;
@@ -51,5 +52,9 @@ public class ACDetails {
 
     public String getTypeOfRating() {
         return typeOfRating;
+    }
+
+    public String getId() {
+        return id;
     }
 }

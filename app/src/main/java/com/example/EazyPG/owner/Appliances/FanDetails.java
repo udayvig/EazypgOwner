@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class FanDetails {
 
-    public String roomNo, brand, model, timeSinceInstallation, noOfBlades;
+    public String id, roomNo, brand, model, timeSinceInstallation, noOfBlades;
 
-    public FanDetails(String roomNo, String brand, String model, String timeSinceInstallation, String noOfBlades) {
+    public FanDetails(String id, String roomNo, String brand, String model, String timeSinceInstallation, String noOfBlades) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;
@@ -19,5 +20,29 @@ public class FanDetails {
         model = "";
         timeSinceInstallation = "";
         noOfBlades = "";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getRoomNo() {
+        return roomNo;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getTimeSinceInstallation() {
+        return timeSinceInstallation;
+    }
+
+    public String getNoOfBlades() {
+        return noOfBlades;
     }
 }

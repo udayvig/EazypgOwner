@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class MicrowaveDetails {
 
-    public String roomNo, brand, model, timeSinceInstallation, capacity, controlType;
+    public String id, roomNo, brand, model, timeSinceInstallation, capacity, controlType;
 
-    public MicrowaveDetails(String roomNo, String brand, String model, String timeSinceInstallation, String capacity, String controlType) {
+    public MicrowaveDetails(String id, String roomNo, String brand, String model, String timeSinceInstallation, String capacity, String controlType) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;

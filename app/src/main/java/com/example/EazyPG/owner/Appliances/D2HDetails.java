@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class D2HDetails {
 
-    public String roomNo, brand, timeSinceInstallation;
+    public String id, roomNo, brand, timeSinceInstallation;
 
-    public D2HDetails(String roomNo, String brand, String timeSinceInstallation) {
+    public D2HDetails(String id, String roomNo, String brand, String timeSinceInstallation) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.timeSinceInstallation = timeSinceInstallation;

@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class RODetails {
 
-    public String roomNo, brand, model, timeSinceInstallation, capacity;
+    public String id, roomNo, brand, model, timeSinceInstallation, capacity;
 
-    public RODetails(String roomNo, String brand, String model, String timeSinceInstallation, String capacity) {
+    public RODetails(String id, String roomNo, String brand, String model, String timeSinceInstallation, String capacity) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;

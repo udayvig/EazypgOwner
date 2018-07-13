@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class DishwasherDetails {
 
-    public String roomNo, brand, model, timeSinceInstallation, capacity, typeOfDishwasher;
+    public String id, roomNo, brand, model, timeSinceInstallation, capacity, typeOfDishwasher;
 
-    public DishwasherDetails(String roomNo, String brand, String model, String timeSinceInstallation, String capacity, String typeOfDishwasher) {
+    public DishwasherDetails(String id, String roomNo, String brand, String model, String timeSinceInstallation, String capacity, String typeOfDishwasher) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;

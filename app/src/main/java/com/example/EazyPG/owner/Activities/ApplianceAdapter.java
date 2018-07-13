@@ -777,7 +777,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving..", true);
+                final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
 
                 switch (applianceName) {
                     case "AC":
@@ -797,6 +797,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String lastServiceDateAC = ACLastServiceDate.getText().toString();
                         String starRatingAC = ACStarRating.getText().toString();
                         String ratingAC = ACType.getText().toString();
+                        String uidAC = databaseReference.push().getKey();
 
                         if (roomNoAC.equals("")) {
 
@@ -805,8 +806,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         } else {
 
-                            ACDetails acDetails = new ACDetails(roomNoAC, brandAC, modelAC, capacityAC, lastServiceDateAC, starRatingAC, ratingAC);
-                            databaseReference.child("Appliances").child("AC").child(databaseReference.push().getKey()).setValue(acDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            ACDetails acDetails = new ACDetails(uidAC, roomNoAC, brandAC, modelAC, capacityAC, lastServiceDateAC, starRatingAC, ratingAC);
+                            databaseReference.child("Appliances").child("AC").child(uidAC).setValue(acDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -836,6 +837,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String modelFan = FanModel.getText().toString();
                         String timeSinceInstallationFan = FanDays.getText().toString();
                         String noOfBladesFan = FanBlades.getText().toString();
+                        String uidFan = databaseReference.push().getKey();
 
                         if (roomNoFan.equals("")) {
 
@@ -844,8 +846,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         } else {
 
-                            FanDetails fanDetails = new FanDetails(roomNoFan, brandFan, modelFan, timeSinceInstallationFan, noOfBladesFan);
-                            databaseReference.child("Appliances").child("Fan").child(databaseReference.push().getKey()).setValue(fanDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            FanDetails fanDetails = new FanDetails(uidFan, roomNoFan, brandFan, modelFan, timeSinceInstallationFan, noOfBladesFan);
+                            databaseReference.child("Appliances").child("Fan").child(uidFan).setValue(fanDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -875,10 +877,11 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String daysLift = LiftDays.getText().toString();
                         String capacityLift = LiftCapacity.getText().toString();
                         String doorLift = LiftDoor.getText().toString();
+                        String uidLift = databaseReference.push().getKey();
 
-                        LiftDetails liftDetails = new LiftDetails(brandLift, modelLift, daysLift, capacityLift, doorLift);
+                        LiftDetails liftDetails = new LiftDetails(uidLift, brandLift, modelLift, daysLift, capacityLift, doorLift);
 
-                        databaseReference.child("Appliances").child("Lift").child(databaseReference.push().getKey()).setValue(liftDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child("Appliances").child("Lift").child(uidLift).setValue(liftDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 progressDialog.dismiss();
@@ -911,6 +914,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String capacityGeyser = GeyserCapacity.getText().toString();
                         String powerGeyser = GeyserPower.getText().toString();
                         String ratingGeyser = GeyserRating.getText().toString();
+                        String uidGeyser = databaseReference.push().getKey();
 
                         if (roomNoGeyser.equals("")) {
 
@@ -918,8 +922,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                             progressDialog.dismiss();
                         } else {
 
-                            GeyserDetails geyserDetails = new GeyserDetails(roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
-                            databaseReference.child("Appliances").child("Geyser").child(databaseReference.push().getKey()).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            GeyserDetails geyserDetails = new GeyserDetails(uidGeyser, roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
+                            databaseReference.child("Appliances").child("Geyser").child(uidGeyser).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -956,6 +960,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String powerWashingMachine = WashingMachinePower.getText().toString();
                         String ratingWashingMachine = WashingMachineRating.getText().toString();
                         String typeWashingMachine = WashingMachineType.getText().toString();
+                        String uidWashingMachine = databaseReference.push().getKey();
 
                         if (brandWashingMachine.equals("")) {
 
@@ -964,8 +969,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         } else {
 
-                            WashingMachineDetails washingMachineDetails = new WashingMachineDetails(roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
-                            databaseReference.child("Appliances").child("Washing Machine").child(databaseReference.push().getKey()).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            WashingMachineDetails washingMachineDetails = new WashingMachineDetails(uidWashingMachine, roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
+                            databaseReference.child("Appliances").child("Washing Machine").child(uidWashingMachine).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -995,6 +1000,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String daysRO = RODays.getText().toString();
                         String modelRO = ROModel.getText().toString();
                         String roomNoRO = RORoomNo.getText().toString();
+                        String uidRO = databaseReference.push().getKey();
 
                         if (brandRO.equals("")) {
 
@@ -1004,8 +1010,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
 
                         else {
-                            RODetails roDetails = new RODetails(roomNoRO, brandRO, modelRO, daysRO, capacityRO);
-                            databaseReference.child("Appliances").child("RO").child(databaseReference.push().getKey()).setValue(roDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            RODetails roDetails = new RODetails(uidRO, roomNoRO, brandRO, modelRO, daysRO, capacityRO);
+                            databaseReference.child("Appliances").child("RO").child(uidRO).setValue(roDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1037,6 +1043,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String modelDishwasher = DishwasherModel.getText().toString();
                         String roomNoDishwasher = DishwasherRoomNo.getText().toString();
                         String typeDishwasher = DishwasherType.getText().toString();
+                        String uidDishwasher = databaseReference.push().getKey();
 
                         if (brandDishwasher.equals("")) {
 
@@ -1045,8 +1052,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         }
                         else {
-                            DishwasherDetails dishwasherDetails = new DishwasherDetails(roomNoDishwasher, brandDishwasher, modelDishwasher, daysDishwasher, capacityDishwasher, typeDishwasher);
-                            databaseReference.child("Appliances").child("Dishwasher").child(databaseReference.push().getKey()).setValue(dishwasherDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            DishwasherDetails dishwasherDetails = new DishwasherDetails(uidDishwasher, roomNoDishwasher, brandDishwasher, modelDishwasher, daysDishwasher, capacityDishwasher, typeDishwasher);
+                            databaseReference.child("Appliances").child("Dishwasher").child(uidDishwasher).setValue(dishwasherDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1077,6 +1084,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String modelMicrowave = MicrowaveModel.getText().toString();
                         String typeMicrowave = MicrowaveType.getText().toString();
                         String roomNoMicrowave = MicrowaveRoomNo.getText().toString();
+                        String uidMicrowave = databaseReference.push().getKey();
 
                         if (brandMicrowave.equals("")) {
 
@@ -1086,8 +1094,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
 
                         else {
-                            MicrowaveDetails microwaveDetails = new MicrowaveDetails(roomNoMicrowave, brandMicrowave, modelMicrowave, daysMicrowave, capacityMicrowave, typeMicrowave);
-                            databaseReference.child("Appliances").child("Microwave").child(databaseReference.push().getKey()).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            MicrowaveDetails microwaveDetails = new MicrowaveDetails(uidMicrowave, roomNoMicrowave, brandMicrowave, modelMicrowave, daysMicrowave, capacityMicrowave, typeMicrowave);
+                            databaseReference.child("Appliances").child("Microwave").child(uidMicrowave).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1120,6 +1128,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoFridge = FridgeRoomNo.getText().toString();
                         String typeFridge = FridgeType.getText().toString();
                         String ratingFridge = FridgeRating.getText().toString();
+                        String uidFridge = databaseReference.push().getKey();
 
                         if (brandFridge.equals("")) {
 
@@ -1128,8 +1137,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
                         else {
 
-                            RefrigeratorDetails refrigeratorDetails = new RefrigeratorDetails(roomNoFridge, brandFridge, modelFridge, daysFridge, capacityFridge, typeFridge, ratingFridge);
-                            databaseReference.child("Appliances").child("Refrigerator").child(databaseReference.push().getKey()).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            RefrigeratorDetails refrigeratorDetails = new RefrigeratorDetails(uidFridge, roomNoFridge, brandFridge, modelFridge, daysFridge, capacityFridge, typeFridge, ratingFridge);
+                            databaseReference.child("Appliances").child("Refrigerator").child(uidFridge).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1162,6 +1171,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String roomNoTV = TVRoomNo.getText().toString();
                         String sizeTV = TVSize.getText().toString();
                         String typeTV = TVType.getText().toString();
+                        String uidTV = databaseReference.push().getKey();
 
                         if (brandTV.equals("")) {
 
@@ -1170,8 +1180,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
                         else {
 
-                            TVDetails tvDetails = new TVDetails(roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
-                            databaseReference.child("Appliances").child("TV").child(databaseReference.push().getKey()).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            TVDetails tvDetails = new TVDetails(uidTV, roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
+                            databaseReference.child("Appliances").child("TV").child(uidTV).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1205,6 +1215,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String nightCCTV = CCTVNight.getText().toString();
                         String resolutionCCTV = CCTVResolution.getText().toString();
                         String roomNoCCTV = CCTVRoomNo.getText().toString();
+                        String uidCCTV = databaseReference.push().getKey();
 
                         if (roomNoCCTV.equals("") && brandCCTV.equals("") && daysCCTV.equals("")) {
 
@@ -1214,8 +1225,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
                         else {
 
-                            CCTVDetails cctvDetails = new CCTVDetails(roomNoCCTV, brandCCTV, modelCCTV, daysCCTV, nightCCTV, channelCCTV, resolutionCCTV);
-                            databaseReference.child("Appliances").child("CCTV").child(databaseReference.push().getKey()).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            CCTVDetails cctvDetails = new CCTVDetails(uidCCTV, roomNoCCTV, brandCCTV, modelCCTV, daysCCTV, nightCCTV, channelCCTV, resolutionCCTV);
+                            databaseReference.child("Appliances").child("CCTV").child(uidCCTV).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1244,6 +1255,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String modelIron = IronModel.getText().toString();
                         String powerIron = IronPower.getText().toString();
                         String roomNoIron = IronRoomNo.getText().toString();
+                        String uidIron = databaseReference.push().getKey();
 
                         if (brandIron.equals("")) {
 
@@ -1251,8 +1263,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                             progressDialog.dismiss();
                         }
                         else {
-                            IronDetails ironDetails = new IronDetails(roomNoIron, brandIron, modelIron, daysIron, powerIron);
-                            databaseReference.child("Appliances").child("Iron").child(databaseReference.push().getKey()).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            IronDetails ironDetails = new IronDetails(uidIron, roomNoIron, brandIron, modelIron, daysIron, powerIron);
+                            databaseReference.child("Appliances").child("Iron").child(uidIron).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1285,6 +1297,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String powerInduction = InductionPower.getText().toString();
                         String roomNoInduction = InductionRoomNo.getText().toString();
                         String typeInduction = InductionType.getText().toString();
+                        String uidInduction = databaseReference.push().getKey();
 
                         if (brandInduction.equals("")) {
 
@@ -1293,8 +1306,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
                         else {
 
-                            InductionDetails inductionDetails = new InductionDetails(roomNoInduction, brandInduction, modelInduction, daysInduction, powerInduction, typeInduction, noCooktopInduction);
-                            databaseReference.child("Appliances").child("Induction").child(databaseReference.push().getKey()).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            InductionDetails inductionDetails = new InductionDetails(uidInduction, roomNoInduction, brandInduction, modelInduction, daysInduction, powerInduction, typeInduction, noCooktopInduction);
+                            databaseReference.child("Appliances").child("Induction").child(uidInduction).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1326,6 +1339,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String modelRouter = RouterModel.getText().toString();
                         String roomNoRouter = RouterRoomNo.getText().toString();
                         String speedRouter = RouterSpeed.getText().toString();
+                        String uidRouter = databaseReference.push().getKey();
 
                         if (daysRouter.equals("")) {
 
@@ -1334,8 +1348,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
                         else {
 
-                            RouterDetails routerDetails = new RouterDetails(roomNoRouter, brandRouter, modelRouter, daysRouter, antennaRouter, speedRouter);
-                            databaseReference.child("Appliances").child("Router").child(databaseReference.push().getKey()).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            RouterDetails routerDetails = new RouterDetails(uidRouter, roomNoRouter, brandRouter, modelRouter, daysRouter, antennaRouter, speedRouter);
+                            databaseReference.child("Appliances").child("Router").child(uidRouter).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1366,6 +1380,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String powerHeater = HeaterPower.getText().toString();
                         String roomNoHeater = HeaterRoomNo.getText().toString();
                         String weightHeater = HeaterWeight.getText().toString();
+                        String uidHeater = databaseReference.push().getKey();
 
                         if (roomNoHeater.equals("")) {
 
@@ -1376,8 +1391,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         else {
 
-                            HeaterDetails heaterDetails = new HeaterDetails(roomNoHeater, brandHeater, modelHeater, daysHeater, powerHeater, weightHeater);
-                            databaseReference.child("Appliances").child("Heater").child(databaseReference.push().getKey()).setValue(heaterDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            HeaterDetails heaterDetails = new HeaterDetails(uidHeater, roomNoHeater, brandHeater, modelHeater, daysHeater, powerHeater, weightHeater);
+                            databaseReference.child("Appliances").child("Heater").child(uidHeater).setValue(heaterDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1402,6 +1417,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String brandD2H = D2HCompanyName.getText().toString();
                         String daysD2H = D2HDays.getText().toString();
                         String roomNoD2H = D2HRoomNo.getText().toString();
+                        String uidD2H = databaseReference.push().getKey();
 
                         if (brandD2H.equals("")) {
 
@@ -1411,8 +1427,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         else {
 
-                            D2HDetails d2HDetails = new D2HDetails(roomNoD2H, brandD2H, daysD2H);
-                            databaseReference.child("Appliances").child("D2H").child(databaseReference.push().getKey()).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            D2HDetails d2HDetails = new D2HDetails(uidD2H, roomNoD2H, brandD2H, daysD2H);
+                            databaseReference.child("Appliances").child("D2H").child(uidD2H).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -1437,6 +1453,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         String brandOther = OtherCompanyName.getText().toString();
                         String nameOther = OtherName.getText().toString();
                         String roomNoOther = OtherRoomNo.getText().toString();
+                        String uidOther = databaseReference.push().getKey();
 
                         if (brandOther.equals("") && nameOther.equals("")) {
 
@@ -1445,8 +1462,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         }
 
                         else {
-                            OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(roomNoOther, nameOther, brandOther);
-                            databaseReference.child("Appliances").child("Other").child(databaseReference.push().getKey()).setValue(otherApplianceDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(uidOther, roomNoOther, nameOther, brandOther);
+                            databaseReference.child("Appliances").child("Other").child(uidOther).setValue(otherApplianceDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();

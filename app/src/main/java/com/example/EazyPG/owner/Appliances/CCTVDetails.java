@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class CCTVDetails {
 
-    public String roomNo, brand, model, timeSinceInstallation, nightVision, noOfChannels, recordingResolution;
+    public String id, roomNo, brand, model, timeSinceInstallation, nightVision, noOfChannels, recordingResolution;
 
-    public CCTVDetails(String roomNo, String brand, String model, String timeSinceInstallation, String nightVision, String noOfChannels, String recordingResolution) {
+    public CCTVDetails(String id, String roomNo, String brand, String model, String timeSinceInstallation, String nightVision, String noOfChannels, String recordingResolution) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;

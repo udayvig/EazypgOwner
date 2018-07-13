@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class InductionDetails {
 
-    public String roomNo, brand, model, timeSinceInstallation, inputPower, controlType, noOfCooktops;
+    public String id, roomNo, brand, model, timeSinceInstallation, inputPower, controlType, noOfCooktops;
 
-    public InductionDetails(String roomNo, String brand, String model, String timeSinceInstallation, String inputPower, String controlType, String noOfCooktops) {
+    public InductionDetails(String id, String roomNo, String brand, String model, String timeSinceInstallation, String inputPower, String controlType, String noOfCooktops) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;

@@ -2,9 +2,10 @@ package com.example.EazyPG.owner.Appliances;
 
 public class HeaterDetails {
 
-    public String roomNo, brand, model, timeSinceInstallation, inputPower, weight;
+    public String id, roomNo, brand, model, timeSinceInstallation, inputPower, weight;
 
-    public HeaterDetails(String roomNo, String brand, String model, String timeSinceInstallation, String inputPower, String weight) {
+    public HeaterDetails(String id, String roomNo, String brand, String model, String timeSinceInstallation, String inputPower, String weight) {
+        this.id=id;
         this.roomNo = roomNo;
         this.brand = brand;
         this.model = model;

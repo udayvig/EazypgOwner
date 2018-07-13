@@ -33,7 +33,7 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemAC = inflater.inflate(R.layout.appliance_row, null, true);
@@ -44,7 +44,7 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
 
-                EditText ACRoomNo,ACCompanyName,ACModel,ACCapacity,ACLastServiceDate,ACStarRating,ACType;
+                final EditText ACRoomNo,ACCompanyName,ACModel,ACCapacity,ACLastServiceDate,ACStarRating,ACType;
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
 
@@ -108,7 +108,37 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                       /* FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid() + "/Appliances/AC");
 
+                        databaseReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot dataSnapshotAC : dataSnapshot.getChildren()) {
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });*/
+
+                       /* ApplianceDetailAC ac = new ApplianceDetailAC(ACRoomNo.getText().toString(), ACCompanyName.getText().toString(),
+                                ACModel.getText().toString(), ACCapacity.getText().toString(), ACLastServiceDate.getText().toString(),
+                                ACStarRating.getText().toString(), ACType.getText().toString());
+                        databaseReference.child("Appliances").child("AC").child(neededUid).setValue(ac).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(context, "Updated!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Failed.", Toast.LENGTH_SHORT).show();
+                            }
+                        });*/
                     }
                 });
 
