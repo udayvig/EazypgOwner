@@ -89,12 +89,12 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
             public void onClick(View view) {
                 final EditText RouterAntenna, RouterCompanyName, RouterDays, RouterModel, RouterRoomNo, RouterSpeed;
 
-                RouterAntenna = view.findViewById(R.id.routerAntennaEditText);
-                RouterCompanyName = view.findViewById(R.id.routerCompanyNameEditText);
-                RouterDays = view.findViewById(R.id.routerDaysEditText);
-                RouterModel = view.findViewById(R.id.routerModelEditText);
-                RouterRoomNo = view.findViewById(R.id.routerRoomNumberEditText);
-                RouterSpeed = view.findViewById(R.id.routerSpeedEditText);
+                RouterAntenna = viewDialog.findViewById(R.id.routerAntennaEditText);
+                RouterCompanyName = viewDialog.findViewById(R.id.routerCompanyNameEditText);
+                RouterDays = viewDialog.findViewById(R.id.routerDaysEditText);
+                RouterModel = viewDialog.findViewById(R.id.routerModelEditText);
+                RouterRoomNo = viewDialog.findViewById(R.id.routerRoomNumberEditText);
+                RouterSpeed = viewDialog.findViewById(R.id.routerSpeedEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

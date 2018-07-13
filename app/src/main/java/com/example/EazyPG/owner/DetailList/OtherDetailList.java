@@ -89,9 +89,9 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
             public void onClick(View view) {
                 final EditText OtherCompanyName, OtherName, OtherRoomNo;
 
-                OtherCompanyName = view.findViewById(R.id.otherCompanyNameEditText);
-                OtherName = view.findViewById(R.id.otherNameEditText);
-                OtherRoomNo = view.findViewById(R.id.otherRoomNumberEditText);
+                OtherCompanyName = viewDialog.findViewById(R.id.otherCompanyNameEditText);
+                OtherName = viewDialog.findViewById(R.id.otherNameEditText);
+                OtherRoomNo = viewDialog.findViewById(R.id.otherRoomNumberEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

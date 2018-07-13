@@ -89,13 +89,13 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
             public void onClick(View view) {
                 final EditText TVCompanyName, TVDays, TVModel, TVResolution, TVRoomNo, TVSize, TVType;
 
-                TVCompanyName = view.findViewById(R.id.TVCompanyNameEditText);
-                TVDays = view.findViewById(R.id.TVDaysEditText);
-                TVModel = view.findViewById(R.id.TVModelEditText);
-                TVResolution = view.findViewById(R.id.TVResolutionEditText);
-                TVRoomNo = view.findViewById(R.id.TVRoomNumberEditText);
-                TVSize = view.findViewById(R.id.TVSizeEditText);
-                TVType = view.findViewById(R.id.TVTypeEditText);
+                TVCompanyName = viewDialog.findViewById(R.id.TVCompanyNameEditText);
+                TVDays = viewDialog.findViewById(R.id.TVDaysEditText);
+                TVModel = viewDialog.findViewById(R.id.TVModelEditText);
+                TVResolution = viewDialog.findViewById(R.id.TVResolutionEditText);
+                TVRoomNo = viewDialog.findViewById(R.id.TVRoomNumberEditText);
+                TVSize = viewDialog.findViewById(R.id.TVSizeEditText);
+                TVType = viewDialog.findViewById(R.id.TVTypeEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

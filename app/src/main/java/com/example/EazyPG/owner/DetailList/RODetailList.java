@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailRO;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.RODetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -91,11 +90,11 @@ public class RODetailList extends ArrayAdapter<ApplianceDetailRO>{
             public void onClick(View view) {
                 final EditText ROCapacity, ROCompanyName, RODays, ROModel, RORoomNo;
 
-                ROCapacity = view.findViewById(R.id.ROCapacityEditText);
-                ROCompanyName = view.findViewById(R.id.ROCompanyNameEditText);
-                RODays = view.findViewById(R.id.RODaysEditText);
-                ROModel = view.findViewById(R.id.ROModelEditText);
-                RORoomNo = view.findViewById(R.id.RORoomNumberEditText);
+                ROCapacity = viewDialog.findViewById(R.id.ROCapacityEditText);
+                ROCompanyName = viewDialog.findViewById(R.id.ROCompanyNameEditText);
+                RODays = viewDialog.findViewById(R.id.RODaysEditText);
+                ROModel = viewDialog.findViewById(R.id.ROModelEditText);
+                RORoomNo = viewDialog.findViewById(R.id.RORoomNumberEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

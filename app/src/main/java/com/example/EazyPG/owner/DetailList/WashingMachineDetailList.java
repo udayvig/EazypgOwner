@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailWashingMachine;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.WashingMachineDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -90,14 +89,14 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
             public void onClick(View view) {
                 final EditText WashingMachineRoomNo, WashingMachineCompanyName, WashingMachineModel, WashingMachineDays, WashingMachineCapacity, WashingMachinePower, WashingMachineRating, WashingMachineType;
 
-                WashingMachineRoomNo = view.findViewById(R.id.wmRoomNumberEditText);
-                WashingMachineCompanyName = view.findViewById(R.id.wmCompanyNameEditText);
-                WashingMachineModel = view.findViewById(R.id.wmModelEditText);
-                WashingMachineDays = view.findViewById(R.id.wmDaysEditText);
-                WashingMachineCapacity = view.findViewById(R.id.wmCapacityEditText);
-                WashingMachinePower = view.findViewById(R.id.wmPowerEditText);
-                WashingMachineRating = view.findViewById(R.id.wmRatingEditText);
-                WashingMachineType = view.findViewById(R.id.wmTypeEditText);
+                WashingMachineRoomNo = viewDialog.findViewById(R.id.wmRoomNumberEditText);
+                WashingMachineCompanyName = viewDialog.findViewById(R.id.wmCompanyNameEditText);
+                WashingMachineModel = viewDialog.findViewById(R.id.wmModelEditText);
+                WashingMachineDays = viewDialog.findViewById(R.id.wmDaysEditText);
+                WashingMachineCapacity = viewDialog.findViewById(R.id.wmCapacityEditText);
+                WashingMachinePower = viewDialog.findViewById(R.id.wmPowerEditText);
+                WashingMachineRating = viewDialog.findViewById(R.id.wmRatingEditText);
+                WashingMachineType = viewDialog.findViewById(R.id.wmTypeEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

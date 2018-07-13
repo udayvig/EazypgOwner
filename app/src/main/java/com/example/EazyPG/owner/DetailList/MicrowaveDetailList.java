@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailMicrowave;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.MicrowaveDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -90,12 +89,12 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
             public void onClick(View view) {
                 final EditText MicrowaveCapacity, MicrowaveCompanyName, MicrowaveDays, MicrowaveModel, MicrowaveType, MicrowaveRoomNo;
 
-                MicrowaveCapacity = view.findViewById(R.id.microwaveCapacityEditText);
-                MicrowaveCompanyName = view.findViewById(R.id.microwaveCompanyNameEditText);
-                MicrowaveDays = view.findViewById(R.id.microwaveDaysEditText);
-                MicrowaveModel = view.findViewById(R.id.microwaveModelEditText);
-                MicrowaveType = view.findViewById(R.id.microwaveTypeEditText);
-                MicrowaveRoomNo = view.findViewById(R.id.microwaveRoomNumberEditText);
+                MicrowaveCapacity = viewDialog.findViewById(R.id.microwaveCapacityEditText);
+                MicrowaveCompanyName = viewDialog.findViewById(R.id.microwaveCompanyNameEditText);
+                MicrowaveDays = viewDialog.findViewById(R.id.microwaveDaysEditText);
+                MicrowaveModel = viewDialog.findViewById(R.id.microwaveModelEditText);
+                MicrowaveType = viewDialog.findViewById(R.id.microwaveTypeEditText);
+                MicrowaveRoomNo = viewDialog.findViewById(R.id.microwaveRoomNumberEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

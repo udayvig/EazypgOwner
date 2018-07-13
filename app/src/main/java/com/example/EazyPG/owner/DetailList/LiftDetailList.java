@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailLift;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.LiftDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -90,11 +89,11 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
             public void onClick(View view) {
                 final EditText LiftCompanyName, LiftModel, LiftDays, LiftCapacity, LiftDoor;
 
-                LiftCompanyName = view.findViewById(R.id.liftCompanyNameEditText);
-                LiftModel = view.findViewById(R.id.liftModelEditText);
-                LiftDays = view.findViewById(R.id.liftDaysEditText);
-                LiftCapacity = view.findViewById(R.id.liftCapacityEditText);
-                LiftDoor = view.findViewById(R.id.liftDoorEditText);
+                LiftCompanyName = viewDialog.findViewById(R.id.liftCompanyNameEditText);
+                LiftModel = viewDialog.findViewById(R.id.liftModelEditText);
+                LiftDays = viewDialog.findViewById(R.id.liftDaysEditText);
+                LiftCapacity = viewDialog.findViewById(R.id.liftCapacityEditText);
+                LiftDoor = viewDialog.findViewById(R.id.liftDoorEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailRefrigerator;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.RefrigeratorDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -90,13 +89,13 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
             public void onClick(View view) {
                 final EditText FridgeCapacity, FridgeCompanyName,  FridgeDays,  FridgeModel,  FridgeRoomNo,  FridgeType, FridgeRating;
 
-                FridgeCapacity = view.findViewById(R.id.fridgeCapacityEditText);
-                FridgeCompanyName = view.findViewById(R.id.fridgeCompanyNameEditText);
-                FridgeDays = view.findViewById(R.id.fridgeDaysEditText);
-                FridgeModel = view.findViewById(R.id.fridgeModelEditText);
-                FridgeRoomNo = view.findViewById(R.id.fridgeRoomNumberEditText);
-                FridgeType = view.findViewById(R.id.fridgeTypeEditText);
-                FridgeRating = view.findViewById(R.id.fridgeRatingEditText);
+                FridgeCapacity = viewDialog.findViewById(R.id.fridgeCapacityEditText);
+                FridgeCompanyName = viewDialog.findViewById(R.id.fridgeCompanyNameEditText);
+                FridgeDays = viewDialog.findViewById(R.id.fridgeDaysEditText);
+                FridgeModel = viewDialog.findViewById(R.id.fridgeModelEditText);
+                FridgeRoomNo = viewDialog.findViewById(R.id.fridgeRoomNumberEditText);
+                FridgeType = viewDialog.findViewById(R.id.fridgeTypeEditText);
+                FridgeRating = viewDialog.findViewById(R.id.fridgeRatingEditText);
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
