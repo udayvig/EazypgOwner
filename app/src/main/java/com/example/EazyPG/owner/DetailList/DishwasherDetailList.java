@@ -14,10 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailDishwasher;
+import com.example.EazyPG.owner.Appliances.ACDetails;
+import com.example.EazyPG.owner.Appliances.DishwasherDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,29 @@ public class DishwasherDetailList extends ArrayAdapter<ApplianceDetailDishwasher
         TextView third = listViewItemDishwasher.findViewById(R.id.thirdTextView);
 
         final ApplianceDetailDishwasher applianceDetailDishwasher= DishwasherList.get(position);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ids.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    DishwasherDetails dishwasherDetails = snapshot.getValue(DishwasherDetails.class);
+
+                    String id = dishwasherDetails.id;
+
+                    ids.add(id);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         listViewItemDishwasher.setOnClickListener(new View.OnClickListener() {
             @Override

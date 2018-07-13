@@ -14,10 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailLift;
+import com.example.EazyPG.owner.Appliances.ACDetails;
+import com.example.EazyPG.owner.Appliances.LiftDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,29 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
         TextView third = listViewItemLift.findViewById(R.id.thirdTextView);
 
         final ApplianceDetailLift applianceDetailLift = liftList.get(position);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ids.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    LiftDetails liftDetails = snapshot.getValue(LiftDetails.class);
+
+                    String id = liftDetails.id;
+
+                    ids.add(id);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         listViewItemLift.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,10 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailFan;
+import com.example.EazyPG.owner.Appliances.ACDetails;
+import com.example.EazyPG.owner.Appliances.FanDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,29 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
         TextView third = listViewItemFan.findViewById(R.id.thirdTextView);
 
         final ApplianceDetailFan applianceDetailFan = fanList.get(position);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ids.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    FanDetails fanDetails = snapshot.getValue(FanDetails.class);
+
+                    String id = fanDetails.id;
+
+                    ids.add(id);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         listViewItemFan.setOnClickListener(new View.OnClickListener() {
             @Override

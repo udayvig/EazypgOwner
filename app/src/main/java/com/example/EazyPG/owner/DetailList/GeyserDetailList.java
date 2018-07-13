@@ -14,10 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailGeyser;
+import com.example.EazyPG.owner.Appliances.ACDetails;
+import com.example.EazyPG.owner.Appliances.GeyserDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,29 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
         TextView third = listViewItemGeyser.findViewById(R.id.thirdTextView);
 
         final ApplianceDetailGeyser applianceDetailGeyser = geyserList.get(position);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ids.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    GeyserDetails geyserDetails = snapshot.getValue(GeyserDetails.class);
+
+                    String id = geyserDetails.id;
+
+                    ids.add(id);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         listViewItemGeyser.setOnClickListener(new View.OnClickListener() {
             @Override

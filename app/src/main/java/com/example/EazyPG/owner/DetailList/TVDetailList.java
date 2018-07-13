@@ -14,10 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailTV;
+import com.example.EazyPG.owner.Appliances.ACDetails;
+import com.example.EazyPG.owner.Appliances.TVDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,29 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
         TextView third = listViewItemTV.findViewById(R.id.thirdTextView);
 
         final ApplianceDetailTV applianceDetailTV= TVList.get(position);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ids.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    TVDetails tvDetails = snapshot.getValue(TVDetails.class);
+
+                    String id = tvDetails.id;
+
+                    ids.add(id);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         listViewItemTV.setOnClickListener(new View.OnClickListener() {
             @Override
