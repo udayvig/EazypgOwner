@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailRefrigerator;
 import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.RefrigeratorDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +50,7 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -83,7 +88,7 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
         listViewItemRefrigerator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText FridgeCapacity, FridgeCompanyName,  FridgeDays,  FridgeModel,  FridgeRoomNo,  FridgeType, FridgeRating;
+                final EditText FridgeCapacity, FridgeCompanyName,  FridgeDays,  FridgeModel,  FridgeRoomNo,  FridgeType, FridgeRating;
 
                 FridgeCapacity = view.findViewById(R.id.fridgeCapacityEditText);
                 FridgeCompanyName = view.findViewById(R.id.fridgeCompanyNameEditText);
@@ -148,6 +153,40 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+
+                        String capacityFridge = FridgeCapacity.getText().toString();
+                        String brandFridge = FridgeCompanyName.getText().toString();
+                        String daysFridge = FridgeDays.getText().toString();
+                        String modelFridge = FridgeModel.getText().toString();
+                        String roomNoFridge = FridgeRoomNo.getText().toString();
+                        String typeFridge = FridgeType.getText().toString();
+                        String ratingFridge = FridgeRating.getText().toString();
+                        String uidFridge = ids.get(position);
+
+                        if (brandFridge.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+
+                            RefrigeratorDetails refrigeratorDetails = new RefrigeratorDetails(uidFridge, roomNoFridge, brandFridge, modelFridge, daysFridge, capacityFridge, typeFridge, ratingFridge);
+                            databaseReference.child(uidFridge).setValue(refrigeratorDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
                     }
                 });

@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailGeyser;
 import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.GeyserDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +50,7 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -83,7 +88,7 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
         listViewItemGeyser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserDays, GeyserCapacity, GeyserPower, GeyserRating;
+                final EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserDays, GeyserCapacity, GeyserPower, GeyserRating;
 
                 GeyserRoomNo = view.findViewById(R.id.geyserRoomNumberEditText);
                 GeyserCompanyName = view.findViewById(R.id.geyserCompanyNameEditText);
@@ -147,8 +152,43 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
                 builder.setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+
+                        String roomNoGeyser = GeyserRoomNo.getText().toString();
+                        String brandGeyser = GeyserCompanyName.getText().toString();
+                        String modelGeyser = GeyserModel.getText().toString();
+                        String daysGeyser = GeyserDays.getText().toString();
+                        String capacityGeyser = GeyserCapacity.getText().toString();
+                        String powerGeyser = GeyserPower.getText().toString();
+                        String ratingGeyser = GeyserRating.getText().toString();
+                        String uidGeyser = ids.get(position);
+
+                        if (roomNoGeyser.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        } else {
+
+                            GeyserDetails geyserDetails = new GeyserDetails(uidGeyser, roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
+                            databaseReference.child(uidGeyser).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
 
                     }
                 });

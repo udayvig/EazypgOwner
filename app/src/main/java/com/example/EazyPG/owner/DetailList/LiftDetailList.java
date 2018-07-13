@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailLift;
 import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.LiftDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +50,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -83,7 +88,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
         listViewItemLift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText LiftCompanyName, LiftModel, LiftDays, LiftCapacity, LiftDoor;
+                final EditText LiftCompanyName, LiftModel, LiftDays, LiftCapacity, LiftDoor;
 
                 LiftCompanyName = view.findViewById(R.id.liftCompanyNameEditText);
                 LiftModel = view.findViewById(R.id.liftModelEditText);
@@ -145,6 +150,30 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+
+                        String brandLift = LiftCompanyName.getText().toString();
+                        String modelLift = LiftModel.getText().toString();
+                        String daysLift = LiftDays.getText().toString();
+                        String capacityLift = LiftCapacity.getText().toString();
+                        String doorLift = LiftDoor.getText().toString();
+                        String uidLift = ids.get(position);
+
+                        LiftDetails liftDetails = new LiftDetails(uidLift, brandLift, modelLift, daysLift, capacityLift, doorLift);
+
+                        databaseReference.child(uidLift).setValue(liftDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                progressDialog.dismiss();
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
 

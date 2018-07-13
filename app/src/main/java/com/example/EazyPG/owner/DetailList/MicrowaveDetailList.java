@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailMicrowave;
 import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.MicrowaveDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +50,7 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -83,7 +88,7 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
         listViewItemMicrowave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText MicrowaveCapacity, MicrowaveCompanyName, MicrowaveDays, MicrowaveModel, MicrowaveType, MicrowaveRoomNo;
+                final EditText MicrowaveCapacity, MicrowaveCompanyName, MicrowaveDays, MicrowaveModel, MicrowaveType, MicrowaveRoomNo;
 
                 MicrowaveCapacity = view.findViewById(R.id.microwaveCapacityEditText);
                 MicrowaveCompanyName = view.findViewById(R.id.microwaveCompanyNameEditText);
@@ -147,6 +152,39 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+
+                        String capacityMicrowave = MicrowaveCapacity.getText().toString();
+                        String brandMicrowave = MicrowaveCompanyName.getText().toString();
+                        String daysMicrowave = MicrowaveDays.getText().toString();
+                        String modelMicrowave = MicrowaveModel.getText().toString();
+                        String typeMicrowave = MicrowaveType.getText().toString();
+                        String roomNoMicrowave = MicrowaveRoomNo.getText().toString();
+                        String uidMicrowave = ids.get(position);
+
+                        if (brandMicrowave.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        }
+
+                        else {
+                            MicrowaveDetails microwaveDetails = new MicrowaveDetails(uidMicrowave, roomNoMicrowave, brandMicrowave, modelMicrowave, daysMicrowave, capacityMicrowave, typeMicrowave);
+                            databaseReference.child(uidMicrowave).setValue(microwaveDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
                     }
                 });
 
