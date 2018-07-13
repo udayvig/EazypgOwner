@@ -79,6 +79,47 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
             }
         });
 
+        listViewItemFan.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                builder.setTitle("Delete Item");
+                builder.setMessage("Are you sure you want to delete item?");
+                builder.setIcon(R.drawable.ic_warning_black_24dp);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+
+                        String id = ids.get(position);
+
+                        databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                progressDialog.dismiss();
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
+
+                return true;
+            }
+        });
+
+
         listViewItemFan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -82,25 +82,37 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
             @Override
             public boolean onLongClick(View v) {
 
-               // AlertDialog.Builder builder = new AlertDialog.Builder(new DialogInterface)
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+                builder.setTitle("Delete Item");
+                builder.setMessage("Are you sure you want to delete item?");
+                builder.setIcon(R.drawable.ic_warning_black_24dp);
 
-                String id = ids.get(position);
-
-                databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressDialog.dismiss();
-                        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
-                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                    public void onClick(DialogInterface dialog, int which) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+
+                        String id = ids.get(position);
+
+                        databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                progressDialog.dismiss();
+                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progressDialog.dismiss();
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
+
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
 
                 return true;
             }
