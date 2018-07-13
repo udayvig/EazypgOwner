@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailInduction;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.InductionDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +49,7 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -83,7 +87,7 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
         listViewItemInduction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText InductionCompanyName, InductionDays, InductionModel, InductionNoCooktop, InductionPower, InductionRoomNo, InductionType;
+                final EditText InductionCompanyName, InductionDays, InductionModel, InductionNoCooktop, InductionPower, InductionRoomNo, InductionType;
 
                 InductionCompanyName = view.findViewById(R.id.inductionCompanyNameEditText);
                 InductionDays = view.findViewById(R.id.inductionDaysEditText);
@@ -148,7 +152,40 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
 
+                        String brandInduction = InductionCompanyName.getText().toString();
+                        String daysInduction = InductionDays.getText().toString();
+                        String modelInduction = InductionModel.getText().toString();
+                        String noCooktopInduction = InductionNoCooktop.getText().toString();
+                        String powerInduction = InductionPower.getText().toString();
+                        String roomNoInduction = InductionRoomNo.getText().toString();
+                        String typeInduction = InductionType.getText().toString();
+                        String uidInduction = ids.get(position);
+
+                        if (brandInduction.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+
+                            InductionDetails inductionDetails = new InductionDetails(uidInduction, roomNoInduction, brandInduction, modelInduction, daysInduction, powerInduction, typeInduction, noCooktopInduction);
+                            databaseReference.child(uidInduction).setValue(inductionDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                     }
                 });
 

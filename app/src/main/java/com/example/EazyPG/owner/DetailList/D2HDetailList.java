@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailD2H;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.D2HDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +49,7 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         final LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -79,7 +83,7 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
         listViewItemD2H.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText D2HCompanyName,D2HDays,D2HRoomNo;
+                final EditText D2HCompanyName,D2HDays,D2HRoomNo;
 
                 D2HCompanyName = viewDialog.findViewById(R.id.D2HCompanyNameEditText);
                 D2HDays = viewDialog.findViewById(R.id.D2HDaysEditText);
@@ -136,7 +140,36 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+                        String brandD2H = D2HCompanyName.getText().toString();
+                        String daysD2H = D2HDays.getText().toString();
+                        String roomNoD2H = D2HRoomNo.getText().toString();
+                        String uidD2H = ids.get(position);
 
+                        if (brandD2H.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+
+                        else {
+
+                            D2HDetails d2HDetails = new D2HDetails(uidD2H, roomNoD2H, brandD2H, daysD2H);
+                            databaseReference.child(uidD2H).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                     }
                 });
 

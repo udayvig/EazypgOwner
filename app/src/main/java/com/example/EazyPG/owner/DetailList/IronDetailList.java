@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailIron;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.IronDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +49,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -83,7 +87,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
         listViewItemIron.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText IronComanyName, IronDays, IronModel, IronPower, IronRoomNo;
+                final EditText IronComanyName, IronDays, IronModel, IronPower, IronRoomNo;
 
                 IronComanyName = view.findViewById(R.id.ironCompanyNameEditText);
                 IronDays = view.findViewById(R.id.ironDaysEditText);
@@ -144,7 +148,36 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
 
+                        String brandIron = IronComanyName.getText().toString();
+                        String daysIron = IronDays.getText().toString();
+                        String modelIron = IronModel.getText().toString();
+                        String powerIron = IronPower.getText().toString();
+                        String roomNoIron = IronRoomNo.getText().toString();
+                        String uidIron = ids.get(position);
+
+                        if (brandIron.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+                            IronDetails ironDetails = new IronDetails(uidIron, roomNoIron, brandIron, modelIron, daysIron, powerIron);
+                            databaseReference.child(uidIron).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
                     }
                 });
 

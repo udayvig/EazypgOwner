@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailRouter;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.RouterDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +49,7 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
@@ -83,7 +87,7 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
         listViewItemRouter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText RouterAntenna, RouterCompanyName, RouterDays, RouterModel, RouterRoomNo, RouterSpeed;
+                final EditText RouterAntenna, RouterCompanyName, RouterDays, RouterModel, RouterRoomNo, RouterSpeed;
 
                 RouterAntenna = view.findViewById(R.id.routerAntennaEditText);
                 RouterCompanyName = view.findViewById(R.id.routerCompanyNameEditText);
@@ -147,6 +151,39 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+
+                        String antennaRouter = RouterAntenna.getText().toString();
+                        String brandRouter = RouterCompanyName.getText().toString();
+                        String daysRouter = RouterDays.getText().toString();
+                        String modelRouter = RouterModel.getText().toString();
+                        String roomNoRouter = RouterRoomNo.getText().toString();
+                        String speedRouter = RouterSpeed.getText().toString();
+                        String uidRouter = ids.get(position);
+
+                        if (daysRouter.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else {
+
+                            RouterDetails routerDetails = new RouterDetails(uidRouter, roomNoRouter, brandRouter, modelRouter, daysRouter, antennaRouter, speedRouter);
+                            databaseReference.child(uidRouter).setValue(routerDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
                     }
                 });
 

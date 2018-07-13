@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailCCTV;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.CCTVDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +49,7 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemCCTV = inflater.inflate(R.layout.appliance_row, null, true);
@@ -80,7 +84,7 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
 
-                EditText CCTVChanel,CCTVCompanyName,CCTVDays,CCTVModel,CCTVNight,CCTVResolution,CCTVRoomNo;
+                final EditText CCTVChanel,CCTVCompanyName,CCTVDays,CCTVModel,CCTVNight,CCTVResolution,CCTVRoomNo;
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
 
@@ -144,6 +148,41 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+
+                        String channelCCTV = CCTVChanel.getText().toString();
+                        String brandCCTV = CCTVCompanyName.getText().toString();
+                        String daysCCTV = CCTVDays.getText().toString();
+                        String modelCCTV = CCTVModel.getText().toString();
+                        String nightCCTV = CCTVNight.getText().toString();
+                        String resolutionCCTV = CCTVResolution.getText().toString();
+                        String roomNoCCTV = CCTVRoomNo.getText().toString();
+                        String uidCCTV = ids.get(position);
+
+                        if (roomNoCCTV.equals("") && brandCCTV.equals("") && daysCCTV.equals("")) {
+
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        }
+                        else {
+
+                            CCTVDetails cctvDetails = new CCTVDetails(uidCCTV, roomNoCCTV, brandCCTV, modelCCTV, daysCCTV, nightCCTV, channelCCTV, resolutionCCTV);
+                            databaseReference.child(uidCCTV).setValue(cctvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
                     }
                 });
