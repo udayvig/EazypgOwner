@@ -100,7 +100,7 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 progressDialog.dismiss();
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Deleted!", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override

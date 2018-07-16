@@ -75,6 +75,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     private EditText HeaterRoomNo, HeaterCompanyName, HeaterModel, HeaterDays, HeaterPower, HeaterWeight;
     private EditText D2HRoomNo, D2HCompanyName, D2HDays;
     private EditText OtherRoomNo, OtherName, OtherCompanyName;
+    private TextView customTitle;
 
     //Interface
     public interface ClickListener {
@@ -351,8 +352,11 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
         D2HLayout = view.findViewById(R.id.D2HLayout);
         otherLayout = view.findViewById(R.id.otherLayout);
 
+        final View titleView = inflater.inflate(R.layout.custom_title, null);
+        customTitle = titleView.findViewById(R.id.custom_title);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Add " + applianceName + " details");
+        builder.setCustomTitle(customTitle);
 
         builder.setView(view);
 
