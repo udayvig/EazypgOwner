@@ -1,8 +1,11 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -49,6 +52,10 @@ public class LoginActivity extends AppCompatActivity {
         etUserPassword = findViewById(R.id.passwordtextView);
         forgotPassword = findViewById(R.id.forgotPasswordTextView);
 
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -82,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
 
                             } else {
-
+                                progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "Login Failed.", Toast.LENGTH_SHORT).show();
                             }
                         }

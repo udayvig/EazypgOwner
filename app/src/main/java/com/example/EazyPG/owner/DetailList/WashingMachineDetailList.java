@@ -2,7 +2,10 @@ package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -97,23 +100,30 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
 
-                        String id = ids.get(position);
+                            String id = ids.get(position);
 
-                        databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -179,7 +189,7 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Washine Machine" + " details");
+                builder.setTitle("Washing Machine" + " details");
 
                 WashingMachineCapacity.setText(applianceDetailWashingMachine.capacity);
                 WashingMachineCompanyName.setText(applianceDetailWashingMachine.brand);
@@ -196,40 +206,47 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
 
-                        String roomNoWashingMachine = WashingMachineRoomNo.getText().toString();
-                        String brandWashingMachine = WashingMachineCompanyName.getText().toString();
-                        String modelWashingMachine = WashingMachineModel.getText().toString();
-                        String daysWashingMachine = WashingMachineDays.getText().toString();
-                        String capacityWashingMachine = WashingMachineCapacity.getText().toString();
-                        String powerWashingMachine = WashingMachinePower.getText().toString();
-                        String ratingWashingMachine = WashingMachineRating.getText().toString();
-                        String typeWashingMachine = WashingMachineType.getText().toString();
-                        String uidWashingMachine = ids.get(position);
+                            String roomNoWashingMachine = WashingMachineRoomNo.getText().toString();
+                            String brandWashingMachine = WashingMachineCompanyName.getText().toString();
+                            String modelWashingMachine = WashingMachineModel.getText().toString();
+                            String daysWashingMachine = WashingMachineDays.getText().toString();
+                            String capacityWashingMachine = WashingMachineCapacity.getText().toString();
+                            String powerWashingMachine = WashingMachinePower.getText().toString();
+                            String ratingWashingMachine = WashingMachineRating.getText().toString();
+                            String typeWashingMachine = WashingMachineType.getText().toString();
+                            String uidWashingMachine = ids.get(position);
 
-                        if (brandWashingMachine.equals("")) {
+                            if (brandWashingMachine.equals("")) {
 
-                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
 
-                        } else {
+                            } else {
 
-                            WashingMachineDetails washingMachineDetails = new WashingMachineDetails(uidWashingMachine, roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
-                            databaseReference.child(uidWashingMachine).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                WashingMachineDetails washingMachineDetails = new WashingMachineDetails(uidWashingMachine, roomNoWashingMachine, brandWashingMachine, modelWashingMachine, daysWashingMachine, capacityWashingMachine, powerWashingMachine, ratingWashingMachine, typeWashingMachine);
+                                databaseReference.child(uidWashingMachine).setValue(washingMachineDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
+                            }
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

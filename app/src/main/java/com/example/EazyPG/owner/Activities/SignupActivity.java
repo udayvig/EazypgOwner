@@ -114,14 +114,14 @@ public class SignupActivity extends AppCompatActivity {
 
                                                 }
                                                 else if (!task.isSuccessful()){
-
+                                                    progressDialog.dismiss();
                                                     Toast.makeText(SignupActivity.this, "Email Not sent", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
 
                             }else{
-                                Toast.makeText(SignupActivity.this, "Failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, "Signup failed.", Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
                         }

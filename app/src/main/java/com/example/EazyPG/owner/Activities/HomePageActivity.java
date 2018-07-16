@@ -55,8 +55,8 @@ public class HomePageActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(HomePageActivity.this).setTitle("LOGOUT")
-                        .setMessage("\nAre you sure you want to Logout ?")
+                new AlertDialog.Builder(HomePageActivity.this).setTitle("Logout")
+                        .setMessage("\nAre you sure you want to logout?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

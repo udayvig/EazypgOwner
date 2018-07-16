@@ -2,7 +2,10 @@ package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -93,23 +96,30 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
 
-                        String id = ids.get(position);
+                            String id = ids.get(position);
 
-                        databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -170,7 +180,7 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("CCTV" + " details");
+                builder.setTitle("D2H" + " details");
 
                 D2HRoomNo.setText(applianceDetailD2H.roomNo);
                 D2HCompanyName.setText(applianceDetailD2H.brand);
@@ -181,35 +191,41 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
-                        String brandD2H = D2HCompanyName.getText().toString();
-                        String daysD2H = D2HDays.getText().toString();
-                        String roomNoD2H = D2HRoomNo.getText().toString();
-                        String uidD2H = ids.get(position);
 
-                        if (brandD2H.equals("")) {
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+                            String brandD2H = D2HCompanyName.getText().toString();
+                            String daysD2H = D2HDays.getText().toString();
+                            String roomNoD2H = D2HRoomNo.getText().toString();
+                            String uidD2H = ids.get(position);
 
-                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                        }
+                            if (brandD2H.equals("")) {
 
-                        else {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            } else {
 
-                            D2HDetails d2HDetails = new D2HDetails(uidD2H, roomNoD2H, brandD2H, daysD2H);
-                            databaseReference.child(uidD2H).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                D2HDetails d2HDetails = new D2HDetails(uidD2H, roomNoD2H, brandD2H, daysD2H);
+                                databaseReference.child(uidD2H).setValue(d2HDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
+                            }
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

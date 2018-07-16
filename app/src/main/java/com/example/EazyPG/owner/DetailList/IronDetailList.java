@@ -2,7 +2,10 @@ package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -97,23 +100,30 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
 
-                        String id = ids.get(position);
+                            String id = ids.get(position);
 
-                        databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -189,35 +199,41 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
 
-                        String brandIron = IronComanyName.getText().toString();
-                        String daysIron = IronDays.getText().toString();
-                        String modelIron = IronModel.getText().toString();
-                        String powerIron = IronPower.getText().toString();
-                        String roomNoIron = IronRoomNo.getText().toString();
-                        String uidIron = ids.get(position);
+                            String brandIron = IronComanyName.getText().toString();
+                            String daysIron = IronDays.getText().toString();
+                            String modelIron = IronModel.getText().toString();
+                            String powerIron = IronPower.getText().toString();
+                            String roomNoIron = IronRoomNo.getText().toString();
+                            String uidIron = ids.get(position);
 
-                        if (brandIron.equals("")) {
+                            if (brandIron.equals("")) {
 
-                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                        }
-                        else {
-                            IronDetails ironDetails = new IronDetails(uidIron, roomNoIron, brandIron, modelIron, daysIron, powerIron);
-                            databaseReference.child(uidIron).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            } else {
+                                IronDetails ironDetails = new IronDetails(uidIron, roomNoIron, brandIron, modelIron, daysIron, powerIron);
+                                databaseReference.child(uidIron).setValue(ironDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

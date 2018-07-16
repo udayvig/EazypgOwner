@@ -2,7 +2,10 @@ package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -97,23 +100,30 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
 
-                        String id = ids.get(position);
+                            String id = ids.get(position);
 
-                        databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -193,39 +203,45 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
 
-                        String brandTV = TVCompanyName.getText().toString();
-                        String daysTV = TVDays.getText().toString();
-                        String modelTV = TVModel.getText().toString();
-                        String resolutionTV = TVResolution.getText().toString();
-                        String roomNoTV = TVRoomNo.getText().toString();
-                        String sizeTV = TVSize.getText().toString();
-                        String typeTV = TVType.getText().toString();
-                        String uidTV = ids.get(position);
+                            String brandTV = TVCompanyName.getText().toString();
+                            String daysTV = TVDays.getText().toString();
+                            String modelTV = TVModel.getText().toString();
+                            String resolutionTV = TVResolution.getText().toString();
+                            String roomNoTV = TVRoomNo.getText().toString();
+                            String sizeTV = TVSize.getText().toString();
+                            String typeTV = TVType.getText().toString();
+                            String uidTV = ids.get(position);
 
-                        if (brandTV.equals("")) {
+                            if (brandTV.equals("")) {
 
-                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                        }
-                        else {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            } else {
 
-                            TVDetails tvDetails = new TVDetails(uidTV, roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
-                            databaseReference.child(uidTV).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                TVDetails tvDetails = new TVDetails(uidTV, roomNoTV, brandTV, modelTV, daysTV, typeTV, sizeTV, resolutionTV);
+                                databaseReference.child(uidTV).setValue(tvDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
+                            }
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

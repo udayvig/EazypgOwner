@@ -2,7 +2,10 @@ package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailGeyser;
-import com.example.EazyPG.owner.Appliances.ACDetails;
 import com.example.EazyPG.owner.Appliances.GeyserDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -98,23 +100,30 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Deleting...", true);
 
-                        String id = ids.get(position);
+                            String id = ids.get(position);
 
-                        databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            databaseReference.child(id).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -197,40 +206,45 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
+                        ConnectivityManager connectivityManager
+                                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                            final ProgressDialog progressDialog = ProgressDialog.show(context, "", "Saving...", true);
 
-                        String roomNoGeyser = GeyserRoomNo.getText().toString();
-                        String brandGeyser = GeyserCompanyName.getText().toString();
-                        String modelGeyser = GeyserModel.getText().toString();
-                        String daysGeyser = GeyserDays.getText().toString();
-                        String capacityGeyser = GeyserCapacity.getText().toString();
-                        String powerGeyser = GeyserPower.getText().toString();
-                        String ratingGeyser = GeyserRating.getText().toString();
-                        String uidGeyser = ids.get(position);
+                            String roomNoGeyser = GeyserRoomNo.getText().toString();
+                            String brandGeyser = GeyserCompanyName.getText().toString();
+                            String modelGeyser = GeyserModel.getText().toString();
+                            String daysGeyser = GeyserDays.getText().toString();
+                            String capacityGeyser = GeyserCapacity.getText().toString();
+                            String powerGeyser = GeyserPower.getText().toString();
+                            String ratingGeyser = GeyserRating.getText().toString();
+                            String uidGeyser = ids.get(position);
 
-                        if (roomNoGeyser.equals("")) {
+                            if (roomNoGeyser.equals("")) {
 
-                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                        } else {
+                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            } else {
 
-                            GeyserDetails geyserDetails = new GeyserDetails(uidGeyser, roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
-                            databaseReference.child(uidGeyser).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
+                                GeyserDetails geyserDetails = new GeyserDetails(uidGeyser, roomNoGeyser, brandGeyser, modelGeyser, daysGeyser, capacityGeyser, powerGeyser, ratingGeyser);
+                                databaseReference.child(uidGeyser).setValue(geyserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }else{
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
 

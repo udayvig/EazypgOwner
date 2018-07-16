@@ -61,7 +61,6 @@ import java.util.List;
 
 public class ApplianceDetailsActivity extends AppCompatActivity {
 
-    private Toolbar toolbar ;
     ListView listView;
 
     List<ApplianceDetailAC> acList;
@@ -86,9 +85,6 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
 
-    private Intent intent;
-    private String message;
-
     Snackbar snackbar;
     View view;
 
@@ -97,7 +93,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appliance_details);
 
-        toolbar = findViewById(R.id.detailToolbar);
+        Toolbar toolbar = findViewById(R.id.detailToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -129,8 +125,8 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = firebaseUser.getUid();
 
-        intent = getIntent();
-        message = intent.getStringExtra(ApplianceAdapter.EXTRA_MESSAGE);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(ApplianceAdapter.EXTRA_MESSAGE);
 
         switch (message) {
             case "AC":
@@ -579,6 +575,5 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         }
 
     }
-
 
 }
