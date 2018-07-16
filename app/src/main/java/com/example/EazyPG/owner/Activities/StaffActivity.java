@@ -110,7 +110,7 @@ public class StaffActivity extends AppCompatActivity {
         addStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ProgressDialog progressDialog = ProgressDialog.show(StaffActivity.this, "", "Saving...", true);
+
                 final View viewDialog = inflater.inflate(R.layout.dialog_staff, null);
 
                 staffName = viewDialog.findViewById(R.id.staffNameEditText);
@@ -126,6 +126,9 @@ public class StaffActivity extends AppCompatActivity {
                 builder.setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    final ProgressDialog progressDialog = ProgressDialog.show(StaffActivity.this, "", "Saving...", true);
+
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String staffNameString = staffName.getText().toString();

@@ -26,6 +26,7 @@ import java.util.UUID;
 public class HomePageActivity extends AppCompatActivity {
 
     ImageView yourPG;
+    ImageView staff;
 
     Button logout;
 
@@ -40,9 +41,18 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         yourPG = findViewById(R.id.yourPgImageView);
+        staff = findViewById(R.id.staffImageView);
         logout = findViewById(R.id.logoutButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        staff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, StaffActivity.class));
+                finish();
+            }
+        });
 
         yourPG.setOnClickListener(new View.OnClickListener() {
             @Override
