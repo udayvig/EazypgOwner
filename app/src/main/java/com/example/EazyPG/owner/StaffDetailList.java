@@ -171,7 +171,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
                         } else {
 
                             StaffDetails staffDetails1 = new StaffDetails(uidStaff, salary, contact, nameStaff, jobDesc, dateOfJoining);
-                            databaseReference.child("Staff").child(uidStaff).setValue(staffDetails1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            databaseReference.child(uidStaff).setValue(staffDetails1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     progressDialog.dismiss();
@@ -205,23 +205,20 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (third.getText().length() < 10) {
-
-                    Toast.makeText(context, "Invalid Number!", Toast.LENGTH_SHORT).show();
-                } else {
 
                     try {
-                        Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse(third.getText().toString()));
-                        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                            return;
-                        }
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:"+third.getText().toString()));
                         context.startActivity(callIntent);
                     }
                     catch (ActivityNotFoundException activityException) {
                         Toast.makeText(context, "Call failed", Toast.LENGTH_SHORT).show();
                     }
-                }
+                    catch (SecurityException e) {
+                        Toast.makeText(context, "Call failed!", Toast.LENGTH_SHORT).show();
+                    }
+
+
             }
         });
 

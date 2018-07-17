@@ -97,6 +97,8 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        TextView toolbarTitle = findViewById(R.id.toolbarText);
+
         listView = findViewById(R.id.listView);
         view = findViewById(R.id.applianceNameLayout);
 
@@ -130,6 +132,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
         switch (message) {
             case "AC":
+                toolbarTitle.setText("AC");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/AC");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -156,7 +159,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
                 break;
             case "Fan":
-
+                toolbarTitle.setText("Fan");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Fan");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -182,7 +185,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Lift":
-
+                toolbarTitle.setText("Lift");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Lift");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -209,7 +212,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
                 break;
             case "Geyser":
-
+                toolbarTitle.setText("Geyser");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Geyser");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -235,7 +238,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Washing Machine":
-
+                toolbarTitle.setText("Washing Machine");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Washing Machine");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -261,7 +264,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "RO":
-
+                toolbarTitle.setText("RO");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/RO");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -287,7 +290,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Dishwasher":
-
+                toolbarTitle.setText("Dishwasher");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Dishwasher");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -313,7 +316,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Microwave":
-
+                toolbarTitle.setText("Microwave");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Microwave");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -339,7 +342,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Refrigerator":
-
+                toolbarTitle.setText("Refrigerator");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Refrigerator");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -365,7 +368,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "TV":
-
+                toolbarTitle.setText("TV");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/TV");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -391,7 +394,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "CCTV":
-
+                toolbarTitle.setText("CCTV");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/CCTV");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -417,7 +420,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Iron":
-
+                toolbarTitle.setText("Iron");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Iron");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -443,7 +446,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Induction":
-
+                toolbarTitle.setText("Induction");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Induction");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -469,7 +472,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Router":
-
+                toolbarTitle.setText("Router");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Router");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -495,7 +498,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Heater":
-
+                toolbarTitle.setText("Heater");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Heater");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -521,7 +524,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "D2H":
-
+                toolbarTitle.setText("D2H");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/D2H");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -547,7 +550,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 });
                 break;
             case "Other":
-
+                toolbarTitle.setText("Other Appliance");
                 databaseReference = FirebaseDatabase.getInstance().getReference(uid + "/Appliances/Other");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
