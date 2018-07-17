@@ -1,10 +1,17 @@
 package com.example.EazyPG.owner;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +43,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
 
     private Activity context;
     private List<StaffDetails> staffList;
+    FloatingActionButton callButton;
 
     public StaffDetailList(Activity context, List<StaffDetails> staffList) {
         super(context, R.layout.staff_row, staffList);
@@ -53,6 +61,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemStaff = inflater.inflate(R.layout.staff_row, null, true);
+        callButton = listViewItemStaff.findViewById(R.id.callButton);
         final StaffDetails staffDetails = staffList.get(position);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -150,7 +159,8 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
                         String jobDesc = second.getText().toString();
                         String contact = third.getText().toString();
                         String salary = fourth.getText().toString();
-                        String dateOfJoining = fifth.getText().toString();;
+                        String dateOfJoining = fifth.getText().toString();
+                        ;
                         String uidStaff = ids.get(position);
 
                         if (nameStaff.equals("")) {
@@ -180,7 +190,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
                     }
                 });
 
-                builder.setNegativeButton("Cancel",null);
+                builder.setNegativeButton("Cancel", null);
 
                 builder.show();
             }
@@ -188,9 +198,32 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
 
         TextView first = listViewItemStaff.findViewById(R.id.firstTextView);
         TextView second = listViewItemStaff.findViewById(R.id.secondTextView);
-        TextView third = listViewItemStaff.findViewById(R.id.thirdTextView);
+        final TextView third = listViewItemStaff.findViewById(R.id.thirdTextView);
         TextView fourth = listViewItemStaff.findViewById(R.id.fourthTextView);
         TextView fifth = listViewItemStaff.findViewById(R.id.fifthTextView);
+
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (third.getText().length() < 10) {
+
+                    Toast.makeText(context, "Invalid Number!", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse(third.getText().toString()));
+                        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        context.startActivity(callIntent);
+                    }
+                    catch (ActivityNotFoundException activityException) {
+                        Toast.makeText(context, "Call failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
         first.setText(staffDetails.getName());
         second.setText(staffDetails.getJobDesc());
@@ -200,4 +233,5 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
 
         return listViewItemStaff;
     }
+
 }

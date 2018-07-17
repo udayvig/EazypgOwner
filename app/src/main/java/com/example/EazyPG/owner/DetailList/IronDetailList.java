@@ -54,8 +54,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemIron = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemIron.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
         listViewItemIron.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText IronComanyName, IronDays, IronModel, IronPower, IronRoomNo;
 
                 IronComanyName = viewDialog.findViewById(R.id.ironCompanyNameEditText);
@@ -186,7 +186,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("CCTV" + " details");
+                builder.setTitle("Iron" + " details");
 
                 IronComanyName.setText(applianceDetailIron.brand);
                 IronDays.setText(applianceDetailIron.timeSinceInstallation);

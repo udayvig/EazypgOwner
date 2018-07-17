@@ -54,8 +54,7 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemWashingMachine = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemWashingMachine.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
         listViewItemWashingMachine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText WashingMachineRoomNo, WashingMachineCompanyName, WashingMachineModel, WashingMachineDays, WashingMachineCapacity, WashingMachinePower, WashingMachineRating, WashingMachineType;
 
                 WashingMachineRoomNo = viewDialog.findViewById(R.id.wmRoomNumberEditText);

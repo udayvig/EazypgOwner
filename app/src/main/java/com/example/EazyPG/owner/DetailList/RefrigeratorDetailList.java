@@ -54,8 +54,7 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemRefrigerator = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemRefrigerator.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
         listViewItemRefrigerator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText FridgeCapacity, FridgeCompanyName,  FridgeDays,  FridgeModel,  FridgeRoomNo,  FridgeType, FridgeRating;
 
                 FridgeCapacity = viewDialog.findViewById(R.id.fridgeCapacityEditText);
@@ -188,7 +188,7 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Refrigeraator" + " details");
+                builder.setTitle("Refrigerator" + " details");
 
                 FridgeCapacity.setText(applianceDetailRefrigerator.capacity);
                 FridgeCompanyName.setText(applianceDetailRefrigerator.brand);

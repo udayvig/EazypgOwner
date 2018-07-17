@@ -55,7 +55,6 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         final LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
         final View listViewItemD2H = inflater.inflate(R.layout.appliance_row, null, true);
 
         final ApplianceDetailD2H applianceDetailD2H = D2HList.get(position);
@@ -134,6 +133,8 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
         listViewItemD2H.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText D2HCompanyName,D2HDays,D2HRoomNo;
 
                 D2HCompanyName = viewDialog.findViewById(R.id.D2HCompanyNameEditText);
@@ -171,12 +172,12 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                 microwaveLayout.setVisibility(View.GONE);
                 fridgeLayout.setVisibility(View.GONE);
                 TVLayout.setVisibility(View.GONE);
-                CCTVLayout.setVisibility(View.VISIBLE);
+                CCTVLayout.setVisibility(View.GONE);
                 ironLayout.setVisibility(View.GONE);
                 inductionLayout.setVisibility(View.GONE);
                 routerLayout.setVisibility(View.GONE);
                 heaterLayout.setVisibility(View.GONE);
-                D2HLayout.setVisibility(View.GONE);
+                D2HLayout.setVisibility(View.VISIBLE);
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);

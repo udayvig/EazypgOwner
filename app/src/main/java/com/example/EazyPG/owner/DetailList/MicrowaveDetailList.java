@@ -122,7 +122,7 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
                                 }
                             });
                         }else{
-                            Toast.makeText(context, "Check yppur internet connection.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -187,7 +187,7 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("CCTV" + " details");
+                builder.setTitle("Microwave" + " details");
 
                 MicrowaveCapacity.setText(applianceDetailMicrowave.capacity);
                 MicrowaveCompanyName.setText(applianceDetailMicrowave.brand);

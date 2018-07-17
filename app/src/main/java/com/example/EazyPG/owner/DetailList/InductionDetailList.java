@@ -54,8 +54,7 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemInduction = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemInduction.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
         listViewItemInduction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText InductionCompanyName, InductionDays, InductionModel, InductionNoCooktop, InductionPower, InductionRoomNo, InductionType;
 
                 InductionCompanyName = viewDialog.findViewById(R.id.inductionCompanyNameEditText);

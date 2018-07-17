@@ -54,8 +54,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemLift = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemLift.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
         listViewItemLift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText LiftCompanyName, LiftModel, LiftDays, LiftCapacity, LiftDoor;
 
                 LiftCompanyName = viewDialog.findViewById(R.id.liftCompanyNameEditText);
@@ -186,7 +186,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("CCTV" + " details");
+                builder.setTitle("Lift" + " details");
 
                 LiftCapacity.setText(applianceDetailLift.capacity);
                 LiftCompanyName.setText(applianceDetailLift.brand);

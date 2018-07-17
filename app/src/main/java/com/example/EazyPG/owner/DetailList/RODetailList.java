@@ -54,8 +54,7 @@ public class RODetailList extends ArrayAdapter<ApplianceDetailRO>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemRO = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemRO.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class RODetailList extends ArrayAdapter<ApplianceDetailRO>{
         listViewItemRO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText ROCapacity, ROCompanyName, RODays, ROModel, RORoomNo;
 
                 ROCapacity = viewDialog.findViewById(R.id.ROCapacityEditText);

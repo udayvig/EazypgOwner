@@ -54,8 +54,7 @@ public class DishwasherDetailList extends ArrayAdapter<ApplianceDetailDishwasher
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemDishwasher = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemDishwasher.findViewById(R.id.firstTextView);
@@ -138,6 +137,8 @@ public class DishwasherDetailList extends ArrayAdapter<ApplianceDetailDishwasher
         listViewItemDishwasher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText DishwasherCompanyName,DishwasherDays,DishwasherCapacity, DishwasherModel, DishwasherRoomNo, DishwasherType;
 
                 DishwasherCapacity = viewDialog.findViewById(R.id.dishwasherCapacityEditText);

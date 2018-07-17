@@ -54,8 +54,7 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemGeyser = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemGeyser.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
         listViewItemGeyser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserDays, GeyserCapacity, GeyserPower, GeyserRating;
 
                 GeyserRoomNo = viewDialog.findViewById(R.id.geyserRoomNumberEditText);

@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -139,6 +140,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input1.getParent()).removeView(input1);
                 }
                 input1.setText(pgName.getText().toString().trim());
+                input1.setFilters(new InputFilter[] { new InputFilter.LengthFilter(20) });
+                input1.setInputType(InputType.TYPE_CLASS_TEXT);
+                input1.setSelection(input1.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -174,6 +178,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input2.getParent()).removeView(input2);
                 }
                 input2.setText(bio.getText().toString().trim());
+                input2.setFilters(new InputFilter[] { new InputFilter.LengthFilter(80) });
+                input2.setInputType(InputType.TYPE_CLASS_TEXT);
+                input2.setSelection(input2.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -207,6 +214,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input3.getParent()).removeView(input3);
                 }
                 input3.setText(gender.getText().toString().trim());
+                input3.setFilters(new InputFilter[] { new InputFilter.LengthFilter(6) });
+                input3.setInputType(InputType.TYPE_CLASS_TEXT);
+                input3.setSelection(input3.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -239,6 +249,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input4.getParent()).removeView(input4);
                 }
                 input4.setText(landmark.getText().toString().trim());
+                input4.setFilters(new InputFilter[] { new InputFilter.LengthFilter(20) });
+                input4.setInputType(InputType.TYPE_CLASS_TEXT);
+                input4.setSelection(input4.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -271,6 +284,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input5.getParent()).removeView(input5);
                 }
                 input5.setText(lastEntry.getText().toString().trim());
+                input5.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+                input5.setInputType(InputType.TYPE_CLASS_DATETIME);
+                input5.setSelection(input5.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -303,6 +319,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input6.getParent()).removeView(input6);
                 }
                 input6.setText(location.getText().toString().trim());
+                input6.setFilters(new InputFilter[] { new InputFilter.LengthFilter(20) });
+                input6.setInputType(InputType.TYPE_CLASS_TEXT);
+                input6.setSelection(input6.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -335,6 +354,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input7.getParent()).removeView(input7);
                 }
                 input7.setText(maxOccupancy.getText().toString().trim());
+                input7.setFilters(new InputFilter[] { new InputFilter.LengthFilter(3) });
+                input7.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input7.setSelection(input7.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -367,6 +389,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input8.getParent()).removeView(input8);
                 }
                 input8.setText(bathroom.getText().toString().trim());
+                input8.setFilters(new InputFilter[] { new InputFilter.LengthFilter(3) });
+                input8.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input8.setSelection(input8.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -396,6 +421,9 @@ public class MyPGActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 input9.setText(room.getText().toString().trim());
+                input9.setFilters(new InputFilter[] { new InputFilter.LengthFilter(3) });
+                input9.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input9.setSelection(input9.getText().length());
                 if(input9.getParent()!=null) {
                     ((ViewGroup) input9.getParent()).removeView(input9);
                 }
@@ -431,6 +459,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input10.getParent()).removeView(input10);
                 }
                 input10.setText(ownerName.getText().toString().trim());
+                input10.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+                input10.setInputType(InputType.TYPE_CLASS_TEXT);
+                input10.setSelection(input10.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -464,6 +495,8 @@ public class MyPGActivity extends AppCompatActivity {
                 }
                 input11.setText(contact.getText().toString().trim());
                 input11.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+                input11.setInputType(InputType.TYPE_CLASS_PHONE);
+                input11.setSelection(input11.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)
@@ -496,6 +529,9 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input12.getParent()).removeView(input12);
                 }
                 input12.setText(staffCount.getText().toString().trim());
+                input12.setFilters(new InputFilter[] { new InputFilter.LengthFilter(2) });
+                input12.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input12.setSelection(input12.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
                 builder.setTitle("Your PG Details")
                         .setIcon(R.drawable.ic_edit_black_24dp)

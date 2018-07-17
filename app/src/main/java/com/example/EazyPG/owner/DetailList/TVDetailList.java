@@ -54,8 +54,7 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemTV = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemTV.findViewById(R.id.firstTextView);
@@ -137,6 +136,7 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
         listViewItemTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText TVCompanyName, TVDays, TVModel, TVResolution, TVRoomNo, TVSize, TVType;
 
                 TVCompanyName = viewDialog.findViewById(R.id.TVCompanyNameEditText);
@@ -187,7 +187,7 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
                 otherLayout.setVisibility(View.GONE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("CCTV" + " details");
+                builder.setTitle("TV" + " details");
 
                 TVCompanyName.setText(applianceDetailTV.brand);
                 TVDays.setText(applianceDetailTV.timeSinceInstallation);

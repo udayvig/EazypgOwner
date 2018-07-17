@@ -54,8 +54,7 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+        final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemOther = inflater.inflate(R.layout.appliance_row, null, true);
 
         TextView first = listViewItemOther.findViewById(R.id.firstTextView);
@@ -138,6 +137,7 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
         listViewItemOther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText OtherCompanyName, OtherName, OtherRoomNo;
 
                 OtherCompanyName = viewDialog.findViewById(R.id.otherCompanyNameEditText);
@@ -184,7 +184,7 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
                 otherLayout.setVisibility(View.VISIBLE);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("CCTV" + " details");
+                builder.setTitle("Other Appliance" + " details");
 
                 OtherCompanyName.setText(applianceDetailOther.brand);
                 OtherName.setText(applianceDetailOther.applianceName);
