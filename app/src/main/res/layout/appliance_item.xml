@@ -17,7 +17,7 @@
         android:clipChildren="true"
         android:elevation="5dp"
         android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
+        android:foreground="@drawable/custom_ripple"
         android:padding="2dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"

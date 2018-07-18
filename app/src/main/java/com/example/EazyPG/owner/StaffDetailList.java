@@ -44,6 +44,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
     private Activity context;
     private List<StaffDetails> staffList;
     FloatingActionButton callButton;
+    TextView staffDetailView;
 
     public StaffDetailList(Activity context, List<StaffDetails> staffList) {
         super(context, R.layout.staff_row, staffList);
@@ -59,6 +60,8 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemStaff = inflater.inflate(R.layout.staff_row, null, true);
         callButton = listViewItemStaff.findViewById(R.id.callButton);
@@ -132,8 +135,11 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
 
                 final EditText first, second, third, fourth, fifth;
 
+                final View titleView = inflater.inflate(R.layout.custom_title3, null);
+                staffDetailView = titleView.findViewById(R.id.staffCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Staff details");
+                builder.setCustomTitle(staffDetailView);
 
                 first = viewDialog.findViewById(R.id.staffNameEditText);
                 second = viewDialog.findViewById(R.id.jobDescEditText);
@@ -206,19 +212,22 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
             @Override
             public void onClick(View v) {
 
-                    try {
-                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                        callIntent.setData(Uri.parse("tel:"+third.getText().toString()));
-                        context.startActivity(callIntent);
+                    if(third.getText().toString().trim().length() < 10)
+                    {
+                        Toast.makeText(context, "Invalid Number", Toast.LENGTH_SHORT).show();
                     }
-                    catch (ActivityNotFoundException activityException) {
-                        Toast.makeText(context, "Call failed", Toast.LENGTH_SHORT).show();
-                    }
-                    catch (SecurityException e) {
-                        Toast.makeText(context, "Call failed!", Toast.LENGTH_SHORT).show();
-                    }
+                    else {
+                        try {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:" + third.getText().toString()));
+                            context.startActivity(callIntent);
+                        } catch (ActivityNotFoundException activityException) {
+                            Toast.makeText(context, "Call failed", Toast.LENGTH_SHORT).show();
+                        } catch (SecurityException e) {
+                            Toast.makeText(context, "Call failed!", Toast.LENGTH_SHORT).show();
+                        }
 
-
+                    }
             }
         });
 

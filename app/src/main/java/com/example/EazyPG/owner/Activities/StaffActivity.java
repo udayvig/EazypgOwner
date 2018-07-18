@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,10 +15,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailFan;
-import com.example.EazyPG.owner.DetailList.FanDetailList;
 import com.example.EazyPG.owner.StaffDetailList;
 import com.example.EazyPG.owner.StaffDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -49,6 +49,7 @@ public class StaffActivity extends AppCompatActivity {
 
     Snackbar snackbar;
     View view;
+    private TextView addStaffTitle;
 
     LayoutInflater inflater;
 
@@ -77,6 +78,8 @@ public class StaffActivity extends AppCompatActivity {
         dateOfJoining = findViewById(R.id.dateOfJoiningEditText);
 
         snackbar = Snackbar.make(view, "Tap item to edit and hold to delete", Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(ContextCompat.getColor(StaffActivity.this, R.color.DarkGreen));
         snackbar.show();
 
         staffDetailsList = new ArrayList<>();
@@ -120,18 +123,21 @@ public class StaffActivity extends AppCompatActivity {
                 salary = viewDialog.findViewById(R.id.salaryEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.dateOfJoiningEditText);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(StaffActivity.this);
+                final View addTitleView = inflater.inflate(R.layout.custom_title2, null);
+                addStaffTitle = addTitleView.findViewById(R.id.addStaffCustomTitle);
 
-                builder.setTitle("Add Staff Details");
+                AlertDialog.Builder builder = new AlertDialog.Builder(StaffActivity.this);
+                builder.setCustomTitle(addStaffTitle);
 
                 builder.setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                    final ProgressDialog progressDialog = ProgressDialog.show(StaffActivity.this, "", "Saving...", true);
-
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        final ProgressDialog progressDialog = ProgressDialog.show(StaffActivity.this, "", "Saving...", true);
+
                         String staffNameString = staffName.getText().toString();
                         String jobDescString = jobDesc.getText().toString();
                         String contactString = contact.getText().toString();

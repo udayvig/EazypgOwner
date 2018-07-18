@@ -354,7 +354,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
         D2HLayout = view.findViewById(R.id.D2HLayout);
         otherLayout = view.findViewById(R.id.otherLayout);
 
-        final View titleView = inflater.inflate(R.layout.custom_title, null);
+        final View titleView = inflater.inflate(R.layout.custom_title1, null);
         customTitle = titleView.findViewById(R.id.custom_title);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
