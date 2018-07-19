@@ -47,7 +47,7 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/TV");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/TV");
     List<String> ids = new ArrayList<>();
 
     @NonNull

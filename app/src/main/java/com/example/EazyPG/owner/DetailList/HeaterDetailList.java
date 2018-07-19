@@ -47,7 +47,7 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Heater");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Heater");
     List<String> ids = new ArrayList<>();
 
     @NonNull

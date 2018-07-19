@@ -47,7 +47,7 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Washing Machine");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Washing Machine");
     List<String> ids = new ArrayList<>();
 
     @NonNull

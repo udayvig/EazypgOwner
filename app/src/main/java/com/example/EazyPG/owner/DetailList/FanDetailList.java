@@ -47,7 +47,7 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Fan");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Fan");
     List<String> ids = new ArrayList<>();
 
     @NonNull

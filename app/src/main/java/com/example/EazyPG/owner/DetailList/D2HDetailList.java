@@ -47,7 +47,7 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/D2H");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/D2H");
     List<String> ids = new ArrayList<>();
 
     @NonNull

@@ -47,7 +47,7 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Router");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Router");
     List<String> ids = new ArrayList<>();
 
     @NonNull

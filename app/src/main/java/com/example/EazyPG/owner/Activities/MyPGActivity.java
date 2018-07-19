@@ -600,7 +600,7 @@ public class MyPGActivity extends AppCompatActivity {
 
         //Getting current user information
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
+        String uid = "PG/"+user.getUid();
 
         //adding database info for the current user
         databaseReference = FirebaseDatabase.getInstance().getReference(uid);

@@ -45,10 +45,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * Created by Uday Vig on 09-Jul-18.
- */
-
 public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyViewHolder>{
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -271,7 +267,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 public void onClick(View view) {
 
                     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                    databaseReference = firebaseDatabase.getReference(firebaseUser.getUid());
+                    databaseReference = firebaseDatabase.getReference("PG/"+firebaseUser.getUid());
 
                     switch (iconTextView.getText().toString()) {
                         case "AC":
@@ -354,7 +350,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
         D2HLayout = view.findViewById(R.id.D2HLayout);
         otherLayout = view.findViewById(R.id.otherLayout);
 
-        final View titleView = inflater.inflate(R.layout.custom_title, null);
+        final View titleView = inflater.inflate(R.layout.custom_title1, null);
         customTitle = titleView.findViewById(R.id.custom_title);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

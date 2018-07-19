@@ -47,7 +47,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Lift");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Lift");
     List<String> ids = new ArrayList<>();
 
     @NonNull

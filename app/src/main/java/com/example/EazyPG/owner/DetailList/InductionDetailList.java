@@ -47,7 +47,7 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Induction");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Induction");
     List<String> ids = new ArrayList<>();
 
     @NonNull

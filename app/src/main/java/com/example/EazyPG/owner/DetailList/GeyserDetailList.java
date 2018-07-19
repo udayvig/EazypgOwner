@@ -47,7 +47,7 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Geyser");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Geyser");
     List<String> ids = new ArrayList<>();
 
     @NonNull

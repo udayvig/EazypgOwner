@@ -47,7 +47,7 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Microwave");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Microwave");
     List<String> ids = new ArrayList<>();
 
     @NonNull

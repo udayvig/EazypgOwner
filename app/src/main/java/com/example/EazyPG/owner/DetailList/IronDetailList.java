@@ -47,7 +47,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Iron");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Iron");
     List<String> ids = new ArrayList<>();
 
     @NonNull

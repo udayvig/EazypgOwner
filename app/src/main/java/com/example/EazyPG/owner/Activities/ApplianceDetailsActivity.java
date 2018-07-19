@@ -135,7 +135,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         otherList = new ArrayList<>();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = firebaseUser.getUid();
+        String uid = "PG/"+firebaseUser.getUid();
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(ApplianceAdapter.EXTRA_MESSAGE);

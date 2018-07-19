@@ -47,7 +47,7 @@ public class RODetailList extends ArrayAdapter<ApplianceDetailRO>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/RO");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/RO");
     List<String> ids = new ArrayList<>();
 
     @NonNull

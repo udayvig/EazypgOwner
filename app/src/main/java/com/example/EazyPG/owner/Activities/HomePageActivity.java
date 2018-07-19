@@ -27,6 +27,8 @@ public class HomePageActivity extends AppCompatActivity {
 
     ImageView yourPG;
     ImageView staff;
+    ImageView tenant;
+    ImageView expense;
 
     Button logout;
 
@@ -42,9 +44,19 @@ public class HomePageActivity extends AppCompatActivity {
 
         yourPG = findViewById(R.id.yourPgImageView);
         staff = findViewById(R.id.staffImageView);
+        tenant = findViewById(R.id.tenantImageView);
+        expense = findViewById(R.id.foodImageView);
         logout = findViewById(R.id.logoutButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        tenant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, TenantActivity.class));
+                finish();
+            }
+        });
 
         staff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +70,14 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomePageActivity.this, MyPGActivity.class));
+                finish();
+            }
+        });
+
+        expense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, ExpenseActivity.class));
                 finish();
             }
         });

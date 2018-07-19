@@ -47,7 +47,7 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/AC");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/AC");
     List<String> ids = new ArrayList<>();
 
     @NonNull

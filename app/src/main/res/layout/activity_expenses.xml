@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.EazyPG.owner.Activities.StaffActivity"
-    android:id="@+id/stafflayout">
+    android:id="@+id/expenselayout">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/staffToolbar"
+        android:id="@+id/expenseToolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorPrimaryDark"
@@ -16,19 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-
     </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:id="@+id/toolbarText"
+        android:id="@+id/toolbarTextExpenses"
         android:layout_width="163dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/productsans"
-        android:text="Staff Details"
+        android:text="Exepense Details"
         android:textColor="#5FB548"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,13 +41,14 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/staffToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/expenseToolbar">
 
 
         <ListView
-            android:id="@+id/listView"
+            android:id="@+id/listViewExpenses"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             android:padding="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,11 +60,11 @@
     </android.support.constraint.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/addStaff"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:id="@+id/addExpense"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add" />

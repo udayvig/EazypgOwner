@@ -14,10 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.EazyPG.owner.ApplianceDetail.ApplianceDetailFan;
-import com.example.EazyPG.owner.DetailList.FanDetailList;
 import com.example.EazyPG.owner.StaffDetailList;
 import com.example.EazyPG.owner.StaffDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -46,6 +45,7 @@ public class StaffActivity extends AppCompatActivity {
 
     ImageView addStaff;
     EditText staffName, jobDesc, contact, salary, dateOfJoining;
+    TextView addStaffTitle;
 
     Snackbar snackbar;
     View view;
@@ -62,7 +62,7 @@ public class StaffActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference = firebaseDatabase.getReference(firebaseUser.getUid() + "/Staff/");
+        databaseReference = firebaseDatabase.getReference("PG/"+firebaseUser.getUid() + "/Staff/");
 
         inflater = getLayoutInflater();
 
@@ -82,7 +82,6 @@ public class StaffActivity extends AppCompatActivity {
         staffDetailsList = new ArrayList<>();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = firebaseUser.getUid();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
 
@@ -120,18 +119,22 @@ public class StaffActivity extends AppCompatActivity {
                 salary = viewDialog.findViewById(R.id.salaryEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.dateOfJoiningEditText);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(StaffActivity.this);
+                final View addTitleView = inflater.inflate(R.layout.custom_title2, null);
+                addStaffTitle = addTitleView.findViewById(R.id.addStaffCustomTitle);
 
-                builder.setTitle("Add Staff Details");
+                AlertDialog.Builder builder = new AlertDialog.Builder(StaffActivity.this);
+                builder.setCustomTitle(addStaffTitle);
 
                 builder.setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                    final ProgressDialog progressDialog = ProgressDialog.show(StaffActivity.this, "", "Saving...", true);
-
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        final ProgressDialog progressDialog = ProgressDialog.show(StaffActivity.this, "", "Saving...", true);
+
+
                         String staffNameString = staffName.getText().toString();
                         String jobDescString = jobDesc.getText().toString();
                         String contactString = contact.getText().toString();
@@ -139,7 +142,7 @@ public class StaffActivity extends AppCompatActivity {
                         String dateOfJoiningString = dateOfJoining.getText().toString();
                         String uidStaff = databaseReference.push().getKey();
 
-                        databaseReference = firebaseDatabase.getReference(firebaseUser.getUid());
+                        databaseReference = firebaseDatabase.getReference("PG/"+firebaseUser.getUid());
 
                         if (staffNameString.equals("")) {
                             Toast.makeText(StaffActivity.this, "Failed!", Toast.LENGTH_SHORT).show();

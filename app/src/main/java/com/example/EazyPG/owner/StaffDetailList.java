@@ -44,6 +44,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
     private Activity context;
     private List<StaffDetails> staffList;
     FloatingActionButton callButton;
+    TextView staffDetailView;
 
     public StaffDetailList(Activity context, List<StaffDetails> staffList) {
         super(context, R.layout.staff_row, staffList);
@@ -128,13 +129,16 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
         listViewItemStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 final View viewDialog = inflater.inflate(R.layout.dialog_staff, null);
 
                 final EditText first, second, third, fourth, fifth;
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Staff details");
+                final View titleView = inflater.inflate(R.layout.custom_title3, null);
+                staffDetailView = titleView.findViewById(R.id.staffCustomTitle);
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setCustomTitle(staffDetailView);
                 first = viewDialog.findViewById(R.id.staffNameEditText);
                 second = viewDialog.findViewById(R.id.jobDescEditText);
                 third = viewDialog.findViewById(R.id.contactEditText);

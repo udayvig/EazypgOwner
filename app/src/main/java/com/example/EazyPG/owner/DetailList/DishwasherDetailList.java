@@ -47,7 +47,7 @@ public class DishwasherDetailList extends ArrayAdapter<ApplianceDetailDishwasher
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Dishwasher");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Dishwasher");
     List<String> ids = new ArrayList<>();
 
     @NonNull

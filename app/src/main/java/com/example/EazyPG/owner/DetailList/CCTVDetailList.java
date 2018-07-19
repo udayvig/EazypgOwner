@@ -47,7 +47,7 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/CCTV");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/CCTV");
     List<String> ids = new ArrayList<>();
 
     @NonNull
