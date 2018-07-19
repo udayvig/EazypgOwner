@@ -85,7 +85,7 @@
         <ImageView
             android:id="@+id/foodImageView"
             android:layout_width="76dp"
-            android:layout_height="63dp"
+            android:layout_height="64dp"
             android:layout_above="@+id/staffTextView"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="8dp"
@@ -100,8 +100,8 @@
             app:layout_constraintHorizontal_bias="0.94"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.268"
-            app:srcCompat="@drawable/hamburger" />
+            app:layout_constraintVertical_bias="0.26"
+            app:srcCompat="@drawable/money" />
 
         <ImageView
             android:id="@+id/complaintImageView"
@@ -177,7 +177,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/productsansbold"
-            android:text="       FOOD"
+            android:text="    EXPENSES"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

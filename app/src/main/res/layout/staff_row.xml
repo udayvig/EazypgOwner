@@ -25,6 +25,7 @@
             android:fontFamily="@font/productsansbold"
             android:text="First"
             android:textColor="#000000"
+            android:textColorHint="#616161"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +42,7 @@
             android:text="Second"
             android:hint="Add  Job"
             android:textColor="#000000"
+            android:textColorHint="#616161"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/firstTextView" />
@@ -54,6 +56,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
+            android:textColorHint="#616161"
             android:paddingStart="20dp"
             android:text="Third"
             android:hint="Add  Contact Number"
@@ -75,6 +78,7 @@
             android:fontFamily="@font/productsans"
             android:paddingStart="20dp"
             android:text="Fourth"
+            android:textColorHint="#616161"
             android:hint="Add  Salary"
             android:textColor="#000000"
             android:textSize="20dp"
@@ -94,6 +98,7 @@
             android:text="Fifth"
             android:hint="Add  Date of Joining"
             android:textColor="#000000"
+            android:textColorHint="#616161"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/secondTextView" />

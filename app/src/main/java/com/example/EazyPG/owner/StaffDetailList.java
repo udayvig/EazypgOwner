@@ -147,7 +147,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
                 fourth = viewDialog.findViewById(R.id.salaryEditText);
                 fifth = viewDialog.findViewById(R.id.dateOfJoiningEditText);
 
-                first.setText(staffDetails.name);
+                first.setText(staffDetails.name.toUpperCase());
                 second.setText(staffDetails.jobDesc);
                 third.setText(staffDetails.contact);
                 fourth.setText(staffDetails.salary);
@@ -166,7 +166,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
                         String contact = third.getText().toString();
                         String salary = fourth.getText().toString();
                         String dateOfJoining = fifth.getText().toString();
-                        ;
+
                         String uidStaff = ids.get(position);
 
                         if (nameStaff.equals("")) {
@@ -231,7 +231,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
             }
         });
 
-        first.setText(staffDetails.getName());
+        first.setText(staffDetails.getName().toUpperCase());
         second.setText(staffDetails.getJobDesc());
         third.setText(staffDetails.getContact());
         fourth.setText(staffDetails.getSalary());

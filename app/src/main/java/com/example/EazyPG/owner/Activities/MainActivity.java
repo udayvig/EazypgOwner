@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.EazyPG.owner.MyIntro;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.oned.MultiFormatOneDReader;
 
 public class MainActivity extends AppCompatActivity {
 
