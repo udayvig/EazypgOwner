@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/custom_title"
     android:layout_width="wrap_content"
@@ -11,9 +9,14 @@
     android:paddingTop="17dp"
     android:paddingStart="17dp"
     android:layout_marginTop="260dp"
-    android:text="Add Details"
+    android:text=" Add Details"
     android:textSize="25dp"
     android:textColor="#000000"
     android:fontFamily="@font/productsansbold"
     tools:layout_editor_absoluteX="176dp"
     tools:layout_editor_absoluteY="60dp" />
+
+
+
+
+

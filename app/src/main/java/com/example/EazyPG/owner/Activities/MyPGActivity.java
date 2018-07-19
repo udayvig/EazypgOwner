@@ -319,7 +319,7 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input6.getParent()).removeView(input6);
                 }
                 input6.setText(location.getText().toString().trim());
-                input6.setFilters(new InputFilter[] { new InputFilter.LengthFilter(20) });
+                input6.setFilters(new InputFilter[] { new InputFilter.LengthFilter(30) });
                 input6.setInputType(InputType.TYPE_CLASS_TEXT);
                 input6.setSelection(input6.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
@@ -459,7 +459,7 @@ public class MyPGActivity extends AppCompatActivity {
                     ((ViewGroup) input10.getParent()).removeView(input10);
                 }
                 input10.setText(ownerName.getText().toString().trim());
-                input10.setFilters(new InputFilter[] { new InputFilter.LengthFilter(10) });
+                input10.setFilters(new InputFilter[] { new InputFilter.LengthFilter(20) });
                 input10.setInputType(InputType.TYPE_CLASS_TEXT);
                 input10.setSelection(input10.getText().length());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
