@@ -53,7 +53,7 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Staff/");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Staff/");
     List<String> ids = new ArrayList<>();
 
     @NonNull
