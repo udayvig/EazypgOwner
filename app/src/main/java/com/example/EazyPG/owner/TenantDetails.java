@@ -2,72 +2,72 @@ package com.example.EazyPG.owner;
 
 public class TenantDetails {
 
-    String tenantId, tenantName, tenantPhone, tenantEmail, tenantRoom, tenantDateOfJoining, tenantRentAmount;
+    String id, name, phone, room, dateOfJoining, rentAmount, pgId;
 
-    public String getTenantId() {
-        return tenantId;
+    public String getId() {
+        return id;
     }
 
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getTenantName() {
-        return tenantName;
+    public String getName() {
+        return name;
     }
 
-    public void setTenantName(String tenantName) {
-        this.tenantName = tenantName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTenantPhone() {
-        return tenantPhone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTenantPhone(String tenantPhone) {
-        this.tenantPhone = tenantPhone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getTenantEmail() {
-        return tenantEmail;
+    public String getRoom() {
+        return room;
     }
 
-    public void setTenantEmail(String tenantEmail) {
-        this.tenantEmail = tenantEmail;
+    public void setRoom(String room) {
+        this.room = room;
     }
 
-    public String getTenantRoom() {
-        return tenantRoom;
+    public String getDateOfJoining() {
+        return dateOfJoining;
     }
 
-    public void setTenantRoom(String tenantRoom) {
-        this.tenantRoom = tenantRoom;
+    public void setDateOfJoining(String dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
     }
 
-    public String getTenantDateOfJoining() {
-        return tenantDateOfJoining;
+    public String getRentAmount() {
+        return rentAmount;
     }
 
-    public void setTenantDateOfJoining(String tenantDateOfJoining) {
-        this.tenantDateOfJoining = tenantDateOfJoining;
+    public void setRentAmount(String rentAmount) {
+        this.rentAmount = rentAmount;
     }
 
-    public String getTenantRentAmount() {
-        return tenantRentAmount;
+    public String getPgId() {
+        return pgId;
     }
 
-    public void setTenantRentAmount(String tenantRentAmount) {
-        this.tenantRentAmount = tenantRentAmount;
+    public void setPgId(String pgId) {
+        this.pgId = pgId;
     }
 
-    public TenantDetails(String tenantId, String tenantName, String tenantPhone, String tenantEmail, String tenantRoom, String tenantDateOfJoining, String tenantRentAmount) {
-        this.tenantId = tenantId;
-        this.tenantName = tenantName;
-        this.tenantPhone = tenantPhone;
-        this.tenantEmail = tenantEmail;
-        this.tenantRoom = tenantRoom;
-        this.tenantDateOfJoining = tenantDateOfJoining;
-        this.tenantRentAmount = tenantRentAmount;
+    public TenantDetails(String name, String phone, String room, String dateOfJoining, String rentAmount, String pgId, String id) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.room = room;
+        this.dateOfJoining = dateOfJoining;
+        this.rentAmount = rentAmount;
+        this.pgId = pgId;
     }
 
     public TenantDetails() {

@@ -32,18 +32,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tenantNameEditText" />
 
     <EditText
-        android:id="@+id/tenantEmailEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Email"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tenantPhoneEditText" />
-
-    <EditText
         android:id="@+id/tenantRoomEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +41,7 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tenantEmailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/tenantPhoneEditText" />
 
     <EditText
         android:id="@+id/tenantDateEditText"

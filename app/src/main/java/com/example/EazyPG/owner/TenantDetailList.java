@@ -59,7 +59,6 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemTenant = inflater.inflate(R.layout.tenant_row, null, true);
         callButton = listViewItemTenant.findViewById(R.id.callButton);
-        qrButton = listViewItemTenant.findViewById(R.id.QRButton);
         final TenantDetails tenantDetails = tenantList.get(position);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/");
@@ -73,7 +72,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     TenantDetails tenantDetails1 = snapshot.getValue(TenantDetails.class);
-                    String id = tenantDetails1.tenantId;
+                    String id = tenantDetails1.id;
                     ids.add(id);
 
                 }
@@ -90,24 +89,22 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
             public void onClick(View v) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
 
-                final EditText name, phone, email, room, dateOfJoining, rentAmount;
+                final EditText name, phone, room, dateOfJoining, rentAmount;
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Tenant details");
 
                 name = viewDialog.findViewById(R.id.tenantNameEditText);
                 phone = viewDialog.findViewById(R.id.tenantPhoneEditText);
-                email = viewDialog.findViewById(R.id.tenantEmailEditText);
                 room = viewDialog.findViewById(R.id.tenantRoomEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
                 rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
 
-                name.setText(tenantDetails.tenantName);
-                phone.setText(tenantDetails.tenantPhone);
-                email.setText(tenantDetails.tenantEmail);
-                room.setText(tenantDetails.tenantRoom);
-                dateOfJoining.setText(tenantDetails.tenantDateOfJoining);
-                rentAmount.setText(tenantDetails.tenantRentAmount);
+                name.setText(tenantDetails.name);
+                phone.setText(tenantDetails.phone);
+                room.setText(tenantDetails.room);
+                dateOfJoining.setText(tenantDetails.dateOfJoining);
+                rentAmount.setText(tenantDetails.rentAmount);
 
                 builder.setView(viewDialog);
 
@@ -121,48 +118,6 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         TextView second = listViewItemTenant.findViewById(R.id.secondTextView);
         final TextView third = listViewItemTenant.findViewById(R.id.thirdTextView);
 
-        qrButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String id = ids.get(position);
-
-                        final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
-
-                        qrImage = viewDialog.findViewById(R.id.qrImageView);
-
-                        QRCodeWriter writer = new QRCodeWriter();
-                        try {
-                            BitMatrix bitMatrix = writer.encode(FirebaseAuth.getInstance().getCurrentUser().getUid() + " " + id, BarcodeFormat.QR_CODE, 512, 512);
-                            int width = bitMatrix.getWidth();
-                            int height = bitMatrix.getHeight();
-                            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-                            for (int x = 0; x < width; x++) {
-                                for (int y = 0; y < height; y++) {
-                                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
-                                }
-                            }
-                            qrImage.setImageBitmap(bmp);
-
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setTitle("Scan to connect");
-                            builder.setView(viewDialog);
-                            builder.show();
-
-                        } catch (WriterException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });
 
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,9 +140,9 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
             }
         });
 
-        first.setText(tenantDetails.getTenantName());
-        second.setText(tenantDetails.getTenantRoom());
-        third.setText(tenantDetails.getTenantPhone());
+        first.setText(tenantDetails.getName());
+        second.setText(tenantDetails.getRoom());
+        third.setText(tenantDetails.getPhone());
 
         return listViewItemTenant;
 

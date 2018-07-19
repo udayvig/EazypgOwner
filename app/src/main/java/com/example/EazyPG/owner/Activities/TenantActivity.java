@@ -33,6 +33,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +51,8 @@ public class TenantActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-    ImageView addTenant;
-    EditText name, phone, email, room, dateOfJoining, rentAmount;
+    ImageView addTenant, qrImage;
+    EditText name, phone, room, dateOfJoining, rentAmount;
 
     Snackbar snackbar;
     View view;
@@ -75,7 +79,6 @@ public class TenantActivity extends AppCompatActivity {
 
         name = findViewById(R.id.tenantNameEditText);
         phone = findViewById(R.id.tenantPhoneEditText);
-        email = findViewById(R.id.tenantEmailEditText);
         room = findViewById(R.id.tenantRoomEditText);
         dateOfJoining = findViewById(R.id.tenantDateEditText);
         rentAmount = findViewById(R.id.tenantRentEditText);
@@ -119,12 +122,11 @@ public class TenantActivity extends AppCompatActivity {
 
                 name = viewDialog.findViewById(R.id.tenantNameEditText);
                 phone = viewDialog.findViewById(R.id.tenantPhoneEditText);
-                email = viewDialog.findViewById(R.id.tenantEmailEditText);
                 room = viewDialog.findViewById(R.id.tenantRoomEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
                 rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(TenantActivity.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(TenantActivity.this);
 
                 builder.setTitle("Add Tenant Details");
 
@@ -134,43 +136,36 @@ public class TenantActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
+                        qrImage = viewDialog.findViewById(R.id.qrImageView);
 
-                        final ProgressDialog progressDialog = ProgressDialog.show(TenantActivity.this, "", "Saving...", true);
+                        QRCodeWriter writer = new QRCodeWriter();
+                        try {
 
+                            String content = FirebaseAuth.getInstance().getCurrentUser().getUid() + " " +
+                                    name.getText().toString() + " " + phone.getText().toString() + " " +
+                                    room.getText().toString() + " " + dateOfJoining.getText().toString() + " " +
+                                    rentAmount.getText().toString();
 
-                        String tenantName = name.getText().toString();
-                        String tenantPhone = phone.getText().toString();
-                        String tenantEmail = email.getText().toString();
-                        String tenantRoom = room.getText().toString();
-                        String tenantDateOfJoining = dateOfJoining.getText().toString();
-                        String tenantRentAmount = rentAmount.getText().toString();
-                        String uidTenant = databaseReference.push().getKey();
-
-                        databaseReference = firebaseDatabase.getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/" + uidTenant);
-
-                        if (tenantName.equals("") || tenantPhone.length() < 10) {
-                            Toast.makeText(TenantActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-
-                        }
-                        else {
-
-                            TenantDetails tenantDetails = new TenantDetails(uidTenant, tenantName, tenantPhone, tenantEmail, tenantRoom, tenantDateOfJoining, tenantRentAmount);
-                            databaseReference.setValue(tenantDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-
-                                    progressDialog.dismiss();
-                                    Toast.makeText(TenantActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
+                            BitMatrix bitMatrix = writer.encode(content , BarcodeFormat.QR_CODE, 512, 512);
+                            int width = bitMatrix.getWidth();
+                            int height = bitMatrix.getHeight();
+                            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                            for (int x = 0; x < width; x++) {
+                                for (int y = 0; y < height; y++) {
+                                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(TenantActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            }
+                            qrImage.setImageBitmap(bmp);
 
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(TenantActivity.this);
+                            builder1.setTitle("Scan to connect");
+                            builder1.setMessage("This QR Code is shown only once.");
+                            builder1.setView(viewDialog);
+                            builder1.show();
+
+                        } catch (WriterException e) {
+                            e.printStackTrace();
                         }
                     }
                 });

@@ -169,7 +169,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
 
                 ACLayout.setVisibility(View.GONE);
                 fanLayout.setVisibility(View.GONE);
-                liftLayout.setVisibility(View.GONE);
+                liftLayout.setVisibility(View.VISIBLE);
                 geyserLayout.setVisibility(View.GONE);
                 washingMachineLayout.setVisibility(View.GONE);
                 ROLayout.setVisibility(View.GONE);
@@ -178,7 +178,7 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
                 fridgeLayout.setVisibility(View.GONE);
                 TVLayout.setVisibility(View.GONE);
                 CCTVLayout.setVisibility(View.GONE);
-                ironLayout.setVisibility(View.VISIBLE);
+                ironLayout.setVisibility(View.GONE);
                 inductionLayout.setVisibility(View.GONE);
                 routerLayout.setVisibility(View.GONE);
                 heaterLayout.setVisibility(View.GONE);
