@@ -162,6 +162,7 @@ public class TenantActivity extends AppCompatActivity {
                             builder1.setTitle("Scan to connect");
                             builder1.setMessage("This QR Code is shown only once.");
                             builder1.setView(viewDialog);
+                            builder1.setCancelable(false);
                             builder1.show();
 
                         } catch (WriterException e) {
