@@ -34,11 +34,17 @@ import java.util.List;
 
 public class ComplaintActivity extends AppCompatActivity {
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
 
+        
 
     }
 }

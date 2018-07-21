@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.EazyPG.owner.Activities.ExpenseActivity"
-    android:id="@+id/expenselayout">
+    tools:context="com.example.EazyPG.owner.Activities.StaffActivity"
+    android:id="@+id/passbooklayout">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/expenseToolbar"
+        android:id="@+id/passbookToolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorPrimaryDark"
@@ -20,14 +20,14 @@
     </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:id="@+id/toolbarTextExpenses"
+        android:id="@+id/toolbarTextPassbook"
         android:layout_width="163dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/productsans"
-        android:text="Exepense Details"
+        android:text="Passbook Details"
         android:textColor="#5FB548"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +41,11 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expenseToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/passbookToolbar">
 
 
         <ListView
-            android:id="@+id/listViewExpenses"
+            android:id="@+id/listViewPassbook"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
@@ -58,5 +58,25 @@
         </ListView>
 
     </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/inflow"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_downward_black_24dp" />
+
+    <ImageView
+        android:id="@+id/outflow"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>

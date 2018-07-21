@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.katepratik.msg91api.MSG91;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,6 +138,14 @@ public class TenantActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
+                        msg91.composeMessage("EazyPG", "Hello " + name.getText().toString() + ". App download karlo: ");
+                        msg91.to(phone.getText().toString());
+                        String sendStatus = msg91.send();
+
+                        Log.i("MyMSGStatus", sendStatus);
+
                         final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
                         qrImage = viewDialog.findViewById(R.id.qrImageView);
 
@@ -158,11 +168,17 @@ public class TenantActivity extends AppCompatActivity {
                             }
                             qrImage.setImageBitmap(bmp);
 
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(TenantActivity.this);
+                            final AlertDialog.Builder builder1 = new AlertDialog.Builder(TenantActivity.this);
                             builder1.setTitle("Scan to connect");
                             builder1.setMessage("This QR Code is shown only once.");
                             builder1.setView(viewDialog);
                             builder1.setCancelable(false);
+                            builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
                             builder1.show();
 
                         } catch (WriterException e) {

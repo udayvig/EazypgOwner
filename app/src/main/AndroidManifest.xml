@@ -32,13 +32,14 @@
         <activity android:name="com.example.EazyPG.owner.Activities.SubscriptionActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.CashflowActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.ApplianceActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.ExpenseActivity"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.ExpenseActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name="com.example.EazyPG.owner.Activities.ApplianceDetailsActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.PassbookActivity"></activity>
     </application>
 
 </manifest>

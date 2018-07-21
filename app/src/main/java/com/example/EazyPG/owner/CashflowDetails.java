@@ -1,9 +1,10 @@
 package com.example.EazyPG.owner;
 
-public class ExpenseDetails {
+public class CashflowDetails {
     String expenseId, amount, category, description, paidBy, paidTo, date;
+    boolean inout;
 
-    public ExpenseDetails(String expenseId, String amount, String category, String description, String paidBy, String paidTo, String date) {
+    public CashflowDetails(String expenseId, String amount, String category, String description, String paidBy, String paidTo, String date, boolean inout) {
         this.expenseId = expenseId;
         this.amount = amount;
         this.category = category;
@@ -11,9 +12,28 @@ public class ExpenseDetails {
         this.paidBy = paidBy;
         this.paidTo = paidTo;
         this.date = date;
+        this.inout = inout;
     }
 
-    public ExpenseDetails() {
+    public CashflowDetails(String expenseId, String amount, String category, String description, String paidBy, String date, boolean inout) {
+        this.expenseId = expenseId;
+        this.amount = amount;
+        this.category = category;
+        this.description = description;
+        this.paidBy = paidBy;
+        this.date = date;
+        this.inout = inout;
+    }
+
+    public CashflowDetails() {
+    }
+
+    public boolean isInout() {
+        return inout;
+    }
+
+    public void setInout(boolean inout) {
+        this.inout = inout;
     }
 
     public String getExpenseId() {

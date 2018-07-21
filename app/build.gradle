@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.github.goka.blurredgridmenu:blurredgridmenu:1.0.2'
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+    implementation 'com.katepratik.msg91-android-sdk:library:0.1'
 }
 
 configurations.all

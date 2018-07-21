@@ -60,7 +60,7 @@ public class MyPGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pg);
 
-        databaseReference = firebaseDatabase.getReference();
+        databaseReference = firebaseDatabase.getReference("PG/");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         pgName = findViewById(R.id.pgNameTextView);
@@ -297,7 +297,7 @@ public class MyPGActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                       lastEntry.setText(input5.getText().toString());
+                        lastEntry.setText(input5.getText().toString());
                     }
                 });
 
@@ -627,7 +627,7 @@ public class MyPGActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-   //     AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        //     AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
         new AlertDialog.Builder(MyPGActivity.this).setTitle("Save Details")
                 .setMessage("Do you want to save details before going to home page?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
