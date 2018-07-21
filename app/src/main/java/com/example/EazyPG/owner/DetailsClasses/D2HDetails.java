@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner.Appliances;
+package com.example.EazyPG.owner.DetailsClasses;
 
 public class D2HDetails {
 

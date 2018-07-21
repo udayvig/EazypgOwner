@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.EazyPG.owner.CashflowDetails;
-import com.example.EazyPG.owner.PassbookDetailList;
+import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
+import com.example.EazyPG.owner.DetailList.PassbookDetailList;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

@@ -1,8 +1,8 @@
-package com.example.EazyPG.owner;
+package com.example.EazyPG.owner.DetailsClasses;
 
 public class CashflowDetails {
-    String expenseId, amount, category, description, paidBy, paidTo, date;
-    boolean inout;
+    public String expenseId, amount, category, description, paidBy, paidTo, date;
+    public boolean inout;
 
     public CashflowDetails(String expenseId, String amount, String category, String description, String paidBy, String paidTo, String date, boolean inout) {
         this.expenseId = expenseId;

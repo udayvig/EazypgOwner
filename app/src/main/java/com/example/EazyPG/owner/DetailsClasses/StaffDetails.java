@@ -1,8 +1,8 @@
-package com.example.EazyPG.owner;
+package com.example.EazyPG.owner.DetailsClasses;
 
 public class StaffDetails {
 
-    String staffId, salary, contact, name, jobDesc, dateOfJoining;
+    public String staffId, salary, contact, name, jobDesc, dateOfJoining;
 
     public String getStaffId() {
         return staffId;

@@ -1,16 +1,26 @@
-package com.example.EazyPG.owner;
+package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,16 +31,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
+public class ExpenseDetailList extends ArrayAdapter<CashflowDetails> {
 
     private Activity context;
-    private List<CashflowDetails> passbookList;
+    private List<CashflowDetails> expenseList;
 
-    public PassbookDetailList(Activity context, List<CashflowDetails> passbookList){
-        super(context, R.layout.passbook_row, passbookList);
+    public ExpenseDetailList(Activity context, List<CashflowDetails> expenseList){
+        super(context, R.layout.expense_row, expenseList);
 
         this.context = context;
-        this.passbookList = passbookList;
+        this.expenseList = expenseList;
     }
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Cashflow/");
@@ -40,9 +50,8 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItemPassbook = inflater.inflate(R.layout.passbook_row, null, true);
-
-        final CashflowDetails passbookDetails = passbookList.get(position);
+        View listViewItemExpense = inflater.inflate(R.layout.expense_row, null, true);
+        final CashflowDetails cashflowDetails = expenseList.get(position);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,7 +70,7 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
             }
         });
 
-        /*listViewItemPassbook.setOnLongClickListener(new View.OnLongClickListener() {
+        listViewItemExpense.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -105,33 +114,22 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
 
                 return true;
             }
-        });*/
+        });
 
-        TextView first = listViewItemPassbook.findViewById(R.id.firstTextView);
-        TextView second = listViewItemPassbook.findViewById(R.id.secondTextView);
-        TextView third = listViewItemPassbook.findViewById(R.id.thirdTextView);
-        TextView fourth = listViewItemPassbook.findViewById(R.id.fourthTextView);
-        TextView fifth = listViewItemPassbook.findViewById(R.id.fifthTextView);
-        TextView sixth;
+        TextView first = listViewItemExpense.findViewById(R.id.firstTextView);
+        TextView second = listViewItemExpense.findViewById(R.id.secondTextView);
+        TextView third = listViewItemExpense.findViewById(R.id.thirdTextView);
+        TextView fourth = listViewItemExpense.findViewById(R.id.fourthTextView);
+        TextView fifth = listViewItemExpense.findViewById(R.id.fifthTextView);
+        TextView sixth = listViewItemExpense.findViewById(R.id.sixthTextView);
 
-        first.setText(passbookDetails.getAmount());
-        second.setText(passbookDetails.getDate());
-        third.setText(passbookDetails.getCategory());
-        fourth.setText(passbookDetails.getDescription());
-        fifth.setText(passbookDetails.getPaidBy());
+        first.setText(cashflowDetails.getAmount());
+        second.setText(cashflowDetails.getDate());
+        third.setText(cashflowDetails.getCategory());
+        fourth.setText(cashflowDetails.getDescription());
+        fifth.setText(cashflowDetails.getPaidBy());
+        sixth.setText(cashflowDetails.getPaidTo());
 
-        if(passbookDetails.inout){
-            sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
-            sixth.setVisibility(View.GONE);
-            ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
-            iv.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
-        }else{
-            sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
-            sixth.setText(passbookDetails.getPaidTo());
-            ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
-            iv.setImageResource(R.drawable.ic_arrow_upward_black_24dp);
-        }
-
-        return listViewItemPassbook;
+        return listViewItemExpense;
     }
 }

@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.EazyPG.owner.ExpenseDetailList;
-import com.example.EazyPG.owner.CashflowDetails;
+import com.example.EazyPG.owner.DetailList.ExpenseDetailList;
+import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

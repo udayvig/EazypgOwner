@@ -17,8 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.EazyPG.owner.StaffDetailList;
-import com.example.EazyPG.owner.StaffDetails;
+import com.example.EazyPG.owner.DetailList.StaffDetailList;
+import com.example.EazyPG.owner.DetailsClasses.StaffDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

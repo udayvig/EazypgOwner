@@ -1,8 +1,8 @@
-package com.example.EazyPG.owner;
+package com.example.EazyPG.owner.DetailsClasses;
 
 public class TenantDetails {
 
-    String id, name, phone, room, dateOfJoining, rentAmount, pgId;
+    public String id, name, phone, room, dateOfJoining, rentAmount, pgId;
 
     public String getId() {
         return id;
