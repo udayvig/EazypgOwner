@@ -214,7 +214,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
 
                             if (brandIron.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
                                 IronDetails ironDetails = new IronDetails(uidIron, roomNoIron, brandIron, modelIron, daysIron, powerIron);

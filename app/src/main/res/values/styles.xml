@@ -28,9 +28,19 @@
     </style>
 
     <style name="TextLabel2" parent="TextAppearance.Design.Hint">
-        <item name="android:textSize">17dp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:textColor">#029002</item>
         <item name="android:layout_gravity">top</item>
     </style>
+
+    <style name="TextLabelnew" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#005738</item>
+    </style>
+
+    <style name="SwitchCompatTheme" >
+        <item name="colorControlActivated">#4CAF50</item>
+    </style>
+
 </resources>

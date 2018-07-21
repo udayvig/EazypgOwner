@@ -120,7 +120,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
             iconTextView = itemView.findViewById(R.id.iconTextView);
             iconButton = itemView.findViewById(R.id.iconButton);
             cardViewItem = itemView.findViewById(R.id.cardView2);
-            
+
             context = itemView.getContext();
 
         }
@@ -133,131 +133,131 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 @Override
                 public void onClick(View v) {
 
-                        Intent intent;
-                        String message;
+                    Intent intent;
+                    String message;
 
-                        switch (getAdapterPosition()) {
+                    switch (getAdapterPosition()) {
 
-                            case 0:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "AC";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 0:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "AC";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 1:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Fan";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 1:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Fan";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 2:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Lift";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 2:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Lift";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 3:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Geyser";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 3:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Geyser";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 4:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Washing Machine";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 4:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Washing Machine";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 5:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "RO";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 5:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "RO";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 6:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Dishwasher";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 6:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Dishwasher";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 7:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Microwave";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 7:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Microwave";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 8:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Refrigerator";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 8:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Refrigerator";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 9:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "TV";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 9:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "TV";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 10:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "CCTV";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 10:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "CCTV";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 11:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Iron";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 11:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Iron";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 12:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Induction";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 12:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Induction";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 13:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Router";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 13:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Router";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 14:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Heater";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 14:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Heater";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 15:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "D2H";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 15:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "D2H";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                            case 16:
-                                intent = new Intent(context, ApplianceDetailsActivity.class);
-                                message = "Other";
-                                intent.putExtra(EXTRA_MESSAGE, message);
-                                context.startActivity(intent);
-                                break;
+                        case 16:
+                            intent = new Intent(context, ApplianceDetailsActivity.class);
+                            message = "Other";
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            context.startActivity(intent);
+                            break;
 
-                        }
+                    }
 
                 }
             });
@@ -506,8 +506,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-
                 break;
+
             case "Dishwasher":
                 if(dishwasherLayout.getParent().getParent()!=null) {
                     ((ViewGroup) dishwasherLayout.getParent().getParent()).removeView((ViewGroup)dishwasherLayout.getParent());
@@ -808,7 +808,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (roomNoAC.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -848,7 +848,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (roomNoFan.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -925,7 +925,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (roomNoGeyser.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room Number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 
@@ -947,7 +947,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                             }
 
                             break;
-
                         case "Washing Machine":
 
                             WashingMachineRoomNo = view.findViewById(R.id.wmRoomNumberEditText);
@@ -971,7 +970,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandWashingMachine.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -1011,7 +1010,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandRO.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -1052,7 +1051,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandDishwasher.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -1092,7 +1091,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandMicrowave.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -1134,7 +1133,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandFridge.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 
@@ -1176,7 +1175,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandTV.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 
@@ -1219,7 +1218,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (roomNoCCTV.equals("") && brandCCTV.equals("") && daysCCTV.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -1258,7 +1257,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandIron.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
                                 IronDetails ironDetails = new IronDetails(uidIron, roomNoIron, brandIron, modelIron, daysIron, powerIron);
@@ -1299,7 +1298,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandInduction.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 
@@ -1340,7 +1339,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (daysRouter.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Installation Date Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 
@@ -1380,7 +1379,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (roomNoHeater.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
@@ -1415,7 +1414,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandD2H.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 
@@ -1449,7 +1448,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             if (brandOther.equals("") && nameOther.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand and Name Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
                                 OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(uidOther, roomNoOther, nameOther, brandOther);

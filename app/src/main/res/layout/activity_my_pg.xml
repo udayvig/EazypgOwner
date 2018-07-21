@@ -512,7 +512,7 @@
         android:elevation="10dp"
         android:focusable="true"
         android:src="@drawable/tick"
-        app:backgroundTint="#00C853"
+        app:backgroundTint="#08c243"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"

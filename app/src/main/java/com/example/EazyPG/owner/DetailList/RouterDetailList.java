@@ -218,7 +218,7 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
 
                             if (daysRouter.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Date of Installation Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 

@@ -216,7 +216,7 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
 
                             if (roomNoAC.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {

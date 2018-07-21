@@ -223,7 +223,7 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
 
                             if (roomNoGeyser.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 

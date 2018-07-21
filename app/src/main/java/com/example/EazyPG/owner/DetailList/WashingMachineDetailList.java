@@ -224,7 +224,7 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
 
                             if (brandWashingMachine.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {

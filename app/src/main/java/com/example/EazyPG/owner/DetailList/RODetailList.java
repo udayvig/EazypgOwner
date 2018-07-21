@@ -216,7 +216,7 @@ public class RODetailList extends ArrayAdapter<ApplianceDetailRO>{
 
                             if (brandRO.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Requried", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {

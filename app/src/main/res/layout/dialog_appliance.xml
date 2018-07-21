@@ -80,7 +80,7 @@
             android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Last Service Date"/>
+            android:hint=" Last Servicing Date"/>
         <EditText
             android:id="@+id/ACStarRatingEditText"
             android:layout_below="@id/ACLastServiceDateEditText"
@@ -165,7 +165,7 @@
             android:paddingStart="15dp"
             android:textColor="#000000"
             android:maxLength="10"
-            android:inputType="date"
+            android:inputType="text"
             android:textColorHint="#616161"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
@@ -229,7 +229,7 @@
             android:background="@drawable/roundedcorners"
             android:textColor="#000000"
             android:paddingStart="15dp"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:textColorHint="#616161"
             android:fontFamily="@font/productsans"
@@ -321,7 +321,7 @@
             android:layout_margin="5dp"
             android:textColor="#000000"
             android:textColorHint="#616161"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:layout_width="match_parent"
             android:paddingStart="15dp"
@@ -425,7 +425,7 @@
             android:background="@drawable/roundedcorners"
             android:layout_margin="5dp"
             android:textColor="#000000"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:textColorHint="#616161"
             android:paddingStart="15dp"
@@ -544,7 +544,7 @@
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:paddingStart="15dp"
             android:textColor="#000000"
@@ -566,7 +566,6 @@
             android:fontFamily="@font/productsans"
             android:hint=" Capacity (litres)"/>
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/dishwasherLayout"
         android:layout_width="match_parent"
@@ -623,7 +622,7 @@
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:textColor="#000000"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:textColorHint="#616161"
             android:layout_margin="5dp"
@@ -714,7 +713,7 @@
             android:textColor="#000000"
             android:textColorHint="#616161"
             android:paddingStart="15dp"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:layout_margin="5dp"
             android:fontFamily="@font/productsans"
@@ -805,7 +804,7 @@
             android:fontFamily="@font/productsans"
             android:layout_margin="5dp"
             android:textColor="#000000"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:textColorHint="#616161"
             android:layout_height="wrap_content"
@@ -910,7 +909,7 @@
             android:textColor="#000000"
             android:textColorHint="#616161"
             android:background="@drawable/roundedcorners"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:fontFamily="@font/productsans"
             android:layout_height="wrap_content"
@@ -1014,7 +1013,7 @@
             android:textColor="#000000"
             android:paddingStart="15dp"
             android:textColorHint="#616161"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:layout_margin="5dp"
             android:background="@drawable/roundedcorners"
@@ -1121,7 +1120,7 @@
             android:paddingStart="15dp"
             android:textColorHint="#616161"
             android:fontFamily="@font/productsans"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:layout_height="wrap_content"
             android:hint=" Time Since Installation"/>
@@ -1140,6 +1139,7 @@
             android:layout_below="@id/ironDaysEditText"
             android:hint=" Input Power"/>
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/inductionLayout"
         android:layout_width="match_parent"
@@ -1301,7 +1301,7 @@
             android:fontFamily="@font/productsans"
             android:textColor="#000000"
             android:textColorHint="#616161"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
@@ -1392,7 +1392,7 @@
             android:paddingStart="15dp"
             android:textColorHint="#616161"
             android:layout_margin="5dp"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1470,7 +1470,7 @@
             android:layout_width="match_parent"
             android:textColor="#000000"
             android:textColorHint="#616161"
-            android:inputType="date"
+            android:inputType="text"
             android:maxLength="10"
             android:layout_height="wrap_content"
             android:hint=" Time Since Installation"/>

@@ -209,7 +209,7 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
 
                             if (brandOther.equals("") && nameOther.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand and Name Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
                                 OtherApplianceDetails otherApplianceDetails = new OtherApplianceDetails(uidOther, roomNoOther, nameOther, brandOther);

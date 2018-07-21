@@ -205,7 +205,7 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
 
                             if (brandD2H.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Brand Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
                             } else {
 

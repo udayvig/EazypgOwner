@@ -218,7 +218,7 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
 
                             if (roomNoCCTV.equals("") && brandCCTV.equals("") && daysCCTV.equals("")) {
 
-                                Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Room number , Brand and Date of Installation Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
 
                             } else {
