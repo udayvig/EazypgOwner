@@ -34,6 +34,8 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
 
     private Activity context;
     private List<TenantDetails> tenantList;
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public String id;
     FloatingActionButton callButton, paymentButton;
     ImageView qrButton, qrImage;
 
@@ -68,7 +70,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     TenantDetails tenantDetails1 = snapshot.getValue(TenantDetails.class);
-                    String id = tenantDetails1.id;
+                    id = tenantDetails1.id;
                     ids.add(id);
 
                 }
@@ -117,9 +119,9 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                context.startActivity(new Intent(context, PaymentActivity.class));
-
+                Intent intent = new Intent(context, PaymentActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, id);
+                context.startActivity(intent);
             }
         });
 
