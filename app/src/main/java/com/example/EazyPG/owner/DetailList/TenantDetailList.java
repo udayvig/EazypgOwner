@@ -118,9 +118,11 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, PaymentActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, id);
                 context.startActivity(intent);
+
             }
         });
 
