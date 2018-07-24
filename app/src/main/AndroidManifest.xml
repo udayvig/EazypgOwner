@@ -39,7 +39,8 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name="com.example.EazyPG.owner.Activities.ApplianceDetailsActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.PassbookActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.PassbookActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.PaymentActivity"></activity>
     </application>
 
 </manifest>

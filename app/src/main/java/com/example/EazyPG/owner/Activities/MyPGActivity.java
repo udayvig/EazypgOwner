@@ -50,6 +50,7 @@ public class MyPGActivity extends AppCompatActivity {
     TextView staffCount;
 
     TextView appliance;
+    TextView rooms;
 
     FloatingActionButton saveButton;
 
@@ -77,6 +78,7 @@ public class MyPGActivity extends AppCompatActivity {
         staffCount = findViewById(R.id.staffCountTextView);
 
         appliance = findViewById(R.id.applianceTextView);
+        rooms = findViewById(R.id.roomTextView);
 
         saveButton = findViewById(R.id.saveButton);
 

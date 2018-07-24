@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.EazyPG.owner.Activities.PaymentActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +34,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
 
     private Activity context;
     private List<TenantDetails> tenantList;
-    FloatingActionButton callButton;
+    FloatingActionButton callButton, paymentButton;
     ImageView qrButton, qrImage;
 
     public TenantDetailList(Activity context, List<TenantDetails> tenantList) {
@@ -53,6 +54,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemTenant = inflater.inflate(R.layout.tenant_row, null, true);
         callButton = listViewItemTenant.findViewById(R.id.callButton);
+        paymentButton = listViewItemTenant.findViewById(R.id.paymentButton);
         final TenantDetails tenantDetails = tenantList.get(position);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/");
@@ -111,6 +113,15 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         TextView first = listViewItemTenant.findViewById(R.id.firstTextView);
         TextView second = listViewItemTenant.findViewById(R.id.secondTextView);
         final TextView third = listViewItemTenant.findViewById(R.id.thirdTextView);
+
+        paymentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                context.startActivity(new Intent(context, PaymentActivity.class));
+
+            }
+        });
 
 
         callButton.setOnClickListener(new View.OnClickListener() {
