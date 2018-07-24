@@ -44,7 +44,6 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
 
         this.context = context;
         this.tenantList = tenantList;
-
     }
 
     DatabaseReference databaseReference;
