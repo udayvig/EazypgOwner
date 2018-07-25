@@ -140,6 +140,7 @@ public class DishwasherDetailList extends ArrayAdapter<ApplianceDetailDishwasher
 
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText DishwasherCompanyName,DishwasherDays,DishwasherCapacity, DishwasherModel, DishwasherRoomNo, DishwasherType;
+                final TextView dishwasherCustomTitle;
 
                 DishwasherCapacity = viewDialog.findViewById(R.id.dishwasherCapacityEditText);
                 DishwasherCompanyName = viewDialog.findViewById(R.id.dishwasherCompanyNameEditText);
@@ -187,9 +188,14 @@ public class DishwasherDetailList extends ArrayAdapter<ApplianceDetailDishwasher
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Dishwasher" + " details");
 
+                final View titleView = inflater.inflate(R.layout.custom_titledish, null);
+                dishwasherCustomTitle = titleView.findViewById(R.id.editdishCustomTitle);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setCustomTitle(dishwasherCustomTitle);
+
+                builder.setView(view);
                 DishwasherCapacity.setText(applianceDetailDishwasher.capacity);
                 DishwasherCompanyName.setText(applianceDetailDishwasher.brand);
                 DishwasherDays.setText(applianceDetailDishwasher.timeSinceInstallation);

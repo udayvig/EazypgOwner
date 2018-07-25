@@ -136,6 +136,9 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
 
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText D2HCompanyName,D2HDays,D2HRoomNo;
+                final TextView d2hCustomTitle;
+
+
 
                 D2HCompanyName = viewDialog.findViewById(R.id.D2HCompanyNameEditText);
                 D2HDays = viewDialog.findViewById(R.id.D2HDaysEditText);
@@ -180,8 +183,14 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                 D2HLayout.setVisibility(View.VISIBLE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titled2h, null);
+                d2hCustomTitle = titleView.findViewById(R.id.editd2hCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("D2H" + " details");
+                builder.setCustomTitle(d2hCustomTitle);
+
+                builder.setView(view);
 
                 D2HRoomNo.setText(applianceDetailD2H.roomNo);
                 D2HCompanyName.setText(applianceDetailD2H.brand);

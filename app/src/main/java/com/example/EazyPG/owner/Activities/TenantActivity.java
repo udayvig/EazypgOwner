@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -79,6 +80,8 @@ public class TenantActivity extends AppCompatActivity {
         rentAmount = findViewById(R.id.tenantRentEditText);
 
         snackbar = Snackbar.make(view, "Tap item to view", Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(ContextCompat.getColor(TenantActivity.this, R.color.DarkGreen));
         snackbar.show();
 
         tenantDetailsList = new ArrayList<>();

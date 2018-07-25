@@ -139,6 +139,7 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText FridgeCapacity, FridgeCompanyName,  FridgeDays,  FridgeModel,  FridgeRoomNo,  FridgeType, FridgeRating;
+                final TextView refCustomTitle;
 
                 FridgeCapacity = viewDialog.findViewById(R.id.fridgeCapacityEditText);
                 FridgeCompanyName = viewDialog.findViewById(R.id.fridgeCompanyNameEditText);
@@ -187,8 +188,14 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titleref, null);
+                refCustomTitle = titleView.findViewById(R.id.editrefCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Refrigerator" + " details");
+                builder.setCustomTitle(refCustomTitle);
+
+                builder.setView(view);
 
                 FridgeCapacity.setText(applianceDetailRefrigerator.capacity);
                 FridgeCompanyName.setText(applianceDetailRefrigerator.brand);

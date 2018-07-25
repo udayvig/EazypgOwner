@@ -140,6 +140,8 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText LiftCompanyName, LiftModel, LiftDays, LiftCapacity, LiftDoor;
 
+                final TextView liftCustomTitle;
+
                 LiftCompanyName = viewDialog.findViewById(R.id.liftCompanyNameEditText);
                 LiftModel = viewDialog.findViewById(R.id.liftModelEditText);
                 LiftDays = viewDialog.findViewById(R.id.liftDaysEditText);
@@ -185,8 +187,14 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titlelift, null);
+                liftCustomTitle = titleView.findViewById(R.id.editLiftCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Lift" + " details");
+                builder.setCustomTitle(liftCustomTitle);
+
+                builder.setView(view);
 
                 LiftCapacity.setText(applianceDetailLift.capacity);
                 LiftCompanyName.setText(applianceDetailLift.brand);

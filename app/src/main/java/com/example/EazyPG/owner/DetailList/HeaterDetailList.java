@@ -139,6 +139,7 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText HeaterCompanyName, HeaterDays, HeaterModel, HeaterPower, HeaterRoomNo,HeaterWeight;
+                final TextView heaterCustomTitle;
 
                 HeaterCompanyName = viewDialog.findViewById(R.id.heaterCompanyNameEditText);
                 HeaterDays = viewDialog.findViewById(R.id.heaterDaysEditText);
@@ -186,8 +187,14 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titleheater, null);
+                heaterCustomTitle = titleView.findViewById(R.id.editHeaterCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Heater" + " details");
+                builder.setCustomTitle(heaterCustomTitle);
+
+                builder.setView(view);
 
                 HeaterCompanyName.setText(applianceDetailHeater.brand);
                 HeaterDays.setText(applianceDetailHeater.inputPower);

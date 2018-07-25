@@ -54,7 +54,7 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
+        final LayoutInflater inflater = context.getLayoutInflater();
         final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
         View listViewItemMicrowave = inflater.inflate(R.layout.appliance_row, null, true);
 
@@ -140,6 +140,9 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
             public void onClick(View view) {
                 final EditText MicrowaveCapacity, MicrowaveCompanyName, MicrowaveDays, MicrowaveModel, MicrowaveType, MicrowaveRoomNo;
 
+                final TextView microCustomTitle;
+
+
                 MicrowaveCapacity = viewDialog.findViewById(R.id.microwaveCapacityEditText);
                 MicrowaveCompanyName = viewDialog.findViewById(R.id.microwaveCompanyNameEditText);
                 MicrowaveDays = viewDialog.findViewById(R.id.microwaveDaysEditText);
@@ -186,8 +189,14 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_microtitle, null);
+                microCustomTitle = titleView.findViewById(R.id.editmicroCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Microwave" + " details");
+                builder.setCustomTitle(microCustomTitle);
+
+                builder.setView(view);
 
                 MicrowaveCapacity.setText(applianceDetailMicrowave.capacity);
                 MicrowaveCompanyName.setText(applianceDetailMicrowave.brand);

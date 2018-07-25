@@ -139,6 +139,8 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText TVCompanyName, TVDays, TVModel, TVResolution, TVRoomNo, TVSize, TVType;
 
+                final TextView tvCustomTitle;
+
                 TVCompanyName = viewDialog.findViewById(R.id.TVCompanyNameEditText);
                 TVDays = viewDialog.findViewById(R.id.TVDaysEditText);
                 TVModel = viewDialog.findViewById(R.id.TVModelEditText);
@@ -186,8 +188,14 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_tvtitle, null);
+                tvCustomTitle = titleView.findViewById(R.id.editTVCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("TV" + " details");
+                builder.setCustomTitle(tvCustomTitle);
+
+                builder.setView(view);
 
                 TVCompanyName.setText(applianceDetailTV.brand);
                 TVDays.setText(applianceDetailTV.timeSinceInstallation);

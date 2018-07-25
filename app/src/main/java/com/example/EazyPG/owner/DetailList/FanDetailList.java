@@ -136,6 +136,7 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
 
                 final EditText FanRoomNo, FanCompanyName, FanModel, FanDays, FanBlades;
+                final TextView fanCustomTitle;
 
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
                         fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
@@ -177,8 +178,14 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titlefan, null);
+                fanCustomTitle = titleView.findViewById(R.id.editfanCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Fan" + " details");
+                builder.setCustomTitle(fanCustomTitle);
+
+                builder.setView(view);
 
                 FanRoomNo = viewDialog.findViewById(R.id.fanRoomNumberEditText);
                 FanCompanyName = viewDialog.findViewById(R.id.fanCompanyNameEditText);

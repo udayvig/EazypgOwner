@@ -140,6 +140,8 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText WashingMachineRoomNo, WashingMachineCompanyName, WashingMachineModel, WashingMachineDays, WashingMachineCapacity, WashingMachinePower, WashingMachineRating, WashingMachineType;
 
+                final TextView washCustomTitle;
+
                 WashingMachineRoomNo = viewDialog.findViewById(R.id.wmRoomNumberEditText);
                 WashingMachineCompanyName = viewDialog.findViewById(R.id.wmCompanyNameEditText);
                 WashingMachineModel = viewDialog.findViewById(R.id.wmModelEditText);
@@ -188,8 +190,14 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titlewash, null);
+                washCustomTitle = titleView.findViewById(R.id.editWashMCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Washing Machine" + " details");
+                builder.setCustomTitle(washCustomTitle);
+
+                builder.setView(view);
 
                 WashingMachineCapacity.setText(applianceDetailWashingMachine.capacity);
                 WashingMachineCompanyName.setText(applianceDetailWashingMachine.brand);

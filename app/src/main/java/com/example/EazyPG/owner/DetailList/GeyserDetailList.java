@@ -139,6 +139,7 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserDays, GeyserCapacity, GeyserPower, GeyserRating;
+                final TextView geyserCustomTitle;
 
                 GeyserRoomNo = viewDialog.findViewById(R.id.geyserRoomNumberEditText);
                 GeyserCompanyName = viewDialog.findViewById(R.id.geyserCompanyNameEditText);
@@ -187,8 +188,14 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titlegeyser, null);
+                geyserCustomTitle = titleView.findViewById(R.id.editgeyserCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Geyser" + " details");
+                builder.setCustomTitle(geyserCustomTitle);
+
+                builder.setView(view);
 
                 GeyserCapacity.setText(applianceDetailGeyser.capacity);
                 GeyserCompanyName.setText(applianceDetailGeyser.brand);

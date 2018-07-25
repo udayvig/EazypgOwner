@@ -132,6 +132,7 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
             @Override
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+                final TextView acCustomTitle;
 
                 final EditText ACRoomNo,ACCompanyName,ACModel,ACCapacity,ACLastServiceDate,ACStarRating,ACType;
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
@@ -173,8 +174,13 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                final View titleView = inflater.inflate(R.layout.custom_titleac, null);
+                acCustomTitle = titleView.findViewById(R.id.editAcCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("AC" + " details");
+                builder.setCustomTitle(acCustomTitle);
+
+                builder.setView(view);
 
                 ACRoomNo = viewDialog.findViewById(R.id.ACRoomNumberEditText);
                 ACCompanyName = viewDialog.findViewById(R.id.ACCompanyNameEditText);
