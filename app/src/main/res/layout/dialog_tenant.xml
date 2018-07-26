@@ -31,7 +31,7 @@
             android:fontFamily="@font/productsans"
             android:hint="Name"
             android:inputType="textPersonName"
-            android:paddingStart="16dp"
+            android:paddingStart="10dp"
             android:translationY="2dp" />
 
     </android.support.design.widget.TextInputLayout>
@@ -60,8 +60,7 @@
             android:fontFamily="@font/productsans"
             android:hint="Phone"
             android:inputType="phone"
-
-            android:paddingStart="16dp"
+            android:paddingStart="10dp"
             android:translationY="2dp" />
 
     </android.support.design.widget.TextInputLayout>
@@ -90,7 +89,7 @@
             android:fontFamily="@font/productsans"
             android:hint="Room No."
             android:inputType="text"
-            android:paddingStart="16dp"
+            android:paddingStart="10dp"
             android:translationY="2dp" />
 
     </android.support.design.widget.TextInputLayout>
@@ -119,7 +118,7 @@
             android:fontFamily="@font/productsans"
             android:hint="Date of joining"
             android:inputType="date"
-            android:paddingStart="16dp"
+            android:paddingStart="10dp"
             android:translationY="2dp" />
 
     </android.support.design.widget.TextInputLayout>
@@ -148,7 +147,7 @@
             android:fontFamily="@font/productsans"
             android:hint="Rent Amount"
             android:inputType="number"
-            android:paddingStart="16dp"
+            android:paddingStart="10dp"
             android:translationY="2dp" />
 
     </android.support.design.widget.TextInputLayout>

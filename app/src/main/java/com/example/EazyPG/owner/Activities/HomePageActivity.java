@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,7 +27,7 @@ public class HomePageActivity extends AppCompatActivity {
     ImageView expense;
     ImageView passbook;
 
-    Button logout;
+    SwitchCompat logout;
 
     List<Item> items = new ArrayList<>();
     MyAdapter adapter;
@@ -98,12 +99,13 @@ public class HomePageActivity extends AppCompatActivity {
                                 firebaseAuth.signOut();
                                 startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
                                 finish();
+                                logout.setChecked(false);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
+                                logout.setChecked(true);
                             }
                         })
                         .setIcon(R.drawable.ic_warning_black_24dp)
