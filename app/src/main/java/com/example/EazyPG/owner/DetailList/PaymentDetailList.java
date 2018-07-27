@@ -11,7 +11,11 @@ import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailsClasses.PaymentDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.razorpay.Payment;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDetailList extends ArrayAdapter<PaymentDetails>{
@@ -35,9 +39,42 @@ public class PaymentDetailList extends ArrayAdapter<PaymentDetails>{
         View listViewPayment = inflater.inflate(R.layout.payment_row, null, true);
         final PaymentDetails paymentDetails = paymentList.get(position);
 
-        TextView first = listViewPayment.findViewById(R.id.firstTextView);
-        first.setText(paymentDetails.getPayId());
+        final TextView first = listViewPayment.findViewById(R.id.firstTextViewPayment);
+        final TextView second = listViewPayment.findViewById(R.id.secondTextViewPayment);
+        final TextView third = listViewPayment.findViewById(R.id.thirdTextViewPayment);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final ArrayList<String> list = fetchData(paymentDetails.getPayId());
+                    //Toast.makeText(context, "Test " + list.get(0), Toast.LENGTH_SHORT).show();
+                    context.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            first.setText(list.get(0));
+                            second.setText(list.get(1));
+                            third.setText(list.get(2));
+                        }
+                    });
+                } catch (RazorpayException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
 
         return listViewPayment;
+    }
+
+    public ArrayList<String> fetchData(String payId) throws RazorpayException {
+        ArrayList<String> list = new ArrayList<>();
+        RazorpayClient razorpayClient = new RazorpayClient("rzp_test_sAUX9CKy38r5OA","qgqr52bFjPFQhE9AZDcs2UGp");
+        Payment payment = razorpayClient.Payments.fetch(payId);
+        list.add(payment.get("amount").toString());
+        list.add(payment.get("id").toString());
+        list.add(payment.get("created_at").toString());
+        return list;
     }
 }
