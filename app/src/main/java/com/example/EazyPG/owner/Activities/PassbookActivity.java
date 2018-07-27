@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
@@ -48,6 +49,7 @@ public class PassbookActivity extends AppCompatActivity {
     ImageView addInflow, addOutflow;
 
     View view1;
+    TextView custom_title;
 
     LayoutInflater inflater;
 
@@ -106,9 +108,13 @@ public class PassbookActivity extends AppCompatActivity {
                 paidBy = viewDialog.findViewById(R.id.paidByEditText);
                 paidTo = viewDialog.findViewById(R.id.paidToEditText);
 
+                final View titleView = inflater.inflate(R.layout.custom_titleoutflow, null);
+                custom_title = titleView.findViewById(R.id.titleOutflow);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(PassbookActivity.this);
-                builder.setTitle("Add Outflow Details")
-                        .setView(viewDialog);
+                builder.setCustomTitle(custom_title);
+
+                builder.setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 

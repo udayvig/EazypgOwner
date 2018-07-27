@@ -197,8 +197,8 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
         TextView first = listViewItemStaff.findViewById(R.id.firstTextView);
         TextView second = listViewItemStaff.findViewById(R.id.secondTextView);
         final TextView third = listViewItemStaff.findViewById(R.id.thirdTextView);
-        TextView fourth = listViewItemStaff.findViewById(R.id.fourthTextView);
-        TextView fifth = listViewItemStaff.findViewById(R.id.fifthTextView);
+        //TextView fourth = listViewItemStaff.findViewById(R.id.fourthTextView);
+        //TextView fifth = listViewItemStaff.findViewById(R.id.fifthTextView);
 
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,8 +223,8 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
         first.setText(staffDetails.getName());
         second.setText(staffDetails.getJobDesc());
         third.setText(staffDetails.getContact());
-        fourth.setText(staffDetails.getSalary());
-        fifth.setText(staffDetails.getDateOfJoining());
+        //fourth.setText(staffDetails.getSalary());
+        //fifth.setText(staffDetails.getDateOfJoining());
 
         return listViewItemStaff;
     }
