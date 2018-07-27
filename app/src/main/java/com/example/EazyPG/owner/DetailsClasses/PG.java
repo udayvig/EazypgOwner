@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner;
+package com.example.EazyPG.owner.DetailsClasses;
 
 public class PG {
 
