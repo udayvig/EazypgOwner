@@ -1459,7 +1459,7 @@
             android:textColor="#000000"
             android:textColorHint="#616161"
             android:layout_below="@id/D2HRoomNumberEditText"
-            android:hint=" Company Name"/>
+            android:hint=" Brand"/>
         <EditText
             android:id="@+id/D2HDaysEditText"
             android:layout_below="@id/D2HCompanyNameEditText"

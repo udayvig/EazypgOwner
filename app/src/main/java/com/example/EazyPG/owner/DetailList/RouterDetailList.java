@@ -140,6 +140,8 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText RouterAntenna, RouterCompanyName, RouterDays, RouterModel, RouterRoomNo, RouterSpeed;
 
+                final TextView routerCustomTitle;
+
                 RouterAntenna = viewDialog.findViewById(R.id.routerAntennaEditText);
                 RouterCompanyName = viewDialog.findViewById(R.id.routerCompanyNameEditText);
                 RouterDays = viewDialog.findViewById(R.id.routerDaysEditText);
@@ -186,8 +188,14 @@ public class RouterDetailList extends ArrayAdapter<ApplianceDetailRouter>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titlerouter, null);
+                routerCustomTitle = titleView.findViewById(R.id.editrouterCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Router" + " details");
+                builder.setCustomTitle(routerCustomTitle);
+
+                builder.setView(view);
 
                 RouterAntenna.setText(applianceDetailRouter.noOfAntenna);
                 RouterCompanyName.setText(applianceDetailRouter.brand);

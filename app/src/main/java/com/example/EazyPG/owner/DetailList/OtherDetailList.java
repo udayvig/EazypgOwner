@@ -140,6 +140,8 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText OtherCompanyName, OtherName, OtherRoomNo;
 
+                final TextView otherCustomTitle;
+
                 OtherCompanyName = viewDialog.findViewById(R.id.otherCompanyNameEditText);
                 OtherName = viewDialog.findViewById(R.id.otherNameEditText);
                 OtherRoomNo = viewDialog.findViewById(R.id.otherRoomNumberEditText);
@@ -183,8 +185,14 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.VISIBLE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titleother, null);
+                otherCustomTitle = titleView.findViewById(R.id.editotherCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Other Appliance" + " details");
+                builder.setCustomTitle(otherCustomTitle);
+
+                builder.setView(view);
 
                 OtherCompanyName.setText(applianceDetailOther.brand);
                 OtherName.setText(applianceDetailOther.applianceName);

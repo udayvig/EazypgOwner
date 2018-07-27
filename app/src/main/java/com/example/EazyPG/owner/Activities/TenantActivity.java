@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
@@ -79,6 +81,8 @@ public class TenantActivity extends AppCompatActivity {
         rentAmount = findViewById(R.id.tenantRentEditText);
 
         snackbar = Snackbar.make(view, "Tap item to view", Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(ContextCompat.getColor(TenantActivity.this, R.color.DarkGreen));
         snackbar.show();
 
         tenantDetailsList = new ArrayList<>();
@@ -114,16 +118,18 @@ public class TenantActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
-
+                final TextView tenantCustomTitle;
                 name = viewDialog.findViewById(R.id.tenantNameEditText);
                 phone = viewDialog.findViewById(R.id.tenantPhoneEditText);
                 room = viewDialog.findViewById(R.id.tenantRoomEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
                 rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
 
-                final AlertDialog.Builder builder = new AlertDialog.Builder(TenantActivity.this);
+                final View addTitleView = inflater.inflate(R.layout.custom_title4, null);
+                tenantCustomTitle = addTitleView.findViewById(R.id.tenantCustomTitle);
 
-                builder.setTitle("Add Tenant Details");
+                AlertDialog.Builder builder = new AlertDialog.Builder(TenantActivity.this);
+                builder.setCustomTitle(tenantCustomTitle);
 
                 builder.setView(viewDialog);
 

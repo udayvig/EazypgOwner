@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="260dp"
+    android:layout_height="wrap_content"
     android:layout_margin="1dp"
     android:clickable="true"
     android:elevation="5dp"
@@ -18,40 +18,48 @@
         <TextView
             android:id="@+id/firstTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/productsans"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/quicksandbold"
             android:text="First"
+            android:textAllCaps="true"
             android:textColor="#000000"
-            android:textSize="24sp"
+            android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/secondTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="93dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
             android:text="Second"
+            android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/firstTextView" />
 
         <TextView
             android:id="@+id/thirdTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
             android:text="Third"
+            android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/secondTextView"
@@ -60,10 +68,11 @@
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/callButton"
             android:layout_width="52dp"
-            android:layout_height="49dp"
+            android:layout_height="52dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="16dp"
             android:clickable="true"
+            app:backgroundTint="#00C853"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_call_black_24dp" />
@@ -71,13 +80,36 @@
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/paymentButton"
             android:layout_width="52dp"
-            android:layout_height="49dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="20dp"
             android:clickable="true"
-            app:layout_constraintBottom_toTopOf="@+id/callButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="?attr/colorPrimary" />
+            app:backgroundTint="#ff000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/callButton"
+            app:srcCompat="@drawable/payment" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/comfortabold"
+            android:text="Room"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstTextView" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/firstTextView"
+            app:srcCompat="@drawable/enabled" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -139,6 +139,7 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText InductionCompanyName, InductionDays, InductionModel, InductionNoCooktop, InductionPower, InductionRoomNo, InductionType;
+                final TextView inductionCustomTitle;
 
                 InductionCompanyName = viewDialog.findViewById(R.id.inductionCompanyNameEditText);
                 InductionDays = viewDialog.findViewById(R.id.inductionDaysEditText);
@@ -187,8 +188,14 @@ public class InductionDetailList extends ArrayAdapter<ApplianceDetailInduction>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titleinduction, null);
+                inductionCustomTitle = titleView.findViewById(R.id.editInductionCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Induction" + " details");
+                builder.setCustomTitle(inductionCustomTitle);
+
+                builder.setView(view);
 
                 InductionCompanyName.setText(applianceDetailInduction.brand);
                 InductionDays.setText(applianceDetailInduction.timeSinceInstallation);

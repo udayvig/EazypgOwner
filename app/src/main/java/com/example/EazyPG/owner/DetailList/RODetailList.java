@@ -139,6 +139,8 @@ public class RODetailList extends ArrayAdapter<ApplianceDetailRO>{
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText ROCapacity, ROCompanyName, RODays, ROModel, RORoomNo;
+                final TextView roCustomTitle;
+
 
                 ROCapacity = viewDialog.findViewById(R.id.ROCapacityEditText);
                 ROCompanyName = viewDialog.findViewById(R.id.ROCompanyNameEditText);
@@ -185,8 +187,14 @@ public class RODetailList extends ArrayAdapter<ApplianceDetailRO>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titlero, null);
+                roCustomTitle = titleView.findViewById(R.id.editroCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("RO" + " details");
+                builder.setCustomTitle(roCustomTitle);
+
+                builder.setView(view);
 
                 ROCapacity.setText(applianceDetailRO.capacity);
                 ROCompanyName.setText(applianceDetailRO.brand);

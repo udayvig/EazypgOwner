@@ -12,6 +12,6 @@
     android:text=" Add Details"
     android:textSize="25dp"
     android:textColor="#000000"
-    android:fontFamily="@font/productsansbold"
+    android:fontFamily="@font/comfortabold"
     tools:layout_editor_absoluteX="176dp"
     tools:layout_editor_absoluteY="60dp" />

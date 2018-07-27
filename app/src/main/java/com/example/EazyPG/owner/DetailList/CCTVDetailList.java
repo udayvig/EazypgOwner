@@ -134,6 +134,8 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
             @Override
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
+                final TextView cctvCustomTitle;
+
 
                 final EditText CCTVChanel,CCTVCompanyName,CCTVDays,CCTVModel,CCTVNight,CCTVResolution,CCTVRoomNo;
                 RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
@@ -183,8 +185,14 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
                 CCTVResolution = viewDialog.findViewById(R.id.CCTVResolutionEditText);
                 CCTVRoomNo = viewDialog.findViewById(R.id.CCTVRoomNumberEditText);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titlecctv, null);
+                cctvCustomTitle = titleView.findViewById(R.id.editcctvCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("CCTV" + " details");
+                builder.setCustomTitle(cctvCustomTitle);
+
+                builder.setView(view);
 
                 CCTVRoomNo.setText(applianceDetailCCTV.roomNo);
                 CCTVCompanyName.setText(applianceDetailCCTV.brand);

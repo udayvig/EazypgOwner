@@ -139,6 +139,7 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
             public void onClick(View view) {
                 final View viewDialog = inflater.inflate(R.layout.dialog_appliance, null);
                 final EditText IronComanyName, IronDays, IronModel, IronPower, IronRoomNo;
+                final TextView ironCustomTitle;
 
                 IronComanyName = viewDialog.findViewById(R.id.ironCompanyNameEditText);
                 IronDays = viewDialog.findViewById(R.id.ironDaysEditText);
@@ -185,8 +186,14 @@ public class IronDetailList extends ArrayAdapter<ApplianceDetailIron>{
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+
+                final View titleView = inflater.inflate(R.layout.custom_titleiron, null);
+                ironCustomTitle = titleView.findViewById(R.id.editIronCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Iron" + " details");
+                builder.setCustomTitle(ironCustomTitle);
+
+                builder.setView(view);
 
                 IronComanyName.setText(applianceDetailIron.brand);
                 IronDays.setText(applianceDetailIron.timeSinceInstallation);
