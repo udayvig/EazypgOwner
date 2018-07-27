@@ -120,7 +120,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, PaymentActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, id);
+                intent.putExtra(EXTRA_MESSAGE, ids.get(position));
                 context.startActivity(intent);
 
             }
