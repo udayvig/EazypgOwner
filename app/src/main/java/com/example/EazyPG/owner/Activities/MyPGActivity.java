@@ -135,6 +135,13 @@ public class MyPGActivity extends AppCompatActivity {
             }
         });
 
+        rooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyPGActivity.this, RoomsActivity.class));
+            }
+        });
+
         pgName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -40,7 +40,8 @@
 
         <activity android:name="com.example.EazyPG.owner.Activities.ApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PassbookActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.PaymentActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.PaymentActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.RoomsActivity"></activity>
     </application>
 
 </manifest>
