@@ -50,6 +50,7 @@ public class PassbookActivity extends AppCompatActivity {
 
     View view1;
     TextView custom_title;
+    TextView custom_titleInflow;
 
     LayoutInflater inflater;
 
@@ -175,9 +176,13 @@ public class PassbookActivity extends AppCompatActivity {
                 description = viewDialog.findViewById(R.id.inflowDescriptionEditText);
                 paidBy = viewDialog.findViewById(R.id.inflowPaidByEditText);
 
+                final View titleView = inflater.inflate(R.layout.custom_titleinflow, null);
+                custom_titleInflow = titleView.findViewById(R.id.custom_titleinflow);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(PassbookActivity.this);
-                builder.setTitle("Add Inflow Details")
-                        .setView(viewDialog);
+                builder.setCustomTitle(custom_titleInflow);
+
+                builder.setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 

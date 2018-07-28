@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -114,6 +115,8 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
         TextView fourth = listViewItemPassbook.findViewById(R.id.fourthTextView);
         TextView fifth = listViewItemPassbook.findViewById(R.id.fifthTextView);
         TextView sixth;
+        TextView heading = listViewItemPassbook.findViewById(R.id.hollowTextView);
+        TextView seventh = listViewItemPassbook.findViewById(R.id.textView7);
 
         first.setText(passbookDetails.getAmount());
         second.setText(passbookDetails.getDate());
@@ -122,15 +125,20 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
         fifth.setText(passbookDetails.getPaidBy());
 
         if(passbookDetails.inout){
+            heading.setText("Inflow");
+            seventh.setVisibility(View.GONE);
+            heading.setTextColor(Color.rgb(45,167,108));
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setVisibility(View.GONE);
             ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
-            iv.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
+            iv.setImageResource(R.drawable.downarrow);
         }else{
+            heading.setText("Outflow");
+            heading.setTextColor(Color.RED);
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setText(passbookDetails.getPaidTo());
             ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
-            iv.setImageResource(R.drawable.ic_arrow_upward_black_24dp);
+            iv.setImageResource(R.drawable.uparrow);
         }
 
         return listViewItemPassbook;

@@ -161,8 +161,8 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnSignUp"
-        android:layout_width="71dp"
-        android:layout_height="60dp"
+        android:layout_width="65dp"
+        android:layout_height="68dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
@@ -176,10 +176,10 @@
         app:backgroundTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintVertical_bias="0.736" />
 
     <ImageView
         android:id="@+id/nameIcon"

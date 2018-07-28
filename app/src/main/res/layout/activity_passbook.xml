@@ -64,19 +64,19 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/uparrow" />
-
-    <ImageView
-        android:id="@+id/outflow"
-        android:layout_width="31dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="76dp"
         android:layout_marginTop="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/downarrow" />
+
+    <ImageView
+        android:id="@+id/outflow"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/uparrow" />
 
 </android.support.constraint.ConstraintLayout>

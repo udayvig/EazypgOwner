@@ -19,7 +19,7 @@
             android:id="@+id/firstTextView"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="22dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/quicksandbold"
             android:text="First"
@@ -32,10 +32,10 @@
 
         <TextView
             android:id="@+id/secondTextView"
-            android:layout_width="190dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:hint="Add Job"
@@ -45,16 +45,16 @@
             android:textColorHint="#616161"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.14"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toBottomOf="@+id/firstTextView" />
 
         <TextView
             android:id="@+id/thirdTextView"
-            android:layout_width="280dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
@@ -65,7 +65,7 @@
             android:textColorHint="#616161"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView9"
             app:layout_constraintTop_toBottomOf="@+id/secondTextView"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -76,14 +76,14 @@
             android:layout_height="49dp"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:clickable="true"
             android:focusable="true"
             app:backgroundTint="#00C853"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
+            app:layout_constraintHorizontal_bias="0.384"
             app:layout_constraintStart_toEndOf="@+id/thirdTextView"
             app:layout_constraintTop_toBottomOf="@+id/secondTextView"
             app:layout_constraintVertical_bias="0.0"
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:fontFamily="@font/comfortabold"
             android:text="Job"
             android:textColor="#000000"
@@ -104,11 +104,35 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="41dp"
+            android:layout_width="30dp"
             android:layout_height="31dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/firstTextView"
+            app:srcCompat="@drawable/enabled" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/comfortabold"
+            android:text="Phone"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondTextView" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="30dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6"
             app:srcCompat="@drawable/enabled" />
 
     </android.support.constraint.ConstraintLayout>
