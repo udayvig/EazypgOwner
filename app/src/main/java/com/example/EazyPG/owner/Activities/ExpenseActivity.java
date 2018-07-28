@@ -38,6 +38,7 @@ public class ExpenseActivity extends AppCompatActivity {
     EditText amount, category, description, paidBy, paidTo;
 
     View view;
+    View emptyList;
 
     LayoutInflater inflater;
 
@@ -49,6 +50,9 @@ public class ExpenseActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.expenseToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        listView = findViewById(R.id.listViewExpenses);
+        emptyList = findViewById(R.id.emptyListExpenses);
+        listView.setEmptyView(emptyList);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Cashflow/");

@@ -112,16 +112,17 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
         TextView first = listViewItemPassbook.findViewById(R.id.firstTextView);
         TextView second = listViewItemPassbook.findViewById(R.id.secondTextView);
         TextView third = listViewItemPassbook.findViewById(R.id.thirdTextView);
-        TextView fourth = listViewItemPassbook.findViewById(R.id.fourthTextView);
+        // fourth = listViewItemPassbook.findViewById(R.id.fourthTextView);
         TextView fifth = listViewItemPassbook.findViewById(R.id.fifthTextView);
         TextView sixth;
         TextView heading = listViewItemPassbook.findViewById(R.id.hollowTextView);
         TextView seventh = listViewItemPassbook.findViewById(R.id.textView7);
+        ImageView enabled = listViewItemPassbook.findViewById(R.id.enabledImageView);
 
         first.setText(passbookDetails.getAmount());
         second.setText(passbookDetails.getDate());
         third.setText(passbookDetails.getCategory());
-        fourth.setText(passbookDetails.getDescription());
+       // fourth.setText(passbookDetails.getDescription());
         fifth.setText(passbookDetails.getPaidBy());
 
         if(passbookDetails.inout){
@@ -130,6 +131,7 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
             heading.setTextColor(Color.rgb(45,167,108));
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setVisibility(View.GONE);
+            enabled.setVisibility(View.GONE);
             ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
             iv.setImageResource(R.drawable.downarrow);
         }else{

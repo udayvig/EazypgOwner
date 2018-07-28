@@ -49,8 +49,10 @@ public class PassbookActivity extends AppCompatActivity {
     ImageView addInflow, addOutflow;
 
     View view1;
+    View emptyList;
     TextView custom_title;
     TextView custom_titleInflow;
+
 
     LayoutInflater inflater;
 
@@ -62,6 +64,10 @@ public class PassbookActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.passbookToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        listView = findViewById(R.id.listViewPassbook);
+        emptyList = findViewById(R.id.emptyListPassbook);
+        listView.setEmptyView(emptyList);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Cashflow/");

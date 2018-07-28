@@ -14,6 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:clipChildren="false"
+        android:textColorHint="#616161"
         app:hintTextAppearance="@style/TextLabel2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -44,6 +45,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:clipChildren="false"
+        android:textColorHint="#616161"
         app:hintTextAppearance="@style/TextLabel2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
@@ -71,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:textColorHint="#616161"
         android:layout_marginTop="10dp"
         android:clipChildren="false"
         app:hintTextAppearance="@style/TextLabel2"
@@ -100,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
+        android:textColorHint="#616161"
         android:clipChildren="false"
         app:hintTextAppearance="@style/TextLabel2"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +135,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:clipChildren="false"
+        android:textColorHint="#616161"
         app:hintTextAppearance="@style/TextLabel2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout13">

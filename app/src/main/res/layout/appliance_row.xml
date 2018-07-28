@@ -10,7 +10,6 @@
     android:focusable="true"
     app:cardElevation="5dp"
     android:layout_margin="1dp"
-    android:foreground="@drawable/custom_ripple"
     android:layout_height="143dp">
 
     <android.support.constraint.ConstraintLayout

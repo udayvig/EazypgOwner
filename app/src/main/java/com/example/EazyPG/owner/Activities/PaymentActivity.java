@@ -56,7 +56,7 @@ public class PaymentActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
 
         listView = findViewById(R.id.listViewPayment);
-        emptyList = findViewById(R.id.emptyList);
+        emptyList = findViewById(R.id.emptyListPayment);
         listView.setEmptyView(emptyList);
 
         paymentList = new ArrayList<>();

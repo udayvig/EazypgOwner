@@ -14,8 +14,7 @@ import com.example.ainesh.eazypg_owner.R;
 public class ApplianceActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
-    private Button addBtn ;
-
+    private Button addBtn;
     public String[] appliances={"AC","Fan","Lift","Geyser","Washing Machine",
             "RO","Dishwasher","Microwave","Refrigerator","TV","CCTV","Iron",
             "Induction","Router","Heater","D2H","Other"};

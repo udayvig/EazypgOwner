@@ -1,6 +1,5 @@
 package com.example.EazyPG.owner.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -8,12 +7,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailList.D2HDetailList;
 import com.example.EazyPG.owner.DetailList.OtherDetailList;
@@ -104,8 +100,8 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
         TextView toolbarTitle = findViewById(R.id.toolbarText);
 
-        listView = findViewById(R.id.listView);
-        emptyList = findViewById(R.id.emptyList);
+        listView = findViewById(R.id.listViewAppliances);
+        emptyList = findViewById(R.id.emptyListAppliances);
         listView.setEmptyView(emptyList);
 
         view = findViewById(R.id.applianceNameLayout);

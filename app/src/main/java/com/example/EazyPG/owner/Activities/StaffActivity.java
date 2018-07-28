@@ -3,7 +3,6 @@ package com.example.EazyPG.owner.Activities;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -40,6 +39,7 @@ public class StaffActivity extends AppCompatActivity {
 
     ListView listView;
     List<StaffDetails> staffDetailsList;
+    View emptyList;
 
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
@@ -63,12 +63,14 @@ public class StaffActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        listView = findViewById(R.id.listViewStaff);
+        emptyList = findViewById(R.id.emptyListStaff);
+        listView.setEmptyView(emptyList);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = firebaseDatabase.getReference("PG/"+firebaseUser.getUid() + "/Staff/");
 
         inflater = getLayoutInflater();
-
-        listView = findViewById(R.id.listView);
         addStaff = findViewById(R.id.addStaff);
         view = findViewById(R.id.stafflayout);
 

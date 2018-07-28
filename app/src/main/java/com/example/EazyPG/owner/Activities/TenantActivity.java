@@ -42,6 +42,7 @@ public class TenantActivity extends AppCompatActivity {
 
 
     ListView listView;
+    View emptyList;
     List<TenantDetails> tenantDetailsList;
 
     FirebaseUser firebaseUser;
@@ -65,12 +66,16 @@ public class TenantActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        listView = findViewById(R.id.listViewTenant);
+        emptyList = findViewById(R.id.emptyListTenant);
+        listView.setEmptyView(emptyList);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = firebaseDatabase.getReference();
 
         inflater = getLayoutInflater();
 
-        listView = findViewById(R.id.listView);
+        listView = findViewById(R.id.listViewTenant);
         addTenant = findViewById(R.id.addTenant);
         view = findViewById(R.id.tenantLayout);
 
