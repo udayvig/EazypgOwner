@@ -172,8 +172,9 @@ public class RoomsActivity extends AppCompatActivity {
                         radioButton = viewDialog.findViewById(selectedButtonId);
 
                         String room = roomEditText.getText().toString();
+                        String roomType = radioButton.getText().toString();
 
-                        getDetails(room);
+                        getDetails(room, roomType);
 
                     }
                 });
@@ -186,7 +187,7 @@ public class RoomsActivity extends AppCompatActivity {
 
     }
 
-    private void getDetails(final String room) {
+    private void getDetails(final String room, final String roomType) {
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/AC/");
 
@@ -211,7 +212,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(acList.get(i).roomNo).child("Appliance").child(key).setValue(acList.get(i));
-
+                        databaseReference1.child("Rooms").child(acList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
