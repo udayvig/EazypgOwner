@@ -248,6 +248,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(fanList.get(i).roomNo).child("Appliance").child(key).setValue(fanList.get(i));
+                        databaseReference1.child("Rooms").child(fanList.get(i).roomNo).child("Room Type").setValue(roomType);
 
                     }
                 }
@@ -283,7 +284,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(geyserList.get(i).roomNo).child("Appliance").child(key).setValue(geyserList.get(i));
-
+                        databaseReference1.child("Rooms").child(geyserList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -318,7 +319,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(washingMachineList.get(i).roomNo).child("Appliance").child(key).setValue(washingMachineList.get(i));
-
+                        databaseReference1.child("Rooms").child(washingMachineList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -353,7 +354,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(roList.get(i).roomNo).child("Appliance").child(key).setValue(roList.get(i));
-
+                        databaseReference1.child("Rooms").child(roList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -388,7 +389,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(dishwasherList.get(i).roomNo).child("Appliance").child(key).setValue(dishwasherList.get(i));
-
+                        databaseReference1.child("Rooms").child(dishwasherList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -423,7 +424,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(microwaveList.get(i).roomNo).child("Appliance").child(key).setValue(microwaveList.get(i));
-
+                        databaseReference1.child("Rooms").child(microwaveList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -458,7 +459,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(refrigeratorList.get(i).roomNo).child("Appliance").child(key).setValue(refrigeratorList.get(i));
-
+                        databaseReference1.child("Rooms").child(refrigeratorList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -493,7 +494,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(tvList.get(i).roomNo).child("Appliance").child(key).setValue(tvList.get(i));
-
+                        databaseReference1.child("Rooms").child(tvList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -528,7 +529,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(cctvList.get(i).roomNo).child("Appliance").child(key).setValue(cctvList.get(i));
-
+                        databaseReference1.child("Rooms").child(cctvList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -563,7 +564,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(ironList.get(i).roomNo).child("Appliance").child(key).setValue(ironList.get(i));
-
+                        databaseReference1.child("Rooms").child(ironList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -598,7 +599,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(inductionList.get(i).roomNo).child("Appliance").child(key).setValue(inductionList.get(i));
-
+                        databaseReference1.child("Rooms").child(inductionList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -633,7 +634,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(routerList.get(i).roomNo).child("Appliance").child(key).setValue(routerList.get(i));
-
+                        databaseReference1.child("Rooms").child(routerList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -668,7 +669,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(heaterList.get(i).roomNo).child("Appliance").child(key).setValue(heaterList.get(i));
-
+                        databaseReference1.child("Rooms").child(heaterList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -703,7 +704,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(d2HList.get(i).roomNo).child("Appliance").child(key).setValue(d2HList.get(i));
-
+                        databaseReference1.child("Rooms").child(d2HList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
@@ -738,7 +739,7 @@ public class RoomsActivity extends AppCompatActivity {
 
                         String key = databaseReference.push().getKey();
                         databaseReference1.child("Rooms").child(otherList.get(i).roomNo).child("Appliance").child(key).setValue(otherList.get(i));
-
+                        databaseReference1.child("Rooms").child(otherList.get(i).roomNo).child("Room Type").setValue(roomType);
                     }
                 }
 
