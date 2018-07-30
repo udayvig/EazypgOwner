@@ -106,9 +106,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public String[] appliances={"AC","Fan","Lift","Geyser","Washing Machine",
-                "RO","Dishwasher","Microwave","Refrigerator","TV","CCTV","Iron",
-                "Induction","Router","Heater","D2H","Other"};
+        public String[] appliances={"AC", "CCTV", "D2H", "Dishwasher", "Fan", "Geyser", "Heater", "Induction",
+                "Iron", "Lift", "Microwave", "Other", "Refrigerator", "RO", "Router", "TV", "Washing Machine"};
         private TextView iconTextView;
         private Button iconButton;
         private final Context context;
@@ -147,112 +146,112 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                         case 1:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Fan";
+                            message = "CCTV";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 2:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Lift";
+                            message = "D2H";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 3:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Geyser";
+                            message = "Dishwasher";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 4:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Washing Machine";
+                            message = "Fan";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 5:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "RO";
+                            message = "Geyser";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 6:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Dishwasher";
+                            message = "Heater";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 7:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Microwave";
+                            message = "Induction";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 8:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Refrigerator";
+                            message = "Iron";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 9:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "TV";
+                            message = "Lift";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 10:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "CCTV";
+                            message = "Microwave";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 11:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Iron";
+                            message = "Other";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 12:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Induction";
+                            message = "Refrigerator";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 13:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Router";
+                            message = "RO";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 14:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Heater";
+                            message = "Router";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 15:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "D2H";
+                            message = "TV";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;
 
                         case 16:
                             intent = new Intent(context, ApplianceDetailsActivity.class);
-                            message = "Other";
+                            message = "Washing Machine";
                             intent.putExtra(EXTRA_MESSAGE, message);
                             context.startActivity(intent);
                             break;

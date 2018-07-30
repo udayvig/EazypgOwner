@@ -1,7 +1,8 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -109,38 +110,48 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
             }
         });*/
 
+        listViewItemPassbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                final View viewDialog = inflater.inflate(R.layout.dialog_passbook_description, null, false);
+
+                TextView description = viewDialog.findViewById(R.id.passbookDescription);
+                description.setText(passbookDetails.getDescription());
+                builder.setView(viewDialog);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+
         TextView first = listViewItemPassbook.findViewById(R.id.firstTextView);
         TextView second = listViewItemPassbook.findViewById(R.id.secondTextView);
         TextView third = listViewItemPassbook.findViewById(R.id.thirdTextView);
-        // fourth = listViewItemPassbook.findViewById(R.id.fourthTextView);
+        TextView fourth = listViewItemPassbook.findViewById(R.id.fourthTextView);
         TextView fifth = listViewItemPassbook.findViewById(R.id.fifthTextView);
         TextView sixth;
-        TextView heading = listViewItemPassbook.findViewById(R.id.hollowTextView);
-        TextView seventh = listViewItemPassbook.findViewById(R.id.textView7);
-        ImageView enabled = listViewItemPassbook.findViewById(R.id.enabledImageView);
 
         first.setText(passbookDetails.getAmount());
         second.setText(passbookDetails.getDate());
         third.setText(passbookDetails.getCategory());
-       // fourth.setText(passbookDetails.getDescription());
+        fourth.setText(passbookDetails.getDescription());
         fifth.setText(passbookDetails.getPaidBy());
 
         if(passbookDetails.inout){
-            heading.setText("Inflow");
-            seventh.setVisibility(View.GONE);
-            heading.setTextColor(Color.rgb(45,167,108));
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setVisibility(View.GONE);
-            enabled.setVisibility(View.GONE);
             ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
-            iv.setImageResource(R.drawable.downarrow);
+            iv.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
         }else{
-            heading.setText("Outflow");
-            heading.setTextColor(Color.RED);
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setText(passbookDetails.getPaidTo());
             ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
-            iv.setImageResource(R.drawable.uparrow);
+            iv.setImageResource(R.drawable.ic_arrow_upward_black_24dp);
         }
 
         return listViewItemPassbook;

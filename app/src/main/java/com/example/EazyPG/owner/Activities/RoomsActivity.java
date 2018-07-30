@@ -1,12 +1,11 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ACDetails;
@@ -42,7 +40,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +59,7 @@ public class RoomsActivity extends AppCompatActivity {
     DatabaseReference databaseReference, databaseReference1;
 
     List<String> rooms;
+    List<String> roomTypeList;
 
     List<ACDetails> acList;
     List<FanDetails> fanList;
@@ -104,6 +102,7 @@ public class RoomsActivity extends AppCompatActivity {
         databaseReference1 = firebaseDatabase.getReference();
 
         rooms = new ArrayList<>();
+        roomTypeList = new ArrayList<>();
 
         acList = new ArrayList<>();
         fanList = new ArrayList<>();
@@ -132,16 +131,17 @@ public class RoomsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                roomTypeList.clear();
                 rooms.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
                     String room = snapshot.getKey();
                     rooms.add(room);
-
+                    String roomType = snapshot.child("Room Type").getValue(String.class);
+                    roomTypeList.add(roomType);
                 }
 
-                RoomsDetailList adapter = new RoomsDetailList(RoomsActivity.this, rooms);
+                RoomsDetailList adapter = new RoomsDetailList(RoomsActivity.this, rooms, roomTypeList);
                 listView.setAdapter(adapter);
 
             }

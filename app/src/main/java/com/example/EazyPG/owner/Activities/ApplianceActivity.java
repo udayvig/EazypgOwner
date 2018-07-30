@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
 
 import com.example.ainesh.eazypg_owner.R;
@@ -14,10 +12,10 @@ import com.example.ainesh.eazypg_owner.R;
 public class ApplianceActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
-    private Button addBtn;
-    public String[] appliances={"AC","Fan","Lift","Geyser","Washing Machine",
-            "RO","Dishwasher","Microwave","Refrigerator","TV","CCTV","Iron",
-            "Induction","Router","Heater","D2H","Other"};
+    private Button addBtn ;
+
+    public String[] appliances={"AC", "CCTV", "D2H", "Dishwasher", "Fan", "Geyser", "Heater", "Induction",
+            "Iron", "Lift", "Microwave", "Other", "Refrigerator", "RO", "Router", "TV", "Washing Machine"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

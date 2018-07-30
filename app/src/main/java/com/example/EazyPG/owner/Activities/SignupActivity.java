@@ -61,15 +61,13 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "","Creating User..", true);
-
                 userEmail = etUserEmail.getText().toString();
                 userLocality = etUserLocality.getText().toString();
                 userContact = etUserContact.getText().toString();
                 userName = etUserName.getText().toString();
 
                 if (!userEmail.isEmpty() && !userLocality.isEmpty() && !userContact.isEmpty() && !userName.isEmpty()) {
-
+                    final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "","Creating User..", true);
                     String password = passwordGeneration();
                     mFirebaseAuth.createUserWithEmailAndPassword(userEmail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
