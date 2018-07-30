@@ -60,6 +60,9 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
         TextView first = listViewItemLift.findViewById(R.id.firstTextView);
         TextView second = listViewItemLift.findViewById(R.id.secondTextView);
         TextView third = listViewItemLift.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemLift.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemLift.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemLift.findViewById(R.id.textViewSubHead2);
 
         final ApplianceDetailLift applianceDetailLift = liftList.get(position);
 
@@ -258,6 +261,8 @@ public class LiftDetailList extends ArrayAdapter<ApplianceDetailLift>{
         first.setText(applianceDetailLift.getBrand());
         second.setText(applianceDetailLift.getDoorType());
         third.setText(applianceDetailLift.getTimeSinceInstallation());
+        head.setText("Brand");
+        subHead1.setText("Type");
 
         return listViewItemLift;
     }

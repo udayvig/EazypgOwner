@@ -91,7 +91,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/productsans"
-                android:text="Nothing to show"
+                android:text="No Tenants to show"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"

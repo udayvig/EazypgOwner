@@ -262,6 +262,9 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
         TextView first = listViewItemCCTV.findViewById(R.id.firstTextView);
         TextView second = listViewItemCCTV.findViewById(R.id.secondTextView);
         TextView third = listViewItemCCTV.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemCCTV.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemCCTV.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemCCTV.findViewById(R.id.textViewSubHead2);
 
         first.setText(applianceDetailCCTV.getRoomNo());
         second.setText(applianceDetailCCTV.getBrand());

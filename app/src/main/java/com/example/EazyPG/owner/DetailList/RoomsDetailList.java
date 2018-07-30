@@ -21,7 +21,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
 
     private Activity context;
     private List<String> roomList;
-    private TextView first, second;
+    private TextView first, second , third , fourth;
     private List<String> roomTypeList;
 
     public RoomsDetailList(Activity context, List<String> roomList, List<String> roomTypeList) {
@@ -44,13 +44,15 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         View listViewItemRoom = inflater.inflate(R.layout.room_row, null, true);
         first = listViewItemRoom.findViewById(R.id.firstTextView);
         second = listViewItemRoom.findViewById(R.id.secondTextView);
+        third = listViewItemRoom.findViewById(R.id.thirdTextView);
+        fourth = listViewItemRoom.findViewById(R.id.fourthTextView);
 
         String roomType = roomTypeList.get(position);
 
-        second.setText(roomType);
+        fourth.setText(roomType);
 
         Log.i("C",position+ ":"+roomType);
-        first.setText(roomList.get(position));
+        third.setText(roomList.get(position));
 
         return listViewItemRoom;
     }

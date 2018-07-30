@@ -9,9 +9,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout17"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginTop="16dp"
         android:clipChildren="false"
         app:hintTextAppearance="@style/TextLabel3"
@@ -22,7 +23,7 @@
 
         <EditText
             android:id="@+id/inflowAmountEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="16dp"
@@ -42,9 +43,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout19"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginTop="8dp"
         android:clipChildren="false"
         android:textColorHint="#616161"
@@ -55,7 +57,7 @@
 
         <EditText
             android:id="@+id/inflowCategoryEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:ems="10"
@@ -73,8 +75,9 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout18"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
         android:layout_marginStart="16dp"
         app:hintTextAppearance="@style/TextLabel3"
         android:layout_marginTop="8dp"
@@ -86,7 +89,7 @@
 
         <EditText
             android:id="@+id/inflowDescriptionEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:ems="10"
@@ -104,9 +107,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout20"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginTop="12dp"
         android:clipChildren="false"
         app:hintTextAppearance="@style/TextLabel3"
@@ -117,7 +121,7 @@
 
         <EditText
             android:id="@+id/inflowPaidByEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:ems="10"

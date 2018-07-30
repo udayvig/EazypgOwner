@@ -60,6 +60,9 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
         TextView first = listViewItemOther.findViewById(R.id.firstTextView);
         TextView second = listViewItemOther.findViewById(R.id.secondTextView);
         TextView third = listViewItemOther.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemOther.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemOther.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemOther.findViewById(R.id.textViewSubHead2);
 
         final ApplianceDetailOther applianceDetailOther= OtherList.get(position);
 
@@ -252,6 +255,8 @@ public class OtherDetailList extends ArrayAdapter<ApplianceDetailOther>{
         first.setText(applianceDetailOther.getRoomNo());
         second.setText(applianceDetailOther.getApplianceName());
         third.setText(applianceDetailOther.getBrand());
+        subHead1.setText("Name");
+        subHead2.setText("Brand");
 
         return listViewItemOther;
     }

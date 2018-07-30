@@ -258,10 +258,15 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
         TextView first = listViewItemAC.findViewById(R.id.firstTextView);
         TextView second = listViewItemAC.findViewById(R.id.secondTextView);
         TextView third = listViewItemAC.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemAC.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemAC.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemAC.findViewById(R.id.textViewSubHead2);
+
 
         first.setText(applianceDetailAC.getRoomNo());
         second.setText(applianceDetailAC.getBrand());
         third.setText(applianceDetailAC.getLastServiceDate());
+        subHead2.setText("Last Service Date");
 
         return listViewItemAC;
     }

@@ -7,8 +7,9 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout17"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginStart="16dp"
         android:textColorHint="#616161"
         android:layout_marginTop="16dp"
@@ -20,7 +21,7 @@
 
         <EditText
             android:id="@+id/expenseAmountEditText"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/roundedcorners"
@@ -40,9 +41,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout18"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginTop="8dp"
         android:clipChildren="false"
         android:paddingBottom="1dp"
@@ -53,7 +55,7 @@
 
         <EditText
             android:id="@+id/categoryEditText"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:ems="10"
@@ -73,9 +75,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout19"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginTop="8dp"
         android:textColorHint="#616161"
         android:clipChildren="false"
@@ -86,7 +89,7 @@
 
         <EditText
             android:id="@+id/descriptionEditText"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:ems="10"
@@ -106,9 +109,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout20"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textColorHint="#616161"
+        android:layout_marginEnd="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:clipChildren="false"
@@ -119,7 +123,7 @@
 
         <EditText
             android:id="@+id/paidByEditText"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:ems="10"
@@ -138,9 +142,10 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout21"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginTop="8dp"
         android:textColorHint="#616161"
         android:clipChildren="false"
@@ -151,7 +156,7 @@
 
         <EditText
             android:id="@+id/paidToEditText"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedcorners"
             android:ems="10"

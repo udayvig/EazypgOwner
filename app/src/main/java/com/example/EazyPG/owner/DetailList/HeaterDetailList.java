@@ -60,6 +60,9 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
         TextView first = listViewItemHeater.findViewById(R.id.firstTextView);
         TextView second = listViewItemHeater.findViewById(R.id.secondTextView);
         TextView third = listViewItemHeater.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemHeater.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemHeater.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemHeater.findViewById(R.id.textViewSubHead2);
 
         final ApplianceDetailHeater applianceDetailHeater= HeaterList.get(position);
 
@@ -263,6 +266,7 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
         first.setText(applianceDetailHeater.getRoomNo());
         second.setText(applianceDetailHeater.getBrand());
         third.setText(applianceDetailHeater.getInputPower());
+        subHead2.setText("Power");
 
         return listViewItemHeater;
     }

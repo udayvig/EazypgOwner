@@ -119,9 +119,9 @@ public class LoginActivity extends AppCompatActivity {
                     ((ViewGroup) input.getParent()).removeView(input);
                 }
                 AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle("Reset Password")
+                builder.setTitle(" Reset Password")
                         .setMessage("Enter your Email Id")
-                        .setIcon(R.drawable.ic_email_black_24dp)
+                        .setIcon(R.drawable.letter)
                         .setView(input)
                         .setPositiveButton("Send Email", new DialogInterface.OnClickListener() {
                             @Override

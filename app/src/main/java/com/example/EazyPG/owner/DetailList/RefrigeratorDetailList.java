@@ -60,6 +60,9 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
         TextView first = listViewItemRefrigerator.findViewById(R.id.firstTextView);
         TextView second = listViewItemRefrigerator.findViewById(R.id.secondTextView);
         TextView third = listViewItemRefrigerator.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemRefrigerator.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemRefrigerator.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemRefrigerator.findViewById(R.id.textViewSubHead2);
 
         final ApplianceDetailRefrigerator applianceDetailRefrigerator= RefrigeratorList.get(position);
 
@@ -263,7 +266,7 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
         first.setText(applianceDetailRefrigerator.getRoomNo());
         second.setText(applianceDetailRefrigerator.getBrand());
         third.setText(applianceDetailRefrigerator.getTypeOfRefrigerator());
-
+        subHead2.setText("Type");
         return listViewItemRefrigerator;
     }
 

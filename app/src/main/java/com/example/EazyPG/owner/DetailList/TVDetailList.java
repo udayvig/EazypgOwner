@@ -60,6 +60,9 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
         TextView first = listViewItemTV.findViewById(R.id.firstTextView);
         TextView second = listViewItemTV.findViewById(R.id.secondTextView);
         TextView third = listViewItemTV.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemTV.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemTV.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemTV.findViewById(R.id.textViewSubHead2);
 
         final ApplianceDetailTV applianceDetailTV= TVList.get(position);
 
@@ -264,6 +267,7 @@ public class TVDetailList extends ArrayAdapter<ApplianceDetailTV>{
         first.setText(applianceDetailTV.getRoomNo());
         second.setText(applianceDetailTV.getBrand());
         third.setText(applianceDetailTV.getTypeOfTV());
+        subHead2.setText("Type");
 
         return listViewItemTV;
     }

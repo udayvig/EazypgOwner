@@ -61,6 +61,9 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
         TextView first = listViewItemMicrowave.findViewById(R.id.firstTextView);
         TextView second = listViewItemMicrowave.findViewById(R.id.secondTextView);
         TextView third = listViewItemMicrowave.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemMicrowave.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemMicrowave.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemMicrowave.findViewById(R.id.textViewSubHead2);
 
         final ApplianceDetailMicrowave applianceDetailMicrowave= MicrowaveList.get(position);
 
@@ -262,6 +265,7 @@ public class MicrowaveDetailList extends ArrayAdapter<ApplianceDetailMicrowave>{
         first.setText(applianceDetailMicrowave.getRoomNo());
         second.setText(applianceDetailMicrowave.getBrand());
         third.setText(applianceDetailMicrowave.getCapacity());
+        subHead2.setText("Capacity");
 
         return listViewItemMicrowave;
     }

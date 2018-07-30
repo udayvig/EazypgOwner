@@ -60,6 +60,9 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
         TextView first = listViewItemWashingMachine.findViewById(R.id.firstTextView);
         TextView second = listViewItemWashingMachine.findViewById(R.id.secondTextView);
         TextView third = listViewItemWashingMachine.findViewById(R.id.thirdTextView);
+        TextView head = listViewItemWashingMachine.findViewById(R.id.textViewHead);
+        TextView subHead1 = listViewItemWashingMachine.findViewById(R.id.textViewSubHead1);
+        TextView subHead2 = listViewItemWashingMachine.findViewById(R.id.textViewSubHead2);
 
         final ApplianceDetailWashingMachine applianceDetailWashingMachine = washingMachineList.get(position);
 
@@ -269,6 +272,7 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
         first.setText(applianceDetailWashingMachine.getRoomNo());
         second.setText(applianceDetailWashingMachine.getBrand());
         third.setText(applianceDetailWashingMachine.getTypeOfMachine());
+        subHead2.setText("Type");
 
         return listViewItemWashingMachine;
     }
