@@ -30,6 +30,7 @@ import com.example.EazyPG.owner.DetailsClasses.RODetails;
 import com.example.EazyPG.owner.DetailsClasses.RefrigeratorDetails;
 import com.example.EazyPG.owner.DetailsClasses.RouterDetails;
 import com.example.EazyPG.owner.DetailsClasses.TVDetails;
+import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.EazyPG.owner.DetailsClasses.WashingMachineDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,6 +61,8 @@ public class RoomsActivity extends AppCompatActivity {
 
     List<String> rooms;
     List<String> roomTypeList;
+
+    List<TenantDetails> tenantList;
 
     List<ACDetails> acList;
     List<FanDetails> fanList;
@@ -103,6 +106,8 @@ public class RoomsActivity extends AppCompatActivity {
 
         rooms = new ArrayList<>();
         roomTypeList = new ArrayList<>();
+
+        tenantList = new ArrayList<>();
 
         acList = new ArrayList<>();
         fanList = new ArrayList<>();
@@ -174,8 +179,8 @@ public class RoomsActivity extends AppCompatActivity {
                         String room = roomEditText.getText().toString();
                         String roomType = radioButton.getText().toString();
 
-                        getDetails(room, roomType);
-
+                        getRoomDetails(room, roomType);
+                        getTenantDetails(room);
                     }
                 });
 
@@ -187,7 +192,37 @@ public class RoomsActivity extends AppCompatActivity {
 
     }
 
-    private void getDetails(final String room, final String roomType) {
+    private void getTenantDetails(final String room){
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tenantList.clear();
+
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
+                    tenantList.add(tenantDetails);
+                }
+
+                databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
+
+                for(int i = 0; i < tenantList.size(); i++){
+                    if (tenantList.get(i).room.equals(room)) {
+                        String key = databaseReference.push().getKey();
+                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child(key).setValue(tenantList.get(i));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getRoomDetails(final String room, final String roomType) {
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/AC/");
 

@@ -3,11 +3,11 @@ package com.example.EazyPG.owner.DetailList;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ainesh.eazypg_owner.R;
@@ -24,6 +24,8 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     private TextView first, second , third , fourth;
     private List<String> roomTypeList;
 
+    private Button applianceButton, tenantButton;
+
     public RoomsDetailList(Activity context, List<String> roomList, List<String> roomTypeList) {
         super(context, R.layout.room_row, roomList);
 
@@ -33,12 +35,12 @@ public class RoomsDetailList extends ArrayAdapter<String> {
 
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms");
+    DatabaseReference databaseReference;
 
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         final LayoutInflater inflater = context.getLayoutInflater();
         View listViewItemRoom = inflater.inflate(R.layout.room_row, null, true);
@@ -47,13 +49,36 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         third = listViewItemRoom.findViewById(R.id.thirdTextView);
         fourth = listViewItemRoom.findViewById(R.id.fourthTextView);
 
-        String roomType = roomTypeList.get(position);
+        applianceButton = listViewItemRoom.findViewById(R.id.appliancesButton);
+        tenantButton = listViewItemRoom.findViewById(R.id.tenantButton);
 
-        fourth.setText(roomType);
-
-        Log.i("C",position+ ":"+roomType);
         third.setText(roomList.get(position));
+        fourth.setText(roomTypeList.get(position));
+
+        applianceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fetchAppliance(roomList.get(position));
+            }
+        });
+
+        tenantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         return listViewItemRoom;
     }
+
+    private void fetchAppliance(String room) {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + room + "/Appliance/");
+
+
+
+    }
+
+
 }

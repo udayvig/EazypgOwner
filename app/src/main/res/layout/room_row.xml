@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:layout_margin="1dp"
     android:clickable="true"
     android:elevation="5dp"
@@ -34,29 +33,28 @@
             android:id="@+id/thirdTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="11dp"
             android:fontFamily="@font/productsansbold"
             android:text="TextView"
             android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="#029002"
+            android:textSize="26dp"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/fourthTextView"
-            android:layout_width="180dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:layout_marginStart="2dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:text="TextView"
-            android:textSize="19dp"
             android:textAlignment="center"
             android:textColor="#000000"
+            android:textSize="19dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView12"
             app:layout_constraintTop_toBottomOf="@+id/thirdTextView" />
@@ -66,38 +64,52 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="1dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/secondTextView"
             app:layout_constraintTop_toBottomOf="@+id/thirdTextView"
             app:srcCompat="@drawable/enabled" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="12dp"
-            android:clickable="true"
-            app:backgroundTint="#F9CC0B"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/boy" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="12dp"
-            android:clickable="true"
-            app:backgroundTint="#ffffff"
+        <Button
+            android:id="@+id/tenantButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/boy"
+            android:elevation="10dp"
+            android:foreground="?selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
-            app:srcCompat="@drawable/bulb" />
+            app:layout_constraintEnd_toStartOf="@+id/appliancesButton"
+            app:layout_constraintStart_toEndOf="@+id/fourthTextView" />
+
+        <Button
+            android:id="@+id/appliancesButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bulb"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Room"
+            android:textSize="20dp"
+            android:fontFamily="@font/comfortabold"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>
