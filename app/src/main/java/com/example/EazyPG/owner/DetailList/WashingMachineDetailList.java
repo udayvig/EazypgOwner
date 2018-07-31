@@ -50,6 +50,8 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Washing Machine");
     List<String> ids = new ArrayList<>();
 
+    List<String> rooms = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -77,9 +79,10 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
                     WashingMachineDetails washingMachineDetails = snapshot.getValue(WashingMachineDetails.class);
 
                     String id = washingMachineDetails.id;
-
                     ids.add(id);
 
+                    String room = washingMachineDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -123,6 +126,8 @@ public class WashingMachineDetailList extends ArrayAdapter<ApplianceDetailWashin
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/Washing Machine/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }

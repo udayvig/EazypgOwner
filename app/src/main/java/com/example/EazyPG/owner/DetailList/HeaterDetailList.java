@@ -49,6 +49,7 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Heater");
     List<String> ids = new ArrayList<>();
+    List<String> rooms = new ArrayList<>();
 
     @NonNull
     @Override
@@ -77,9 +78,10 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
                     HeaterDetails heaterDetails = snapshot.getValue(HeaterDetails.class);
 
                     String id = heaterDetails.id;
-
                     ids.add(id);
 
+                    String room = heaterDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -123,6 +125,8 @@ public class HeaterDetailList extends ArrayAdapter<ApplianceDetailHeater>{
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/Heater/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else {
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }

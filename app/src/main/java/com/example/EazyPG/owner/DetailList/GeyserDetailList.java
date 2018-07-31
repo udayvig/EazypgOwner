@@ -50,6 +50,8 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Geyser");
     List<String> ids = new ArrayList<>();
 
+    List<String> rooms = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -74,9 +76,10 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
                     GeyserDetails geyserDetails = snapshot.getValue(GeyserDetails.class);
 
                     String id = geyserDetails.id;
-
                     ids.add(id);
 
+                    String room = geyserDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -120,6 +123,8 @@ public class GeyserDetailList extends ArrayAdapter<ApplianceDetailGeyser>{
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/Geyser/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }

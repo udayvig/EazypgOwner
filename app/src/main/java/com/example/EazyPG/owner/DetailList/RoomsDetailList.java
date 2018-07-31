@@ -12,8 +12,11 @@ import android.widget.TextView;
 
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -23,6 +26,8 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     private List<String> roomList;
     private TextView first, second , third , fourth;
     private List<String> roomTypeList;
+
+
 
     private Button applianceButton, tenantButton;
 
@@ -76,6 +81,18 @@ public class RoomsDetailList extends ArrayAdapter<String> {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + room + "/Appliance/");
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }

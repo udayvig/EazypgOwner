@@ -50,6 +50,8 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Refrigerator");
     List<String> ids = new ArrayList<>();
 
+    List<String> rooms = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -77,9 +79,10 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
                     RefrigeratorDetails refrigeratorDetails = snapshot.getValue(RefrigeratorDetails.class);
 
                     String id = refrigeratorDetails.id;
-
                     ids.add(id);
 
+                    String room = refrigeratorDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -124,6 +127,8 @@ public class RefrigeratorDetailList extends ArrayAdapter<ApplianceDetailRefriger
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/Refrigerator/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
