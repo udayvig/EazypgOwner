@@ -50,6 +50,8 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/CCTV");
     List<String> ids = new ArrayList<>();
 
+    List<String> rooms = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -70,9 +72,10 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
                     CCTVDetails cctvDetails = snapshot.getValue(CCTVDetails.class);
 
                     String id = cctvDetails.id;
-
                     ids.add(id);
 
+                    String room = cctvDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -116,6 +119,8 @@ public class CCTVDetailList extends ArrayAdapter<ApplianceDetailCCTV>{
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/CCTV/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }

@@ -50,6 +50,8 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/AC");
     List<String> ids = new ArrayList<>();
 
+    List<String> rooms = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -63,15 +65,17 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 ids.clear();
+                rooms.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     ACDetails acDetails = snapshot.getValue(ACDetails.class);
 
                     String id = acDetails.id;
-
                     ids.add(id);
 
+                    String room = acDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -115,6 +119,9 @@ public class ACDetailList extends ArrayAdapter<ApplianceDetailAC>{
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/AC/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }

@@ -50,6 +50,8 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/Fan");
     List<String> ids = new ArrayList<>();
 
+    List<String> rooms = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -69,9 +71,10 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
                     FanDetails fanDetails = snapshot.getValue(FanDetails.class);
 
                     String id = fanDetails.id;
-
                     ids.add(id);
 
+                    String room = fanDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -115,6 +118,8 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/Fan/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }

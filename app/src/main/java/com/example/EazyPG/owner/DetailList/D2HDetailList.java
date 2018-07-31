@@ -50,6 +50,8 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/"+FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Appliances/D2H");
     List<String> ids = new ArrayList<>();
 
+    List<String> rooms = new ArrayList<>();
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -70,9 +72,10 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                     D2HDetails d2HDetails = snapshot.getValue(D2HDetails.class);
 
                     String id = d2HDetails.id;
-
                     ids.add(id);
 
+                    String room = d2HDetails.roomNo;
+                    rooms.add(room);
                 }
             }
 
@@ -116,6 +119,8 @@ public class D2HDetailList extends ArrayAdapter<ApplianceDetailD2H>{
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/D2H/" + ids.get(position));
+                            databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
