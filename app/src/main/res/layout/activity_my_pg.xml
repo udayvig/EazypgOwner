@@ -445,7 +445,7 @@
                 android:layout_height="30dp"
                 android:layout_alignEnd="@+id/landmark"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -455,14 +455,14 @@
                 android:textAlignment="textStart"
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/applianceFlash"
+                app:layout_constraintStart_toStartOf="@+id/applianceFlash"
                 app:layout_constraintTop_toBottomOf="@+id/noOfBathroomTextView" />
 
             <ImageView
                 android:id="@+id/applianceFlash"
                 android:layout_width="35dp"
                 android:layout_height="39dp"
-                android:layout_marginStart="11dp"
+                android:layout_marginStart="13dp"
                 android:layout_marginTop="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noOfBathroomTextView"
@@ -472,27 +472,24 @@
                 android:id="@+id/imageView3"
                 android:layout_width="30dp"
                 android:layout_height="37dp"
-                android:layout_marginStart="244dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/noOfBathroomTextView"
+                app:layout_constraintTop_toBottomOf="@+id/applianceFlash"
                 app:srcCompat="@drawable/bed" />
 
             <TextView
                 android:id="@+id/roomTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
                 android:fontFamily="@font/productsansbold"
                 android:text="ROOMS"
                 android:textColor="#000000"
                 android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/noOfBathroomTextView"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/applianceTextView" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

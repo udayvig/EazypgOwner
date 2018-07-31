@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/expenselayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.EazyPG.owner.Activities.ExpenseActivity"
-    android:id="@+id/expenselayout">
+    tools:context="com.example.EazyPG.owner.Activities.ExpenseActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/expenseToolbar"
@@ -25,7 +24,7 @@
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="17dp"
         android:fontFamily="@font/productsans"
         android:text="Exepense Details"
         android:textColor="#1aba34"
@@ -37,8 +36,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="578dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenseToolbar">
@@ -82,7 +81,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/productsans"
-                android:text="Nothing to show"
+                android:text="No Expenses to show"
                 android:textColor="#000000"
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
