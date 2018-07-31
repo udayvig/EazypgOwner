@@ -93,7 +93,7 @@
             android:focusable="true"
             android:foreground="?selectableItemBackground"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/bulb"
             android:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="parent"

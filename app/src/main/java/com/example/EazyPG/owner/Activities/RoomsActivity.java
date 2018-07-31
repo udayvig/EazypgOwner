@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ACDetails;
@@ -46,6 +47,7 @@ import java.util.List;
 public class RoomsActivity extends AppCompatActivity {
 
     ImageView addRoom;
+    TextView custom_title;
     EditText roomEditText;
 
     LayoutInflater inflater;
@@ -160,8 +162,11 @@ public class RoomsActivity extends AppCompatActivity {
                 radioGroup = viewDialog.findViewById(R.id.radioGroup);
                 roomEditText = viewDialog.findViewById(R.id.roomNoEditText);
 
+                final View titleView = inflater.inflate(R.layout.custom_titleroom, null);
+                custom_title = titleView.findViewById(R.id.roomCustomTitle);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(RoomsActivity.this);
-                builder.setTitle("Add Room");
+                builder.setCustomTitle(custom_title);
                 builder.setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
