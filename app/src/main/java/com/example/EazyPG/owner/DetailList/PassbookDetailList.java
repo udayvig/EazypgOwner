@@ -139,7 +139,7 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
         first.setText(passbookDetails.getAmount());
         second.setText(passbookDetails.getDate());
         third.setText(passbookDetails.getCategory());
-        fourth.setText(passbookDetails.getDescription());
+//        fourth.setText(passbookDetails.getDescription());
         fifth.setText(passbookDetails.getPaidBy());
 
         if(passbookDetails.inout){

@@ -3,19 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingBottom="24dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="16dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -60,36 +57,24 @@
 
     </RadioGroup>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="200dp"
+
+    <EditText
+        android:id="@+id/roomNoEditText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:clipChildren="false"
-        app:hintTextAppearance="@style/TextLabel3"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedcorners"
+        android:ems="10"
+        android:fontFamily="@font/productsans"
+        android:hint="Room No."
+        android:textColor="#000000"
+        android:textColorHint="#2E7D32"
+        android:inputType="textPersonName"
+        android:paddingStart="16dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-        <EditText
-            android:id="@+id/roomNoEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundedcorners"
-            android:ems="10"
-            android:fontFamily="@font/productsans"
-            android:hint="Room No."
-            android:inputType="textPersonName"
-            android:paddingStart="8dp"
-            android:textSize="17dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/radioGroup"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.046" />
-
-    </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -14,34 +14,52 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.EazyPG.owner.Activities.MainActivity">
+        <activity android:name="com.example.EazyPG.owner.Activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.EazyPG.owner.Activities.SignupActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.LoginActivity" />
-        <activity android:name="com.example.EazyPG.owner.MyIntro" />
-        <activity android:name="com.example.EazyPG.owner.Activities.HomePageActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.TenantActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.StaffActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.MyPGActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.ComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.SubscriptionActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.CashflowActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.ApplianceActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.ExpenseActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.example.EazyPG.owner.Activities.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.MyIntro"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.HomePageActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.TenantActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.StaffActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.MyPGActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.ComplaintActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.SubscriptionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.CashflowActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.ApplianceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.ExpenseActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name="com.example.EazyPG.owner.Activities.ApplianceDetailsActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.PassbookActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.PaymentActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.RoomsActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.ApplianceDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.PassbookActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.PaymentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,9 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -168,6 +171,7 @@ public class RoomsActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RoomsActivity.this);
                 builder.setCustomTitle(custom_title);
                 builder.setView(viewDialog);
+
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

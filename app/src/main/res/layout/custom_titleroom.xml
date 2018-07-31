@@ -11,6 +11,6 @@
     android:fontFamily="@font/comfortabold"
     android:paddingStart="17dp"
     android:paddingTop="17dp"
-    android:text=" Add Room"
+    android:text="    Add Room"
     android:textColor="#000000"
-    android:textSize="22dp" />
+    android:textSize="24dp" />
