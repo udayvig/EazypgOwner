@@ -1,9 +1,6 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -188,7 +185,10 @@ public class RoomsActivity extends AppCompatActivity {
                         String room = roomEditText.getText().toString();
                         String roomType = radioButton.getText().toString();
 
-                        getRoomDetails(room, roomType);
+                        databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
+                        databaseReference1.child("Rooms").child(room).child("Room Type").setValue(roomType);
+
+                        getRoomDetails(room);
                         getTenantDetails(room);
                     }
                 });
@@ -218,8 +218,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                 for(int i = 0; i < tenantList.size(); i++){
                     if (tenantList.get(i).room.equals(room)) {
-                        String key = databaseReference.push().getKey();
-                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child(key).setValue(tenantList.get(i));
+
+                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child(tenantList.get(i).id).setValue(tenantList.get(i));
                     }
                 }
             }
@@ -231,10 +231,7 @@ public class RoomsActivity extends AppCompatActivity {
         });
     }
 
-    private void getRoomDetails(final String room, final String roomType) {
-
-        databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
-        databaseReference1.child("Rooms").child(room).child("Room Type").setValue(roomType);
+    private void getRoomDetails(final String room) {
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/AC/");
 

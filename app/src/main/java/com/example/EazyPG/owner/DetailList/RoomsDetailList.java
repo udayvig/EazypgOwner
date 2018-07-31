@@ -64,6 +64,8 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             @Override
             public void onClick(View view) {
                 fetchAppliance(roomList.get(position));
+
+
             }
         });
 
