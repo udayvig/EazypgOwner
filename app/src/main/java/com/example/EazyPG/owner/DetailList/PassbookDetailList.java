@@ -3,11 +3,18 @@ package com.example.EazyPG.owner.DetailList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -113,12 +120,18 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
         listViewItemPassbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView custom_title;
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 final View viewDialog = inflater.inflate(R.layout.dialog_passbook_description, null, false);
+
+                final View titleView = inflater.inflate(R.layout.custom_title_description, null);
+                custom_title = titleView.findViewById(R.id.customTitleDes);
 
                 TextView description = viewDialog.findViewById(R.id.passbookDescription);
                 description.setText(passbookDetails.getDescription());
                 builder.setView(viewDialog);
+                builder.setTitle("  Description");
+                builder.setIcon(R.drawable.info);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -145,12 +158,22 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
         if(passbookDetails.inout){
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setVisibility(View.GONE);
+            ImageView enabled = listViewItemPassbook.findViewById(R.id.enabledImageView);
+            enabled.setVisibility(View.GONE);
+            TextView paidTo = listViewItemPassbook.findViewById(R.id.textView7);
+            paidTo.setVisibility(View.GONE);
             ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
+            TextView hollow =  listViewItemPassbook.findViewById(R.id.hollowTextView);
+            hollow.setText("Inflow");
+            hollow.setTextColor(Color.rgb(0,200,83));
             iv.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
         }else{
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setText(passbookDetails.getPaidTo());
             ImageView iv = listViewItemPassbook.findViewById(R.id.inOrOut);
+            TextView hollow =  listViewItemPassbook.findViewById(R.id.hollowTextView);
+            hollow.setText("Outflow");
+            hollow.setTextColor(Color.RED);
             iv.setImageResource(R.drawable.ic_arrow_upward_black_24dp);
         }
 

@@ -66,6 +66,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
                 fetchAppliance(roomList.get(position));
 
 
+
             }
         });
 

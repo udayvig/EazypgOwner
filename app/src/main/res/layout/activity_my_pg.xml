@@ -62,6 +62,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/productsans"
                 android:text="Bio"
+                android:inputType="textMultiLine"
                 android:textColor="#000000"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"

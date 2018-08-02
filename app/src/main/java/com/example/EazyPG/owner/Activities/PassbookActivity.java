@@ -143,7 +143,7 @@ public class PassbookActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Toast.makeText(PassbookActivity.this, "Amount Required!", Toast.LENGTH_SHORT).show();
                         }else {
-                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy\tHH:mm");
                             Date date = new Date();
                             String dateString = dateFormat.format(date);
 
@@ -210,7 +210,7 @@ public class PassbookActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Toast.makeText(PassbookActivity.this, "Amount Required!", Toast.LENGTH_SHORT).show();
                         }else {
-                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy\tHH:mm");
                             Date date = new Date();
                             String dateString = dateFormat.format(date);
 
