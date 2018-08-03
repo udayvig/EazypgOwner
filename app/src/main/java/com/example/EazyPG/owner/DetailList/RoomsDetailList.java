@@ -53,9 +53,10 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        final LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItemRoom = inflater.inflate(R.layout.room_row, null, true);
-        View dialogLayout = inflater.inflate(R.layout.dialog_room_tenant, null, true);
+        final LayoutInflater inflater1 = context.getLayoutInflater();
+        final LayoutInflater inflater2 = context.getLayoutInflater();
+        View listViewItemRoom = inflater1.inflate(R.layout.room_row, null, true);
+        final View dialogLayout = inflater2.inflate(R.layout.dialog_room_tenant, null, true);
         first = listViewItemRoom.findViewById(R.id.firstTextView);
         second = listViewItemRoom.findViewById(R.id.secondTextView);
         third = listViewItemRoom.findViewById(R.id.thirdTextView);
@@ -72,6 +73,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         applianceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + roomList.get(position) + "/Tenant/");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -96,7 +98,13 @@ public class RoomsDetailList extends ArrayAdapter<String> {
                     }
                 });
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
+                builder.setView(dialogLayout);
+                builder.setTitle("Tenants in this room");
+
+                builder.setPositiveButton("Ok", null);
+                builder.show();
 
             }
         });
@@ -105,7 +113,6 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             @Override
             public void onClick(View view) {
 
-                fetchTenant();
 
 
             }
@@ -113,18 +120,5 @@ public class RoomsDetailList extends ArrayAdapter<String> {
 
         return listViewItemRoom;
     }
-
-    private void fetchTenant() {
-
-
-
-
-    }
-
-    private void fetchAppliance(String room) {
-
-
-    }
-
 
 }
