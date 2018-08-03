@@ -25,4 +25,8 @@ public class ComplaintDetails {
         this.newId = newId;
         this.resolved = resolved;
     }
+
+    public ComplaintDetails() {
+
+    }
 }
