@@ -75,8 +75,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
+        <activity android:name="com.example.EazyPG.owner.Activities.BedroomComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintActivity"></activity>
     </application>
 
 </manifest>

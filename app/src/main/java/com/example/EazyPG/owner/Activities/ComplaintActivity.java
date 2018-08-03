@@ -1,5 +1,6 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -29,8 +30,8 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
+                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintActivity.class));
+                finish();
             }
         });
 
@@ -38,6 +39,8 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                startActivity(new Intent(ComplaintActivity.this, FoodComplaintActivity.class));
+                finish();
             }
         });
 
@@ -45,6 +48,8 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintActivity.class));
+                finish();
             }
         });
 
@@ -52,6 +57,8 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintActivity.class));
+                finish();
             }
         });
     }
