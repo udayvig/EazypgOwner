@@ -74,7 +74,16 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             @Override
             public void onClick(View view) {
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + roomList.get(position) + "/Tenant/");
+
+
+            }
+        });
+
+        tenantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + roomList.get(position) + "/Tenant");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -105,15 +114,6 @@ public class RoomsDetailList extends ArrayAdapter<String> {
 
                 builder.setPositiveButton("Ok", null);
                 builder.show();
-
-            }
-        });
-
-        tenantButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
 
             }
         });
