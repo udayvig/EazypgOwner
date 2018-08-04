@@ -3,6 +3,7 @@ package com.example.EazyPG.owner.Activities;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,25 +18,13 @@ import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ACDetails;
-import com.example.EazyPG.owner.DetailsClasses.CCTVDetails;
-import com.example.EazyPG.owner.DetailsClasses.D2HDetails;
-import com.example.EazyPG.owner.DetailsClasses.DishwasherDetails;
 import com.example.EazyPG.owner.DetailsClasses.FanDetails;
-import com.example.EazyPG.owner.DetailsClasses.GeyserDetails;
-import com.example.EazyPG.owner.DetailsClasses.HeaterDetails;
-import com.example.EazyPG.owner.DetailsClasses.InductionDetails;
-import com.example.EazyPG.owner.DetailsClasses.IronDetails;
-import com.example.EazyPG.owner.DetailsClasses.MicrowaveDetails;
-import com.example.EazyPG.owner.DetailsClasses.OtherApplianceDetails;
-import com.example.EazyPG.owner.DetailsClasses.RODetails;
-import com.example.EazyPG.owner.DetailsClasses.RefrigeratorDetails;
-import com.example.EazyPG.owner.DetailsClasses.RouterDetails;
-import com.example.EazyPG.owner.DetailsClasses.TVDetails;
+import com.example.EazyPG.owner.DetailsClasses.RoomApplianceDetails;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
-import com.example.EazyPG.owner.DetailsClasses.WashingMachineDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,7 +55,7 @@ public class RoomsActivity extends AppCompatActivity {
 
     List<TenantDetails> tenantList;
 
-    List<ACDetails> acList;
+    /*List<ACDetails> acList;
     List<FanDetails> fanList;
     List<GeyserDetails> geyserList;
     List<WashingMachineDetails> washingMachineList;
@@ -81,7 +70,9 @@ public class RoomsActivity extends AppCompatActivity {
     List<RouterDetails> routerList;
     List<HeaterDetails> heaterList;
     List<D2HDetails> d2HList;
-    List<OtherApplianceDetails> otherList;
+    List<OtherApplianceDetails> otherList;*/
+
+    List<RoomApplianceDetails> roomApplianceDetailsList = new ArrayList<>();
 
     ListView listView;
     View emptyList;
@@ -111,7 +102,7 @@ public class RoomsActivity extends AppCompatActivity {
 
         tenantList = new ArrayList<>();
 
-        acList = new ArrayList<>();
+        /*acList = new ArrayList<>();
         fanList = new ArrayList<>();
         geyserList = new ArrayList<>();
         washingMachineList = new ArrayList<>();
@@ -126,7 +117,7 @@ public class RoomsActivity extends AppCompatActivity {
         routerList = new ArrayList<>();
         heaterList = new ArrayList<>();
         d2HList = new ArrayList<>();
-        otherList = new ArrayList<>();
+        otherList = new ArrayList<>();*/
 
         listView = findViewById(R.id.listViewRooms);
         emptyList = findViewById(R.id.emptyListRooms);
@@ -150,7 +141,6 @@ public class RoomsActivity extends AppCompatActivity {
 
                 RoomsDetailList adapter = new RoomsDetailList(RoomsActivity.this, rooms, roomTypeList);
                 listView.setAdapter(adapter);
-
             }
 
             @Override
@@ -182,11 +172,41 @@ public class RoomsActivity extends AppCompatActivity {
                         int selectedButtonId = radioGroup.getCheckedRadioButtonId();
                         radioButton = viewDialog.findViewById(selectedButtonId);
 
-                        String room = roomEditText.getText().toString();
+                        final String room = roomEditText.getText().toString();
                         String roomType = radioButton.getText().toString();
 
                         databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
                         databaseReference1.child("Rooms").child(room).child("Room Type").setValue(roomType);
+
+
+                        DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("PG/" + firebaseUser.getUid() + "/Appliances/");
+
+                        databaseReference2.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                getRoomDetails(room);
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
 
                         getRoomDetails(room);
                         getTenantDetails(room);
@@ -233,32 +253,32 @@ public class RoomsActivity extends AppCompatActivity {
 
     private void getRoomDetails(final String room) {
 
+        roomApplianceDetailsList.clear();
+
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/AC/");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                acList.clear();
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     ACDetails acDetails = snapshot.getValue(ACDetails.class);
-                    acList.add(acDetails);
 
+                    if(acDetails.roomNo.equals(room)){
+                        RoomApplianceDetails ac = new RoomApplianceDetails("AC", acDetails.brand, acDetails.lastServiceDate, acDetails.id);
+                        roomApplianceDetailsList.add(ac);
+                    }
                 }
 
                 databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
 
 
-                for (int i = 0; i < acList.size(); i++) {
-
-                    if (acList.get(i).roomNo.equals(room)) {
-
-                        databaseReference1.child("Rooms").child(acList.get(i).roomNo).child("Appliance").child("AC").child(acList.get(i).id).setValue(acList.get(i));
-
+                for (int i = 0; i < roomApplianceDetailsList.size(); i++) {
+                    if(roomApplianceDetailsList.get(i).type.equals("AC")){
+                        String id = roomApplianceDetailsList.get(i).id;
+                        databaseReference1.child("Rooms").child(room).child("Appliance").child(id).setValue(roomApplianceDetailsList.get(i));
                     }
-
                 }
 
             }
@@ -269,8 +289,40 @@ public class RoomsActivity extends AppCompatActivity {
             }
         });
 
-
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/Fan/");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    FanDetails fanDetails = snapshot.getValue(FanDetails.class);
+
+                    if(fanDetails.roomNo.equals(room)){
+                        RoomApplianceDetails fan = new RoomApplianceDetails("Fan", fanDetails.brand, fanDetails.timeSinceInstallation, fanDetails.id);
+                        roomApplianceDetailsList.add(fan);
+                    }
+                }
+
+                databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
+
+                for (int i = 0; i < roomApplianceDetailsList.size(); i++) {
+                    if(roomApplianceDetailsList.get(i).type.equals("Fan")){
+                        String id = roomApplianceDetailsList.get(i).id;
+                        databaseReference1.child("Rooms").child(room).child("Appliance").child(id).setValue(roomApplianceDetailsList.get(i));
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /*databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/Fan/");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -303,9 +355,9 @@ public class RoomsActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/Geyser/");
+        /*databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/Geyser/");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -761,6 +813,6 @@ public class RoomsActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
 }

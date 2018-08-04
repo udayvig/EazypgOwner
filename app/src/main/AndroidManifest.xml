@@ -30,7 +30,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.HomePageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.example.EazyPG.owner.Activities.TenantActivity"
             android:screenOrientation="portrait" />
@@ -71,13 +77,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".CollapseActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
