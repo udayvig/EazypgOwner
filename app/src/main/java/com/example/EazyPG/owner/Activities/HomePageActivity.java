@@ -26,6 +26,7 @@ public class HomePageActivity extends AppCompatActivity {
     ImageView tenant;
     ImageView expense;
     ImageView passbook;
+    ImageView complaint;
 
     SwitchCompat logout;
 
@@ -45,6 +46,7 @@ public class HomePageActivity extends AppCompatActivity {
         expense = findViewById(R.id.foodImageView);
         passbook = findViewById(R.id.passbookImageView);
         logout = findViewById(R.id.logoutButton);
+        complaint = findViewById(R.id.complaintImageView);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -84,6 +86,14 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomePageActivity.this, PassbookActivity.class));
+                finish();
+            }
+        });
+
+        complaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, ComplaintActivity.class));
                 finish();
             }
         });
