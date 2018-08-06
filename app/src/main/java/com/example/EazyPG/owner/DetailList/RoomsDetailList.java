@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.ACDetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.CCTVDetails;
@@ -390,6 +391,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
                             routerList.add(router);
                         }
                         roomApplianceList.addAll(routerList);
+                        Toast.makeText(context, roomApplianceList.size() + " ", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

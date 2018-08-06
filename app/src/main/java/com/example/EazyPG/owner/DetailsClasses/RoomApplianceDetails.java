@@ -1,7 +1,7 @@
 package com.example.EazyPG.owner.DetailsClasses;
 
 public class RoomApplianceDetails {
-    public String type, brand, timeSinceInstallation;
+    public String id, type, brand, timeSinceInstallation;
 
     public RoomApplianceDetails() {
     }
@@ -12,6 +12,13 @@ public class RoomApplianceDetails {
     }
 
     public RoomApplianceDetails(String type, String brand, String timeSinceInstallation) {
+        this.type = type;
+        this.brand = brand;
+        this.timeSinceInstallation = timeSinceInstallation;
+    }
+
+    public RoomApplianceDetails(String id, String type, String brand, String timeSinceInstallation) {
+        this.id = id;
         this.type = type;
         this.brand = brand;
         this.timeSinceInstallation = timeSinceInstallation;
