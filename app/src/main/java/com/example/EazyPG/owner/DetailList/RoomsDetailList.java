@@ -2,7 +2,6 @@ package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,8 +11,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.ACDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.CCTVDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.D2HDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.DishwasherDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.FanDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.GeyserDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.HeaterDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.InductionDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.IronDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.MicrowaveDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.OtherApplianceDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RODetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RefrigeratorDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RouterDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.TVDetails;
+import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.WashingMachineDetails;
 import com.example.EazyPG.owner.DetailsClasses.RoomApplianceDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +48,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     private ListView dialogListView;
     private List<String> roomTypeList;
 
-/*    private List<RoomApplianceDetails> ACList = new ArrayList<>();
+    private List<RoomApplianceDetails> ACList = new ArrayList<>();
     private List<RoomApplianceDetails> CCTVList = new ArrayList<>();
     private List<RoomApplianceDetails> D2HList = new ArrayList<>();
     private List<RoomApplianceDetails> dishwasherList = new ArrayList<>();
@@ -49,7 +63,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     private List<RoomApplianceDetails> ROList = new ArrayList<>();
     private List<RoomApplianceDetails> routerList = new ArrayList<>();
     private List<RoomApplianceDetails> TVList = new ArrayList<>();
-    private List<RoomApplianceDetails> wmList = new ArrayList<>();*/
+    private List<RoomApplianceDetails> wmList = new ArrayList<>();
 
     private List<RoomApplianceDetails> roomApplianceList = new ArrayList<>();
 
@@ -63,8 +77,8 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         this.roomTypeList = roomTypeList;
     }
 
-    DatabaseReference databaseReference;
-    /*DatabaseReference CCTVDatabaseReference;
+    DatabaseReference ACDatabaseReference;
+    DatabaseReference CCTVDatabaseReference;
     DatabaseReference D2HDatabaseReference;
     DatabaseReference dishwasherDatabaseReference;
     DatabaseReference fanDatabaseReference;
@@ -78,7 +92,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     DatabaseReference routerDatabaseReference;
     DatabaseReference TVDatabaseReference;
     DatabaseReference wmDatabaseReference;
-    DatabaseReference otherDatabaseReference;*/
+    DatabaseReference otherDatabaseReference;
 
     @NonNull
     @Override
@@ -104,19 +118,18 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             @Override
             public void onClick(View view) {
                 String room = roomList.get(position);
-                databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + room + "/Appliance/");
-                databaseReference.addValueEventListener(new ValueEventListener() {
+                ACDatabaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + room + "/Appliance/AC");
+                ACDatabaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        roomApplianceList.clear();
+                        ACList.clear();
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            RoomApplianceDetails roomApplianceDetails = snapshot.getValue(RoomApplianceDetails.class);
+                            ACDetails acDetails = snapshot.getValue(ACDetails.class);
 
-                            roomApplianceList.add(roomApplianceDetails);
+                            RoomApplianceDetails ac = new RoomApplianceDetails("AC", acDetails.brand, acDetails.lastServiceDate);
+                            ACList.add(ac);
                         }
-                        Toast.makeText(context, roomApplianceList.size() + "", Toast.LENGTH_SHORT).show();
-                        final RoomApplianceDialogDetailList roomApplianceDialogDetailList = new RoomApplianceDialogDetailList(context, roomApplianceList);
-                        dialogListView.setAdapter(roomApplianceDialogDetailList);
+                        roomApplianceList.addAll(ACList);
                     }
 
                     @Override
@@ -125,7 +138,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
                     }
                 });
 
-                /*CCTVDatabaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + room + "/Appliance/CCTV");
+                CCTVDatabaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + room + "/Appliance/CCTV");
                 CCTVDatabaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -423,18 +436,16 @@ public class RoomsDetailList extends ArrayAdapter<String> {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-                });*/
+                });
 
                 //Toast.makeText(context, roomApplianceList.size() + " ", Toast.LENGTH_SHORT).show();
 
+                RoomApplianceDialogDetailList roomApplianceDialogDetailList = new RoomApplianceDialogDetailList(context, roomApplianceList);
+                dialogListView.setAdapter(roomApplianceDialogDetailList);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Appliance Details");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        roomApplianceList.clear();
-                    }
-                });
+                builder.setPositiveButton("OK", null);
                 builder.setView(applianceDialogLayout);
 
                 builder.show();
