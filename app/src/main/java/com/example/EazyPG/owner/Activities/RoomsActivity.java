@@ -31,8 +31,9 @@ import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RODetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RefrigeratorDetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RouterDetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.TVDetails;
-import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.WashingMachineDetails;
+import com.example.EazyPG.owner.DetailsClasses.RoomApplianceDetails;
+import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -83,6 +84,8 @@ public class RoomsActivity extends AppCompatActivity {
     List<D2HDetails> d2HList;
     List<OtherApplianceDetails> otherList;
 
+    List<RoomApplianceDetails> roomApplianceDetailsList = new ArrayList<>();
+
     ListView listView;
     View emptyList;
 
@@ -90,6 +93,8 @@ public class RoomsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
+
+
 
         Toolbar toolbar = findViewById(R.id.roomsToolbar);
         setSupportActionBar(toolbar);
@@ -150,7 +155,6 @@ public class RoomsActivity extends AppCompatActivity {
 
                 RoomsDetailList adapter = new RoomsDetailList(RoomsActivity.this, rooms, roomTypeList);
                 listView.setAdapter(adapter);
-
             }
 
             @Override
@@ -182,7 +186,7 @@ public class RoomsActivity extends AppCompatActivity {
                         int selectedButtonId = radioGroup.getCheckedRadioButtonId();
                         radioButton = viewDialog.findViewById(selectedButtonId);
 
-                        String room = roomEditText.getText().toString();
+                        final String room = roomEditText.getText().toString();
                         String roomType = radioButton.getText().toString();
 
                         databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
@@ -233,6 +237,8 @@ public class RoomsActivity extends AppCompatActivity {
 
     private void getRoomDetails(final String room) {
 
+        roomApplianceDetailsList.clear();
+
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/AC/");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -240,27 +246,20 @@ public class RoomsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 acList.clear();
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     ACDetails acDetails = snapshot.getValue(ACDetails.class);
                     acList.add(acDetails);
-
                 }
 
                 databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
 
-
                 for (int i = 0; i < acList.size(); i++) {
-
                     if (acList.get(i).roomNo.equals(room)) {
-
-                        databaseReference1.child("Rooms").child(acList.get(i).roomNo).child("Appliance").child("AC").child(acList.get(i).id).setValue(acList.get(i));
-
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(acList.get(i).id, "AC", acList.get(i).brand, acList.get(i).lastServiceDate);
+                        databaseReference1.child("Rooms").child(acList.get(i).roomNo).child("Appliance").child(acList.get(i).id).setValue(roomApplianceDetails);
                     }
-
                 }
-
             }
 
             @Override
@@ -268,7 +267,6 @@ public class RoomsActivity extends AppCompatActivity {
 
             }
         });
-
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Appliances/Fan/");
 
@@ -290,10 +288,8 @@ public class RoomsActivity extends AppCompatActivity {
                 for (int i = 0; i < fanList.size(); i++) {
 
                     if (fanList.get(i).roomNo.equals(room)) {
-
-                        databaseReference1.child("Rooms").child(fanList.get(i).roomNo).child("Appliance").child("Fan").child(fanList.get(i).id).setValue(fanList.get(i));
-
-
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(fanList.get(i).id, "Fan", fanList.get(i).brand, fanList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(fanList.get(i).roomNo).child("Appliance").child(fanList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -326,7 +322,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (geyserList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(geyserList.get(i).roomNo).child("Appliance").child("Geyser").child(geyserList.get(i).id).setValue(geyserList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(geyserList.get(i).id, "Geyser", geyserList.get(i).brand, geyserList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(geyserList.get(i).roomNo).child("Appliance").child(geyserList.get(i).id).setValue(roomApplianceDetails);
 
                     }
                 }
@@ -360,7 +357,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (washingMachineList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(washingMachineList.get(i).roomNo).child("Appliance").child("Washing Machine").child(washingMachineList.get(i).id).setValue(washingMachineList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(washingMachineList.get(i).id, "Washing Machine", washingMachineList.get(i).brand, washingMachineList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(washingMachineList.get(i).roomNo).child("Appliance").child(washingMachineList.get(i).id).setValue(roomApplianceDetails);
 
                     }
                 }
@@ -394,7 +392,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (roList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(roList.get(i).roomNo).child("Appliance").child("RO").child(roList.get(i).id).setValue(roList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(roList.get(i).id, "RO", roList.get(i).brand, roList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(roList.get(i).roomNo).child("Appliance").child(roList.get(i).id).setValue(roomApplianceDetails);
 
                     }
                 }
@@ -428,7 +427,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (dishwasherList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(dishwasherList.get(i).roomNo).child("Appliance").child("Dishwasher").child(dishwasherList.get(i).id).setValue(dishwasherList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(dishwasherList.get(i).id, "Dishwasher", dishwasherList.get(i).brand, dishwasherList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(dishwasherList.get(i).roomNo).child("Appliance").child(dishwasherList.get(i).id).setValue(roomApplianceDetails);
 
                     }
                 }
@@ -461,8 +461,8 @@ public class RoomsActivity extends AppCompatActivity {
                 for (int i = 0; i < microwaveList.size(); i++) {
 
                     if (microwaveList.get(i).roomNo.equals(room)) {
-
-                        databaseReference1.child("Rooms").child(microwaveList.get(i).roomNo).child("Appliance").child("Microwave").child(microwaveList.get(i).id).setValue(microwaveList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(microwaveList.get(i).id, "Microwave", microwaveList.get(i).brand, microwaveList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(microwaveList.get(i).roomNo).child("Appliance").child(microwaveList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -495,7 +495,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (refrigeratorList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(refrigeratorList.get(i).roomNo).child("Appliance").child("Refrigerator").child(refrigeratorList.get(i).id).setValue(refrigeratorList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(refrigeratorList.get(i).id, "Refrigerator", refrigeratorList.get(i).brand, refrigeratorList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(refrigeratorList.get(i).roomNo).child("Appliance").child(refrigeratorList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -528,7 +529,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (tvList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(tvList.get(i).roomNo).child("Appliance").child("TV").child(tvList.get(i).id).setValue(tvList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(tvList.get(i).id, "TV", tvList.get(i).brand, tvList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(tvList.get(i).roomNo).child("Appliance").child(tvList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -561,7 +563,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (cctvList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(cctvList.get(i).roomNo).child("Appliance").child("CCTV").child(cctvList.get(i).id).setValue(cctvList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(cctvList.get(i).id, "CCTV", cctvList.get(i).brand, cctvList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(cctvList.get(i).roomNo).child("Appliance").child(cctvList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -594,7 +597,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (ironList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(ironList.get(i).roomNo).child("Appliance").child("Iron").child(ironList.get(i).id).setValue(ironList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(ironList.get(i).id, "Iron", ironList.get(i).brand, ironList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(ironList.get(i).roomNo).child("Appliance").child(ironList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -627,7 +631,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (inductionList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(inductionList.get(i).roomNo).child("Appliance").child("Induction").child(inductionList.get(i).id).setValue(inductionList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(inductionList.get(i).id, "Induction", inductionList.get(i).brand, inductionList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(inductionList.get(i).roomNo).child("Appliance").child(inductionList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -660,7 +665,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (routerList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(routerList.get(i).roomNo).child("Appliance").child("Router").child(routerList.get(i).id).setValue(routerList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(routerList.get(i).id, "Router", routerList.get(i).brand, routerList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(routerList.get(i).roomNo).child("Appliance").child(routerList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -693,7 +699,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (heaterList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(heaterList.get(i).roomNo).child("Appliance").child("Heater").child(heaterList.get(i).id).setValue(heaterList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(heaterList.get(i).id, "Heater", heaterList.get(i).brand, heaterList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(heaterList.get(i).roomNo).child("Appliance").child(heaterList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
 
@@ -723,7 +730,8 @@ public class RoomsActivity extends AppCompatActivity {
                 for (int i = 0; i < d2HList.size(); i++) {
 
                     if (d2HList.get(i).roomNo.equals(room)) {
-                        databaseReference1.child("Rooms").child(d2HList.get(i).roomNo).child("Appliance").child("D2H").child(d2HList.get(i).id).setValue(d2HList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(d2HList.get(i).id, "D2H", d2HList.get(i).brand, d2HList.get(i).timeSinceInstallation);
+                        databaseReference1.child("Rooms").child(d2HList.get(i).roomNo).child("Appliance").child(d2HList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
             }
@@ -752,7 +760,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                     if (otherList.get(i).roomNo.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(otherList.get(i).roomNo).child("Appliance").child("Other").child(otherList.get(i).id).setValue(otherList.get(i));
+                        RoomApplianceDetails roomApplianceDetails = new RoomApplianceDetails(otherList.get(i).id, "Other", otherList.get(i).brand);
+                        databaseReference1.child("Rooms").child(otherList.get(i).roomNo).child("Appliance").child(otherList.get(i).id).setValue(roomApplianceDetails);
                     }
                 }
             }
