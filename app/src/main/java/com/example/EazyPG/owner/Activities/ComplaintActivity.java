@@ -62,4 +62,10 @@ public class ComplaintActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ComplaintActivity.this, HomePageActivity.class));
+        finish();
+    }
 }

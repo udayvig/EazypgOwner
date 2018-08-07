@@ -14,12 +14,12 @@ import com.example.ainesh.eazypg_owner.R;
 
 import java.util.List;
 
-public class RoomApplianceDialogDetailList extends ArrayAdapter<RoomApplianceDetails> {
+public class RoomApplianceDetailList extends ArrayAdapter<RoomApplianceDetails> {
 
     private Activity context;
     private List<RoomApplianceDetails> roomApplianceList;
 
-    public RoomApplianceDialogDetailList(Activity context, List<RoomApplianceDetails> roomApplianceList){
+    public RoomApplianceDetailList(Activity context, List<RoomApplianceDetails> roomApplianceList){
         super(context, R.layout.room_appliance_dialog_row, roomApplianceList);
 
         this.context = context;
