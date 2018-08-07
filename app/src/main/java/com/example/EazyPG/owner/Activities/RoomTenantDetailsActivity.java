@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.example.EazyPG.owner.DetailList.RoomApplianceDetailList;
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
-import com.example.EazyPG.owner.DetailsClasses.RoomApplianceDetails;
+import com.example.EazyPG.owner.DetailList.TenantDetailList;
+import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,48 +21,48 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomApplianceDetailsActivity extends AppCompatActivity {
+public class RoomTenantDetailsActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    List<RoomApplianceDetails> roomApplianceDetailsList;
-
-    ListView listViewRoomAppliance;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_appliance_details);
+        setContentView(R.layout.activity_room_tenant_details);
+
+        final List<TenantDetails> roomTenantDetailList;
+
+        final ListView listViewRoomTenant;
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        roomApplianceDetailsList = new ArrayList<>();
-        listViewRoomAppliance = findViewById(R.id.listViewRoomAppliance);
+        roomTenantDetailList = new ArrayList<>();
+        listViewRoomTenant = findViewById(R.id.listViewRoomTenant);
 
         Intent intent = getIntent();
 
         String roomNo = intent.getStringExtra(RoomsDetailList.EXTRA_MESSAGE);
 
-        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNo + "/Appliance/");
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNo + "/Tenant/");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                roomApplianceDetailsList.clear();
+                roomTenantDetailList.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    RoomApplianceDetails roomApplianceDetails = snapshot.getValue(RoomApplianceDetails.class);
-                    roomApplianceDetailsList.add(roomApplianceDetails);
+                    TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
+                    roomTenantDetailList.add(tenantDetails);
                 }
 
-                RoomApplianceDetailList adapter = new RoomApplianceDetailList(RoomApplianceDetailsActivity.this, roomApplianceDetailsList);
-                listViewRoomAppliance.setAdapter(adapter);
+                TenantDetailList adapter = new TenantDetailList(RoomTenantDetailsActivity.this, roomTenantDetailList);
+                listViewRoomTenant.setAdapter(adapter);
 
             }
 

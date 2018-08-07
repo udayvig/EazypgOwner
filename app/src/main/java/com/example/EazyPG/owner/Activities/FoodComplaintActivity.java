@@ -1,8 +1,9 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
@@ -79,5 +80,12 @@ public class FoodComplaintActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(FoodComplaintActivity.this, HomePageActivity.class));
+        finish();
     }
 }

@@ -1,7 +1,6 @@
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,35 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.ACDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.CCTVDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.D2HDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.DishwasherDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.FanDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.GeyserDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.HeaterDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.InductionDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.IronDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.MicrowaveDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.OtherApplianceDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RODetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RefrigeratorDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.RouterDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.TVDetails;
-import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.WashingMachineDetails;
-import com.example.EazyPG.owner.DetailsClasses.RoomApplianceDetails;
+import com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity;
 import com.example.ainesh.eazypg_owner.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RoomsDetailList extends ArrayAdapter<String> {
@@ -51,7 +26,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     private ListView dialogListView;
     private List<String> roomTypeList;
 
-    public static final String EXTRA_MESSAGE = "com.example.EazyPG.owner";
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     private Button applianceButton, tenantButton;
 
@@ -95,6 +70,11 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         tenantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent = new Intent(context, RoomTenantDetailsActivity.class);
+                String message = roomList.get(position);
+                intent.putExtra(EXTRA_MESSAGE, message);
+                context.startActivity(intent);
 
             }
         });
