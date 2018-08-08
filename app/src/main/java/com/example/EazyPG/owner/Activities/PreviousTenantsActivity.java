@@ -1,18 +1,18 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
-import com.example.EazyPG.owner.DetailList.ComplaintsDetailList;
-import com.example.EazyPG.owner.DetailsClasses.ComplaintDetails;
+import com.example.EazyPG.owner.DetailList.PreviousTenantDetailList;
+import com.example.EazyPG.owner.DetailList.TenantDetailList;
+import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,57 +22,49 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacilityComplaintActivity extends AppCompatActivity {
+public class PreviousTenantsActivity extends AppCompatActivity {
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    FirebaseDatabase firebaseDatabase;
 
     ListView listView;
-    List<ComplaintDetails> complaintDetailsList;
     View emptyList;
+    List<TenantDetails> tenantDetailsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_facility_complaint);
+        setContentView(R.layout.activity_previous_tenants);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-
-        Toolbar toolbar = findViewById(R.id.facilityToolbar);
+        Toolbar toolbar = findViewById(R.id.previousTenantToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        listView = findViewById(R.id.listViewFacilities);
-        emptyList = findViewById(R.id.emptyListFacilities);
+        listView = findViewById(R.id.listViewPreviousTenant);
+        emptyList = findViewById(R.id.emptyListPreviousTenant);
         listView.setEmptyView(emptyList);
 
-        complaintDetailsList = new ArrayList<>();
+        tenantDetailsList = new ArrayList<>();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + firebaseUser.getUid() + "/Complaints");
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        databaseReference = firebaseDatabase.getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/PreviousTenants/");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                complaintDetailsList.clear();
+                tenantDetailsList.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    ComplaintDetails complaintDetails = snapshot.getValue(ComplaintDetails.class);
-
-                    if (complaintDetails.firstLevel.equals("Facilities & Comfort")) {
-
-                        complaintDetailsList.add(complaintDetails);
-                    }
+                    TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
+                    tenantDetailsList.add(tenantDetails);
                 }
 
-                ComplaintsDetailList adapter = new ComplaintsDetailList(FacilityComplaintActivity.this, complaintDetailsList);
+                PreviousTenantDetailList adapter = new PreviousTenantDetailList(PreviousTenantsActivity.this, tenantDetailsList);
                 listView.setAdapter(adapter);
-
             }
 
             @Override
@@ -82,10 +74,9 @@ public class FacilityComplaintActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(FacilityComplaintActivity.this, HomePageActivity.class));
+        startActivity(new Intent(PreviousTenantsActivity.this, TenantActivity.class));
         finish();
     }
 }

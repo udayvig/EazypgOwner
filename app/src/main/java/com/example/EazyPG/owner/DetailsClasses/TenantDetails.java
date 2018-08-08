@@ -70,6 +70,15 @@ public class TenantDetails {
         this.pgId = pgId;
     }
 
+    public TenantDetails(String id, String name, String phone, String dateOfJoining, String rentAmount, String pgId) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.dateOfJoining = dateOfJoining;
+        this.rentAmount = rentAmount;
+        this.pgId = pgId;
+    }
+
     public TenantDetails() {
 
     }

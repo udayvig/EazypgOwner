@@ -2,13 +2,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tenantLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.EazyPG.owner.Activities.TenantActivity">
+    tools:context="com.example.EazyPG.owner.Activities.PreviousTenantsActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/tenantToolbar"
+        android:id="@+id/previousTenantToolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorPrimaryDark"
@@ -22,9 +21,9 @@
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/productsansbold"
-        android:text="Tenant Details"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/productsans"
+        android:text="Previous Tenants"
         android:textColor="#1aba34"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,15 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/addTenant"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -54,7 +44,7 @@
 
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/emptyListTenant"
+            android:id="@+id/emptyListPreviousTenant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
@@ -104,7 +94,7 @@
 
 
         <ListView
-            android:id="@+id/listViewTenant"
+            android:id="@+id/listViewPreviousTenant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="1dp"
@@ -116,14 +106,5 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/previousTenants"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/addTenant"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

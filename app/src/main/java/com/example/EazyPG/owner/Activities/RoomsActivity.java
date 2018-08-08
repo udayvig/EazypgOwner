@@ -97,8 +97,6 @@ public class RoomsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
 
-
-
         Toolbar toolbar = findViewById(R.id.roomsToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -140,6 +138,11 @@ public class RoomsActivity extends AppCompatActivity {
         emptyList = findViewById(R.id.emptyListRooms);
         listView.setEmptyView(emptyList);
 
+        for(String str : rooms){
+            getRoomDetails(str);
+            getTenantDetails(str);
+        }
+
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -165,6 +168,8 @@ public class RoomsActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         addRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,7 +231,7 @@ public class RoomsActivity extends AppCompatActivity {
                 for(int i = 0; i < tenantList.size(); i++){
                     if (tenantList.get(i).room.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child(tenantList.get(i).id).setValue(tenantList.get(i));
+                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child("CurrentTenants").child(tenantList.get(i).id).setValue(tenantList.get(i));
                     }
                 }
             }

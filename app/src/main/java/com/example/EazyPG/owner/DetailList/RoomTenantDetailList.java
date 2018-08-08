@@ -34,20 +34,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TenantDetailList extends ArrayAdapter<TenantDetails> {
+public class RoomTenantDetailList extends ArrayAdapter<TenantDetails> {
 
     private Activity context;
     private List<TenantDetails> tenantList;
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public String id;
     FloatingActionButton callButton, paymentButton;
-    Button deleteTenant;
-    ImageView qrButton, qrImage;
 
-    TenantDetails newData;
-
-    public TenantDetailList(Activity context, List<TenantDetails> tenantList) {
-        super(context, R.layout.tenant_row, tenantList);
+    public RoomTenantDetailList(Activity context, List<TenantDetails> tenantList) {
+        super(context, R.layout.room_tenant_row, tenantList);
 
         this.context = context;
         this.tenantList = tenantList;
@@ -60,10 +56,9 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItemTenant = inflater.inflate(R.layout.tenant_row, null, true);
+        View listViewItemTenant = inflater.inflate(R.layout.room_tenant_row, null, true);
         callButton = listViewItemTenant.findViewById(R.id.callButton);
         paymentButton = listViewItemTenant.findViewById(R.id.paymentButton);
-        deleteTenant = listViewItemTenant.findViewById(R.id.deleteTenant);
         final TenantDetails tenantDetails = tenantList.get(position);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/CurrentTenants");
@@ -92,22 +87,20 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         listViewItemTenant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
+                final View viewDialog = inflater.inflate(R.layout.dialog_room_tenant, null);
 
-                final EditText name, phone, room, dateOfJoining, rentAmount;
+                final EditText name, phone, dateOfJoining, rentAmount;
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Tenant details");
 
                 name = viewDialog.findViewById(R.id.tenantNameEditText);
                 phone = viewDialog.findViewById(R.id.tenantPhoneEditText);
-                room = viewDialog.findViewById(R.id.tenantRoomEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
                 rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
 
                 name.setText(tenantDetails.name);
                 phone.setText(tenantDetails.phone);
-                room.setText(tenantDetails.room);
                 dateOfJoining.setText(tenantDetails.dateOfJoining);
                 rentAmount.setText(tenantDetails.rentAmount);
 
@@ -120,7 +113,6 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         });
 
         TextView first = listViewItemTenant.findViewById(R.id.firstTextView);
-        TextView second = listViewItemTenant.findViewById(R.id.secondTextView);
         final TextView third = listViewItemTenant.findViewById(R.id.thirdTextView);
 
         paymentButton.setOnClickListener(new View.OnClickListener() {
@@ -134,15 +126,14 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
             }
         });
 
-
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                        callIntent.setData(Uri.parse("tel:" + third.getText().toString()));
-                        context.startActivity(callIntent);
+                    callIntent.setData(Uri.parse("tel:" + third.getText().toString()));
+                    context.startActivity(callIntent);
 
                 }
                 catch (ActivityNotFoundException activityException) {
@@ -155,45 +146,8 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
             }
         });
 
-        deleteTenant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final DatabaseReference fromReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/CurrentTenants/");
-                final DatabaseReference toReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/PreviousTenants/");
-                final DatabaseReference toReferenceRoom = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + tenantDetails.getRoom() + "/Tenant/PreviousTenants");
-
-                final DatabaseReference roomReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + tenantDetails.getRoom() + "/Tenant/CurrentTenants");
-                roomReference.child(ids.get(position)).setValue(null);
-
-                fromReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        toReference.child(ids.get(position)).setValue(dataSnapshot.child(ids.get(position)).getValue());
-                        toReferenceRoom.child(ids.get(position)).setValue(dataSnapshot.child(ids.get(position)).getValue());
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        fromReference.child(ids.get(position)).setValue(null);
-                    }
-                });
-                thread.start();
-
-            }
-        });
 
         first.setText(tenantDetails.getName());
-        second.setText(tenantDetails.getRoom());
         third.setText(tenantDetails.getPhone());
 
         return listViewItemTenant;
