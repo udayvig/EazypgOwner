@@ -12,14 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.Activities.PaymentActivity;
+import com.example.EazyPG.owner.Activities.TenantActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +41,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public String id;
     FloatingActionButton callButton, paymentButton;
+    Button deleteTenant;
     ImageView qrButton, qrImage;
 
     public TenantDetailList(Activity context, List<TenantDetails> tenantList) {
@@ -56,6 +61,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         View listViewItemTenant = inflater.inflate(R.layout.tenant_row, null, true);
         callButton = listViewItemTenant.findViewById(R.id.callButton);
         paymentButton = listViewItemTenant.findViewById(R.id.paymentButton);
+        deleteTenant = listViewItemTenant.findViewById(R.id.deleteTenant);
         final TenantDetails tenantDetails = tenantList.get(position);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/");
@@ -144,6 +150,36 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
                     Toast.makeText(context, "Call failed!", Toast.LENGTH_SHORT).show();
                 }
 
+
+            }
+        });
+
+        deleteTenant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final DatabaseReference fromReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/");
+                final DatabaseReference toReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/PreviousTenants/");
+
+                fromReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        toReference.child(ids.get(position)).setValue(dataSnapshot.child(ids.get(position)).getValue());
+                        fromReference.child(ids.get(position)).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                context.startActivity(new Intent(getContext(), TenantActivity.class));
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
