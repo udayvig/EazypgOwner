@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/myPgLayout"
     android:layout_height="match_parent"
     tools:context="com.example.EazyPG.owner.Activities.MyPGActivity">
 
@@ -451,7 +452,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/productsansbold"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:foreground="@drawable/ripple_white"
                 android:text="APPLIANCES"
                 android:textAlignment="textStart"
                 android:textColor="#000000"
@@ -477,7 +478,7 @@
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/applianceFlash"
-                app:srcCompat="@drawable/bed" />
+                app:srcCompat="@drawable/bedroom" />
 
             <TextView
                 android:id="@+id/roomTextView"
@@ -487,6 +488,9 @@
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/productsansbold"
                 android:text="ROOMS"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_white"
                 android:textColor="#000000"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
