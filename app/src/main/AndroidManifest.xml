@@ -81,7 +81,9 @@
         <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity"></activity>
     </application>
 
 </manifest>

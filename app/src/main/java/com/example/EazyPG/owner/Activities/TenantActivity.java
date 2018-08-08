@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -50,6 +51,7 @@ public class TenantActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     ImageView addTenant, qrImage;
+    Button previousTenants;
     EditText name, phone, room, dateOfJoining, rentAmount;
 
     Snackbar snackbar;
@@ -73,6 +75,8 @@ public class TenantActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = firebaseDatabase.getReference();
 
+        previousTenants = findViewById(R.id.previousTenants);
+
         inflater = getLayoutInflater();
 
         listView = findViewById(R.id.listViewTenant);
@@ -92,7 +96,7 @@ public class TenantActivity extends AppCompatActivity {
 
         tenantDetailsList = new ArrayList<>();
 
-        databaseReference = firebaseDatabase.getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/");
+        databaseReference = firebaseDatabase.getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/CurrentTenants/");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
 
@@ -194,6 +198,15 @@ public class TenantActivity extends AppCompatActivity {
                 builder.setNegativeButton("Cancel", null);
                 builder.show();
 
+            }
+        });
+
+        previousTenants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(TenantActivity.this, PreviousTenantsActivity.class));
+                finish();
             }
         });
     }

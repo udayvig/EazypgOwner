@@ -211,7 +211,7 @@ public class RoomsActivity extends AppCompatActivity {
     }
 
     private void getTenantDetails(final String room){
-        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/");
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -228,7 +228,7 @@ public class RoomsActivity extends AppCompatActivity {
                 for(int i = 0; i < tenantList.size(); i++){
                     if (tenantList.get(i).room.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child(tenantList.get(i).id).setValue(tenantList.get(i));
+                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child("CurrentTenants").child(tenantList.get(i).id).setValue(tenantList.get(i));
                     }
                 }
             }
