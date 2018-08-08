@@ -137,6 +137,11 @@ public class RoomsActivity extends AppCompatActivity {
         emptyList = findViewById(R.id.emptyListRooms);
         listView.setEmptyView(emptyList);
 
+        for(String str : rooms){
+            getRoomDetails(str);
+            getTenantDetails(str);
+        }
+
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms");
 
         databaseReference.addValueEventListener(new ValueEventListener() {

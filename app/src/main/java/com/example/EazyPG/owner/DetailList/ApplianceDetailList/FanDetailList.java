@@ -118,7 +118,7 @@ public class FanDetailList extends ArrayAdapter<ApplianceDetailFan> {
                                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/Fan/" + ids.get(position));
+                            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Rooms/" + rooms.get(position) + "/Appliance/" + ids.get(position));
                             databaseReference1.setValue(null);
                         }else{
                             Toast.makeText(context, "Check your internet connection.", Toast.LENGTH_SHORT).show();
