@@ -94,8 +94,6 @@ public class RoomsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
 
-
-
         Toolbar toolbar = findViewById(R.id.roomsToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -167,6 +165,8 @@ public class RoomsActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         addRoom.setOnClickListener(new View.OnClickListener() {
             @Override
