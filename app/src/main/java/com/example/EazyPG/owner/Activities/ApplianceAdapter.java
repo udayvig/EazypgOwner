@@ -1,5 +1,6 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,6 +47,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyViewHolder>{
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -56,23 +62,24 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     private RelativeLayout ACLayout, fanLayout, liftLayout, geyserLayout, washingMachineLayout, ROLayout, dishwasherLayout, microwaveLayout,
             fridgeLayout, TVLayout, CCTVLayout, ironLayout, inductionLayout, routerLayout, heaterLayout, D2HLayout, otherLayout;
 
-    private EditText ACRoomNo, ACCompanyName, ACModel, ACCapacity, ACLastServiceDate, ACStarRating, ACType;
-    private EditText FanRoomNo, FanCompanyName, FanModel, FanDays, FanBlades;
-    private EditText LiftCompanyName, LiftModel, LiftDays, LiftCapacity, LiftDoor;
-    private EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserDays, GeyserCapacity, GeyserPower, GeyserRating;
-    private EditText WashingMachineRoomNo, WashingMachineCompanyName, WashingMachineModel, WashingMachineDays, WashingMachineCapacity, WashingMachinePower, WashingMachineRating, WashingMachineType;
-    private EditText RORoomNo, ROCompanyName, ROModel, RODays, ROCapacity;
-    private EditText DishwasherRoomNo, DishwasherCompanyName, DishwasherModel, DishwasherDays, DishwasherCapacity, DishwasherType;
-    private EditText MicrowaveRoomNo, MicrowaveCompanyName, MicrowaveModel, MicrowaveDays, MicrowaveCapacity, MicrowaveType;
-    private EditText FridgeRoomNo, FridgeCompanyName, FridgeModel, FridgeDays, FridgeCapacity, FridgeType, FridgeRating;
-    private EditText TVRoomNo, TVCompanyName, TVModel, TVDays, TVType, TVSize, TVResolution;
-    private EditText CCTVRoomNo, CCTVCompanyName, CCTVModel, CCTVDays, CCTVNight, CCTVChanel, CCTVResolution;
-    private EditText IronRoomNo, IronComanyName, IronModel, IronDays, IronPower;
-    private EditText InductionRoomNo, InductionCompanyName, InductionModel, InductionDays, InductionPower, InductionType, InductionNoCooktop;
-    private EditText RouterRoomNo, RouterCompanyName, RouterModel, RouterDays, RouterAntenna, RouterSpeed;
-    private EditText HeaterRoomNo, HeaterCompanyName, HeaterModel, HeaterDays, HeaterPower, HeaterWeight;
-    private EditText D2HRoomNo, D2HCompanyName, D2HDays;
+    private EditText ACRoomNo, ACCompanyName, ACModel, ACCapacity, ACStarRating, ACType;
+    private EditText FanRoomNo, FanCompanyName, FanModel, FanBlades;
+    private EditText LiftCompanyName, LiftModel, LiftCapacity, LiftDoor;
+    private EditText GeyserRoomNo, GeyserCompanyName, GeyserModel, GeyserCapacity, GeyserPower, GeyserRating;
+    private EditText WashingMachineRoomNo, WashingMachineCompanyName, WashingMachineModel, WashingMachineCapacity, WashingMachinePower, WashingMachineRating, WashingMachineType;
+    private EditText RORoomNo, ROCompanyName, ROModel, ROCapacity;
+    private EditText DishwasherRoomNo, DishwasherCompanyName, DishwasherModel, DishwasherCapacity, DishwasherType;
+    private EditText MicrowaveRoomNo, MicrowaveCompanyName, MicrowaveModel, MicrowaveCapacity, MicrowaveType;
+    private EditText FridgeRoomNo, FridgeCompanyName, FridgeModel, FridgeCapacity, FridgeType, FridgeRating;
+    private EditText TVRoomNo, TVCompanyName, TVModel, TVType, TVSize, TVResolution;
+    private EditText CCTVRoomNo, CCTVCompanyName, CCTVModel, CCTVNight, CCTVChanel, CCTVResolution;
+    private EditText IronRoomNo, IronComanyName, IronModel, IronPower;
+    private EditText InductionRoomNo, InductionCompanyName, InductionModel, InductionPower, InductionType, InductionNoCooktop;
+    private EditText RouterRoomNo, RouterCompanyName, RouterModel, RouterAntenna, RouterSpeed;
+    private EditText HeaterRoomNo, HeaterCompanyName, HeaterModel, HeaterPower, HeaterWeight;
+    private EditText D2HRoomNo, D2HCompanyName;
     private EditText OtherRoomNo, OtherName, OtherCompanyName;
+    private TextView ACLastServiceDate, FanDays, LiftDays, GeyserDays, WashingMachineDays, RODays, DishwasherDays, MicrowaveDays, FridgeDays, TVDays, CCTVDays, IronDays, InductionDays, RouterDays, HeaterDays, D2HDays;
     private TextView customTitle;
 
     //Interface
@@ -381,6 +388,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                ACLastServiceDate = view.findViewById(R.id.ACLastServiceDateEditText);
+
+                final Calendar calendar = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendar.set(Calendar.YEAR, i);
+                        calendar.set(Calendar.MONTH, i1);
+                        calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        ACLastServiceDate.setText(sdf.format(calendar.getTime()));
+                    }
+                };
+
+                ACLastServiceDate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, date, calendar
+                                .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                                calendar.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Fan":
@@ -388,6 +421,9 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 if(fanLayout.getParent().getParent()!=null) {
                     ((ViewGroup) fanLayout.getParent().getParent()).removeView((ViewGroup)fanLayout.getParent());
                 }
+
+                FanDays = view.findViewById(R.id.fanDaysEditText);
+
                 ACLayout.setVisibility(View.GONE);
                 fanLayout.setVisibility(View.VISIBLE);
                 liftLayout.setVisibility(View.GONE);
@@ -406,6 +442,30 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                final Calendar calendarFan = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateFan = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarFan.set(Calendar.YEAR, i);
+                        calendarFan.set(Calendar.MONTH, i1);
+                        calendarFan.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        FanDays.setText(sdf.format(calendarFan.getTime()));
+                    }
+                };
+
+                FanDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateFan, calendarFan
+                                .get(Calendar.YEAR), calendarFan.get(Calendar.MONTH),
+                                calendarFan.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Lift":
@@ -431,6 +491,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                LiftDays = view.findViewById(R.id.liftDaysEditText);
+
+                final Calendar calendarLift = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateLift = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarLift.set(Calendar.YEAR, i);
+                        calendarLift.set(Calendar.MONTH, i1);
+                        calendarLift.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        LiftDays.setText(sdf.format(calendarLift.getTime()));
+                    }
+                };
+
+                LiftDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateLift, calendarLift
+                                .get(Calendar.YEAR), calendarLift.get(Calendar.MONTH),
+                                calendarLift.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Geyser":
@@ -456,6 +542,33 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                GeyserDays = view.findViewById(R.id.geyserDaysEditText);
+
+                final Calendar calendarGeyser = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateGeyser = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarGeyser.set(Calendar.YEAR, i);
+                        calendarGeyser.set(Calendar.MONTH, i1);
+                        calendarGeyser.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        GeyserDays.setText(sdf.format(calendarGeyser.getTime()));
+                    }
+                };
+
+                GeyserDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateGeyser, calendarGeyser
+                                .get(Calendar.YEAR), calendarGeyser.get(Calendar.MONTH),
+                                calendarGeyser.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
                 break;
             case "Washing Machine":
 
@@ -480,6 +593,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                WashingMachineDays = view.findViewById(R.id.wmDaysEditText);
+
+                final Calendar calendarWM = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateWM = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarWM.set(Calendar.YEAR, i);
+                        calendarWM.set(Calendar.MONTH, i1);
+                        calendarWM.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        WashingMachineDays.setText(sdf.format(calendarWM.getTime()));
+                    }
+                };
+
+                WashingMachineDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateWM, calendarWM
+                                .get(Calendar.YEAR), calendarWM.get(Calendar.MONTH),
+                                calendarWM.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "RO":
@@ -505,6 +644,33 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                RODays = view.findViewById(R.id.RODaysEditText);
+
+                final Calendar calendarRO = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateRO = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarRO.set(Calendar.YEAR, i);
+                        calendarRO.set(Calendar.MONTH, i1);
+                        calendarRO.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        RODays.setText(sdf.format(calendarRO.getTime()));
+                    }
+                };
+
+                RODays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateRO, calendarRO
+                                .get(Calendar.YEAR), calendarRO.get(Calendar.MONTH),
+                                calendarRO.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
                 break;
 
             case "Dishwasher":
@@ -529,6 +695,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                DishwasherDays = view.findViewById(R.id.dishwasherDaysEditText);
+
+                final Calendar calendarDishwasher = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateDishwasher = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarDishwasher.set(Calendar.YEAR, i);
+                        calendarDishwasher.set(Calendar.MONTH, i1);
+                        calendarDishwasher.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        DishwasherDays.setText(sdf.format(calendarDishwasher.getTime()));
+                    }
+                };
+
+                DishwasherDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateDishwasher, calendarDishwasher
+                                .get(Calendar.YEAR), calendarDishwasher.get(Calendar.MONTH),
+                                calendarDishwasher.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Microwave":
@@ -553,6 +745,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                MicrowaveDays = view.findViewById(R.id.microwaveDaysEditText);
+
+                final Calendar calendarMicrowave = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateMicrowave = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarMicrowave.set(Calendar.YEAR, i);
+                        calendarMicrowave.set(Calendar.MONTH, i1);
+                        calendarMicrowave.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        MicrowaveDays.setText(sdf.format(calendarMicrowave.getTime()));
+                    }
+                };
+
+                MicrowaveDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateMicrowave, calendarMicrowave
+                                .get(Calendar.YEAR), calendarMicrowave.get(Calendar.MONTH),
+                                calendarMicrowave.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Refrigerator":
@@ -577,6 +795,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                FridgeDays = view.findViewById(R.id.fridgeDaysEditText);
+
+                final Calendar calendarFridge = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateFridge = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarFridge.set(Calendar.YEAR, i);
+                        calendarFridge.set(Calendar.MONTH, i1);
+                        calendarFridge.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        FridgeDays.setText(sdf.format(calendarFridge.getTime()));
+                    }
+                };
+
+                FridgeDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateFridge, calendarFridge
+                                .get(Calendar.YEAR), calendarFridge.get(Calendar.MONTH),
+                                calendarFridge.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "TV":
@@ -601,6 +845,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                TVDays = view.findViewById(R.id.TVDaysEditText);
+
+                final Calendar calendarTV = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateTV = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarTV.set(Calendar.YEAR, i);
+                        calendarTV.set(Calendar.MONTH, i1);
+                        calendarTV.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        TVDays.setText(sdf.format(calendarTV.getTime()));
+                    }
+                };
+
+                TVDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateTV, calendarTV
+                                .get(Calendar.YEAR), calendarTV.get(Calendar.MONTH),
+                                calendarTV.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "CCTV":
@@ -625,6 +895,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                CCTVDays = view.findViewById(R.id.CCTVDaysEditText);
+
+                final Calendar calendarCCTV = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateCCTV = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarCCTV.set(Calendar.YEAR, i);
+                        calendarCCTV.set(Calendar.MONTH, i1);
+                        calendarCCTV.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        CCTVDays.setText(sdf.format(calendarCCTV.getTime()));
+                    }
+                };
+
+                CCTVDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateCCTV, calendarCCTV
+                                .get(Calendar.YEAR), calendarCCTV.get(Calendar.MONTH),
+                                calendarCCTV.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Iron":
@@ -649,6 +945,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                IronDays = view.findViewById(R.id.ironDaysEditText);
+
+                final Calendar calendarIron = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateIron = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarIron.set(Calendar.YEAR, i);
+                        calendarIron.set(Calendar.MONTH, i1);
+                        calendarIron.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        IronDays.setText(sdf.format(calendarIron.getTime()));
+                    }
+                };
+
+                IronDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateIron, calendarIron
+                                .get(Calendar.YEAR), calendarIron.get(Calendar.MONTH),
+                                calendarIron.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
 
@@ -675,6 +997,33 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                InductionDays = view.findViewById(R.id.inductionDaysEditText);
+
+                final Calendar calendarInduction = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateInduction = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarInduction.set(Calendar.YEAR, i);
+                        calendarInduction.set(Calendar.MONTH, i1);
+                        calendarInduction.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        InductionDays.setText(sdf.format(calendarInduction.getTime()));
+                    }
+                };
+
+                InductionDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateInduction, calendarInduction
+                                .get(Calendar.YEAR), calendarInduction.get(Calendar.MONTH),
+                                calendarInduction.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
                 break;
             case "Router":
 
@@ -698,6 +1047,33 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
+
+                RouterDays = view.findViewById(R.id.routerDaysEditText);
+
+                final Calendar calendarRouter = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateRouter = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarRouter.set(Calendar.YEAR, i);
+                        calendarRouter.set(Calendar.MONTH, i1);
+                        calendarRouter.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        RouterDays.setText(sdf.format(calendarRouter.getTime()));
+                    }
+                };
+
+                RouterDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateRouter, calendarRouter
+                                .get(Calendar.YEAR), calendarRouter.get(Calendar.MONTH),
+                                calendarRouter.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Heater":
@@ -723,6 +1099,33 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.GONE);
 
+                HeaterDays = view.findViewById(R.id.heaterDaysEditText);
+
+                final Calendar calendarHeater = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateHeater = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarHeater.set(Calendar.YEAR, i);
+                        calendarHeater.set(Calendar.MONTH, i1);
+                        calendarHeater.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        HeaterDays.setText(sdf.format(calendarHeater.getTime()));
+                    }
+                };
+
+                HeaterDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateHeater, calendarHeater
+                                .get(Calendar.YEAR), calendarHeater.get(Calendar.MONTH),
+                                calendarHeater.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
                 break;
             case "D2H":
                 if(D2HLayout.getParent().getParent()!=null) {
@@ -746,6 +1149,32 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                 D2HLayout.setVisibility(View.VISIBLE);
                 otherLayout.setVisibility(View.GONE);
 
+                D2HDays = view.findViewById(R.id.D2HDaysEditText);
+
+                final Calendar calendarD2H = Calendar.getInstance();
+
+                final DatePickerDialog.OnDateSetListener dateD2H = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendarD2H.set(Calendar.YEAR, i);
+                        calendarD2H.set(Calendar.MONTH, i1);
+                        calendarD2H.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        D2HDays.setText(sdf.format(calendarD2H.getTime()));
+                    }
+                };
+
+                D2HDays.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(context, dateD2H, calendarD2H
+                                .get(Calendar.YEAR), calendarD2H.get(Calendar.MONTH),
+                                calendarD2H.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 break;
             case "Other":
@@ -835,7 +1264,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                             FanRoomNo = view.findViewById(R.id.fanRoomNumberEditText);
                             FanCompanyName = view.findViewById(R.id.fanCompanyNameEditText);
                             FanModel = view.findViewById(R.id.fanModelEditText);
-                            FanDays = view.findViewById(R.id.fanDaysEditText);
                             FanBlades = view.findViewById(R.id.fanBladesEditText);
 
                             String roomNoFan = FanRoomNo.getText().toString();
@@ -874,7 +1302,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             LiftCompanyName = view.findViewById(R.id.liftCompanyNameEditText);
                             LiftModel = view.findViewById(R.id.liftModelEditText);
-                            LiftDays = view.findViewById(R.id.liftDaysEditText);
                             LiftCapacity = view.findViewById(R.id.liftCapacityEditText);
                             LiftDoor = view.findViewById(R.id.liftDoorEditText);
 
@@ -908,7 +1335,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                             GeyserRoomNo = view.findViewById(R.id.geyserRoomNumberEditText);
                             GeyserCompanyName = view.findViewById(R.id.geyserCompanyNameEditText);
                             GeyserModel = view.findViewById(R.id.geyserModelEditText);
-                            GeyserDays = view.findViewById(R.id.geyserDaysEditText);
                             GeyserCapacity = view.findViewById(R.id.geyserCapacityEditText);
                             GeyserPower = view.findViewById(R.id.geyserPowerEditText);
                             GeyserRating = view.findViewById(R.id.geyserRatingEditText);
@@ -951,7 +1377,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                             WashingMachineRoomNo = view.findViewById(R.id.wmRoomNumberEditText);
                             WashingMachineCompanyName = view.findViewById(R.id.wmCompanyNameEditText);
                             WashingMachineModel = view.findViewById(R.id.wmModelEditText);
-                            WashingMachineDays = view.findViewById(R.id.wmDaysEditText);
                             WashingMachineCapacity = view.findViewById(R.id.wmCapacityEditText);
                             WashingMachinePower = view.findViewById(R.id.wmPowerEditText);
                             WashingMachineRating = view.findViewById(R.id.wmRatingEditText);
@@ -996,7 +1421,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             ROCapacity = view.findViewById(R.id.ROCapacityEditText);
                             ROCompanyName = view.findViewById(R.id.ROCompanyNameEditText);
-                            RODays = view.findViewById(R.id.RODaysEditText);
                             ROModel = view.findViewById(R.id.ROModelEditText);
                             RORoomNo = view.findViewById(R.id.RORoomNumberEditText);
 
@@ -1035,7 +1459,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             DishwasherCapacity = view.findViewById(R.id.dishwasherCapacityEditText);
                             DishwasherCompanyName = view.findViewById(R.id.dishwasherCompanyNameEditText);
-                            DishwasherDays = view.findViewById(R.id.dishwasherDaysEditText);
                             DishwasherModel = view.findViewById(R.id.dishwasherModelEditText);
                             DishwasherRoomNo = view.findViewById(R.id.dishwasherRoomNumberEditText);
                             DishwasherType = view.findViewById(R.id.dishwasherTypeEditText);
@@ -1075,7 +1498,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             MicrowaveCapacity = view.findViewById(R.id.microwaveCapacityEditText);
                             MicrowaveCompanyName = view.findViewById(R.id.microwaveCompanyNameEditText);
-                            MicrowaveDays = view.findViewById(R.id.microwaveDaysEditText);
                             MicrowaveModel = view.findViewById(R.id.microwaveModelEditText);
                             MicrowaveType = view.findViewById(R.id.microwaveTypeEditText);
                             MicrowaveRoomNo = view.findViewById(R.id.microwaveRoomNumberEditText);
@@ -1115,7 +1537,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             FridgeCapacity = view.findViewById(R.id.fridgeCapacityEditText);
                             FridgeCompanyName = view.findViewById(R.id.fridgeCompanyNameEditText);
-                            FridgeDays = view.findViewById(R.id.fridgeDaysEditText);
                             FridgeModel = view.findViewById(R.id.fridgeModelEditText);
                             FridgeRoomNo = view.findViewById(R.id.fridgeRoomNumberEditText);
                             FridgeType = view.findViewById(R.id.fridgeTypeEditText);
@@ -1156,7 +1577,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         case "TV":
 
                             TVCompanyName = view.findViewById(R.id.TVCompanyNameEditText);
-                            TVDays = view.findViewById(R.id.TVDaysEditText);
                             TVModel = view.findViewById(R.id.TVModelEditText);
                             TVResolution = view.findViewById(R.id.TVResolutionEditText);
                             TVRoomNo = view.findViewById(R.id.TVRoomNumberEditText);
@@ -1200,7 +1620,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             CCTVChanel = view.findViewById(R.id.CCTVChannelEditText);
                             CCTVCompanyName = view.findViewById(R.id.CCTVCompanyNameEditText);
-                            CCTVDays = view.findViewById(R.id.CCTVDaysEditText);
                             CCTVModel = view.findViewById(R.id.CCTVModelEditText);
                             CCTVNight = view.findViewById(R.id.CCTVNightEditText);
                             CCTVResolution = view.findViewById(R.id.CCTVResolutionEditText);
@@ -1242,7 +1661,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         case "Iron":
 
                             IronComanyName = view.findViewById(R.id.ironCompanyNameEditText);
-                            IronDays = view.findViewById(R.id.ironDaysEditText);
                             IronModel = view.findViewById(R.id.ironModelEditText);
                             IronPower = view.findViewById(R.id.ironPowerEditText);
                             IronRoomNo = view.findViewById(R.id.ironRoomNumberEditText);
@@ -1279,7 +1697,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         case "Induction":
 
                             InductionCompanyName = view.findViewById(R.id.inductionCompanyNameEditText);
-                            InductionDays = view.findViewById(R.id.inductionDaysEditText);
                             InductionModel = view.findViewById(R.id.inductionModelEditText);
                             InductionNoCooktop = view.findViewById(R.id.inductionNumberCooktopEditText);
                             InductionPower = view.findViewById(R.id.inductionPowerEditText);
@@ -1323,7 +1740,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
 
                             RouterAntenna = view.findViewById(R.id.routerAntennaEditText);
                             RouterCompanyName = view.findViewById(R.id.routerCompanyNameEditText);
-                            RouterDays = view.findViewById(R.id.routerDaysEditText);
                             RouterModel = view.findViewById(R.id.routerModelEditText);
                             RouterRoomNo = view.findViewById(R.id.routerRoomNumberEditText);
                             RouterSpeed = view.findViewById(R.id.routerSpeedEditText);
@@ -1362,7 +1778,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         case "Heater":
 
                             HeaterCompanyName = view.findViewById(R.id.heaterCompanyNameEditText);
-                            HeaterDays = view.findViewById(R.id.heaterDaysEditText);
                             HeaterModel = view.findViewById(R.id.heaterModelEditText);
                             HeaterPower = view.findViewById(R.id.heaterPowerEditText);
                             HeaterRoomNo = view.findViewById(R.id.heaterRoomNumberEditText);
@@ -1403,7 +1818,6 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                         case "D2H":
 
                             D2HCompanyName = view.findViewById(R.id.D2HCompanyNameEditText);
-                            D2HDays = view.findViewById(R.id.D2HDaysEditText);
                             D2HRoomNo = view.findViewById(R.id.D2HRoomNumberEditText);
 
                             String brandD2H = D2HCompanyName.getText().toString();
@@ -1479,5 +1893,4 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
         builder.show();
 
     }
-
 }

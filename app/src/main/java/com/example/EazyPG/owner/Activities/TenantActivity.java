@@ -1,19 +1,21 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -35,8 +37,11 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.katepratik.msg91api.MSG91;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class TenantActivity extends AppCompatActivity {
 
@@ -50,7 +55,8 @@ public class TenantActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     ImageView addTenant, qrImage;
-    EditText name, phone, room, dateOfJoining, rentAmount;
+    EditText name, phone, room, rentAmount;
+    TextView dateOfJoining;
 
     Snackbar snackbar;
     View view;
@@ -121,6 +127,7 @@ public class TenantActivity extends AppCompatActivity {
         addTenant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
 
                 final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
                 final TextView tenantCustomTitle;
@@ -129,6 +136,29 @@ public class TenantActivity extends AppCompatActivity {
                 room = viewDialog.findViewById(R.id.tenantRoomEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
                 rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
+
+                final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendar.set(Calendar.YEAR, i);
+                        calendar.set(Calendar.MONTH, i1);
+                        calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        dateOfJoining.setText(sdf.format(calendar.getTime()));
+                    }
+                };
+
+                dateOfJoining.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(TenantActivity.this, date, calendar
+                                .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                                calendar.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 final View addTitleView = inflater.inflate(R.layout.custom_title4, null);
                 tenantCustomTitle = addTitleView.findViewById(R.id.tenantCustomTitle);

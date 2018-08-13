@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -67,7 +65,7 @@
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:hint=" Capacity"/>
-        <EditText
+        <TextView
             android:id="@+id/ACLastServiceDateEditText"
             android:background="@drawable/roundedcorners"
             android:textColor="#000000"
@@ -158,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/fanDaysEditText"
             android:layout_below="@id/fanModelEditText"
             android:layout_width="match_parent"
@@ -222,7 +220,7 @@
             android:fontFamily="@font/productsans"
             android:layout_height="wrap_content"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/liftDaysEditText"
             android:layout_below="@id/liftModelEditText"
             android:layout_width="match_parent"
@@ -313,7 +311,7 @@
             android:fontFamily="@font/productsans"
             android:layout_height="wrap_content"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/geyserDaysEditText"
             android:layout_below="@id/geyserModelEditText"
             android:background="@drawable/roundedcorners"
@@ -418,7 +416,7 @@
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/wmDaysEditText"
             android:layout_below="@id/wmModelEditText"
             android:layout_width="match_parent"
@@ -537,7 +535,7 @@
             android:layout_margin="5dp"
             android:fontFamily="@font/productsans"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/RODaysEditText"
             android:layout_below="@id/ROModelEditText"
             android:layout_width="match_parent"
@@ -613,7 +611,7 @@
             android:layout_margin="5dp"
             android:fontFamily="@font/productsans"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/dishwasherDaysEditText"
             android:layout_below="@id/dishwasherModelEditText"
             android:layout_width="match_parent"
@@ -704,7 +702,7 @@
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/microwaveDaysEditText"
             android:layout_below="@id/microwaveModelEditText"
             android:layout_width="match_parent"
@@ -795,7 +793,7 @@
             android:maxLength="10"
             android:layout_height="wrap_content"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/fridgeDaysEditText"
             android:layout_below="@id/fridgeModelEditText"
             android:layout_width="match_parent"
@@ -900,7 +898,7 @@
             android:maxLength="10"
             android:fontFamily="@font/productsans"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/TVDaysEditText"
             android:layout_below="@id/TVModelEditText"
             android:layout_margin="5dp"
@@ -1005,7 +1003,7 @@
             android:fontFamily="@font/productsans"
             android:layout_height="wrap_content"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/CCTVDaysEditText"
             android:layout_below="@id/CCTVModelEditText"
             android:layout_width="match_parent"
@@ -1110,7 +1108,7 @@
             android:fontFamily="@font/productsans"
             android:layout_height="wrap_content"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/ironDaysEditText"
             android:layout_below="@id/ironModelEditText"
             android:layout_margin="5dp"
@@ -1187,7 +1185,7 @@
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/inductionDaysEditText"
             android:layout_below="@id/inductionModelEditText"
             android:layout_width="match_parent"
@@ -1292,7 +1290,7 @@
             android:layout_margin="5dp"
             android:fontFamily="@font/productsans"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/routerDaysEditText"
             android:layout_below="@id/routerModelEditText"
             android:layout_width="match_parent"
@@ -1383,7 +1381,7 @@
             android:maxLength="10"
             android:layout_height="wrap_content"
             android:hint=" Model"/>
-        <EditText
+        <TextView
             android:id="@+id/heaterDaysEditText"
             android:layout_below="@id/heaterModelEditText"
             android:background="@drawable/roundedcorners"
@@ -1460,7 +1458,7 @@
             android:textColorHint="#616161"
             android:layout_below="@id/D2HRoomNumberEditText"
             android:hint=" Brand"/>
-        <EditText
+        <TextView
             android:id="@+id/D2HDaysEditText"
             android:layout_below="@id/D2HCompanyNameEditText"
             android:background="@drawable/roundedcorners"

@@ -1,17 +1,19 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,8 +34,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class StaffActivity extends AppCompatActivity {
 
@@ -46,8 +51,8 @@ public class StaffActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     ImageView addStaff;
-    EditText staffName, jobDesc, contact, salary, dateOfJoining;
-    TextView addStaffTitle;
+    EditText staffName, jobDesc, contact, salary;
+    TextView addStaffTitle, dateOfJoining;
 
     Snackbar snackbar;
     View view;
@@ -116,6 +121,7 @@ public class StaffActivity extends AppCompatActivity {
         addStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
 
                 final View viewDialog = inflater.inflate(R.layout.dialog_staff, null);
 
@@ -124,6 +130,29 @@ public class StaffActivity extends AppCompatActivity {
                 contact = viewDialog.findViewById(R.id.contactEditText);
                 salary = viewDialog.findViewById(R.id.salaryEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.dateOfJoiningEditText);
+
+                final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendar.set(Calendar.YEAR, i);
+                        calendar.set(Calendar.MONTH, i1);
+                        calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        dateOfJoining.setText(sdf.format(calendar.getTime()));
+                    }
+                };
+
+                dateOfJoining.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(StaffActivity.this, date, calendar
+                                .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                                calendar.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
 
                 final View addTitleView = inflater.inflate(R.layout.custom_title2, null);
                 addStaffTitle = addTitleView.findViewById(R.id.addStaffCustomTitle);
