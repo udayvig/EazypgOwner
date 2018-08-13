@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
@@ -28,6 +31,10 @@ public class RoomTenantDetailsActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+    Button previousTenants;
+
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +48,16 @@ public class RoomTenantDetailsActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        previousTenants = findViewById(R.id.previousRoomTenants);
+
         roomTenantDetailList = new ArrayList<>();
         listViewRoomTenant = findViewById(R.id.listViewRoomTenant);
 
         Intent intent = getIntent();
 
-        String roomNo = intent.getStringExtra(RoomsDetailList.EXTRA_MESSAGE);
+        final String roomNo = intent.getStringExtra(RoomsDetailList.EXTRA_MESSAGE);
 
-        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNo + "/Tenant/");
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNo + "/Tenant/CurrentTenants");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -69,6 +78,17 @@ public class RoomTenantDetailsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        previousTenants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RoomTenantDetailsActivity.this, PreviousRoomTenantsActivity.class);
+                String message = roomNo;
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
             }
         });
 

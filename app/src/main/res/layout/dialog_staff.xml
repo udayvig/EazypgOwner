@@ -26,7 +26,7 @@
             android:layout_gravity="bottom"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            android:background="@drawable/roundedcorners"
+            android:background="@drawable/login_corners"
             android:ems="10"
             android:fontFamily="@font/productsans"
             android:hint="Name"
@@ -35,7 +35,7 @@
             android:paddingStart="10dp"
             android:textColorHint="#616161"
             android:textSize="18dp"
-            android:translationY="2dp" />
+            android:translationY="4dp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -57,7 +57,7 @@
             android:id="@+id/jobDescEditText"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundedcorners"
+            android:background="@drawable/login_corners"
             android:ems="10"
             android:fontFamily="@font/productsans"
             android:hint="Job Description"
@@ -67,7 +67,7 @@
             android:layout_marginStart="16dp"
             android:textColorHint="#616161"
             android:textSize="18dp"
-            android:translationY="2dp"
+            android:translationY="4dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="359dp" />
 
@@ -88,7 +88,7 @@
             android:id="@+id/contactEditText"
             android:layout_width="260dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundedcorners"
+            android:background="@drawable/login_corners"
             android:ems="10"
             android:fontFamily="@font/productsans"
             android:hint="Contact"
@@ -98,7 +98,7 @@
             android:layout_marginStart="16dp"
             android:textColorHint="#616161"
             android:textSize="18dp"
-            android:translationY="2dp"
+            android:translationY="4dp"
             tools:layout_editor_absoluteX="3dp"
             tools:layout_editor_absoluteY="144dp" />
 
@@ -121,7 +121,7 @@
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:background="@drawable/roundedcorners"
+            android:background="@drawable/login_corners"
             android:ems="10"
             android:fontFamily="@font/productsans"
             android:hint="Salary"
@@ -130,7 +130,7 @@
             android:paddingStart="10dp"
             android:textColorHint="#616161"
             android:textSize="18dp"
-            android:translationY="2dp"
+            android:translationY="4dp"
             tools:layout_editor_absoluteX="3dp"
             tools:layout_editor_absoluteY="189dp" />
 
@@ -153,7 +153,7 @@
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:background="@drawable/roundedcorners"
+            android:background="@drawable/login_corners"
             android:ems="10"
             android:fontFamily="@font/productsans"
             android:hint="Date of Joining (DD/MM/YY)"
@@ -162,7 +162,7 @@
             android:paddingStart="10dp"
             android:textColorHint="#616161"
             android:textSize="18dp"
-            android:translationY="2dp"
+            android:translationY="4dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="276dp" />
     </android.support.design.widget.TextInputLayout>

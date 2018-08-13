@@ -5,9 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -81,7 +84,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     private EditText OtherRoomNo, OtherName, OtherCompanyName;
     private TextView ACLastServiceDate, FanDays, LiftDays, GeyserDays, WashingMachineDays, RODays, DishwasherDays, MicrowaveDays, FridgeDays, TVDays, CCTVDays, IronDays, InductionDays, RouterDays, HeaterDays, D2HDays;
     private TextView customTitle;
-
+    private Snackbar snackbar;
+    private View view2;
     //Interface
     public interface ClickListener {
         void onPositionClicked(int position);
@@ -90,7 +94,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
     private LayoutInflater inflater;
     private final ClickListener clickListener;
 
-    ApplianceAdapter(String[] app, LayoutInflater inflater, ClickListener listener){
+    ApplianceAdapter(String[] app, LayoutInflater inflater, ClickListener listener ){
         this.clickListener=listener;
         this.inflater=inflater;
     }
@@ -118,6 +122,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
         private TextView iconTextView;
         private Button iconButton;
         private final Context context;
+       // private final Context context2;
         private CardView cardViewItem;
 
         public MyViewHolder(final View itemView, ClickListener listener){
@@ -128,6 +133,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
             cardViewItem = itemView.findViewById(R.id.cardView2);
 
             context = itemView.getContext();
+
 
         }
 
@@ -271,6 +277,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
             holder.iconButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    view2 = view.findViewById(R.id.appliancesLayout);
 
                     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     databaseReference = firebaseDatabase.getReference("PG/"+firebaseUser.getUid());
@@ -1235,10 +1242,8 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.MyVi
                             String uidAC = databaseReference.push().getKey();
 
                             if (roomNoAC.equals("")) {
-
-                                Toast.makeText(context, "Room number Required", Toast.LENGTH_LONG).show();
                                 progressDialog.dismiss();
-
+                               Toast.makeText(context , "Room Number Required" , Toast.LENGTH_SHORT).show();
                             } else {
 
                                 ACDetails acDetails = new ACDetails(uidAC, roomNoAC, brandAC, modelAC, capacityAC, lastServiceDateAC, starRatingAC, ratingAC);

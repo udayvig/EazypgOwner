@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,9 +50,10 @@ public class MyPGActivity extends AppCompatActivity {
     TextView ownerName;
     TextView contact;
     TextView staffCount;
-
+    Snackbar snackbar;
     TextView appliance;
     TextView rooms;
+    View view;
 
     FloatingActionButton saveButton;
 
@@ -94,6 +97,7 @@ public class MyPGActivity extends AppCompatActivity {
         input10 = new EditText(this);
         input11 = new EditText(this);
         input12 = new EditText(this);
+        view = findViewById(R.id.myPgLayout);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -579,6 +583,7 @@ public class MyPGActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addingPg();
+                saveButton.setVisibility(View.VISIBLE);
             }
         });
 
@@ -622,16 +627,34 @@ public class MyPGActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 progressDialog.dismiss();
-                Toast.makeText(MyPGActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
+                snackbar = Snackbar.make(view, "Saved", Snackbar.LENGTH_SHORT);
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundColor(ContextCompat.getColor(MyPGActivity.this, R.color.DarkGreen));
+                snackbar.show();
+                saveButton.hide();
+                saveButton.postDelayed(new Runnable() {
+                    public void run() {
+                        saveButton.show();
+                    }
+                }, 1800);
+                
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Toast.makeText(MyPGActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                snackbar = Snackbar.make(view, "Failed ! Unable to Save", Snackbar.LENGTH_LONG);
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundColor(ContextCompat.getColor(MyPGActivity.this, R.color.red));
+                snackbar.show();
+                saveButton.hide();
+                saveButton.postDelayed(new Runnable() {
+                    public void run() {
+                        saveButton.show();
+                    }
+                }, 1800);
             }
         });
-
     }
 
     @Override

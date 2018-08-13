@@ -3,6 +3,8 @@ package com.example.EazyPG.owner.Activities;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -51,7 +53,8 @@ public class RoomsActivity extends AppCompatActivity {
     ImageView addRoom;
     TextView custom_title;
     EditText roomEditText;
-
+    Snackbar snackbar;
+    View view;
     LayoutInflater inflater;
 
     RadioGroup radioGroup;
@@ -93,8 +96,6 @@ public class RoomsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
-
-
 
         Toolbar toolbar = findViewById(R.id.roomsToolbar);
         setSupportActionBar(toolbar);
@@ -168,6 +169,8 @@ public class RoomsActivity extends AppCompatActivity {
             }
         });
 
+
+
         addRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,7 +214,7 @@ public class RoomsActivity extends AppCompatActivity {
     }
 
     private void getTenantDetails(final String room){
-        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/");
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -228,7 +231,7 @@ public class RoomsActivity extends AppCompatActivity {
                 for(int i = 0; i < tenantList.size(); i++){
                     if (tenantList.get(i).room.equals(room)) {
 
-                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child(tenantList.get(i).id).setValue(tenantList.get(i));
+                        databaseReference1.child("Rooms").child(tenantList.get(i).room).child("Tenant").child("CurrentTenants").child(tenantList.get(i).id).setValue(tenantList.get(i));
                     }
                 }
             }
