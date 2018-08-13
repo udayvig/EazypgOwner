@@ -47,15 +47,17 @@ public class TenantActivity extends AppCompatActivity {
     List<TenantDetails> tenantDetailsList;
 
     FirebaseUser firebaseUser;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference1;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     ImageView addTenant, qrImage;
     Button previousTenants;
-    EditText name, phone, room, dateOfJoining, rentAmount;
+    EditText name, phone, room, dateOfJoining, rentAmount, email;
 
     Snackbar snackbar;
     View view;
+
+    String pgName;
 
     LayoutInflater inflater;
 
@@ -122,6 +124,8 @@ public class TenantActivity extends AppCompatActivity {
             }
         });
 
+        databaseReference1 = FirebaseDatabase.getInstance().getReference("PG/" + firebaseUser.getUid() + "/PG Details/");
+
         addTenant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +137,7 @@ public class TenantActivity extends AppCompatActivity {
                 room = viewDialog.findViewById(R.id.tenantRoomEditText);
                 dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
                 rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
+                email = viewDialog.findViewById(R.id.tenantEmailEditText);
 
                 final View addTitleView = inflater.inflate(R.layout.custom_title4, null);
                 tenantCustomTitle = addTitleView.findViewById(R.id.tenantCustomTitle);
@@ -142,13 +147,27 @@ public class TenantActivity extends AppCompatActivity {
 
                 builder.setView(viewDialog);
 
+                databaseReference1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        pgName = dataSnapshot.child("pgName").getValue(String.class);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
-                        msg91.composeMessage("EazyPG", "Hello " + name.getText().toString() + ". App download karlo: ");
+                        msg91.composeMessage("EazyPG", "Hi " + name.getText().toString() + ". Welcome to " + pgName + ". Get you EazyPG App. Follow the link: ");
                         msg91.to(phone.getText().toString());
                         String sendStatus = msg91.send();
 
@@ -161,7 +180,7 @@ public class TenantActivity extends AppCompatActivity {
                         try {
 
                             String content = FirebaseAuth.getInstance().getCurrentUser().getUid() + " " +
-                                    name.getText().toString() + " " + phone.getText().toString() + " " +
+                                    name.getText().toString() + " " + phone.getText().toString() + " " + email.getText().toString() +
                                     room.getText().toString() + " " + dateOfJoining.getText().toString() + " " +
                                     rentAmount.getText().toString();
 

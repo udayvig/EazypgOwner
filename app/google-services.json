@@ -23,8 +23,12 @@
           }
         },
         {
-          "client_id": "1054489354634-6fa59686airoq6c567j0fqctoh2sntg2.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "1054489354634-f90cmgd7defpam5krd3q1fe9frq6o0d8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ainesh.eazypg_owner",
+            "certificate_hash": "7a414386b8bc3f7dffcf713eab04858ec944fb27"
+          }
         },
         {
           "client_id": "1054489354634-6fa59686airoq6c567j0fqctoh2sntg2.apps.googleusercontent.com",
@@ -44,7 +48,111 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1054489354634-6fa59686airoq6c567j0fqctoh2sntg2.apps.googleusercontent.com",
+              "client_id": "1054489354634-3l6ch8c68nt37jr8th11bmjad5787n6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054489354634:android:42db66bc5213cf96",
+        "android_client_info": {
+          "package_name": "com.example.android.qrcodescanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054489354634-sd6f09iu22sqef8b9lcb9h6dv100kioa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.qrcodescanner",
+            "certificate_hash": "944546bb47d83a6861fd3a74749e93ffe435979e"
+          }
+        },
+        {
+          "client_id": "1054489354634-efvgo3vi1ces3kmpsrd64f7nmu3j8jln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.qrcodescanner",
+            "certificate_hash": "ca1188e5a9f5e70d31a7c808c2a9d6749b1282bb"
+          }
+        },
+        {
+          "client_id": "1054489354634-ferocrsjba39aeo3mdqmdjpr0hhqd8hj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.qrcodescanner",
+            "certificate_hash": "7a414386b8bc3f7dffcf713eab04858ec944fb27"
+          }
+        },
+        {
+          "client_id": "1054489354634-6fa59686airoq6c567j0fqctoh2sntg2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu86dzMPlAM636K9pir-H6hUBGRB1xkxc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054489354634-3l6ch8c68nt37jr8th11bmjad5787n6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054489354634:android:5acb09ef6dd5f451",
+        "android_client_info": {
+          "package_name": "com.example.android.razorpayintegration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054489354634-7i0ufcl8ff4qu64c9odrq9h9li0u73uo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.razorpayintegration",
+            "certificate_hash": "944546bb47d83a6861fd3a74749e93ffe435979e"
+          }
+        },
+        {
+          "client_id": "1054489354634-6fa59686airoq6c567j0fqctoh2sntg2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu86dzMPlAM636K9pir-H6hUBGRB1xkxc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054489354634-3l6ch8c68nt37jr8th11bmjad5787n6r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
