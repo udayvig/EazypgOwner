@@ -173,15 +173,18 @@ public class TenantActivity extends AppCompatActivity {
 
                         Log.i("MyMSGStatus", sendStatus);
 
-                        final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
+                        final View viewDialog = inflater.inflate(R.layout.dialog_qr, null, true);
                         qrImage = viewDialog.findViewById(R.id.qrImageView);
 
                         QRCodeWriter writer = new QRCodeWriter();
                         try {
 
                             String content = FirebaseAuth.getInstance().getCurrentUser().getUid() + " " +
-                                    name.getText().toString() + " " + phone.getText().toString() + " " + email.getText().toString() +
-                                    room.getText().toString() + " " + dateOfJoining.getText().toString() + " " +
+                                    name.getText().toString() + " " +
+                                    phone.getText().toString() + " " +
+                                    email.getText().toString() +
+                                    room.getText().toString() + " " +
+                                    dateOfJoining.getText().toString() + " " +
                                     rentAmount.getText().toString();
 
                             BitMatrix bitMatrix = writer.encode(content , BarcodeFormat.QR_CODE, 512, 512);
