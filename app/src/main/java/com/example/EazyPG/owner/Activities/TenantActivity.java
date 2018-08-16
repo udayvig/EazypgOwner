@@ -192,7 +192,7 @@ public class TenantActivity extends AppCompatActivity {
                         try {
 
                             String content = FirebaseAuth.getInstance().getCurrentUser().getUid() + " " +
-                                    name.getText().toString() + " " + phone.getText().toString() + " " + email.getText().toString() +
+                                    name.getText().toString() + " " + phone.getText().toString() + " " + email.getText().toString() + " " +
                                     room.getText().toString() + " " + dateOfJoining.getText().toString() + " " +
                                     rentAmount.getText().toString();
 
