@@ -1,17 +1,23 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,12 +32,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
-
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
-
-    private int RC_SIGN_IN = 1;
 
     private EditText etUserEmail,etUserPassword;
     private ImageView btnSignIn;
@@ -43,6 +45,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.rgb(47,50,53));
+        }
 
         final EditText input=new EditText(this);
 
@@ -118,30 +126,39 @@ public class LoginActivity extends AppCompatActivity {
                 if(input.getParent()!=null) {
                     ((ViewGroup) input.getParent()).removeView(input);
                 }
-                AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle(" Reset Password")
-                        .setMessage("Enter your Email Id")
-                        .setIcon(R.drawable.letter)
-                        .setView(input)
-                        .setPositiveButton("Send Email", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                mFirebaseAuth.sendPasswordResetEmail(input.getText().toString().trim())
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                Toast.makeText(LoginActivity.this, "Mail Sent!", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }
-                        });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                final Dialog dialog=new Dialog(LoginActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                Window window = dialog.getWindow();
+                dialog.setContentView(R.layout.dialog_forgotpassword);
+                dialog.setTitle(" Reset Password");
+                Button ok = dialog.findViewById(R.id.okButton);
+                Button cancel = dialog.findViewById(R.id.cancelButton);
+                EditText email = dialog.findViewById(R.id.email);
+                input.setText(email.toString());
+
+                window.setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.show();
+
+                ok.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View view) {
+                        mFirebaseAuth.sendPasswordResetEmail(input.getText().toString().trim())
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(LoginActivity.this, "Mail Sent!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
                         dialog.dismiss();
                     }
                 });
-                builder.create().show();
+
             }
         });
     }

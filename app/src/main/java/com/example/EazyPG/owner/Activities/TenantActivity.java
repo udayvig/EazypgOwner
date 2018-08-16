@@ -1,10 +1,12 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,8 +54,10 @@ public class TenantActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     ImageView addTenant, qrImage;
-    Button previousTenants;
-    EditText name, phone, room, dateOfJoining, rentAmount, email;
+
+    Button previousTenants , ok , cancel;
+    EditText name, phone, room, dateOfJoining, rentAmount , email;
+
 
     Snackbar snackbar;
     View view;
@@ -91,7 +96,7 @@ public class TenantActivity extends AppCompatActivity {
         dateOfJoining = findViewById(R.id.tenantDateEditText);
         rentAmount = findViewById(R.id.tenantRentEditText);
 
-        snackbar = Snackbar.make(view, "Tap item to view", Snackbar.LENGTH_LONG);
+        snackbar = Snackbar.make(view, "Tap item to view. Long Press to Remove", Snackbar.LENGTH_LONG);
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(ContextCompat.getColor(TenantActivity.this, R.color.DarkGreen));
         snackbar.show();
@@ -130,22 +135,28 @@ public class TenantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
-                final TextView tenantCustomTitle;
-                name = viewDialog.findViewById(R.id.tenantNameEditText);
-                phone = viewDialog.findViewById(R.id.tenantPhoneEditText);
-                room = viewDialog.findViewById(R.id.tenantRoomEditText);
-                dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
-                rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
-                email = viewDialog.findViewById(R.id.tenantEmailEditText);
 
-                final View addTitleView = inflater.inflate(R.layout.custom_title4, null);
-                tenantCustomTitle = addTitleView.findViewById(R.id.tenantCustomTitle);
+                // final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
+                final Dialog dialog = new Dialog(TenantActivity.this);
+                /*final TextView tenantCustomTitle*/
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(TenantActivity.this);
-                builder.setCustomTitle(tenantCustomTitle);
+                /*final View addTitleView = inflater.inflate(R.layout.custom_title4, null);
+                tenantCustomTitle = addTitleView.findViewById(R.id.tenantCustomTitle);*/
 
-                builder.setView(viewDialog);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                Window window = dialog.getWindow();
+                dialog.setContentView(R.layout.dialog_tenant);
+                name = dialog.findViewById(R.id.tenantNameEditText);
+                phone = dialog.findViewById(R.id.tenantPhoneEditText);
+                room = dialog.findViewById(R.id.tenantRoomEditText);
+                dateOfJoining = dialog.findViewById(R.id.tenantDateEditText);
+                rentAmount = dialog.findViewById(R.id.tenantRentEditText);
+                ok = dialog.findViewById(R.id.okButton);
+                cancel = dialog.findViewById(R.id.cancelButton);
+                email = dialog.findViewById(R.id.tenantEmailEditText);
+                window.setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.show();
+
 
                 databaseReference1.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -161,10 +172,11 @@ public class TenantActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
+                ok.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View view) {
+
 
                         MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
                         msg91.composeMessage("EazyPG", "Hi " + name.getText().toString() + ". Welcome to " + pgName + ". Get you EazyPG App. Follow the link: ");
@@ -173,18 +185,15 @@ public class TenantActivity extends AppCompatActivity {
 
                         Log.i("MyMSGStatus", sendStatus);
 
-                        final View viewDialog = inflater.inflate(R.layout.dialog_qr, null, true);
+                        final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
                         qrImage = viewDialog.findViewById(R.id.qrImageView);
 
                         QRCodeWriter writer = new QRCodeWriter();
                         try {
 
                             String content = FirebaseAuth.getInstance().getCurrentUser().getUid() + " " +
-                                    name.getText().toString() + " " +
-                                    phone.getText().toString() + " " +
-                                    email.getText().toString() +
-                                    room.getText().toString() + " " +
-                                    dateOfJoining.getText().toString() + " " +
+                                    name.getText().toString() + " " + phone.getText().toString() + " " + email.getText().toString() +
+                                    room.getText().toString() + " " + dateOfJoining.getText().toString() + " " +
                                     rentAmount.getText().toString();
 
                             BitMatrix bitMatrix = writer.encode(content , BarcodeFormat.QR_CODE, 512, 512);
@@ -214,11 +223,18 @@ public class TenantActivity extends AppCompatActivity {
                         } catch (WriterException e) {
                             e.printStackTrace();
                         }
+
+
                     }
                 });
 
-                builder.setNegativeButton("Cancel", null);
-                builder.show();
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
 
             }
         });
