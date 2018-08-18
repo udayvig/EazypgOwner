@@ -7,13 +7,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.EazyPG.owner.Adapter.MyAdapter;
 import com.example.EazyPG.owner.Model.Item;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +49,8 @@ public class HomePageActivity extends AppCompatActivity {
         complaint = findViewById(R.id.complaintImageView);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
 
         tenant.setOnClickListener(new View.OnClickListener() {
             @Override
