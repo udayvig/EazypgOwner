@@ -1,32 +1,37 @@
 package com.example.EazyPG.owner.DetailsClasses;
 
 public class ComplaintDetails {
-    public String feedback, name, room, date, firstLevel, secondLevel, thirdLevel, newId;
-    public boolean resolved;
 
-    public ComplaintDetails(String feedback, String name, String room, String date, String firstLevel, String secondLevel, String thirdLevel, boolean resolved, String newId) {
-        this.feedback = feedback;
+    public String firstLevel, secondLevel, thirdLevel, description, imageName, status, uploadId, availabilityTime, complaintId;
+    public String name, roomNo;
+
+    public ComplaintDetails(){
+
+    }
+
+    public ComplaintDetails(String uploadId, String secondLevel, String thirdLevel, String description, String imageName, String status, String availabilityTime, String complaintId) {
+        this.uploadId = uploadId;
+        this.secondLevel = secondLevel;
+        this.thirdLevel = thirdLevel;
+        this.description = description;
+        this.imageName = imageName;
+        this.status = status;
+        this.availabilityTime = availabilityTime;
+        this.complaintId = complaintId;
+    }
+
+    public ComplaintDetails(String name, String roomNo, String uploadId, String firstLevel, String secondLevel, String thirdLevel, String description, String imageName, String status, String availabilityTime, String complaintId) {
+
         this.name = name;
-        this.room = room;
-        this.date = date;
+        this.roomNo = roomNo;
+        this.uploadId = uploadId;
         this.firstLevel = firstLevel;
         this.secondLevel = secondLevel;
         this.thirdLevel = thirdLevel;
-        this.resolved = resolved;
-        this.newId = newId;
-    }
-
-    public ComplaintDetails(String feedback, String date, String firstLevel, String secondLevel, String thirdLevel, String newId, boolean resolved) {
-        this.feedback = feedback;
-        this.date = date;
-        this.firstLevel = firstLevel;
-        this.secondLevel = secondLevel;
-        this.thirdLevel = thirdLevel;
-        this.newId = newId;
-        this.resolved = resolved;
-    }
-
-    public ComplaintDetails() {
-
+        this.description = description;
+        this.imageName = imageName;
+        this.status = status;
+        this.availabilityTime = availabilityTime;
+        this.complaintId = complaintId;
     }
 }

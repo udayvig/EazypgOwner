@@ -89,10 +89,7 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.example.EazyPG.owner.Activities.BedroomComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintActivity" />
+
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />

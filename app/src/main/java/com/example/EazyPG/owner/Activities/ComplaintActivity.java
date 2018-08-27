@@ -5,8 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
+import com.example.EazyPG.owner.DetailList.ComplaintDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ComplaintDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,86 +22,49 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ComplaintActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    CardView bedroomComplaint, foodComplaint, facilityComplaint, securityComplaint;
+public class ComplaintActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    int countBedroom, countFood, countFacility, countSecurity;
+    List<ComplaintDetails> complaintDetailsList;
+
+    RecyclerView recyclerView;
+    ComplaintDetailList adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
 
-        bedroomComplaint = findViewById(R.id.bedroomComplaint);
-        foodComplaint = findViewById(R.id.foodComplaint);
-        facilityComplaint = findViewById(R.id.facilityComplaint);
-        securityComplaint = findViewById(R.id.securityComplaint);
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        countBedroom = countFacility = countSecurity = countFood = 0;
+        complaintDetailsList = new ArrayList<>();
+        recyclerView = findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
 
-        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaints");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaint/Bedroom/");
+
+        DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaints/Bedroom/");
+        databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    ComplaintDetails complaintDetails1 = snapshot.getValue(ComplaintDetails.class);
 
-                    ComplaintDetails complaintDetails = snapshot.child("Bedroom").getValue(ComplaintDetails.class);
-
-                    if (!complaintDetails.resolved) {
-
-                        countBedroom ++;
-                    }
+                    if (complaintDetails1.status.equals("Unresolved"))
+                    complaintDetailsList.add(complaintDetails1);
 
                 }
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    ComplaintDetails complaintDetails = snapshot.child("Food").getValue(ComplaintDetails.class);
-
-                    if (!complaintDetails.resolved) {
-
-                        countFood ++;
-                    }
-
-                }
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    ComplaintDetails complaintDetails = snapshot.child("Facility").getValue(ComplaintDetails.class);
-
-                    if (!complaintDetails.resolved) {
-
-                        countFacility ++;
-                    }
-
-                }
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    ComplaintDetails complaintDetails = snapshot.child("Security").getValue(ComplaintDetails.class);
-
-                    if (!complaintDetails.resolved) {
-
-                        countSecurity ++;
-                    }
-
-                }
-
-                // Add counts to bubbles
-
-
             }
 
             @Override
@@ -105,39 +73,66 @@ public class ComplaintActivity extends AppCompatActivity {
             }
         });
 
-        bedroomComplaint.setOnClickListener(new View.OnClickListener() {
+        DatabaseReference databaseReference2 = firebaseDatabase.getReference("Tenants/" + firebaseUser.getUid() + "/Complaints/Mess & Food/");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintActivity.class));
-                finish();
+                    ComplaintDetails complaintDetails1 = snapshot.getValue(ComplaintDetails.class);
+
+                    if (complaintDetails1.status.equals("Unresolved"))
+                    complaintDetailsList.add(complaintDetails1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
-        foodComplaint.setOnClickListener(new View.OnClickListener() {
+        DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + firebaseUser.getUid() + "/Complaints/Facilities/");
+        databaseReference3.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-                startActivity(new Intent(ComplaintActivity.this, FoodComplaintActivity.class));
-                finish();
+                    ComplaintDetails complaintDetails1 = snapshot.getValue(ComplaintDetails.class);
+
+                    if (complaintDetails1.status.equals("Unresolved"))
+                    complaintDetailsList.add(complaintDetails1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
-        facilityComplaint.setOnClickListener(new View.OnClickListener() {
+        DatabaseReference databaseReference4 = firebaseDatabase.getReference("Tenants/" + firebaseUser.getUid() + "/Complaints/Management & Security/");
+        databaseReference4.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
 
-                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintActivity.class));
-                finish();
+                    ComplaintDetails complaintDetails1 = snapshot.getValue(ComplaintDetails.class);
+
+                    if (complaintDetails1.status.equals("Unresolved"))
+                    complaintDetailsList.add(complaintDetails1);
+                }
+
+                adapter = new ComplaintDetailList(complaintDetailsList);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(adapter);
             }
-        });
 
-        securityComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintActivity.class));
-                finish();
             }
         });
     }
