@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ComplaintDetailList extends RecyclerView.Adapter<ComplaintDetailList.MyViewHolder>{
 
-    FirebaseStorage storage = FirebaseStorage.getInstance();
+    FirebaseStorage storage;
 
     List<ComplaintDetails> complaintDetailsList;
 
@@ -72,6 +72,8 @@ public class ComplaintDetailList extends RecyclerView.Adapter<ComplaintDetailLis
         Log.e("complaintPos", position + "");
 
         ComplaintDetails complaintDetails1 = complaintDetailsList.get(position);
+
+        storage = FirebaseStorage.getInstance();
 
         StorageReference storageReference = storage.getReferenceFromUrl("gs://eazypgowner.appspot.com").child("Complaints").child(complaintDetails1.imageName);
 

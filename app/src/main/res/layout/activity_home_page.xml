@@ -333,6 +333,12 @@
             android:layout_height="match_parent">
 
 
+            <Button
+                android:id="@+id/foodButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Food" />
+
             <ImageView
                 android:id="@+id/notifCardImageView"
                 android:layout_width="match_parent"
@@ -371,6 +377,7 @@
                 app:layout_constraintVertical_bias="0.304" />
 
         </android.support.constraint.ConstraintLayout>
+
     </android.support.v4.widget.NestedScrollView>
 
 

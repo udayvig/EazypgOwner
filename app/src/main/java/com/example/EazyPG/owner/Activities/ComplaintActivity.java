@@ -73,7 +73,7 @@ public class ComplaintActivity extends AppCompatActivity {
             }
         });
 
-        DatabaseReference databaseReference2 = firebaseDatabase.getReference("Tenants/" + firebaseUser.getUid() + "/Complaints/Mess & Food/");
+        DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaints/Mess & Food/");
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -92,7 +92,7 @@ public class ComplaintActivity extends AppCompatActivity {
             }
         });
 
-        DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + firebaseUser.getUid() + "/Complaints/Facilities/");
+        DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaints/Facilities/");
         databaseReference3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -111,7 +111,7 @@ public class ComplaintActivity extends AppCompatActivity {
             }
         });
 
-        DatabaseReference databaseReference4 = firebaseDatabase.getReference("Tenants/" + firebaseUser.getUid() + "/Complaints/Management & Security/");
+        DatabaseReference databaseReference4 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaints/Management & Security/");
         databaseReference4.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -120,8 +120,10 @@ public class ComplaintActivity extends AppCompatActivity {
                     ComplaintDetails complaintDetails1 = snapshot.getValue(ComplaintDetails.class);
 
                     if (complaintDetails1.status.equals("Unresolved"))
-                    complaintDetailsList.add(complaintDetails1);
+                        complaintDetailsList.add(complaintDetails1);
                 }
+
+                Log.e("List Size", complaintDetailsList.size() + "");
 
                 adapter = new ComplaintDetailList(complaintDetailsList);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
