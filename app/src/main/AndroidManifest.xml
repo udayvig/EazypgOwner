@@ -87,11 +87,13 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.example.EazyPG.owner.Activities.HostFriendLogActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.LateCheckinLogActivity"></activity>
     </application>
 
 </manifest>
