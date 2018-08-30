@@ -84,6 +84,18 @@ public class SignupActivity extends AppCompatActivity {
                                 int count = 0;
                                 databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Complaints").child("ComplaintCount").setValue(String.format("%04d",count));
 
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Breakfast").child("Yes").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Breakfast").child("No").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Breakfast").child("Maybe").setValue("0");
+
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Lunch").child("Yes").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Lunch").child("No").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Lunch").child("Maybe").setValue("0");
+
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Dinner").child("Yes").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Dinner").child("No").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Dinner").child("Maybe").setValue("0");
+
                                 progressDialog.dismiss();
 
                                 final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "","Loading..", true);
