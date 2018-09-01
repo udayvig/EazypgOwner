@@ -15,24 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--
-        <service
-            android:name=".MyFirebaseMessagingService"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </service>
-
-        <service android:name=".MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-        -->
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
@@ -105,16 +87,13 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.example.EazyPG.owner.Activities.BedroomComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.HostFriendLogActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.BillActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FineActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.LateCheckinLogActivity"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.EazyPG.owner.Adapter.MyAdapter;
@@ -30,6 +31,10 @@ public class HomePageActivity extends AppCompatActivity {
 
     SwitchCompat logout;
 
+    Button foodButton;
+    Button hostFriendButton;
+    Button lateCheckinButton;
+
     List<Item> items = new ArrayList<>();
     MyAdapter adapter;
 
@@ -47,6 +52,11 @@ public class HomePageActivity extends AppCompatActivity {
         passbook = findViewById(R.id.passbookImageView);
         logout = findViewById(R.id.logoutButton);
         complaint = findViewById(R.id.complaintImageView);
+
+        lateCheckinButton = findViewById(R.id.lateCheckInButton);
+
+        foodButton = findViewById(R.id.foodButton);
+        hostFriendButton = findViewById(R.id.hostFriendButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -100,6 +110,22 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
+        hostFriendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, HostFriendLogActivity.class));
+                finish();
+            }
+        });
+
+        foodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, FoodActivity.class));
+                finish();
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,6 +148,14 @@ public class HomePageActivity extends AppCompatActivity {
                         })
                         .setIcon(R.drawable.ic_warning_black_24dp)
                         .show();
+            }
+        });
+
+        lateCheckinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, LateCheckinLogActivity.class));
+                finish();
             }
         });
 

@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
 
@@ -26,8 +28,8 @@ public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     private FirebaseAuth mFirebaseAuth;
-
-    private int RC_SIGN_IN=1;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     TextView signupToLogin;
 
@@ -48,12 +50,15 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        btnSignUp=(ImageView) findViewById(R.id.btnSignUp);
-        etUserEmail=(EditText) findViewById(R.id.emailEditText);       //Test
-        etUserLocality=(EditText) findViewById(R.id.localityEditText); //Test
-        etUserContact=(EditText) findViewById(R.id.contactEditText);       //Test
-        etUserName=(EditText)findViewById(R.id.usernameEditText);      //Test
+        btnSignUp = findViewById(R.id.btnSignUp);
+        etUserEmail = findViewById(R.id.emailEditText);       //Test
+        etUserLocality = findViewById(R.id.localityEditText); //Test
+        etUserContact = findViewById(R.id.contactEditText);       //Test
+        etUserName = findViewById(R.id.usernameEditText);      //Test
         signupToLogin = findViewById(R.id.signupToLoginTextView);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("PG/");
 
         mFirebaseAuth=FirebaseAuth.getInstance();
 
@@ -75,6 +80,26 @@ public class SignupActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()){
+
+                                int count = 0;
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Complaints").child("ComplaintCount").setValue(String.format("%04d",count));
+
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Breakfast").child("Yes").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Breakfast").child("No").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Breakfast").child("Maybe").setValue("0");
+
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Lunch").child("Yes").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Lunch").child("No").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Lunch").child("Maybe").setValue("0");
+
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Dinner").child("Yes").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Dinner").child("No").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Dinner").child("Maybe").setValue("0");
+
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Upcoming Meal").child("Yes").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Upcoming Meal").child("No").setValue("0");
+                                databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Meals Saved").child("Upcoming Meal").child("Maybe").setValue("0");
+
 
                                 progressDialog.dismiss();
 
