@@ -8,8 +8,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--<service
+        <!--
+        <service
             android:name=".MyFirebaseMessagingService"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
@@ -31,7 +30,8 @@
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service>-->
+        </service>
+        -->
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -39,7 +39,8 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-        <meta-data android:name="com.google.android.gms.version"
+        <meta-data
+            android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
@@ -111,7 +112,9 @@
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.BillActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FineActivity"></activity>
     </application>
 
 </manifest>
