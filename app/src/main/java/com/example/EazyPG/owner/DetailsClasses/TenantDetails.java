@@ -4,6 +4,8 @@ public class TenantDetails {
 
     public String id, name, phone, room, dateOfJoining, rentAmount, pgId;
 
+    public int credits;
+
     public String getId() {
         return id;
     }
@@ -68,6 +70,7 @@ public class TenantDetails {
         this.dateOfJoining = dateOfJoining;
         this.rentAmount = rentAmount;
         this.pgId = pgId;
+        this.credits = 0;
     }
 
     public TenantDetails(String id, String name, String phone, String dateOfJoining, String rentAmount, String pgId) {

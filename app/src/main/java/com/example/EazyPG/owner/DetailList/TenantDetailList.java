@@ -17,10 +17,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.EazyPG.owner.Activities.BillActivity;
+import com.example.EazyPG.owner.Activities.FineActivity;
 import com.example.EazyPG.owner.Activities.PaymentActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,12 +36,18 @@ import java.util.List;
 
 public class TenantDetailList extends ArrayAdapter<TenantDetails> {
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
     private Activity context;
     private List<TenantDetails> tenantList;
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static final String EXTRA_MESSAGE2 = "com.example.myfirstapp.MESSAGE2";
     public String id;
-    FloatingActionButton callButton, paymentButton;
-    Button deleteTenant;
+    private FloatingActionButton callButton, paymentButton;
+    private Button deleteTenant, fineButton, billButton;
     ImageView qrButton, qrImage;
 
     TenantDetails newData;
@@ -49,17 +59,26 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         this.tenantList = tenantList;
     }
 
-    DatabaseReference databaseReference;
     List<String> ids = new ArrayList<>();
 
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final LayoutInflater inflater = context.getLayoutInflater();
+
         View listViewItemTenant = inflater.inflate(R.layout.tenant_row, null, true);
+        final View dialogFine = inflater.inflate(R.layout.activity_fine, null, true);
+
         callButton = listViewItemTenant.findViewById(R.id.callButton);
         paymentButton = listViewItemTenant.findViewById(R.id.paymentButton);
         deleteTenant = listViewItemTenant.findViewById(R.id.deleteTenant);
+        fineButton = listViewItemTenant.findViewById(R.id.fineButton);
+        billButton = listViewItemTenant.findViewById(R.id.billButton);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
         final TenantDetails tenantDetails = tenantList.get(position);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Tenants/CurrentTenants");
@@ -142,12 +161,67 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
 
                 }
                 catch (ActivityNotFoundException activityException) {
-                    Toast.makeText(context, "Call failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Call failed!", Toast.LENGTH_SHORT).show();
                 }
                 catch (SecurityException e) {
                     Toast.makeText(context, "Call failed!", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        fineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(dialogFine);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String fine = fineEditText.getText().toString();
+                        String fineId = databaseReference.push().getKey();
+
+                        databaseReference = firebaseDatabase.getReference("Tenants/" + tenantDetails.id + "/");
+                        databaseReference.child("Accounts").child("Fine").child(fineId).setValue(fine);
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();*/
+                Intent intent = new Intent(context, FineActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, tenantDetails.id);
+                intent.putExtra(EXTRA_MESSAGE2, tenantDetails.room);
+                context.startActivity(intent);
+            }
+        });
+
+        billButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(dialogBill);
+                builder.setTitle("Enter Bill");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        billAmount = billAmountEditText.getText().toString();
+                        billCategory = billCategoryEditText.getText().toString();
+
+                        Toast.makeText(context,billAmount + " " + billCategory, Toast.LENGTH_SHORT).show();
+
+                        String billId = databaseReference.push().getKey();
+                        BillDetails billDetails = new BillDetails(billId, billCategory, billAmount, false);
+
+                        databaseReference = firebaseDatabase.getReference("Tenants/" + tenantDetails.id + "/");
+                        databaseReference.child("Accounts").child("Bills").child(billId).setValue(billDetails);
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();*/
+                Intent intent = new Intent(context, BillActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, tenantDetails.id);
+                intent.putExtra(EXTRA_MESSAGE2, tenantDetails.room);
+                context.startActivity(intent);
             }
         });
 
