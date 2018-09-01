@@ -38,13 +38,13 @@ public class FacilityComplaintActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bedroom_complaint);
+        setContentView(R.layout.activity_facility_complaint);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        Toolbar toolbar = findViewById(R.id.bedroomToolbar);
+        Toolbar toolbar = findViewById(R.id.facilityToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
