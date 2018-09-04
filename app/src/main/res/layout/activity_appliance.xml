@@ -4,63 +4,173 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/appliancesLayout"
-    android:theme="@style/AppTheme"
     tools:context="com.example.EazyPG.owner.Activities.ApplianceActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/applianceToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </android.support.v7.widget.Toolbar>
-
-    <TextView
-        android:layout_width="163dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/productsansbold"
-        android:text="Appliances"
-        android:textColor="#1aba34"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+    <Button
+        android:id="@+id/acButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="AC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/cctvButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:layout_marginBottom="2dp"
-        android:paddingBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="CCTV"
+        app:layout_constraintStart_toEndOf="@+id/acButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/d2hButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="D2H"
+        app:layout_constraintStart_toEndOf="@+id/cctvButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/dishwasherButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Dishwasher"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/applianceToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/acButton" />
 
+    <Button
+        android:id="@+id/fanButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Fan"
+        app:layout_constraintStart_toEndOf="@+id/dishwasherButton"
+        app:layout_constraintTop_toBottomOf="@+id/cctvButton" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="25dp"
-            android:paddingTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <Button
+        android:id="@+id/geyserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Geyser"
+        app:layout_constraintStart_toEndOf="@+id/fanButton"
+        app:layout_constraintTop_toBottomOf="@+id/d2hButton" />
 
-        </android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/heaterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Heater"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dishwasherButton" />
 
-    </android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/inductionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Induction"
+        app:layout_constraintStart_toEndOf="@+id/heaterButton"
+        app:layout_constraintTop_toBottomOf="@+id/fanButton" />
 
+    <Button
+        android:id="@+id/ironButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Iron"
+        app:layout_constraintStart_toEndOf="@+id/inductionButton"
+        app:layout_constraintTop_toBottomOf="@+id/geyserButton" />
 
+    <Button
+        android:id="@+id/liftButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Lift"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heaterButton" />
+
+    <Button
+        android:id="@+id/microwaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Microwave"
+        app:layout_constraintStart_toEndOf="@+id/liftButton"
+        app:layout_constraintTop_toBottomOf="@+id/inductionButton" />
+
+    <Button
+        android:id="@+id/refrigeratorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Refrigerator"
+        app:layout_constraintStart_toEndOf="@+id/microwaveButton"
+        app:layout_constraintTop_toBottomOf="@+id/ironButton" />
+
+    <Button
+        android:id="@+id/roButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="RO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/liftButton" />
+
+    <Button
+        android:id="@+id/routerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Router"
+        app:layout_constraintStart_toEndOf="@+id/roButton"
+        app:layout_constraintTop_toBottomOf="@+id/microwaveButton" />
+
+    <Button
+        android:id="@+id/tvButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TV"
+        app:layout_constraintStart_toEndOf="@+id/routerButton"
+        app:layout_constraintTop_toBottomOf="@+id/refrigeratorButton" />
+
+    <Button
+        android:id="@+id/washingMachineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Washing Machine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roButton" />
+
+    <Button
+        android:id="@+id/otherButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Other"
+        app:layout_constraintStart_toEndOf="@+id/washingMachineButton"
+        app:layout_constraintTop_toBottomOf="@+id/tvButton" />
 </android.support.constraint.ConstraintLayout>

@@ -34,8 +34,7 @@ public class ComplaintActivity extends AppCompatActivity {
 
     List<ComplaintDetails> complaintDetailsList;
 
-    RecyclerView recyclerView;
-    ComplaintDetailList adapter;
+    CardView bedroomComplaint, foodComplaint, facilityComplaint, securityComplaint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +46,11 @@ public class ComplaintActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         complaintDetailsList = new ArrayList<>();
-        recyclerView = findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
 
+        bedroomComplaint = findViewById(R.id.bedroomComplaint);
+        facilityComplaint = findViewById(R.id.facilityComplaint);
+        foodComplaint = findViewById(R.id.foodComplaint);
+        securityComplaint = findViewById(R.id.securityComplaint);
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaint/Bedroom/");
 
@@ -123,18 +124,43 @@ public class ComplaintActivity extends AppCompatActivity {
                         complaintDetailsList.add(complaintDetails1);
                 }
 
-                Log.e("List Size", complaintDetailsList.size() + "");
-
-                adapter = new ComplaintDetailList(complaintDetailsList);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        bedroomComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintActivity.class));
+            }
+        });
+
+        foodComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, FoodComplaintActivity.class));
+            }
+        });
+
+        facilityComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintActivity.class));
+            }
+        });
+
+        securityComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintActivity.class));
             }
         });
     }

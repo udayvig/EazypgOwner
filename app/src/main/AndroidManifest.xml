@@ -70,6 +70,10 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.ExpenseActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.example.EazyPG.owner.Activities.BedroomComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
@@ -93,7 +97,7 @@
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.LateCheckinLogActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.LateCheckinLogActivity" />
     </application>
 
 </manifest>
