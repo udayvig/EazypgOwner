@@ -23,6 +23,12 @@ public class ApplianceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_appliance);
 
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.rgb(27,94,32));
+        }
+
 
         acButton = findViewById(R.id.acButton);
         cctvButton = findViewById(R.id.cctvButton);

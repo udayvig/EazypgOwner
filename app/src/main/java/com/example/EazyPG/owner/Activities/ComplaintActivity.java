@@ -136,7 +136,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintsFragmentActivity.class));
             }
         });
 
@@ -144,7 +144,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, FoodComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, FoodComplaintsFragmentActivity.class));
             }
         });
 
@@ -152,7 +152,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintsFragmentActivity.class));
             }
         });
 
@@ -160,7 +160,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintsFragmentActivity.class));
             }
         });
     }
