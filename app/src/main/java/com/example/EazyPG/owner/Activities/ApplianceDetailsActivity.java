@@ -6,14 +6,20 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -55,7 +61,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
     ListView listView;
     TextView textView;
-    Button addButton;
+    FloatingActionButton addButton;
 
     EditText ACRoomNo, ACCompanyName, ACModel, ACCapacity, ACStarRating, ACType;
     EditText FanRoomNo, FanCompanyName, FanModel, FanBlades;
@@ -80,6 +86,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
 
+    ConstraintLayout emptyLayout;
     TextView customTitle;
 
 
@@ -91,7 +98,16 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appliance_details);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.rgb(33,33,33));
+        }
+
+        emptyLayout = findViewById(R.id.emptyAppliancesLayout);
+
         listView = findViewById(R.id.listViewAppliances);
+        listView.setEmptyView(emptyLayout);
         textView = findViewById(R.id.applianceNameTextView);
         addButton = findViewById(R.id.addButton);
 

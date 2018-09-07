@@ -1,13 +1,22 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +47,9 @@ public class FoodActivity extends AppCompatActivity {
     EditText saturdayBreakfastEditText, saturdayLunchEditText, saturdayDinnerEditText;
     EditText sundayBreakfastEditText, sundayLunchEditText, sundayDinnerEditText;
 
+    CardView mondayCard;
     Button saveFoodButton;
+    HorizontalScrollView scrollView;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -53,9 +64,23 @@ public class FoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.rgb(0,60,74));
+        }
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
+
+        scrollView = findViewById(R.id.horizontalScrollView);
+        scrollView.smoothScrollBy(0,0);
+        mondayCard = findViewById(R.id.mondayCardView);
+
+
+        mondayCard.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
 
         confirmedTextView = findViewById(R.id.confirmedTextView);
         maybeTextView = findViewById(R.id.maybeTextView);

@@ -1,6 +1,8 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.EazyPG.owner.DetailList.ComplaintDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ComplaintDetails;
@@ -40,6 +44,12 @@ public class ComplaintActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.rgb(33,33,33));
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -136,7 +146,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintsFragmentActivity.class));
             }
         });
 
@@ -144,7 +154,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, FoodComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, FoodComplaintsFragmentActivity.class));
             }
         });
 
@@ -152,7 +162,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintsFragmentActivity.class));
             }
         });
 
@@ -160,7 +170,7 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintActivity.class));
+                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintsFragmentActivity.class));
             }
         });
     }
