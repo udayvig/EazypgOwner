@@ -93,7 +93,12 @@
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.LateCheckinLogActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.LateCheckinLogActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.AddBillActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.AddBillRoomActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.RentCollectionActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FineRentBillActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.BillCollectionActivity"></activity>
     </application>
 
 </manifest>

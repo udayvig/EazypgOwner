@@ -8,37 +8,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FineActivity extends AppCompatActivity {
+public class FineRentBillActivity extends AppCompatActivity {
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+    DatabaseReference databaseReference;
 
     EditText fineAmountEditText;
+
     Button fineOkButton;
-
-    String fineAmount;
-
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fine);
+        setContentView(R.layout.activity_fine_rent_bill);
 
         Intent intent = getIntent();
-        final String tenantId = intent.getStringExtra(TenantDetailList.EXTRA_MESSAGE);
-        final String tenantRoom = intent.getStringExtra(TenantDetailList.EXTRA_MESSAGE2);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        final String tenantId = intent.getStringExtra(RentCollectionPaidDetailList.EXTRA_MESSAGE);
+        final String tenantRoom = intent.getStringExtra(RentCollectionPaidDetailList.EXTRA_MESSAGE2);
 
         fineAmountEditText = findViewById(R.id.fineEditText);
 
@@ -47,9 +41,9 @@ public class FineActivity extends AppCompatActivity {
         fineOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fineAmount = fineAmountEditText.getText().toString();
+                String fineAmount = fineAmountEditText.getText().toString();
 
-                Toast.makeText(FineActivity.this, fineAmount + " ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FineRentBillActivity.this, fineAmount + " ", Toast.LENGTH_SHORT).show();
 
                 databaseReference = firebaseDatabase.getReference("Tenants/" + tenantId + "/");
                 String fineId = databaseReference.push().getKey();

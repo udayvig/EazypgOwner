@@ -34,6 +34,8 @@ public class HomePageActivity extends AppCompatActivity {
     Button foodButton;
     Button hostFriendButton;
     Button lateCheckinButton;
+    Button addBillButton;
+    Button rentBillCollectionButton;
 
     List<Item> items = new ArrayList<>();
     MyAdapter adapter;
@@ -57,6 +59,10 @@ public class HomePageActivity extends AppCompatActivity {
 
         foodButton = findViewById(R.id.foodButton);
         hostFriendButton = findViewById(R.id.hostFriendButton);
+
+        addBillButton = findViewById(R.id.addBillButton);
+
+        rentBillCollectionButton = findViewById(R.id.rentBillCollectionButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -126,6 +132,29 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
+        lateCheckinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, LateCheckinLogActivity.class));
+                finish();
+            }
+        });
+
+        addBillButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageActivity.this, AddBillActivity.class));
+                finish();
+            }
+        });
+
+        rentBillCollectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageActivity.this, RentCollectionActivity.class));
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,14 +177,6 @@ public class HomePageActivity extends AppCompatActivity {
                         })
                         .setIcon(R.drawable.ic_warning_black_24dp)
                         .show();
-            }
-        });
-
-        lateCheckinButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, LateCheckinLogActivity.class));
-                finish();
             }
         });
 
