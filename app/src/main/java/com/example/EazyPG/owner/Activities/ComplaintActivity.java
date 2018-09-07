@@ -1,6 +1,8 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.EazyPG.owner.DetailList.ComplaintDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ComplaintDetails;
@@ -34,22 +38,29 @@ public class ComplaintActivity extends AppCompatActivity {
 
     List<ComplaintDetails> complaintDetailsList;
 
-    RecyclerView recyclerView;
-    ComplaintDetailList adapter;
+    CardView bedroomComplaint, foodComplaint, facilityComplaint, securityComplaint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.rgb(33,33,33));
+        }
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         complaintDetailsList = new ArrayList<>();
-        recyclerView = findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
 
+        bedroomComplaint = findViewById(R.id.bedroomComplaint);
+        facilityComplaint = findViewById(R.id.facilityComplaint);
+        foodComplaint = findViewById(R.id.foodComplaint);
+        securityComplaint = findViewById(R.id.securityComplaint);
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaint/Bedroom/");
 
@@ -123,18 +134,43 @@ public class ComplaintActivity extends AppCompatActivity {
                         complaintDetailsList.add(complaintDetails1);
                 }
 
-                Log.e("List Size", complaintDetailsList.size() + "");
-
-                adapter = new ComplaintDetailList(complaintDetailsList);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        bedroomComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, BedroomComplaintsFragmentActivity.class));
+            }
+        });
+
+        foodComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, FoodComplaintsFragmentActivity.class));
+            }
+        });
+
+        facilityComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, FacilityComplaintsFragmentActivity.class));
+            }
+        });
+
+        securityComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ComplaintActivity.this, SecurityComplaintsFragmentActivity.class));
             }
         });
     }

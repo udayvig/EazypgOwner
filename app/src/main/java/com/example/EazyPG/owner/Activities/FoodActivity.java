@@ -1,13 +1,23 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.Activities.FoodDetails.FridayFoodDetails;
@@ -37,21 +47,48 @@ public class FoodActivity extends AppCompatActivity {
     EditText saturdayBreakfastEditText, saturdayLunchEditText, saturdayDinnerEditText;
     EditText sundayBreakfastEditText, sundayLunchEditText, sundayDinnerEditText;
 
+    CardView mondayCard;
     Button saveFoodButton;
+    HorizontalScrollView scrollView;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference1;
+
+    TextView confirmedTextView, maybeTextView, leavesTextView;
+    TextView savedBreakFastTextView, savedLunchTextView, savedDinnerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.rgb(0,60,74));
+        }
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
+
+        scrollView = findViewById(R.id.horizontalScrollView);
+        scrollView.smoothScrollBy(0,0);
+        mondayCard = findViewById(R.id.mondayCardView);
+
+
+        mondayCard.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+
+        confirmedTextView = findViewById(R.id.confirmedTextView);
+        maybeTextView = findViewById(R.id.maybeTextView);
+        leavesTextView = findViewById(R.id.leavesTextView);
+
+        savedBreakFastTextView = findViewById(R.id.savedBreakFastTextView);
+        savedLunchTextView = findViewById(R.id.savedLunchTextView);
+        savedDinnerTextView = findViewById(R.id.savedDinnerTextView);
 
         {
             mondayBreakfastEditText = findViewById(R.id.mondayBreakfastEditText);
@@ -100,60 +137,62 @@ public class FoodActivity extends AppCompatActivity {
                 SaturdayFoodDetails saturdayFoodDetails = dataSnapshot.child("Saturday").getValue(SaturdayFoodDetails.class);
                 SundayFoodDetails sundayFoodDetails = dataSnapshot.child("Sunday").getValue(SundayFoodDetails.class);
 
-                if (mondayFoodDetails != null) {
+                {
+                    if (mondayFoodDetails != null) {
 
-                    mondayBreakfastEditText.setText(mondayFoodDetails.breakfast);
-                    mondayLunchEditText.setText(mondayFoodDetails.lunch);
-                    mondayDinnerEditText.setText(mondayFoodDetails.dinner);
-                }
+                        mondayBreakfastEditText.setText(mondayFoodDetails.breakfast);
+                        mondayLunchEditText.setText(mondayFoodDetails.lunch);
+                        mondayDinnerEditText.setText(mondayFoodDetails.dinner);
+                    }
 
-                if (tuesdayFoodDetails != null) {
+                    if (tuesdayFoodDetails != null) {
 
-                    tuesdayBreakfastEditText.setText(tuesdayFoodDetails.breakfast);
-                    tuesdayLunchEditText.setText(tuesdayFoodDetails.lunch);
-                    tuesdayDinnerEditText.setText(tuesdayFoodDetails.dinner);
+                        tuesdayBreakfastEditText.setText(tuesdayFoodDetails.breakfast);
+                        tuesdayLunchEditText.setText(tuesdayFoodDetails.lunch);
+                        tuesdayDinnerEditText.setText(tuesdayFoodDetails.dinner);
 
-                }
+                    }
 
-                if (wednesdayFoodDetails != null) {
+                    if (wednesdayFoodDetails != null) {
 
-                    wednesdayBreakfastEditText.setText(wednesdayFoodDetails.breakfast);
-                    wednesdayLunchEditText.setText(wednesdayFoodDetails.lunch);
-                    wednesdayDinnerEditText.setText(wednesdayFoodDetails.dinner);
+                        wednesdayBreakfastEditText.setText(wednesdayFoodDetails.breakfast);
+                        wednesdayLunchEditText.setText(wednesdayFoodDetails.lunch);
+                        wednesdayDinnerEditText.setText(wednesdayFoodDetails.dinner);
 
-                }
+                    }
 
-                if (thursdayFoodDetails != null) {
+                    if (thursdayFoodDetails != null) {
 
-                    thursdayBreakfastEditText.setText(thursdayFoodDetails.breakfast);
-                    thursdayLunchEditText.setText(thursdayFoodDetails.lunch);
-                    thursdayDinnerEditText.setText(thursdayFoodDetails.dinner);
+                        thursdayBreakfastEditText.setText(thursdayFoodDetails.breakfast);
+                        thursdayLunchEditText.setText(thursdayFoodDetails.lunch);
+                        thursdayDinnerEditText.setText(thursdayFoodDetails.dinner);
 
-                }
+                    }
 
-                if (fridayFoodDetails != null) {
+                    if (fridayFoodDetails != null) {
 
-                    fridayBreakfastEditText.setText(fridayFoodDetails.breakfast);
-                    fridayLunchEditText.setText(fridayFoodDetails.lunch);
-                    fridayDinnerEditText.setText(fridayFoodDetails.dinner);
+                        fridayBreakfastEditText.setText(fridayFoodDetails.breakfast);
+                        fridayLunchEditText.setText(fridayFoodDetails.lunch);
+                        fridayDinnerEditText.setText(fridayFoodDetails.dinner);
 
-                }
+                    }
 
-                if (saturdayFoodDetails != null) {
+                    if (saturdayFoodDetails != null) {
 
-                    saturdayBreakfastEditText.setText(saturdayFoodDetails.breakfast);
-                    saturdayLunchEditText.setText(saturdayFoodDetails.lunch);
-                    saturdayDinnerEditText.setText(saturdayFoodDetails.dinner);
+                        saturdayBreakfastEditText.setText(saturdayFoodDetails.breakfast);
+                        saturdayLunchEditText.setText(saturdayFoodDetails.lunch);
+                        saturdayDinnerEditText.setText(saturdayFoodDetails.dinner);
 
-                }
+                    }
 
-                if (sundayFoodDetails != null) {
+                    if (sundayFoodDetails != null) {
 
-                    sundayBreakfastEditText.setText(sundayFoodDetails.breakfast);
-                    sundayLunchEditText.setText(sundayFoodDetails.lunch);
-                    sundayDinnerEditText.setText(sundayFoodDetails.dinner);
+                        sundayBreakfastEditText.setText(sundayFoodDetails.breakfast);
+                        sundayLunchEditText.setText(sundayFoodDetails.lunch);
+                        sundayDinnerEditText.setText(sundayFoodDetails.dinner);
 
-                }
+                    }
+                }   // Week food retrieved
 
             }
 
@@ -162,6 +201,29 @@ public class FoodActivity extends AppCompatActivity {
 
             }
         });
+
+        databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Meals Saved/");
+
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                confirmedTextView.setText(dataSnapshot.child("Upcoming Meal").child("Yes").getValue(String.class));
+                maybeTextView.setText(dataSnapshot.child("Upcoming Meal").child("Maybe").getValue(String.class));
+                leavesTextView.setText(dataSnapshot.child("Upcoming Meal").child("No").getValue(String.class));
+
+                savedBreakFastTextView.setText(dataSnapshot.child("Breakfast").child("No").getValue(String.class));
+                savedDinnerTextView.setText(dataSnapshot.child("Dinner").child("No").getValue(String.class));
+                savedLunchTextView.setText(dataSnapshot.child("Lunch").child("No").getValue(String.class));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         saveFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,953 +1,1338 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0B5362"
     tools:context="com.example.EazyPG.owner.Activities.FoodActivity">
 
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:scrollbars="none"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="260dp"
+            android:layout_marginTop="8dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/mondayCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="50dp"
+                    app:cardElevation="30dp"
+                    android:padding="8dp"
+                    app:cardCornerRadius="5dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/mondayTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/productsansbold"
+                            android:text="MONDAY"
+                            android:textColor="#01579B"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="28dp"
+                            android:src="@drawable/breakfast"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputLayout22"
+                            app:layout_constraintTop_toBottomOf="@+id/mondayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="88dp"
+                            android:src="@drawable/lunch"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputLayout25"
+                            app:layout_constraintTop_toBottomOf="@+id/mondayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="148dp"
+                            android:src="@drawable/dinner2"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputLayout24"
+                            app:layout_constraintTop_toBottomOf="@+id/mondayTextView" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputLayout22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="10dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mondayTextView">
+
+                            <EditText
+                                android:id="@+id/mondayBreakfastEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Breakfast"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/mondayTextView" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputLayout25"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout22">
+
+                            <EditText
+                                android:id="@+id/mondayLunchEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Lunch"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:layout_editor_absoluteY="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputLayout24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout25">
+
+
+                            <EditText
+                                android:id="@+id/mondayDinnerEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Dinner"
+                                android:textSize="17dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="50dp"
+                    app:cardElevation="30dp"
+                    android:padding="8dp"
+                    app:cardCornerRadius="5dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/tuesdayTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/productsansbold"
+                            android:text="Tuesday"
+                            android:textAllCaps="true"
+                            android:textColor="#01579B"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="25dp"
+                            android:src="@drawable/breakfast"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputMondayBre"
+                            app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="85dp"
+                            android:src="@drawable/lunch"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputMondayLun"
+                            app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="145dp"
+                            android:src="@drawable/dinner2"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputMondayDin"
+                            app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputMondayBre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView">
+
+                            <EditText
+                                android:id="@+id/tuesdayBreakfastEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Breakfast"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputMondayLun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputMondayBre">
+
+                            <EditText
+                                android:id="@+id/tuesdayLunchEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Lunch"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:layout_editor_absoluteY="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputMondayDin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputMondayLun">
+
+
+                            <EditText
+                                android:id="@+id/tuesdayDinnerEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Dinner"
+                                android:textSize="17dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="50dp"
+                    android:padding="8dp"
+                    app:cardElevation="30dp"
+                    app:cardCornerRadius="5dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/wednesdayTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/productsansbold"
+                            android:text="Wednesday"
+                            android:textColor="#01579B"
+                            android:textAllCaps="true"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="25dp"
+                            android:src="@drawable/breakfast"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputWednesdayBre"
+                            app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="85dp"
+                            android:src="@drawable/lunch"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputWednesdayLun"
+                            app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="145dp"
+                            android:src="@drawable/dinner2"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputwednesdayDin"
+                            app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputWednesdayBre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView">
+
+                            <EditText
+                                android:id="@+id/wednesdayBreakfastEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Breakfast"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputWednesdayLun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputWednesdayBre">
+
+                            <EditText
+                                android:id="@+id/wednesdayLunchEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Lunch"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:layout_editor_absoluteY="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputwednesdayDin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputWednesdayLun">
+
+
+                            <EditText
+                                android:id="@+id/wednesdayDinnerEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Dinner"
+                                android:textSize="17dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="50dp"
+                    android:padding="8dp"
+                    app:cardElevation="30dp"
+                    app:cardCornerRadius="5dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/thursdayTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/productsansbold"
+                            android:text="Thursday"
+                            android:textAllCaps="true"
+                            android:textColor="#01579B"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="25dp"
+                            android:src="@drawable/breakfast"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputThursdayBre"
+                            app:layout_constraintTop_toBottomOf="@+id/thursdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="84dp"
+                            android:src="@drawable/lunch"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputThursdayLun"
+                            app:layout_constraintTop_toBottomOf="@+id/thursdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="143dp"
+                            android:src="@drawable/dinner2"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputThursdayDin"
+                            app:layout_constraintTop_toBottomOf="@+id/thursdayTextView" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputThursdayBre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/thursdayTextView">
+
+                            <EditText
+                                android:id="@+id/thursdayBreakfastEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Breakfast"
+                                android:textSize="16dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputThursdayLun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputThursdayBre">
+
+                            <EditText
+                                android:id="@+id/thursdayLunchEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Lunch"
+                                android:textSize="16dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:layout_editor_absoluteY="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputThursdayDin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputThursdayLun">
+
+
+                            <EditText
+                                android:id="@+id/thursdayDinnerEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Dinner"
+                                android:textSize="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="50dp"
+                    android:padding="8dp"
+                    app:cardElevation="30dp"
+                    app:cardCornerRadius="10dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/fridayTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/productsansbold"
+                            android:text="Friday"
+                            android:textAllCaps="true"
+                            android:textColor="#01579B"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="25dp"
+                            android:src="@drawable/breakfast"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputFridayBre"
+                            app:layout_constraintTop_toBottomOf="@+id/fridayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="85dp"
+                            android:src="@drawable/lunch"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputFridayLun"
+                            app:layout_constraintTop_toBottomOf="@+id/fridayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="145dp"
+                            android:src="@drawable/dinner2"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputFridayDin"
+                            app:layout_constraintTop_toBottomOf="@+id/fridayTextView" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputFridayBre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fridayTextView">
+
+                            <EditText
+                                android:id="@+id/fridayBreakfastEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Breakfast"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputFridayLun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputFridayBre">
+
+                            <EditText
+                                android:id="@+id/fridayLunchEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Lunch"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:layout_editor_absoluteY="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputFridayDin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputFridayLun">
+
+
+                            <EditText
+                                android:id="@+id/fridayDinnerEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Dinner"
+                                android:textSize="17dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="50dp"
+                    android:padding="8dp"
+                    app:cardElevation="30dp"
+                    app:cardCornerRadius="5dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/saturdayTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/productsansbold"
+                            android:text="Saturday"
+                            android:textAllCaps="true"
+                            android:textColor="#01579B"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="25dp"
+                            android:src="@drawable/breakfast"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputSaturdayBre"
+                            app:layout_constraintTop_toBottomOf="@+id/saturdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="80dp"
+                            android:src="@drawable/lunch"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputSaturdayLun"
+                            app:layout_constraintTop_toBottomOf="@+id/saturdayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="138dp"
+                            android:src="@drawable/dinner2"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputSaturdayDin"
+                            app:layout_constraintTop_toBottomOf="@+id/saturdayTextView" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputSaturdayBre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/saturdayTextView">
+
+                            <EditText
+                                android:id="@+id/saturdayBreakfastEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Breakfast"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputSaturdayLun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputSaturdayBre">
+
+                            <EditText
+                                android:id="@+id/saturdayLunchEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Lunch"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:layout_editor_absoluteY="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputSaturdayDin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            android:layout_marginStart="45dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputSaturdayLun">
+
+
+                            <EditText
+                                android:id="@+id/saturdayDinnerEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Dinner"
+                                android:textSize="17dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="50dp"
+                    android:padding="8dp"
+                    app:cardElevation="30dp"
+                    app:cardCornerRadius="5dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/sundayTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/productsansbold"
+                            android:text="Sunday"
+                            android:textAllCaps="true"
+                            android:textColor="#01579B"
+                            android:textSize="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="26dp"
+                            android:src="@drawable/breakfast"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputSundayBre"
+                            app:layout_constraintTop_toBottomOf="@+id/sundayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="84dp"
+                            android:src="@drawable/lunch"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputSundayLun"
+                            app:layout_constraintTop_toBottomOf="@+id/sundayTextView" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="145dp"
+                            android:src="@drawable/dinner2"
+                            app:layout_constraintEnd_toStartOf="@+id/textInputSundayDin"
+                            app:layout_constraintTop_toBottomOf="@+id/sundayTextView" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputSundayBre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/sundayTextView">
+
+                            <EditText
+                                android:id="@+id/sundayBreakfastEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Breakfast"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputSundayLun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputSundayBre">
+
+                            <EditText
+                                android:id="@+id/sundayLunchEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Lunch"
+                                android:textSize="17dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:layout_editor_absoluteY="16dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textInputSundayDin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_marginTop="8dp"
+                            app:hintTextAppearance="@style/TextLabel3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputSundayLun">
+
+
+                            <EditText
+                                android:id="@+id/sundayDinnerEditText"
+                                android:layout_width="250dp"
+                                android:layout_height="35dp"
+                                android:fontFamily="@font/productsans"
+                                android:hint="Dinner"
+                                android:textSize="17dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <Button
+            android:id="@+id/saveFoodButton"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/whiterounded_corner"
+            android:fontFamily="@font/productsansbold"
+            android:text="SAVE"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:elevation="100dp"
+            android:textColor="#01579B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="#E0E0E0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/saveFoodButton" />
+
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="45dp"
-                        android:fontFamily="@font/productsansbold"
-                        android:text="Monday"
-                        android:textColor="#01579B"
-                        android:textSize="20dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginTop="26dp"
-                        android:src="@drawable/breakfast"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputLayout22"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginTop="73dp"
-                        android:src="@drawable/lunch"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputLayout25"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginTop="120dp"
-                        android:src="@drawable/dinner2"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputLayout24"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayout22"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12">
-
-                        <EditText
-                            android:id="@+id/mondayBreakfastEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Breakfast"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayout25"
-                        android:layout_width="wrap_content"
-                        android:layout_height="49dp"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout22">
-
-                        <EditText
-                            android:id="@+id/mondayLunchEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Lunch"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:layout_editor_absoluteY="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayout24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout25">
-
-
-                        <EditText
-                            android:id="@+id/mondayDinnerEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Dinner"
-                            android:textSize="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-
-
-                    <TextView
-                        android:id="@+id/tuesdayTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="45dp"
-                        android:fontFamily="@font/productsansbold"
-                        android:text="Tuesday"
-                        android:textColor="#01579B"
-                        android:textSize="18dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="31dp"
-                        android:src="@drawable/breakfast"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputMondayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="78dp"
-                        android:src="@drawable/lunch"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputMondayLun"
-                        app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="127dp"
-                        android:src="@drawable/dinner2"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputMondayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputMondayBre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.25"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tuesdayTextView">
-
-                        <EditText
-                            android:id="@+id/tuesdayBreakfastEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Breakfast"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputMondayLun"
-                        android:layout_width="wrap_content"
-                        android:layout_height="49dp"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputMondayBre">
-
-                        <EditText
-                            android:id="@+id/tuesdayLunchEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Lunch"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:layout_editor_absoluteY="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputMondayDin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputMondayLun">
-
-
-                        <EditText
-                            android:id="@+id/tuesdayDinnerEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Dinner"
-                            android:textSize="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-
-
-                    <TextView
-                        android:id="@+id/wednesdayTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/productsansbold"
-                        android:text="Wednesday"
-                        android:textColor="#01579B"
-                        android:textSize="18dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="31dp"
-                        android:src="@drawable/breakfast"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputWednesdayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="78dp"
-                        android:src="@drawable/lunch"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputWednesdayLun"
-                        app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="127dp"
-                        android:src="@drawable/dinner2"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputWednesdayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputWednesdayBre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.25"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/wednesdayTextView">
-
-                        <EditText
-                            android:id="@+id/wednesdayBreakfastEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Breakfast"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputWednesdayLun"
-                        android:layout_width="wrap_content"
-                        android:layout_height="49dp"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputWednesdayBre">
-
-                        <EditText
-                            android:id="@+id/wednesdayLunchEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Lunch"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:layout_editor_absoluteY="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputWednesdayDin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputWednesdayLun">
-
-
-                        <EditText
-                            android:id="@+id/wednesdayDinnerEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Dinner"
-                            android:textSize="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-
-
-                    <TextView
-                        android:id="@+id/thursdayTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/productsansbold"
-                        android:text="Thursday"
-                        android:textColor="#01579B"
-                        android:textSize="18dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="31dp"
-                        android:src="@drawable/breakfast"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputThursdayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/thursdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="78dp"
-                        android:src="@drawable/lunch"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputThursdayLun"
-                        app:layout_constraintTop_toBottomOf="@+id/thursdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="127dp"
-                        android:src="@drawable/dinner2"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputThursdayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/thursdayTextView" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputThursdayBre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.25"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/thursdayTextView">
-                        <EditText
-                            android:id="@+id/thursdayBreakfastEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Breakfast"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputThursdayLun"
-                        android:layout_width="wrap_content"
-                        android:layout_height="49dp"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputThursdayBre">
-
-                        <EditText
-                            android:id="@+id/thursdayLunchEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Lunch"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:layout_editor_absoluteY="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputThursdayDin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputThursdayLun">
-
-
-                        <EditText
-                            android:id="@+id/thursdayDinnerEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Dinner"
-                            android:textSize="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-
-
-                    <TextView
-                        android:id="@+id/fridayTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/productsansbold"
-                        android:text="Friday"
-                        android:textColor="#01579B"
-                        android:textSize="18dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="31dp"
-                        android:src="@drawable/breakfast"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputFridayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/fridayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="78dp"
-                        android:src="@drawable/lunch"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputFridayLun"
-                        app:layout_constraintTop_toBottomOf="@+id/fridayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="127dp"
-                        android:src="@drawable/dinner2"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputFridayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/fridayTextView" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputFridayBre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.25"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/fridayTextView">
-
-                        <EditText
-                            android:id="@+id/fridayBreakfastEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Breakfast"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputFridayLun"
-                        android:layout_width="wrap_content"
-                        android:layout_height="49dp"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputFridayBre">
-
-                        <EditText
-                            android:id="@+id/fridayLunchEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Lunch"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:layout_editor_absoluteY="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputFridayDin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputFridayLun">
-
-
-                        <EditText
-                            android:id="@+id/fridayDinnerEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Dinner"
-                            android:textSize="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-
-
-                    <TextView
-                        android:id="@+id/saturdayTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/productsansbold"
-                        android:text="Saturday"
-                        android:textColor="#01579B"
-                        android:textSize="18dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="31dp"
-                        android:src="@drawable/breakfast"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputSaturdayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/saturdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="78dp"
-                        android:src="@drawable/lunch"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputSaturdayLun"
-                        app:layout_constraintTop_toBottomOf="@+id/saturdayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="127dp"
-                        android:src="@drawable/dinner2"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputSaturdayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/saturdayTextView" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputSaturdayBre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.25"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/saturdayTextView">
-
-                        <EditText
-                            android:id="@+id/saturdayBreakfastEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Breakfast"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputSaturdayLun"
-                        android:layout_width="wrap_content"
-                        android:layout_height="49dp"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputSaturdayBre">
-
-                        <EditText
-                            android:id="@+id/saturdayLunchEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Lunch"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:layout_editor_absoluteY="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputSaturdayDin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputSaturdayLun">
-
-
-                        <EditText
-                            android:id="@+id/saturdayDinnerEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Dinner"
-                            android:textSize="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-
-
-                    <TextView
-                        android:id="@+id/sundayTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/productsansbold"
-                        android:text="Sunday"
-                        android:textColor="#01579B"
-                        android:textSize="18dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="31dp"
-                        android:src="@drawable/breakfast"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputSundayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/sundayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="78dp"
-                        android:src="@drawable/lunch"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputSundayLun"
-                        app:layout_constraintTop_toBottomOf="@+id/sundayTextView" />
-                    <ImageView
-                        android:layout_width="21dp"
-                        android:layout_height="21dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_marginTop="127dp"
-                        android:src="@drawable/dinner2"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputSundayBre"
-                        app:layout_constraintTop_toBottomOf="@+id/sundayTextView" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputSundayBre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.25"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sundayTextView">
-
-                        <EditText
-                            android:id="@+id/sundayBreakfastEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Breakfast"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputSundayLun"
-                        android:layout_width="wrap_content"
-                        android:layout_height="49dp"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputSundayBre">
-
-                        <EditText
-                            android:id="@+id/sundayLunchEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Lunch"
-                            android:textSize="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            tools:layout_editor_absoluteY="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputSundayDin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginStart="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputSundayLun">
-
-
-                        <EditText
-                            android:id="@+id/sundayDinnerEditText"
-                            android:layout_width="250dp"
-                            android:layout_height="35dp"
-                            android:background="@drawable/transparent_bg"
-                            android:fontFamily="@font/productsans"
-                            android:hint="Dinner"
-                            android:textSize="16dp" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/productsansbold"
+                android:text="Upcoming "
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsansbold"
+                android:text="Lunch"
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
         </LinearLayout>
-    </HorizontalScrollView>
 
-    <Button
-        android:id="@+id/saveFoodButton"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="4dp"
-        android:text="SAVE"
-        android:background="@drawable/whiterounded_corner"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+        <ImageView
+            android:id="@+id/notEatingImageView"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/maybeImageView"
+            android:layout_width="106dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/rectangle"
+            app:layout_constraintEnd_toStartOf="@+id/notEatingImageView"
+            app:layout_constraintStart_toEndOf="@+id/confirmedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <ImageView
+            android:id="@+id/confirmedImageView"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <TextView
+            android:id="@+id/confirmedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="-1"
+            android:textColor="#FFAB00"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/confirmedImageView"
+            app:layout_constraintStart_toStartOf="@+id/confirmedImageView"
+            app:layout_constraintTop_toTopOf="@+id/confirmedImageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Eating"
+            android:textColor="#FFAB00"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@+id/confirmedImageView"
+            app:layout_constraintStart_toStartOf="@+id/confirmedImageView"
+            app:layout_constraintTop_toBottomOf="@+id/confirmedTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Not Eating"
+            android:textColor="#D50000"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@+id/notEatingImageView"
+            app:layout_constraintStart_toStartOf="@+id/notEatingImageView"
+            app:layout_constraintTop_toBottomOf="@+id/leavesTextView" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Maybe"
+            android:textColor="#43A047"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@+id/maybeImageView"
+            app:layout_constraintStart_toStartOf="@+id/maybeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/maybeTextView" />
+
+
+        <TextView
+            android:id="@+id/maybeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="-1"
+            android:textColor="#43A047"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/maybeImageView"
+            app:layout_constraintStart_toStartOf="@+id/maybeImageView"
+            app:layout_constraintTop_toTopOf="@+id/maybeImageView" />
+
+        <TextView
+            android:id="@+id/leavesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="-1"
+            android:textColor="#D50000"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/notEatingImageView"
+            app:layout_constraintStart_toStartOf="@+id/notEatingImageView"
+            app:layout_constraintTop_toTopOf="@+id/notEatingImageView" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="#E0E0E0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/maybeImageView" />
+
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Food Saved"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <ImageView
+            android:id="@+id/savedBreakFastImageView"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/slogan" />
+
+        <TextView
+            android:id="@+id/savedBreakFastTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="-1"
+            android:textColor="#4CAF50"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/savedBreakFastImageView"
+            app:layout_constraintStart_toStartOf="@+id/savedBreakFastImageView"
+            app:layout_constraintTop_toTopOf="@+id/savedBreakFastImageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Breakfast"
+            android:textColor="#4CAF50"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@+id/savedBreakFastImageView"
+            app:layout_constraintStart_toStartOf="@+id/savedBreakFastImageView"
+            app:layout_constraintTop_toBottomOf="@+id/savedBreakFastTextView" />
+
+        <ImageView
+            android:id="@+id/savedLunchImageView"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/slogan" />
+
+        <ImageView
+            android:id="@+id/savedDinnerImageView"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/rectangle"
+            app:layout_constraintEnd_toStartOf="@+id/savedLunchImageView"
+            app:layout_constraintStart_toEndOf="@+id/savedBreakFastImageView"
+            app:layout_constraintTop_toBottomOf="@+id/slogan" />
+
+        <TextView
+            android:id="@+id/savedLunchTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="-1"
+            android:textColor="#4CAF50"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/savedDinnerImageView"
+            app:layout_constraintStart_toStartOf="@+id/savedDinnerImageView"
+            app:layout_constraintTop_toTopOf="@+id/savedDinnerImageView" />
+
+        <TextView
+            android:id="@+id/savedDinnerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="-1"
+            android:textColor="#4CAF50"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/savedLunchImageView"
+            app:layout_constraintStart_toStartOf="@+id/savedLunchImageView"
+            app:layout_constraintTop_toTopOf="@+id/savedLunchImageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Dinner"
+            android:textColor="#4CAF50"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@+id/savedLunchImageView"
+            app:layout_constraintStart_toStartOf="@+id/savedLunchImageView"
+            app:layout_constraintTop_toBottomOf="@+id/savedDinnerTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Lunch"
+            android:textColor="#4CAF50"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="@+id/savedDinnerImageView"
+            app:layout_constraintStart_toStartOf="@+id/savedDinnerImageView"
+            app:layout_constraintTop_toBottomOf="@+id/savedLunchTextView" />
+
+
+        <TextView
+            android:id="@+id/slogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Food Saved = Lives Saved"
+            android:textColor="#EEEEEE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
