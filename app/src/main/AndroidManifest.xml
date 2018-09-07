@@ -123,6 +123,12 @@
         <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.TenantProfileActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.HostFriendLogActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.AddBillActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.AddBillRoomActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.RentCollectionActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FineRentBillActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.BillCollectionActivity"></activity>
     </application>
 
 </manifest>
