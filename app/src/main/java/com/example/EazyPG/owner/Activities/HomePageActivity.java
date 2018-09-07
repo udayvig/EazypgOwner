@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
@@ -13,12 +16,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.EazyPG.owner.Adapter.MyAdapter;
 import com.example.EazyPG.owner.Model.Item;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +35,22 @@ public class HomePageActivity extends AppCompatActivity {
     ImageView expense;
     ImageView passbook;
     ImageView complaint;
+    ImageView notifCard;
+    TextView notifCardText;
+    ImageView notifCard2;
+    TextView notifCardText2;
+    FloatingActionButton bt1;
+    FloatingActionButton bt2;
+    FloatingActionButton bt3;
+    FloatingActionButton bt4;
+    FloatingActionButton bt5;
+    NestedScrollView nestedScrollView;
+    //TextView bt1Text;
+
+    private  int someVarA;
+    private  String someVarB;
 
     SwitchCompat logout;
-
-    Button foodButton;
-    Button hostFriendButton;
-    Button lateCheckinButton;
 
     List<Item> items = new ArrayList<>();
     MyAdapter adapter;
@@ -57,26 +70,80 @@ public class HomePageActivity extends AppCompatActivity {
 
         yourPG = findViewById(R.id.yourPgImageView);
         staff = findViewById(R.id.staffImageView);
+        notifCard = findViewById(R.id.notifCardImageView);
+        notifCardText = findViewById(R.id.notifTextView);
         tenant = findViewById(R.id.tenantImageView);
         expense = findViewById(R.id.foodImageView);
         passbook = findViewById(R.id.passbookImageView);
         logout = findViewById(R.id.logoutButton);
         complaint = findViewById(R.id.complaintImageView);
+        bt1 = findViewById(R.id.goneFab1);
+        bt2 = findViewById(R.id.goneFab2);
+        bt3 = findViewById(R.id.goneFab3);
+        bt4 = findViewById(R.id.goneFab4);
+        bt5 = findViewById(R.id.goneFab5);
+        nestedScrollView = findViewById(R.id.nestedScroll);
+        // bt1Text = findViewById(R.id.goneFab1text);
 
-        lateCheckinButton = findViewById(R.id.lateCheckInButton);
+        final AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.appBar);
 
-        foodButton = findViewById(R.id.foodButton);
-        hostFriendButton = findViewById(R.id.hostFriendButton);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                    notifCard.setVisibility(View.INVISIBLE);
+                    notifCardText.setVisibility(View.INVISIBLE);
+                    bt1.show();
+                    bt2.show();
+                    bt3.show();
+                    bt4.show();
+                    bt5.show();
+                    //nestedScrollView.setBackgroundColor(Color.BLACK);
+                    // bt1Text.setVisibility(View.VISIBLE);
+                    // Collapsed
+                } else if (verticalOffset == 0) {
+                    // Expanded
+                    notifCard.setVisibility(View.VISIBLE);
+                    notifCardText.setVisibility(View.VISIBLE);
+                    bt1.hide();
+                    bt2.hide();
+                    bt3.hide();
+                    bt4.hide();
+                    bt5.hide();
+                    // nestedScrollView.setBackgroundColor(Color.WHITE);
+                    //  bt1Text.setVisibility(View.INVISIBLE);
+                } else {
+                    // Somewhere in between
+                    notifCardText.setVisibility(View.INVISIBLE);
+                    notifCard.setVisibility(View.INVISIBLE);
+                    bt1.hide();
+                    bt2.hide();
+                    bt3.hide();
+                    bt4.hide();
+                    bt5.hide();
+                    //nestedScrollView.setBackgroundColor(Color.WHITE);
+                    // bt1Text.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
 
         tenant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomePageActivity.this, TenantActivity.class));
                 finish();
+            }
+        });
+
+        bt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, TenantActivity.class));
+                finish();
+                //  appBarLayout.setExpanded(true);
             }
         });
 
@@ -87,6 +154,14 @@ public class HomePageActivity extends AppCompatActivity {
                 finish();
             }
         });
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, StaffActivity.class));
+                finish();
+            }
+        });
+
 
         yourPG.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,9 +179,24 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
+        bt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, ExpenseActivity.class));
+                finish();
+            }
+        });
         passbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(HomePageActivity.this, PassbookActivity.class));
+                finish();
+            }
+        });
+
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 startActivity(new Intent(HomePageActivity.this, PassbookActivity.class));
                 finish();
             }
@@ -119,19 +209,10 @@ public class HomePageActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        hostFriendButton.setOnClickListener(new View.OnClickListener() {
+        bt5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, HostFriendLogActivity.class));
-                finish();
-            }
-        });
-
-        foodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, FoodActivity.class));
+                startActivity(new Intent(HomePageActivity.this, ComplaintActivity.class));
                 finish();
             }
         });
@@ -161,13 +242,6 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        lateCheckinButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, LateCheckinLogActivity.class));
-                finish();
-            }
-        });
 
         //random data
         randomnotificationData();
@@ -216,6 +290,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     }
 
+
     private  void randomnotificationData()
     {
         for(int i =0; i<10;i++)
@@ -234,4 +309,19 @@ public class HomePageActivity extends AppCompatActivity {
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("someVarA", someVarA);
+        outState.putString("someVarB", someVarB);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        someVarA = savedInstanceState.getInt("someVarA");
+        someVarB = savedInstanceState.getString("someVarB");
+    }
+
 }
