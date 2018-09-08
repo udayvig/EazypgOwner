@@ -47,5 +47,10 @@
         <item name="android:textColor">@color/DarkGreen</item>
     </style>
 
+    <style name="RatingBar" parent="android:style/Widget.Material.RatingBar.Small">
+        <item name="colorControlNormal">#9E9E9E</item>
+        <item name="colorControlActivated">#FFC107</item>
+    </style>
+
 </resources>
 

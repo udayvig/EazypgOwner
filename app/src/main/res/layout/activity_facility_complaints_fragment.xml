@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.EazyPG.owner.Activities.FacilityComplaintsFragmentActivity"
-    >
+    tools:context="com.example.EazyPG.owner.Activities.FacilityComplaintsFragmentActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#2E7D32">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/productsansmedium"
+            android:textColor="@android:color/white"
+            android:text="Facility Complaints"
+            android:textSize="20dp"
+            />
+
+    </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayoutID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tabLayoutID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:tabGravity="fill"
-        app:tabMode="fixed"
-
-        />
+        app:tabMode="fixed" />
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
@@ -25,4 +42,4 @@
         />
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
