@@ -1,27 +1,20 @@
 package com.example.EazyPG.owner.Activities;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
-import com.example.EazyPG.owner.DetailList.PassbookDetailList;
 import com.example.ainesh.eazypg_owner.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,13 +32,26 @@ import java.util.List;
 public class PassbookActivity extends AppCompatActivity {
 
     ListView listView;
-    List<CashflowDetails> passbookDetailsList;
+    List<CashflowDetails> allDetailsList = new ArrayList<>();
+    List<CashflowDetails> incomeDetailsList = new ArrayList<>();
+    List<CashflowDetails> expensesDetailsList = new ArrayList<>();
 
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-    EditText amount, category, description, paidBy, paidTo;
+    TextView monthTextView, incomeTextView, expensesTextView, balanceTextView;
+
+    Button allButton, incomeButton, expensesButton;
+
+    RecyclerView allRecyclerView, expensesRecyclerView, incomeRecyclerView;
+
+    AllPassbookDetailList allPassbookDetailList;
+    ExpensePassbookDetailList expensePassbookDetailList;
+    IncomePassbookDetailList incomePassbookDetailList;
+
+    /*EditText amount, category, description, paidBy, paidTo;
     ImageView addInflow, addOutflow;
 
     View view1;
@@ -54,14 +60,163 @@ public class PassbookActivity extends AppCompatActivity {
     TextView custom_titleInflow;
 
 
-    LayoutInflater inflater;
+    LayoutInflater inflater;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passbook);
 
-        Toolbar toolbar = findViewById(R.id.passbookToolbar);
+        final Context context = getApplicationContext();
+
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        monthTextView = findViewById(R.id.currentMonthTextView);
+        incomeTextView = findViewById(R.id.incomeTextView);
+        expensesTextView = findViewById(R.id.expensesTextView);
+        balanceTextView = findViewById(R.id.balanceTextView);
+
+        allButton = findViewById(R.id.allButton);
+        expensesButton = findViewById(R.id.expenseButton);
+        incomeButton = findViewById(R.id.incomeButton);
+
+        allRecyclerView = findViewById(R.id.allRecyclerView);
+        expensesRecyclerView = findViewById(R.id.expenseRecyclerView);
+        incomeRecyclerView= findViewById(R.id.incomeRecyclerView);
+
+        expensesRecyclerView.setVisibility(View.GONE);
+        incomeRecyclerView.setVisibility(View.GONE);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String dateString = dateFormat.format(date);
+
+        String monthString = dateString.substring(3,5);
+        String month = monthString;
+
+        switch (monthString) {
+            case "01":
+                month = "January";
+                break;
+            case "02":
+                month = "February";
+                break;
+            case "03":
+                month = "March";
+                break;
+            case "04":
+                month = "April";
+                break;
+            case "05":
+                month = "May";
+                break;
+            case "06":
+                month = "June";
+                break;
+            case "07":
+                month = "July";
+                break;
+            case "08":
+                month = "August";
+                break;
+            case "09":
+                month = "September";
+                break;
+            case "10":
+                month = "October";
+                break;
+            case "11":
+                month = "November";
+                break;
+            case "12":
+                month = "December";
+                break;
+        }
+
+        monthTextView.setText(month);
+
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Cashflow/");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    CashflowDetails cashflowDetails = snapshot.getValue(CashflowDetails.class);
+                    allDetailsList.add(cashflowDetails);
+
+                    if(cashflowDetails.inout){
+                        incomeDetailsList.add(cashflowDetails);
+                    }else if(!cashflowDetails.inout){
+                        expensesDetailsList.add(cashflowDetails);
+                    }
+                }
+
+                int income = 0, expenses = 0, balance = 0;
+
+                for(int i = 0; i < incomeDetailsList.size(); i++){
+                    income += Integer.parseInt(incomeDetailsList.get(i).amount);
+                }
+
+                for(int i = 0; i < expensesDetailsList.size(); i++){
+                    expenses += Integer.parseInt(incomeDetailsList.get(i).amount);
+                }
+
+                balance = income - expenses;
+
+                incomeTextView.setText(income);
+                expensesTextView.setText(expenses);
+                balanceTextView.setText(balance);
+
+                allPassbookDetailList = new AllPassbookDetailList(allDetailsList, context);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+                allRecyclerView.setLayoutManager(layoutManager);
+                allRecyclerView.setItemAnimator(new DefaultItemAnimator());
+                allRecyclerView.setAdapter(allPassbookDetailList);
+
+                expensePassbookDetailList = new ExpensePassbookDetailList(expensesDetailsList, context);
+                RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(context);
+                expensesRecyclerView.setLayoutManager(layoutManager2);
+                expensesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+                expensesRecyclerView.setAdapter(expensePassbookDetailList);
+
+                incomePassbookDetailList = new IncomePassbookDetailList(incomeDetailsList, context);
+                RecyclerView.LayoutManager layoutManager3 = new LinearLayoutManager(context);
+                incomeRecyclerView.setLayoutManager(layoutManager3);
+                incomeRecyclerView.setItemAnimator(new DefaultItemAnimator());
+                incomeRecyclerView.setAdapter(incomePassbookDetailList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        allButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                incomeRecyclerView.setVisibility(View.GONE);
+                expensesRecyclerView.setVisibility(View.GONE);
+            }
+        });
+
+        incomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allRecyclerView.setVisibility(View.GONE);
+                expensesRecyclerView.setVisibility(View.GONE);
+            }
+        });
+
+        expensesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allRecyclerView.setVisibility(View.GONE);
+                incomeRecyclerView.setVisibility(View.GONE);
+            }
+        });
+
+        /*Toolbar toolbar = findViewById(R.id.passbookToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -235,7 +390,7 @@ public class PassbookActivity extends AppCompatActivity {
                 builder.setNegativeButton("Cancel", null);
                 builder.show();
             }
-        });
+        });*/
     }
 
     @Override

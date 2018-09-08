@@ -1,130 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.example.EazyPG.owner.Activities.StaffActivity"
     android:id="@+id/passbooklayout">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/passbookToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </android.support.v7.widget.Toolbar>
-
     <TextView
-        android:id="@+id/toolbarTextPassbook"
-        android:layout_width="163dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/productsansbold"
-        android:text="Passbook Details"
-        android:textColor="#1aba34"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Balance Card"
+        android:textColor="@android:color/black"
+        android:textSize="26dp"
+        />
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginBottom="8dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/currentMonthTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="January : "
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:fontFamily="@font/comfortabold"
+                    android:textColor="#000000"
+                    />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Income : "
+                    android:background="@drawable/roundedcorners"
+                    android:layout_marginStart="15dp"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/productsansbold"
+                    />
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/rupee"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginStart="37dp"
+                    />
+                <TextView
+                    android:id="@+id/incomeTextView"
+                    android:layout_marginStart="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50,000"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/productsansbold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:text="Expenses : "
+                    android:background="@drawable/roundedcorners"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/rupee" />
+
+                <TextView
+                    android:id="@+id/expensesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="2dp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/productsansbold"
+                    android:text="50,000"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="#E0E0E0"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/roundedcorners"
+                    android:text="Balance : "
+                    android:layout_marginStart="15dp"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/productsansbold"
+                    />
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="37dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/rupee" />
+                <TextView
+                    android:id="@+id/balanceTextView"
+                    android:layout_marginStart="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50,000"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/productsansbold"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/allButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:text="ALL"
+            android:layout_weight="1"
+            android:textColor="@color/yello"
+            android:background="@drawable/rectangle"
+            />
+        <Button
+            android:id="@+id/incomeButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:text="INCOME"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle"
+            />
+        <Button
+            android:id="@+id/expenseButton"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:text="EXPENSE"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle"
+            />
+    </LinearLayout>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passbookToolbar">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        >
 
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/emptyListPassbook"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/allRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/nothingtoshow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.468" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/productsans"
-                android:text="No Transactions to Show"
-                android:textColor="#000000"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-
-        </android.support.constraint.ConstraintLayout>
-
-
-        <ListView
-            android:id="@+id/listViewPassbook"
+            android:layout_height="wrap_content"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/incomeRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </ListView>
-
+            android:layout_height="wrap_content"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/expenseRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
     </android.support.constraint.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/inflow"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/downarrow" />
-
-    <ImageView
-        android:id="@+id/outflow"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/uparrow" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

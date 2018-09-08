@@ -1,8 +1,11 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.EazyPG.owner.DetailsClasses.BillDetails;
@@ -24,7 +27,7 @@ import java.util.List;
 
 public class BillCollectionActivity extends AppCompatActivity {
 
-    RecyclerView electricityRecyclerView, wifiRecyclerView, gasRecyclerView, otherRecyclerView;
+    RecyclerView billRecyclerView;
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -38,6 +41,9 @@ public class BillCollectionActivity extends AppCompatActivity {
     List<BillDetails> otherBillList = new ArrayList<>();
     List<BillDetails> billList = new ArrayList<>();
 
+    BillCollectionDetailList billCollectionDetailList;
+
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +54,9 @@ public class BillCollectionActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        electricityRecyclerView = findViewById(R.id.electricityBillRecyclerView);
-        wifiRecyclerView = findViewById(R.id.wifiBillRecyclerView);
-        gasRecyclerView = findViewById(R.id.gasBillRecyclerView);
-        otherRecyclerView = findViewById(R.id.otherBillRecyclerView);
+        billRecyclerView = findViewById(R.id.billRecyclerView);
+
+        context = getApplicationContext();
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -73,8 +78,33 @@ public class BillCollectionActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(int i = 0; i < tenantList.size(); i++){
-                            dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Bills").child(dateString);
+                            BillDetails billDetails = dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Bills").child(dateString).getValue(BillDetails.class);
+                            billList.add(billDetails);
                         }
+
+                        for(int i = 0; i < billList.size(); i++){
+                            BillDetails billDetails = billList.get(i);
+                            switch (billDetails.getCategory()) {
+                                case "Electricity":
+                                    electricityBillList.add(billDetails);
+                                    break;
+                                case "Wifi":
+                                    wifiBillList.add(billDetails);
+                                    break;
+                                case "Gas":
+                                    gasBillList.add(billDetails);
+                                    break;
+                                case "Other":
+                                    otherBillList.add(billDetails);
+                                    break;
+                            }
+                        }
+
+                        billCollectionDetailList = new BillCollectionDetailList(electricityBillList, wifiBillList, gasBillList, otherBillList, tenantList, context);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+                        billRecyclerView.setLayoutManager(layoutManager);
+                        billRecyclerView.setItemAnimator(new DefaultItemAnimator());
+                        billRecyclerView.setAdapter(billCollectionDetailList);
                     }
 
                     @Override

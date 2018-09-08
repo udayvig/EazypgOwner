@@ -6,13 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FineRentBillActivity extends AppCompatActivity {
 
@@ -43,7 +46,11 @@ public class FineRentBillActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String fineAmount = fineAmountEditText.getText().toString();
 
-                Toast.makeText(FineRentBillActivity.this, fineAmount + " ", Toast.LENGTH_SHORT).show();
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = new Date();
+                String dateStr = dateFormat.format(date);
+
+                String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
                 databaseReference = firebaseDatabase.getReference("Tenants/" + tenantId + "/");
                 String fineId = databaseReference.push().getKey();
