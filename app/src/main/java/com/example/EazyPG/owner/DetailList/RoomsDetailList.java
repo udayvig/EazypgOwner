@@ -96,11 +96,6 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(context, RoomTenantDetailsActivity.class);
-                String message = roomList.get(position);
-                intent.putExtra(EXTRA_MESSAGE, message);
-                context.startActivity(intent);
-
             }
         });
 
@@ -146,6 +141,16 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        listViewItemRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, RoomTenantDetailsActivity.class);
+                String message = roomList.get(position);
+                intent.putExtra(EXTRA_MESSAGE, message);
+                context.startActivity(intent);
             }
         });
 

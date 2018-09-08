@@ -51,13 +51,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name="com.example.EazyPG.owner.MyIntro"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.HomePageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.example.EazyPG.owner.Activities.TenantActivity"
             android:screenOrientation="portrait" />
@@ -69,7 +70,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.ComplaintActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.example.EazyPG.owner.Activities.SubscriptionActivity"
             android:screenOrientation="portrait" />
@@ -78,7 +79,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.ApplianceActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.example.EazyPG.owner.Activities.ExpenseActivity"
             android:screenOrientation="portrait" />
@@ -89,7 +90,7 @@
 
         <activity
             android:name="com.example.EazyPG.owner.Activities.ApplianceDetailsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.example.EazyPG.owner.Activities.PassbookActivity"
             android:screenOrientation="portrait" />
@@ -99,9 +100,19 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.example.EazyPG.owner.Activities.BedroomComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintActivity" />
+        <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
@@ -111,15 +122,7 @@
         <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintsFragmentActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.TenantProfileActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FeedbackActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.TenantProfileActivity"></activity>
     </application>
 
 </manifest>
