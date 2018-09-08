@@ -32,6 +32,10 @@ public class BillCollectionActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     List<TenantDetails> tenantList = new ArrayList<>();
+    List<BillDetails> electricityBillList = new ArrayList<>();
+    List<BillDetails> wifiBillList = new ArrayList<>();
+    List<BillDetails> gasBillList = new ArrayList<>();
+    List<BillDetails> otherBillList = new ArrayList<>();
     List<BillDetails> billList = new ArrayList<>();
 
 
@@ -54,7 +58,8 @@ public class BillCollectionActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    tenantList.add(snapshot.getValue(TenantDetails.class));
+                    TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
+                    tenantList.add(tenantDetails);
                 }
 
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -68,7 +73,7 @@ public class BillCollectionActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(int i = 0; i < tenantList.size(); i++){
-
+                            dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Bills").child(dateString);
                         }
                     }
 

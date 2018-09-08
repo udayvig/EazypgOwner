@@ -74,7 +74,7 @@ public class AddBillRoomActivity extends AppCompatActivity {
                     databaseReference1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String unitCost = dataSnapshot.child("unitCost").getValue(String.class);
+                            String unitCost = dataSnapshot.child("Unit Cost").getValue(String.class);
 
                             addBillRoomElectricityDetailList = new AddBillRoomElectricityDetailList(context, roomsList, roomTypeList, unitCost);
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

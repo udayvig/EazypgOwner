@@ -53,14 +53,12 @@ public class AddBillRoomOtherDetailList extends RecyclerView.Adapter<AddBillRoom
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, int position) {
         final String roomNumber = roomsList.get(position);
         final String roomType = roomsTypeList.get(position);
 
         holder.roomNumberTextView.setText(roomNumber);
         holder.roomTypeTextView.setText(roomType);
-        final String billAmount = holder.billAmountEditText.getText().toString();
-        final String billCategory = holder.billCategoryEditText.getText().toString();
 
         final List<TenantDetails> tenantList = new ArrayList<>();
 
@@ -71,7 +69,7 @@ public class AddBillRoomOtherDetailList extends RecyclerView.Adapter<AddBillRoom
                 final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-                final DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
+                final DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -80,7 +78,6 @@ public class AddBillRoomOtherDetailList extends RecyclerView.Adapter<AddBillRoom
 
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
-                            if(tenantDetails.room.equals(roomNumber)){
 
                                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                                 Date date = new Date();
@@ -89,16 +86,20 @@ public class AddBillRoomOtherDetailList extends RecyclerView.Adapter<AddBillRoom
                                 String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
                                 String billId = databaseReference.push().getKey();
+
+                                final String billAmount = holder.billAmountEditText.getText().toString();
+                                final String billCategory = holder.billCategoryEditText.getText().toString();
+
                                 BillDetails billDetails = new BillDetails(billId, billCategory, billAmount, false);
-                                DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
-                                databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
+                                /*DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
+                                databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);*/
 
                                 DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantDetails.id);
                                 databaseReference2.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
 
                                 DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantDetails.id);
                                 databaseReference3.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
-                            }
+
                         }
 
 

@@ -72,7 +72,7 @@ public class RentCollectionUnpaidDetailList extends RecyclerView.Adapter<RentCol
         holder.addFineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(context, FineRentBillActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, tenantUnpaidDetails.get(position).id);
                 intent.putExtra(EXTRA_MESSAGE2, tenantUnpaidDetails.get(position).room);
                 context.startActivity(intent);

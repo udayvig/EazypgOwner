@@ -51,13 +51,12 @@ public class AddBillRoomElectricityDetailList extends RecyclerView.Adapter<AddBi
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, int position) {
         final String roomNumber = roomsList.get(position);
         final String roomType = roomsTypeList.get(position);
 
         holder.roomNumberTextView.setText(roomNumber);
         holder.roomTypeTextView.setText(roomType);
-        final String unitsThisMonth = holder.unitsEditText.getText().toString();
 
         final List<TenantDetails> tenantList = new ArrayList<>();
         final List<TenantDetails> tenantRoomList = new ArrayList<>();
@@ -75,10 +74,12 @@ public class AddBillRoomElectricityDetailList extends RecyclerView.Adapter<AddBi
 
                 final String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
+                final String unitsThisMonth = holder.unitsEditText.getText().toString();
+
                 DatabaseReference databaseReference5 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Meter Reading/" + dateString);
                 databaseReference5.setValue(unitsThisMonth);
 
-                final DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
+                final DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -87,9 +88,7 @@ public class AddBillRoomElectricityDetailList extends RecyclerView.Adapter<AddBi
 
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
-                            if(tenantDetails.room.equals(roomNumber)) {
-                                tenantRoomList.add(tenantDetails);
-                            }
+                            tenantRoomList.add(tenantDetails);
                         }
 
                         if(tenantRoomList.size() == 0){
@@ -152,8 +151,8 @@ public class AddBillRoomElectricityDetailList extends RecyclerView.Adapter<AddBi
                                     TenantDetails tenantDetails = tenantRoomList.get(i);
                                     String billId = databaseReference.push().getKey();
                                     BillDetails billDetails = new BillDetails(billId, "Electricity", bill, false);
-                                    DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
-                                    databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
+                                    /*DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
+                                    databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);*/
 
                                     DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantDetails.id);
                                     databaseReference2.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);

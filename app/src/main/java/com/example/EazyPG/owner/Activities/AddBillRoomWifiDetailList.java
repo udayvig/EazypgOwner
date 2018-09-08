@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,13 +54,12 @@ public class AddBillRoomWifiDetailList extends RecyclerView.Adapter<AddBillRoomW
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, int position) {
         final String roomNumber = roomsList.get(position);
         final String roomType = roomsTypeList.get(position);
 
         holder.roomNumberTextView.setText(roomNumber);
         holder.roomTypeTextView.setText(roomType);
-        final String billAmount = holder.amountEditText.getText().toString();
 
         final List<TenantDetails> tenantList = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public class AddBillRoomWifiDetailList extends RecyclerView.Adapter<AddBillRoomW
                 final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-                final DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
+                final DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/");
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -78,8 +78,10 @@ public class AddBillRoomWifiDetailList extends RecyclerView.Adapter<AddBillRoomW
                         tenantList.clear();
 
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+
                             TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
-                            if(tenantDetails.room.equals(roomNumber)){
+
+                            Log.e("Id", tenantDetails.id + "");
 
                                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                                 Date date = new Date();
@@ -88,16 +90,17 @@ public class AddBillRoomWifiDetailList extends RecyclerView.Adapter<AddBillRoomW
                                 String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
                                 String billId = databaseReference.push().getKey();
+                                final String billAmount = holder.amountEditText.getText().toString();
                                 BillDetails billDetails = new BillDetails(billId, "Wifi", billAmount, false);
-                                DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
-                                databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
+                                /*DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
+                                databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);*/
 
                                 DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantDetails.id);
                                 databaseReference2.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
 
                                 DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantDetails.id);
                                 databaseReference3.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
-                            }
+
                         }
 
 

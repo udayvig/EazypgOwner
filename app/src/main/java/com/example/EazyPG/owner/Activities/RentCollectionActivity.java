@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
@@ -44,12 +45,12 @@ public class RentCollectionActivity extends AppCompatActivity {
     RentCollectionPaidDetailList rentCollectionPaidDetailList;
     RentCollectionUnpaidDetailList rentCollectionUnpaidDetailList;
 
-    Context context = getApplicationContext();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_collection);
+
+        final Context context = getApplicationContext();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -61,12 +62,14 @@ public class RentCollectionActivity extends AppCompatActivity {
         rentPaidRecyclerView = findViewById(R.id.rentPaidRecyclerView);
         rentUnpaidRecyclerView = findViewById(R.id.rentUnpaidRecyclerView);
 
-        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "Tenants/CurrentTenants/");
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    tenantList.add(snapshot.getValue(TenantDetails.class));
+                    TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
+                    Log.e("LO", "onDataChange: " + tenantDetails.name);
+                    tenantList.add(tenantDetails);
                 }
 
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -75,11 +78,14 @@ public class RentCollectionActivity extends AppCompatActivity {
 
                 final String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
-                final DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "Tenants/CurrentTenants/");
+                final DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
                 databaseReference1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Log.e("LOLOL", "onDataChange: " + tenantList.size());
                         for(int i = 0; i < tenantList.size(); i++){
+                            paid = 0;
+                            unpaid = 0;
                             String status = dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Rent").child(dateString).getValue(String.class);
                             if(status != null && status.equals("Paid")){
                                 tenantPaidList.add(tenantList.get(i));

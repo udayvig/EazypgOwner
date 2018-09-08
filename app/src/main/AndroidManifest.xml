@@ -52,6 +52,13 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.LoginActivity"
             android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name="com.example.EazyPG.owner.MyIntro"
@@ -102,15 +109,7 @@
             android:screenOrientation="portrait" />
         <activity android:name="com.example.EazyPG.owner.Activities.BedroomComplaintActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity"></activity>
         <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />

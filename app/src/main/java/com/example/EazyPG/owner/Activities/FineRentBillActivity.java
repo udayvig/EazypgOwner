@@ -51,10 +51,10 @@ public class FineRentBillActivity extends AppCompatActivity {
 
                 databaseReference.child("Accounts").child("Fines").child(fineId).setValue(fineDetails);
 
-                DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/Current Tenants/" + tenantId);
+                DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantId);
                 databaseReference1.child("Accounts").child("Fines").child(fineId).setValue(fineDetails);
 
-                DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + tenantRoom + "/Tenant/CurrentTenants" + tenantId);
+                DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + tenantRoom + "/Tenant/CurrentTenants/" + tenantId);
                 databaseReference2.child("Accounts").child("Fines").child(fineId).setValue(fineDetails);
             }
         });
