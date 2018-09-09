@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -38,21 +39,21 @@ public class MyPGActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
 
-    TextView pgName;
-    TextView bio;
-    TextView gender;
-    TextView landmark;
-    TextView lastEntry;
-    TextView location;
-    TextView maxOccupancy;
-    TextView bathroom;
-    TextView room;
-    TextView ownerName;
-    TextView contact;
-    TextView staffCount;
+    TextInputEditText pgName;
+    TextInputEditText bio;
+    TextInputEditText gender;
+    TextInputEditText landmark;
+    TextInputEditText lastEntry;
+    TextInputEditText location;
+    TextInputEditText maxOccupancy;
+    TextInputEditText bathroom;
+    TextInputEditText room;
+    TextInputEditText ownerName;
+    TextInputEditText contact;
+    TextInputEditText staffCount;
     Snackbar snackbar;
-    TextView appliance;
-    TextView rooms;
+    //TextView appliance;
+   // TextView rooms;
     View view;
 
     FloatingActionButton saveButton;
@@ -80,8 +81,8 @@ public class MyPGActivity extends AppCompatActivity {
         contact = findViewById(R.id.pgContactTextView);
         staffCount = findViewById(R.id.staffCountTextView);
 
-        appliance = findViewById(R.id.applianceTextView);
-        rooms = findViewById(R.id.roomTextView);
+        /*appliance = findViewById(R.id.applianceTextView);
+        rooms = findViewById(R.id.roomTextView);*/
 
         saveButton = findViewById(R.id.saveButton);
 
@@ -139,12 +140,12 @@ public class MyPGActivity extends AppCompatActivity {
             }
         });
 
-        rooms.setOnClickListener(new View.OnClickListener() {
+      /*  rooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MyPGActivity.this, RoomsActivity.class));
             }
-        });
+        });*/
 
         pgName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -570,19 +571,19 @@ public class MyPGActivity extends AppCompatActivity {
             }
         });
 
-        appliance.setOnClickListener(new View.OnClickListener() {
+       /* appliance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 startActivity(new Intent(MyPGActivity.this, ApplianceActivity.class));
 
             }
-        });
+        });*/
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addingPg();
+                 addingPg();
                 saveButton.setVisibility(View.VISIBLE);
             }
         });

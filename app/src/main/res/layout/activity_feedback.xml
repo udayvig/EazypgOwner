@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.EazyPG.owner.Activities.FeedbackActivity">
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="34dp">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -28,14 +24,24 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_height="match_parent">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="34dp">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -564,7 +570,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/comfortCustomizeRatingImageView"
+            android:id="@+id/comfortButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
@@ -574,12 +580,12 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:src="@drawable/dummyimage"
-            app:layout_constraintEnd_toStartOf="@+id/managementCustomizeRatingImageView"
-            app:layout_constraintStart_toEndOf="@+id/FoodCustomizeRatingImageView"
+            app:layout_constraintEnd_toStartOf="@+id/managementButton"
+            app:layout_constraintStart_toEndOf="@+id/foodButton"
             app:layout_constraintTop_toBottomOf="@+id/subheadingTextView" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/FoodCustomizeRatingImageView"
+            android:id="@+id/foodButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="40dp"
@@ -592,7 +598,7 @@
             app:layout_constraintTop_toBottomOf="@+id/subheadingTextView" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/roomCustomizeRatingImageView"
+            android:id="@+id/roomButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
@@ -602,12 +608,12 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            app:layout_constraintEnd_toStartOf="@+id/othersCustomizeRatingImageView"
-            app:layout_constraintStart_toEndOf="@+id/hyegineCustomRatingImageView"
+            app:layout_constraintEnd_toStartOf="@+id/othersButton"
+            app:layout_constraintStart_toEndOf="@+id/hygieneButton"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/hyegineCustomRatingImageView"
+            android:id="@+id/hygieneButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="40dp"
@@ -620,7 +626,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/othersCustomizeRatingImageView"
+            android:id="@+id/othersButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="40dp"
@@ -633,7 +639,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/managementCustomizeRatingImageView"
+            android:id="@+id/managementButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="40dp"
@@ -656,9 +662,9 @@
             android:fontFamily="@font/productsans"
             android:text="Others"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/othersCustomizeRatingImageView"
-            app:layout_constraintStart_toStartOf="@+id/othersCustomizeRatingImageView"
-            app:layout_constraintTop_toBottomOf="@+id/othersCustomizeRatingImageView" />
+            app:layout_constraintEnd_toEndOf="@+id/othersButton"
+            app:layout_constraintStart_toStartOf="@+id/othersButton"
+            app:layout_constraintTop_toBottomOf="@+id/othersButton" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -670,9 +676,9 @@
             android:fontFamily="@font/productsans"
             android:text="Rooms"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/roomCustomizeRatingImageView"
-            app:layout_constraintStart_toStartOf="@+id/roomCustomizeRatingImageView"
-            app:layout_constraintTop_toBottomOf="@+id/roomCustomizeRatingImageView" />
+            app:layout_constraintEnd_toEndOf="@+id/roomButton"
+            app:layout_constraintStart_toStartOf="@+id/roomButton"
+            app:layout_constraintTop_toBottomOf="@+id/roomButton" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -684,9 +690,9 @@
             android:fontFamily="@font/productsans"
             android:text="Hyegine"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/hyegineCustomRatingImageView"
-            app:layout_constraintStart_toStartOf="@+id/hyegineCustomRatingImageView"
-            app:layout_constraintTop_toBottomOf="@+id/hyegineCustomRatingImageView" />
+            app:layout_constraintEnd_toEndOf="@+id/hygieneButton"
+            app:layout_constraintStart_toStartOf="@+id/hygieneButton"
+            app:layout_constraintTop_toBottomOf="@+id/hygieneButton" />
 
         <TextView
             android:id="@+id/textView18"
@@ -697,9 +703,9 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/productsans"
             android:text="Management"
-            app:layout_constraintEnd_toEndOf="@+id/managementCustomizeRatingImageView"
-            app:layout_constraintStart_toStartOf="@+id/managementCustomizeRatingImageView"
-            app:layout_constraintTop_toBottomOf="@+id/managementCustomizeRatingImageView" />
+            app:layout_constraintEnd_toEndOf="@+id/managementButton"
+            app:layout_constraintStart_toStartOf="@+id/managementButton"
+            app:layout_constraintTop_toBottomOf="@+id/managementButton" />
 
         <TextView
             android:id="@+id/textView16"
@@ -710,9 +716,9 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/productsans"
             android:text="Comfort"
-            app:layout_constraintEnd_toEndOf="@+id/comfortCustomizeRatingImageView"
-            app:layout_constraintStart_toStartOf="@+id/comfortCustomizeRatingImageView"
-            app:layout_constraintTop_toBottomOf="@+id/comfortCustomizeRatingImageView" />
+            app:layout_constraintEnd_toEndOf="@+id/comfortButton"
+            app:layout_constraintStart_toStartOf="@+id/comfortButton"
+            app:layout_constraintTop_toBottomOf="@+id/comfortButton" />
 
         <TextView
             android:id="@+id/textView11"
@@ -723,9 +729,9 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/productsans"
             android:text="Food"
-            app:layout_constraintEnd_toEndOf="@+id/FoodCustomizeRatingImageView"
-            app:layout_constraintStart_toStartOf="@+id/FoodCustomizeRatingImageView"
-            app:layout_constraintTop_toBottomOf="@+id/FoodCustomizeRatingImageView" />
+            app:layout_constraintEnd_toEndOf="@+id/foodButton"
+            app:layout_constraintStart_toStartOf="@+id/foodButton"
+            app:layout_constraintTop_toBottomOf="@+id/foodButton" />
 
 
 
@@ -733,3 +739,5 @@
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

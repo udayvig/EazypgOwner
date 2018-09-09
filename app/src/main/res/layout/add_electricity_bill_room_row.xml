@@ -4,37 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="1dp"
+    android:layout_margin="8dp"
     android:clickable="true"
-    android:elevation="5dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true"
-    app:cardElevation="5dp">
+    app:cardElevation="8dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp">
+        android:layout_height="180dp">
+
+        <TextView
+            android:id="@+id/unitsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/comfortabold"
+            android:text="Units"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondTextView" />
 
         <EditText
             android:id="@+id/numberOfUnitsEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="44dp"
-            android:hint="Units"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="13dp"
+            android:hint="Number of Units"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView13"
             app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/comfortabold"
+
+            android:text="Cost per unit : "
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfUnitsEditText" />
 
         <TextView
             android:id="@+id/costPerUnitTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:layout_marginTop="56dp"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
             android:text="10"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/numberOfUnitsEditText"
-            app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfUnitsEditText" />
 
         <TextView
             android:id="@+id/secondTextView"
@@ -62,7 +91,7 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="28dp"
+            android:textSize="22dp"
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,6 +104,7 @@
             android:background="@drawable/solidcorners"
             android:fontFamily="@font/productsans"
             android:text="TextView"
+            android:layout_marginStart="28dp"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="19dp"
@@ -84,11 +114,22 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@+id/unitsTextView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12"
+            app:srcCompat="@drawable/enabled" />
+
+        <ImageView
             android:id="@+id/imageView12"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/secondTextView"
             app:layout_constraintTop_toBottomOf="@+id/thirdTextView"
@@ -104,7 +145,7 @@
             android:fontFamily="@font/productsansbold"
             android:text="Room"
             android:textColor="#000000"
-            android:textSize="24dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,10 +153,10 @@
             android:id="@+id/saveFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            android:layout_marginTop="84dp"
-            app:layout_constraintStart_toEndOf="@+id/costPerUnitTextView"
-            app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -155,7 +155,7 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
 //        fourth.setText(passbookDetails.getDescription());
         fifth.setText(passbookDetails.getPaidBy());
 
-        if(passbookDetails.inout){
+     /*   if(passbookDetails.inout){
             sixth = listViewItemPassbook.findViewById(R.id.sixthTextView);
             sixth.setVisibility(View.GONE);
             ImageView enabled = listViewItemPassbook.findViewById(R.id.enabledImageView);
@@ -175,7 +175,7 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
             hollow.setText("Outflow");
             hollow.setTextColor(Color.RED);
             iv.setImageResource(R.drawable.ic_arrow_upward_black_24dp);
-        }
+        }*/
 
         return listViewItemPassbook;
     }

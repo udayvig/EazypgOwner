@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="1dp"
+    android:layout_margin="10dp"
     android:clickable="true"
     android:elevation="5dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true"
-    app:cardElevation="5dp">
+    app:cardElevation="10dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="212dp">
+        android:layout_height="170dp">
 
         <EditText
             android:id="@+id/billAmountEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
             android:hint="Bill Amount"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView10"
             app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
 
         <TextView
@@ -40,6 +40,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/thirdTextView"
             app:layout_constraintVertical_bias="0.064" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/comfortabold"
+            android:text="Amount"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/fourthTextView"
+            app:srcCompat="@drawable/enabled" />
+
 
         <TextView
             android:id="@+id/thirdTextView"
@@ -60,6 +84,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/solidcorners"
             android:fontFamily="@font/productsans"
@@ -101,10 +126,11 @@
             android:id="@+id/saveFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="196dp"
-            android:layout_marginTop="48dp"
-            app:layout_constraintStart_toEndOf="@+id/billAmountEditText"
-            app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
+
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
