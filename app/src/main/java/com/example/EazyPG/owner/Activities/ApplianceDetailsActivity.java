@@ -49,6 +49,7 @@ import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -111,10 +112,13 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
         textView = findViewById(R.id.applianceNameTextView);
         addButton = findViewById(R.id.addButton);
 
-        Intent intent = getIntent();
-        String applianceName = intent.getStringExtra(ApplianceActivity.EXTRA_MESSAGE);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference = firebaseDatabase.getReference("PG/"+firebaseUser.getUid());
+        Intent intent = getIntent();
+        final String applianceName = intent.getStringExtra(ApplianceActivity.EXTRA_MESSAGE);
+
+        databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
 
         textView.setText(applianceName);
 
@@ -122,7 +126,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+            showDialog(applianceName);
 
             }
         });
@@ -207,7 +211,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 ACLastServiceDate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), date, calendar
+                        new DatePickerDialog(ApplianceDetailsActivity.this, date, calendar
                                 .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                                 calendar.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -259,7 +263,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 FanDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateFan, calendarFan
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateFan, calendarFan
                                 .get(Calendar.YEAR), calendarFan.get(Calendar.MONTH),
                                 calendarFan.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -310,7 +314,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 LiftDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateLift, calendarLift
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateLift, calendarLift
                                 .get(Calendar.YEAR), calendarLift.get(Calendar.MONTH),
                                 calendarLift.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -361,7 +365,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 GeyserDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateGeyser, calendarGeyser
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateGeyser, calendarGeyser
                                 .get(Calendar.YEAR), calendarGeyser.get(Calendar.MONTH),
                                 calendarGeyser.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -412,7 +416,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 WashingMachineDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateWM, calendarWM
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateWM, calendarWM
                                 .get(Calendar.YEAR), calendarWM.get(Calendar.MONTH),
                                 calendarWM.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -463,7 +467,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 RODays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateRO, calendarRO
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateRO, calendarRO
                                 .get(Calendar.YEAR), calendarRO.get(Calendar.MONTH),
                                 calendarRO.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -514,7 +518,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 DishwasherDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateDishwasher, calendarDishwasher
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateDishwasher, calendarDishwasher
                                 .get(Calendar.YEAR), calendarDishwasher.get(Calendar.MONTH),
                                 calendarDishwasher.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -564,7 +568,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 MicrowaveDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateMicrowave, calendarMicrowave
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateMicrowave, calendarMicrowave
                                 .get(Calendar.YEAR), calendarMicrowave.get(Calendar.MONTH),
                                 calendarMicrowave.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -614,7 +618,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 FridgeDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateFridge, calendarFridge
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateFridge, calendarFridge
                                 .get(Calendar.YEAR), calendarFridge.get(Calendar.MONTH),
                                 calendarFridge.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -664,7 +668,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 TVDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateTV, calendarTV
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateTV, calendarTV
                                 .get(Calendar.YEAR), calendarTV.get(Calendar.MONTH),
                                 calendarTV.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -714,7 +718,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 CCTVDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateCCTV, calendarCCTV
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateCCTV, calendarCCTV
                                 .get(Calendar.YEAR), calendarCCTV.get(Calendar.MONTH),
                                 calendarCCTV.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -764,7 +768,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 IronDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateIron, calendarIron
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateIron, calendarIron
                                 .get(Calendar.YEAR), calendarIron.get(Calendar.MONTH),
                                 calendarIron.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -816,7 +820,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 InductionDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateInduction, calendarInduction
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateInduction, calendarInduction
                                 .get(Calendar.YEAR), calendarInduction.get(Calendar.MONTH),
                                 calendarInduction.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -867,7 +871,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 RouterDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateRouter, calendarRouter
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateRouter, calendarRouter
                                 .get(Calendar.YEAR), calendarRouter.get(Calendar.MONTH),
                                 calendarRouter.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -918,7 +922,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 HeaterDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateHeater, calendarHeater
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateHeater, calendarHeater
                                 .get(Calendar.YEAR), calendarHeater.get(Calendar.MONTH),
                                 calendarHeater.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -968,7 +972,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 D2HDays.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new DatePickerDialog(getApplicationContext(), dateD2H, calendarD2H
+                        new DatePickerDialog(ApplianceDetailsActivity.this, dateD2H, calendarD2H
                                 .get(Calendar.YEAR), calendarD2H.get(Calendar.MONTH),
                                 calendarD2H.get(Calendar.DAY_OF_MONTH)).show();
                     }
@@ -996,7 +1000,6 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                 heaterLayout.setVisibility(View.GONE);
                 D2HLayout.setVisibility(View.GONE);
                 otherLayout.setVisibility(View.VISIBLE);
-
 
                 break;
         }

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 //  Check either activity or app is open very first time or not and do action
                 if (isFirstStart) {
 
-                    //  Launch application introduction screen
+
                     Intent i = new Intent(MainActivity.this, MyIntro.class);
                     startActivity(i);
                     SharedPreferences.Editor e = getSharedPreferences.edit();
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
         t.start();
 
-        if(isFirstStart==false)
+        if(!isFirstStart)
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
     }

@@ -37,15 +37,15 @@ public class HomePageActivity extends AppCompatActivity {
     ImageView complaint;
     ImageView notifCard;
     TextView notifCardText;
-    ImageView notifCard2;
-    TextView notifCardText2;
+
     FloatingActionButton bt1;
     FloatingActionButton bt2;
     FloatingActionButton bt3;
     FloatingActionButton bt4;
     FloatingActionButton bt5;
     NestedScrollView nestedScrollView;
-    //TextView bt1Text;
+
+    Button applianceButton;
 
     private  int someVarA;
     private  String someVarB;
@@ -85,6 +85,8 @@ public class HomePageActivity extends AppCompatActivity {
         bt4 = findViewById(R.id.goneFab4);
         bt5 = findViewById(R.id.goneFab5);
 
+        applianceButton = findViewById(R.id.applianceButton);
+
         feedbackButton = findViewById(R.id.feedbackButton);
 
         nestedScrollView = findViewById(R.id.nestedScroll);
@@ -103,9 +105,7 @@ public class HomePageActivity extends AppCompatActivity {
                     bt3.show();
                     bt4.show();
                     bt5.show();
-                    //nestedScrollView.setBackgroundColor(Color.BLACK);
-                    // bt1Text.setVisibility(View.VISIBLE);
-                    // Collapsed
+
                 } else if (verticalOffset == 0) {
                     // Expanded
                     notifCard.setVisibility(View.VISIBLE);
@@ -126,14 +126,23 @@ public class HomePageActivity extends AppCompatActivity {
                     bt3.hide();
                     bt4.hide();
                     bt5.hide();
-                    //nestedScrollView.setBackgroundColor(Color.WHITE);
-                    // bt1Text.setVisibility(View.INVISIBLE);
+
                 }
             }
         });
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        applianceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(HomePageActivity.this, ApplianceActivity.class));
+                finish();
+
+            }
+        });
 
         tenant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,66 +265,7 @@ public class HomePageActivity extends AppCompatActivity {
                         .show();
             }
         });
-
-
-        //random data
-        randomnotificationData();
-        /*RecyclerView recycler = findViewById(R.id.recycler);
-
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-        adapter=new MyAdapter(recycler, this, items);
-        recycler.setAdapter(adapter);
-
-
-
-        //Set Load more events
-        adapter.setLoadMore(new LoadMore() {
-            @Override
-            public void onLoadMore() {
-                if(items.size()<=10){
-                    items.add(null);
-                    adapter.notifyItemInserted(items.size()-1);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            items.remove(items.size()-1);
-                            adapter.notifyItemRemoved(items.size());
-
-                            //More random data
-                            int index =items.size();
-                            int end= index;
-                            for(int i =index; i <end; i++)
-                            {
-                                String name = UUID.randomUUID().toString();
-                                Item item = new Item(name , name.length());
-                                items.add(item);
-                            }
-                            adapter.notifyDataSetChanged();
-                            adapter.setLoaded();
-                        }
-                    },100);
-                }
-                else
-                {
-                    Toast.makeText(HomePageActivity.this,"DATA LOAD COMPLETED",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
-
-
     }
-
-
-    private  void randomnotificationData()
-    {
-        for(int i =0; i<10;i++)
-        {
-            String name = UUID.randomUUID().toString();
-            Item item= new Item (name,name.length());
-            items.add(item);
-        }
-    }
-
 
     @Override
     public void onBackPressed() {
