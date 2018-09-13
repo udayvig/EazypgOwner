@@ -74,7 +74,7 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
     EditText FridgeRoomNo, FridgeCompanyName, FridgeModel, FridgeCapacity, FridgeType, FridgeRating;
     EditText TVRoomNo, TVCompanyName, TVModel, TVType, TVSize, TVResolution;
     EditText CCTVRoomNo, CCTVCompanyName, CCTVModel, CCTVNight, CCTVChanel, CCTVResolution;
-    EditText IronRoomNo, IronComanyName, IronModel, IronPower;
+    EditText IronRoomNo, IronCompanyName, IronModel, IronPower;
     EditText InductionRoomNo, InductionCompanyName, InductionModel, InductionPower, InductionType, InductionNoCooktop;
     EditText RouterRoomNo, RouterCompanyName, RouterModel, RouterAntenna, RouterSpeed;
     EditText HeaterRoomNo, HeaterCompanyName, HeaterModel, HeaterPower, HeaterWeight;
@@ -1456,12 +1456,12 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
                             break;
                         case "Iron":
 
-                            IronComanyName = view.findViewById(R.id.ironCompanyNameEditText);
+                            IronCompanyName = view.findViewById(R.id.ironCompanyNameEditText);
                             IronModel = view.findViewById(R.id.ironModelEditText);
                             IronPower = view.findViewById(R.id.ironPowerEditText);
                             IronRoomNo = view.findViewById(R.id.ironRoomNumberEditText);
 
-                            String brandIron = IronComanyName.getText().toString();
+                            String brandIron = IronCompanyName.getText().toString();
                             String daysIron = IronDays.getText().toString();
                             String modelIron = IronModel.getText().toString();
                             String powerIron = IronPower.getText().toString();

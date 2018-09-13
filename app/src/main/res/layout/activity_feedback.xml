@@ -344,7 +344,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/hyegineTextView" />
 
                     <RatingBar
-                        android:id="@+id/hyegineRating"
+                        android:id="@+id/hygieneRating"
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="16dp"
@@ -498,7 +498,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/othersTextView" />
 
                     <RatingBar
-                        android:id="@+id/rating"
+                        android:id="@+id/othersRating"
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="16dp"

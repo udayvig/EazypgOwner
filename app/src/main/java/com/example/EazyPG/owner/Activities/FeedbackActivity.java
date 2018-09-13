@@ -81,13 +81,6 @@ public class FeedbackActivity extends AppCompatActivity {
         roomButton = findViewById(R.id.roomButton);
         othersButton = findViewById(R.id.othersButton);
 
-        foodConstraintLayout = findViewById(R.id.foodConstraintLayout);
-        comfortConstraintLayout = findViewById(R.id.comfortConstraintLayout);
-        managementConstraintLayout = findViewById(R.id.managementConstraintLayout);
-        hygieneConstraintLayout = findViewById(R.id.hygieneConstraintLayout);
-        roomConstraintLayout = findViewById(R.id.roomConstraintLayout);
-        othersConstraintLayout = findViewById(R.id.othersConstaintLayout);
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();

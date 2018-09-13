@@ -3,6 +3,9 @@ package com.example.EazyPG.owner.Activities;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,13 +13,13 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailsClasses.PG;
@@ -51,19 +54,40 @@ public class MyPGActivity extends AppCompatActivity {
     TextInputEditText ownerName;
     TextInputEditText contact;
     TextInputEditText staffCount;
+    TextInputEditText billDueDate;
+    TextInputEditText rentDueDate;
+    TextInputEditText electricityUnitCost;
     Snackbar snackbar;
     //TextView appliance;
-   // TextView rooms;
+    // TextView rooms;
     View view;
 
     FloatingActionButton saveButton;
 
-    EditText input1,input2,input3,input4,input5,input6,input7,input8,input9,input10,input11,input12;
+    EditText input1,input2,input3,input4,input5,input6,input7,input8,input9,input10,input11,input12, input13, input14, input15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pg);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decor = getWindow().getDecorView();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.rgb(250,250,250));
+            } else {
+                // We want to change tint color to white again.
+                // You can also record the flags in advance so that you can turn UI back completely if
+                // you have set other flags before, such as translucent or full screen.
+                decor.setSystemUiVisibility(0);
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.rgb(0,0,0));
+            }
+        }
 
         databaseReference = firebaseDatabase.getReference("PG/");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -80,6 +104,9 @@ public class MyPGActivity extends AppCompatActivity {
         ownerName = findViewById(R.id.ownerNameTextView);
         contact = findViewById(R.id.pgContactTextView);
         staffCount = findViewById(R.id.staffCountTextView);
+        rentDueDate = findViewById(R.id.rentDueDateEditText);
+        billDueDate = findViewById(R.id.billDueDateEditText);
+        electricityUnitCost = findViewById(R.id.electricityUnitCostEditText);
 
         /*appliance = findViewById(R.id.applianceTextView);
         rooms = findViewById(R.id.roomTextView);*/
@@ -98,6 +125,9 @@ public class MyPGActivity extends AppCompatActivity {
         input10 = new EditText(this);
         input11 = new EditText(this);
         input12 = new EditText(this);
+        input13 = new EditText(this);
+        input14 = new EditText(this);
+        input15 = new EditText(this);
         view = findViewById(R.id.myPgLayout);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -117,6 +147,9 @@ public class MyPGActivity extends AppCompatActivity {
                 String ownername1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("ownername").getValue(String.class);
                 String contact1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("pgContact").getValue(String.class);
                 String staffCount1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("staffCount").getValue(String.class);
+                String rentDueDate1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("rentDueDate").getValue(String.class);
+                String billDueDate1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("billDueDate").getValue(String.class);
+                String electricityUnitCost1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("electricityUnitCost").getValue(String.class);
 
                 pgName.setText(name1);
                 bio.setText(bio1);
@@ -130,7 +163,9 @@ public class MyPGActivity extends AppCompatActivity {
                 ownerName.setText(ownername1);
                 contact.setText(contact1);
                 staffCount.setText(staffCount1);
-
+                electricityUnitCost.setText(electricityUnitCost1);
+                rentDueDate.setText(rentDueDate1);
+                billDueDate.setText(billDueDate1);
 
             }
 
@@ -535,7 +570,6 @@ public class MyPGActivity extends AppCompatActivity {
                 builder.create().show();
             }
         });
-
         staffCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -571,6 +605,111 @@ public class MyPGActivity extends AppCompatActivity {
             }
         });
 
+        rentDueDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(input13.getParent()!=null) {
+                    ((ViewGroup) input13.getParent()).removeView(input13);
+                }
+                input13.setText(rentDueDate.getText().toString().trim());
+                input13.setFilters(new InputFilter[] { new InputFilter.LengthFilter(2) });
+                input13.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input13.setSelection(input13.getText().length());
+                AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
+                builder.setTitle("Your PG Details")
+                        .setIcon(R.drawable.ic_edit_black_24dp)
+                        .setMessage("Enter Rent Due Date Of Every Month: ");
+
+                builder.setView(input13);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        rentDueDate.setText(input13.getText().toString());
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.create().show();
+            }
+        });
+
+        billDueDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(input14.getParent()!=null) {
+                    ((ViewGroup) input14.getParent()).removeView(input14);
+                }
+                input14.setText(rentDueDate.getText().toString().trim());
+                input14.setFilters(new InputFilter[] { new InputFilter.LengthFilter(2) });
+                input14.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input14.setSelection(input14.getText().length());
+                AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
+                builder.setTitle("Your PG Details")
+                        .setIcon(R.drawable.ic_edit_black_24dp)
+                        .setMessage("Enter Bill Due Date Of Every Month: ");
+
+                builder.setView(input14);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        rentDueDate.setText(input14.getText().toString());
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.create().show();
+            }
+        });
+
+        electricityUnitCost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(input15.getParent()!=null) {
+                    ((ViewGroup) input15.getParent()).removeView(input15);
+                }
+                input15.setText(rentDueDate.getText().toString().trim());
+                input15.setFilters(new InputFilter[] { new InputFilter.LengthFilter(2) });
+                input15.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input15.setSelection(input15.getText().length());
+                AlertDialog.Builder builder = new AlertDialog.Builder(MyPGActivity.this);
+                builder.setTitle("Your PG Details")
+                        .setIcon(R.drawable.ic_edit_black_24dp)
+                        .setMessage("Enter Cost Of Electricity Per Unit: ");
+
+                builder.setView(input15);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        rentDueDate.setText(input15.getText().toString());
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.create().show();
+            }
+        });
+
        /* appliance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -583,7 +722,7 @@ public class MyPGActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 addingPg();
+                addingPg();
                 saveButton.setVisibility(View.VISIBLE);
             }
         });
@@ -612,6 +751,9 @@ public class MyPGActivity extends AppCompatActivity {
         String staffCountString = staffCount.getText().toString().trim();
         String roomString = room.getText().toString().trim();
         String bathroomString = bathroom.getText().toString().trim();
+        String rentDueDateString = rentDueDate.getText().toString().trim();
+        String billDueDateString = billDueDate.getText().toString().trim();
+        String electricityUnitCostString = electricityUnitCost.getText().toString().trim();
 
         //Getting current user information
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -622,7 +764,7 @@ public class MyPGActivity extends AppCompatActivity {
 
         final ProgressDialog progressDialog = ProgressDialog.show(MyPGActivity.this,"","Saving..",true);
 
-        PG pg = new PG(pgNameString, bioString, locationString, ownerNameString, contactString, landmarkString, lastEntryString, genderString, maxOccupancyString, staffCountString, roomString, bathroomString);
+        PG pg = new PG(pgNameString, bioString, locationString, ownerNameString, contactString, landmarkString, lastEntryString, genderString, maxOccupancyString, staffCountString, roomString, bathroomString, rentDueDateString, billDueDateString, electricityUnitCostString);
         databaseReference.child("PG Details").setValue(pg).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -638,7 +780,7 @@ public class MyPGActivity extends AppCompatActivity {
                         saveButton.show();
                     }
                 }, 1800);
-                
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
