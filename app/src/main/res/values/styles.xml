@@ -52,5 +52,9 @@
         <item name="colorControlActivated">#FFC107</item>
     </style>
 
+    <style name="TextLabel4" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">#0277BD</item>
+    </style>
 </resources>
 

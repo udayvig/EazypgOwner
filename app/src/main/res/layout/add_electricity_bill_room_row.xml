@@ -8,7 +8,7 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true"
-    app:cardElevation="8dp">a
+    app:cardElevation="8dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
