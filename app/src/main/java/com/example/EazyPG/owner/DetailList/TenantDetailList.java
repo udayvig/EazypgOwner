@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.example.EazyPG.owner.Activities.BillActivity;
 import com.example.EazyPG.owner.Activities.FineActivity;
 import com.example.EazyPG.owner.Activities.PaymentActivity;
+import com.example.EazyPG.owner.Activities.TenantDashboardProfile;
+import com.example.EazyPG.owner.Activities.TenantDocumentsActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,12 +47,10 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
     private List<TenantDetails> tenantList;
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public static final String EXTRA_MESSAGE2 = "com.example.myfirstapp.MESSAGE2";
+    public static final String EXTRA_MESSAGE3 = "com.example.myfirstapp.MESSAGE3";
     public String id;
     private FloatingActionButton callButton, paymentButton;
     private Button deleteTenant, fineButton, billButton;
-    ImageView qrButton, qrImage;
-
-    TenantDetails newData;
 
     public TenantDetailList(Activity context, List<TenantDetails> tenantList) {
         super(context, R.layout.tenant_row, tenantList);
@@ -67,7 +67,6 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         final LayoutInflater inflater = context.getLayoutInflater();
 
         View listViewItemTenant = inflater.inflate(R.layout.tenant_row, null, true);
-        final View dialogFine = inflater.inflate(R.layout.activity_fine, null, true);
 
         callButton = listViewItemTenant.findViewById(R.id.callButton);
         paymentButton = listViewItemTenant.findViewById(R.id.paymentButton);
@@ -107,29 +106,10 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
         listViewItemTenant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
 
-                final EditText name, phone, room, dateOfJoining, rentAmount;
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Tenant details");
-
-                name = viewDialog.findViewById(R.id.tenantNameEditText);
-                phone = viewDialog.findViewById(R.id.tenantPhoneEditText);
-                room = viewDialog.findViewById(R.id.tenantRoomEditText);
-                dateOfJoining = viewDialog.findViewById(R.id.tenantDateEditText);
-                rentAmount = viewDialog.findViewById(R.id.tenantRentEditText);
-
-                name.setText(tenantDetails.name);
-                phone.setText(tenantDetails.phone);
-                room.setText(tenantDetails.room);
-                dateOfJoining.setText(tenantDetails.dateOfJoining);
-                rentAmount.setText(tenantDetails.rentAmount);
-
-                builder.setView(viewDialog);
-
-                builder.setPositiveButton("OK", null);
-                builder.show();
+                Intent intent = new Intent(context, TenantDocumentsActivity.class);
+                intent.putExtra(EXTRA_MESSAGE3, ids.get(position));
+                context.startActivity(intent);
 
             }
         });

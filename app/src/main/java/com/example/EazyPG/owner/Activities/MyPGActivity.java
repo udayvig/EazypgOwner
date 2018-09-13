@@ -53,6 +53,8 @@ public class MyPGActivity extends AppCompatActivity {
     Snackbar snackbar;
     TextView appliance;
     TextView rooms;
+    TextView electricityCost;
+    TextView locationCoordinates;
     View view;
 
     FloatingActionButton saveButton;
@@ -79,9 +81,12 @@ public class MyPGActivity extends AppCompatActivity {
         ownerName = findViewById(R.id.ownerNameTextView);
         contact = findViewById(R.id.pgContactTextView);
         staffCount = findViewById(R.id.staffCountTextView);
+        locationCoordinates = findViewById(R.id.locationCoordinatesTextView);
+        electricityCost = findViewById(R.id.electricityPerUnitTextView);
 
         appliance = findViewById(R.id.applianceTextView);
         rooms = findViewById(R.id.roomTextView);
+
 
         saveButton = findViewById(R.id.saveButton);
 
@@ -97,13 +102,13 @@ public class MyPGActivity extends AppCompatActivity {
         input10 = new EditText(this);
         input11 = new EditText(this);
         input12 = new EditText(this);
+
         view = findViewById(R.id.myPgLayout);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                //databaseReference.keepSynced(true);
                 String name1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("pgName").getValue(String.class);
                 String bio1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("bio").getValue(String.class);
                 String gender1 = dataSnapshot.child(firebaseUser.getUid()).child("PG Details").child("gender").getValue(String.class);

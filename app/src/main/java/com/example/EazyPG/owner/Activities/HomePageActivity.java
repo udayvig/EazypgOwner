@@ -45,8 +45,6 @@ public class HomePageActivity extends AppCompatActivity {
     FloatingActionButton bt4;
     FloatingActionButton bt5;
     NestedScrollView nestedScrollView;
-
-    Button addBillButton, rentBillCollectionButton;
     //TextView bt1Text;
 
     private  int someVarA;
@@ -58,6 +56,8 @@ public class HomePageActivity extends AppCompatActivity {
     MyAdapter adapter;
 
     FirebaseAuth firebaseAuth;
+
+    Button feedbackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +84,11 @@ public class HomePageActivity extends AppCompatActivity {
         bt3 = findViewById(R.id.goneFab3);
         bt4 = findViewById(R.id.goneFab4);
         bt5 = findViewById(R.id.goneFab5);
+
+        feedbackButton = findViewById(R.id.feedbackButton);
+
         nestedScrollView = findViewById(R.id.nestedScroll);
 
-        addBillButton = findViewById(R.id.addBillButton);
-        rentBillCollectionButton = findViewById(R.id.rentBillCollectionButton);
-        // bt1Text = findViewById(R.id.goneFab1text);
 
         final AppBarLayout appBarLayout = (AppBarLayout)findViewById(R.id.appBar);
 
@@ -222,19 +222,13 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        addBillButton.setOnClickListener(new View.OnClickListener() {
+        feedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomePageActivity.this, AddBillActivity.class));
-                finish();
-            }
-        });
+            public void onClick(View v) {
 
-        rentBillCollectionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomePageActivity.this, RentCollectionActivity.class));
+                startActivity(new Intent(HomePageActivity.this, FeedbackActivity.class));
                 finish();
+
             }
         });
 

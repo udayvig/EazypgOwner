@@ -58,7 +58,6 @@ public class TenantActivity extends AppCompatActivity {
     Button previousTenants , ok , cancel;
     EditText name, phone, room, dateOfJoining, rentAmount , email;
 
-
     Snackbar snackbar;
     View view;
 

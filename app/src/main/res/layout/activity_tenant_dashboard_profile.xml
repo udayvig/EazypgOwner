@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.EazyPG.owner.Activities.TenantDashboardProfile">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -57,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
     <TextView
+        android:id="@+id/phoneTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -905,5 +906,3 @@
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
-
-

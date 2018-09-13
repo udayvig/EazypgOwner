@@ -15,14 +15,12 @@ import com.example.ainesh.eazypg_owner.R;
 
 import java.util.List;
 
-
 class LoadingViewHolder extends RecyclerView.ViewHolder
 {
     public static ProgressBar progressBar;
 
      public LoadingViewHolder(View itemView) {
         super(itemView);
-        progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
 
     }
 }

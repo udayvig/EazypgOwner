@@ -4,36 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="1dp"
+    android:layout_margin="10dp"
     android:clickable="true"
-    android:elevation="5dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true"
-    app:cardElevation="5dp">
+    app:cardElevation="10dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="188dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
 
         <EditText
             android:id="@+id/billCategoryEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="52dp"
+
             android:hint="Bill Category"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/billCategoryTextView"
             app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
 
         <EditText
             android:id="@+id/billAmountEditText"
             android:layout_width="wrap_content"
-            android:layout_height="43dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="24dp"
+
             android:hint="Bill Amount"
-            app:layout_constraintStart_toEndOf="@+id/billCategoryEditText"
-            app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
+            app:layout_constraintStart_toEndOf="@+id/imageView11"
+            app:layout_constraintTop_toBottomOf="@+id/billCategoryEditText" />
 
         <TextView
             android:id="@+id/secondTextView"
@@ -45,11 +45,37 @@
             android:fontFamily="@font/comfortabold"
             android:text="Type"
             android:textColor="#000000"
-            android:textSize="19dp"
+            android:textSize="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/thirdTextView"
             app:layout_constraintVertical_bias="0.064" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/comfortabold"
+            android:text="Amount"
+            android:textColor="#000000"
+            android:textSize="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/billCategoryTextView" />
+
+        <TextView
+            android:id="@+id/billCategoryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/comfortabold"
+            android:text="Category"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondTextView" />
 
         <TextView
             android:id="@+id/thirdTextView"
@@ -61,7 +87,7 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="28dp"
+            android:textSize="22dp"
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,13 +96,14 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/solidcorners"
             android:fontFamily="@font/productsans"
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="19dp"
+            android:textSize="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView12"
             app:layout_constraintTop_toBottomOf="@+id/thirdTextView"
@@ -87,12 +114,36 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/secondTextView"
             app:layout_constraintTop_toBottomOf="@+id/thirdTextView"
             app:layout_constraintVertical_bias="0.064"
             app:srcCompat="@drawable/enabled" />
+
+        <ImageView
+
+            android:id="@+id/imageView8"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toEndOf="@+id/billCategoryTextView"
+            app:layout_constraintTop_toBottomOf="@+id/fourthTextView"
+            app:srcCompat="@drawable/enabled" />
+
+        <ImageView
+
+            android:id="@+id/imageView11"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8"
+            app:srcCompat="@drawable/enabled" />
+
 
         <TextView
             android:id="@+id/textView12"
@@ -103,7 +154,7 @@
             android:fontFamily="@font/productsansbold"
             android:text="Room"
             android:textColor="#000000"
-            android:textSize="24dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,10 +162,10 @@
             android:id="@+id/saveFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toEndOf="@+id/billAmountEditText"
-            app:layout_constraintTop_toBottomOf="@+id/fourthTextView" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

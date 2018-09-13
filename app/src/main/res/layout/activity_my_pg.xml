@@ -496,6 +496,84 @@
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="@+id/applianceTextView" />
 
+            <TextView
+                android:id="@+id/locationCoordinates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/maxOccupancy"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="54dp"
+                android:fontFamily="@font/productsans"
+                android:text="Location"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/staffCountTextView" />
+
+            <TextView
+                android:id="@+id/locationCoordinatesTextView"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/maxOccupancy"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="38dp"
+                android:layout_toEndOf="@id/noOfBathroom"
+                android:background="@drawable/roundedcorners"
+                android:fontFamily="@font/productsans"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.964"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/staffCountTextView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/electricityPerUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/maxOccupancy"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="94dp"
+                android:fontFamily="@font/productsans"
+                android:text="Electricity Cost"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/staffCountTextView" />
+
+            <TextView
+                android:id="@+id/electricityPerUnitTextView"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/maxOccupancy"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="98dp"
+                android:layout_toEndOf="@id/noOfBathroom"
+                android:background="@drawable/roundedcorners"
+                android:fontFamily="@font/productsans"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.964"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/staffCountTextView"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
