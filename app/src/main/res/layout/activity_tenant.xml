@@ -10,24 +10,22 @@
 
     <Button
         android:id="@+id/previousTenants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/whiterounded_corner"
-        android:fontFamily="@font/productsansmedium"
-        android:elevation="100dp"
+        android:background="@drawable/prev"
         android:clickable="true"
+        android:elevation="100dp"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:paddingEnd="12dp"
         android:paddingStart="12dp"
-        android:text="Previous Tenants"
         android:textColor="#1B5E20"
-        app:layout_constraintBottom_toTopOf="@+id/listViewTenant"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tenantToolbar" />
+        app:layout_constraintBottom_toBottomOf="@+id/tenantToolbar"
+        app:layout_constraintEnd_toEndOf="@+id/tenantToolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -50,7 +48,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:elevation="800dp"
@@ -59,6 +58,7 @@
         app:backgroundTint="#FFEB3B"
         app:layout_constraintBottom_toTopOf="@+id/listViewTenant"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tenantToolbar"
         app:layout_constraintVertical_bias="0.24000001" />
 
@@ -77,7 +77,7 @@
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/productsansmedium"
         android:text="Tenants"
         android:textColor="@android:color/white"

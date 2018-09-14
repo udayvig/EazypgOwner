@@ -2,6 +2,7 @@ package com.example.EazyPG.owner.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.ainesh.eazypg_owner.R;
 
@@ -17,17 +19,12 @@ public class ApplianceActivity extends AppCompatActivity {
     Button acButton, cctvButton, d2hButton, dishwasherButton, fanButton, geyserButton, heaterButton, inductionButton, ironButton, liftButton, microwaveButton, refrigeratorButton, roButton, routerButton, tvButton, washingMachineButton, otherButton;
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
+    ImageView backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appliance);
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.rgb(27,94,32));
-        }
 
 
         acButton = findViewById(R.id.acButton);
@@ -47,6 +44,8 @@ public class ApplianceActivity extends AppCompatActivity {
         tvButton = findViewById(R.id.tvButton);
         washingMachineButton = findViewById(R.id.washingMachineButton);
         otherButton = findViewById(R.id.otherButton);
+
+        backButton= findViewById(R.id.backButton);
 
         acButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,5 +207,20 @@ public class ApplianceActivity extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ApplianceActivity.this , HomePageActivity.class));
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ApplianceActivity.this , HomePageActivity.class));
+        finish();
     }
 }
+

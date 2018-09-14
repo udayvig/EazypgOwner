@@ -1,17 +1,13 @@
-package com.example.EazyPG.owner.Activities;
+package com.example.ainesh.eazypg_owner;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.ainesh.eazypg_owner.R;
-
-public class CashflowActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cashflow);
-
-
+        setContentView(R.layout.activity_notification);
     }
 }

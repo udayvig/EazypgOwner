@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#2f3235</color>
-    <color name="colorPrimaryDark">#1B5E20</color>
-    <color name="colorAccent">#029002</color>
+    <color name="colorPrimaryDark">#005f3f</color>
+    <color name="colorAccent">#1a936f</color>
     <color name="DarkGreen">#008b00</color>
     <color name="lightgray">#ededed</color>
     <color name="deeppurple">#7c4dff</color>
@@ -13,4 +13,5 @@
     <color name="pink">#fe104d</color>
     <color name="red">#BF360C</color>
     <color name="black_overlay">#66000000</color>
+    <color name="actionBarColor">#007957</color>
 </resources>

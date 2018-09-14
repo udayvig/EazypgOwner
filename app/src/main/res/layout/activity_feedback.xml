@@ -7,22 +7,37 @@
     android:layout_height="match_parent"
     tools:context="com.example.EazyPG.owner.Activities.FeedbackActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar2"
+    <android.support.v7.widget.CardView
+        android:id="@+id/toolbar4"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="#2E7D32">
+        app:cardCornerRadius="0dp"
+        android:elevation="100dp"
+        app:cardBackgroundColor="@color/actionBarColor">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="6dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
             android:fontFamily="@font/productsansmedium"
+            android:text="Feedback"
+            android:layout_gravity="center_vertical"
             android:textColor="@android:color/white"
-            android:text="FeedBack"
-            android:textSize="20dp"
-            />
-
-    </android.support.v7.widget.Toolbar>
+            android:textSize="18dp" />
+    </android.support.v7.widget.CardView>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -67,10 +82,11 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/foodImageView"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:src="@drawable/food"
                         android:layout_marginTop="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -144,11 +160,12 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/comfortRatingImageView"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
+                        android:src="@drawable/comfort"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -224,11 +241,12 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/managementImageView"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
+                        android:src="@drawable/management"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -313,6 +331,7 @@
                         android:layout_height="45dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:src="@drawable/hygiene"
                         android:layout_marginTop="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -385,11 +404,12 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/roomImageView"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
+                        android:src="@drawable/room"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -463,11 +483,12 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/othersImageView"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
+                        android:src="@drawable/more"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -579,7 +600,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/dummyimage"
+            android:src="@drawable/comfort"
             app:layout_constraintEnd_toStartOf="@+id/managementButton"
             app:layout_constraintStart_toEndOf="@+id/foodButton"
             app:layout_constraintTop_toBottomOf="@+id/subheadingTextView" />
@@ -593,7 +614,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/dummyimage"
+            android:src="@drawable/food"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subheadingTextView" />
 
@@ -604,10 +625,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/dummyimage"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/room"
             app:layout_constraintEnd_toStartOf="@+id/othersButton"
             app:layout_constraintStart_toEndOf="@+id/hygieneButton"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -621,7 +642,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/dummyimage"
+            android:src="@drawable/hygiene"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -634,7 +655,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/dummyimage"
+            android:src="@drawable/more"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -647,7 +668,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/dummyimage"
+            android:src="@drawable/management"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subheadingTextView" />
 

@@ -128,4 +128,6 @@ public class AddBillRoomGasDetailList extends RecyclerView.Adapter<AddBillRoomGa
             saveFab = itemView.findViewById(R.id.saveFab);
         }
     }
+
+
 }
