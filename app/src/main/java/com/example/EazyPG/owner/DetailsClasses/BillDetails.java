@@ -1,14 +1,19 @@
 package com.example.EazyPG.owner.DetailsClasses;
 
 public class BillDetails {
-    String billId, category, amount;
-    boolean paidOrUnpaid;
+    public String billId, category, amount, datePaid, forDate;
+    public boolean paidOrUnpaid;
 
-    public BillDetails(String billId, String category, String amount, boolean paidOrUnpaid) {
+    public BillDetails() {
+    }
+
+    public BillDetails(String billId, String category, String amount, boolean paidOrUnpaid, String datePaid, String forDate) {
         this.billId = billId;
         this.category = category;
         this.amount = amount;
         this.paidOrUnpaid = paidOrUnpaid;
+        this.datePaid = datePaid;
+        this.forDate = forDate;
     }
 
     public String getCategory() {
@@ -41,5 +46,21 @@ public class BillDetails {
 
     public void setPaidOrUnpaid(boolean paidOrUnpaid) {
         this.paidOrUnpaid = paidOrUnpaid;
+    }
+
+    public String getDatePaid() {
+        return datePaid;
+    }
+
+    public void setDatePaid(String datePaid) {
+        this.datePaid = datePaid;
+    }
+
+    public String getForDate() {
+        return forDate;
+    }
+
+    public void setForDate(String forDate) {
+        this.forDate = forDate;
     }
 }

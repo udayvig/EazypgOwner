@@ -117,6 +117,17 @@ public class ApplianceActivity extends AppCompatActivity {
             }
         });
 
+
+        d2hButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ApplianceActivity.this, ApplianceDetailsActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, "d2h");
+                startActivity(intent);
+                finish();
+            }
+        });
+
         ironButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

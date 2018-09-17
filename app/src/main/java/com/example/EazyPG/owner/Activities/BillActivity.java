@@ -1,3 +1,4 @@
+/*
 package com.example.EazyPG.owner.Activities;
 
 import android.content.Intent;
@@ -69,3 +70,4 @@ public class BillActivity extends AppCompatActivity {
         });
     }
 }
+*/

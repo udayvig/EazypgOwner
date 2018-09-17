@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -66,6 +67,8 @@ public class RentCollectionActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tenantList.clear();
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
                     Log.e("LO", "onDataChange: " + tenantDetails.name);
@@ -82,12 +85,15 @@ public class RentCollectionActivity extends AppCompatActivity {
                 databaseReference1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        tenantPaidList.clear();
+                        tenantUnpaidList.clear();
+
                         Log.e("LOLOL", "onDataChange: " + tenantList.size());
                         for(int i = 0; i < tenantList.size(); i++){
                             paid = 0;
                             unpaid = 0;
-                            String status = dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Rent").child(dateString).getValue(String.class);
-                            if(status != null && status.equals("Paid")){
+                            CashflowDetails status = dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Rent").child(dateString).getValue(CashflowDetails.class);
+                            if(status != null){
                                 tenantPaidList.add(tenantList.get(i));
                                 paid++;
                             }else{

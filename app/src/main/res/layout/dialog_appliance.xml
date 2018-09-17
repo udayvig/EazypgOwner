@@ -1185,15 +1185,16 @@
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:hint=" Model"/>
+
         <TextView
             android:id="@+id/inductionDaysEditText"
             android:layout_below="@id/inductionModelEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:textColor="#000000"
             android:textColorHint="#616161"
-            android:inputType="text"
             android:maxLength="20"
+            android:textSize="18dp"
             android:background="@drawable/roundedcorners"
             android:layout_margin="5dp"
             android:paddingStart="15dp"

@@ -21,8 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/productsansbold"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comfortabold"
             android:text="First"
             android:textColor="@color/DarkGreen"
             android:textColorHint="#9E9E9E"
@@ -34,9 +34,8 @@
             android:id="@+id/secondTextView"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:text="Second"
@@ -45,17 +44,14 @@
             android:textColorHint="#9E9E9E"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView13"
             app:layout_constraintTop_toBottomOf="@+id/firstTextView" />
 
         <TextView
             android:id="@+id/thirdTextView"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/roundedcorners"
             android:fontFamily="@font/productsans"
             android:text="Third"
@@ -63,11 +59,8 @@
             android:textColor="#000000"
             android:textColorHint="#9E9E9E"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView14"
-            app:layout_constraintTop_toBottomOf="@+id/secondTextView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/secondTextView" />
 
         <TextView
             android:id="@+id/textViewHead"
@@ -76,9 +69,9 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/comfortabold"
-            android:textSize="18dp"
             android:text="Room"
             android:textColor="#000000"
+            android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,11 +79,12 @@
             android:id="@+id/textViewSubHead1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/comfortabold"
             android:text="Brand"
             android:textColor="#000000"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewHead" />
 
@@ -103,6 +97,7 @@
             android:fontFamily="@font/comfortabold"
             android:text="Installation time"
             android:textColor="#000000"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewSubHead1" />
 
@@ -110,9 +105,11 @@
             android:id="@+id/imageView14"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginStart="140dp"
-            app:layout_constraintStart_toStartOf="@+id/textViewSubHead2"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/thirdTextView"
+            app:layout_constraintStart_toEndOf="@+id/textViewSubHead2"
             app:layout_constraintTop_toBottomOf="@+id/imageView13"
             app:srcCompat="@drawable/enabled" />
 
@@ -120,10 +117,10 @@
             android:id="@+id/imageView13"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="14dp"
-            app:layout_constraintStart_toStartOf="@+id/textViewSubHead1"
-            app:layout_constraintTop_toBottomOf="@+id/textViewHead"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/secondTextView"
+            app:layout_constraintTop_toBottomOf="@+id/firstTextView"
             app:srcCompat="@drawable/enabled" />
 
     </android.support.constraint.ConstraintLayout>

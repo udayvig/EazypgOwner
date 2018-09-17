@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.EazyPG.owner.Activities.BillActivity;
+import com.example.EazyPG.owner.Activities.AddBillActivity;
 import com.example.EazyPG.owner.Activities.FineActivity;
 import com.example.EazyPG.owner.Activities.PaymentActivity;
 import com.example.EazyPG.owner.Activities.TenantDashboardProfile;
@@ -136,8 +136,8 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
 
                 try {
                     Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                        callIntent.setData(Uri.parse("tel:" + third.getText().toString()));
-                        context.startActivity(callIntent);
+                    callIntent.setData(Uri.parse("tel:" + third.getText().toString()));
+                    context.startActivity(callIntent);
 
                 }
                 catch (ActivityNotFoundException activityException) {
@@ -198,7 +198,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
                 });
                 builder.setNegativeButton("Cancel", null);
                 builder.show();*/
-                Intent intent = new Intent(context, BillActivity.class);
+                Intent intent = new Intent(context, AddBillActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, tenantDetails.id);
                 intent.putExtra(EXTRA_MESSAGE2, tenantDetails.room);
                 context.startActivity(intent);

@@ -116,13 +116,14 @@ public class SignupActivity extends AppCompatActivity {
                                 databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Feedback").child("Room").setValue("0");
                                 databaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).child("Feedback").child("Others").setValue("0");
 
+
                                 progressDialog.dismiss();
 
                                 {
 
                                     locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-                                    final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "Getting Location Data", "Please make sure you are connected to network", true);
+                                    final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "Getting Required Data", "Please make sure you are connected to network", true);
 
                                     listener = new LocationListener() {
                                         @Override

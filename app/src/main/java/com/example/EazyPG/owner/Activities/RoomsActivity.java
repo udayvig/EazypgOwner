@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.ACDetails;
@@ -91,6 +93,8 @@ public class RoomsActivity extends AppCompatActivity {
     ListView listView;
     View emptyList;
 
+    ImageView backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +141,15 @@ public class RoomsActivity extends AppCompatActivity {
         listView = findViewById(R.id.listViewRooms);
         emptyList = findViewById(R.id.emptyListRooms);
         listView.setEmptyView(emptyList);
+
+        backButton = findViewById(R.id.imageView3);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RoomsActivity.this, HomePageActivity.class));
+                finish();
+            }
+        });
 
         for(String str : rooms){
             getRoomDetails(str);
@@ -195,13 +208,23 @@ public class RoomsActivity extends AppCompatActivity {
                         radioButton = viewDialog.findViewById(selectedButtonId);
 
                         final String room = roomEditText.getText().toString();
-                        String roomType = radioButton.getText().toString();
 
-                        databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
-                        databaseReference1.child("Rooms").child(room).child("Room Type").setValue(roomType);
 
-                        getRoomDetails(room);
-                        getTenantDetails(room);
+                        if(selectedButtonId == -1 || room.isEmpty())
+                        {
+                            Toast.makeText(RoomsActivity.this, "All fields are required.", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+
+                            String roomType = radioButton.getText().toString();
+                            databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
+                            databaseReference1.child("Rooms").child(room).child("Room Type").setValue(roomType);
+
+                            getRoomDetails(room);
+                            getTenantDetails(room);
+
+                        }
+
                     }
                 });
 
@@ -779,5 +802,12 @@ public class RoomsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(RoomsActivity.this , HomePageActivity.class));
+        finish();
     }
 }

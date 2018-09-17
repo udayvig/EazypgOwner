@@ -9,9 +9,9 @@
     android:paddingTop="17dp"
     android:paddingStart="17dp"
     android:layout_marginTop="260dp"
-    android:text=" Add Details"
+    android:text=" Add Appliance"
     android:textSize="25dp"
     android:textColor="#000000"
-    android:fontFamily="@font/comfortabold"
+    android:fontFamily="@font/productsansmedium"
     tools:layout_editor_absoluteX="176dp"
     tools:layout_editor_absoluteY="60dp" />

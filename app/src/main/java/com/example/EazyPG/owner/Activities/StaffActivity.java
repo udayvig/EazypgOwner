@@ -57,7 +57,10 @@ public class StaffActivity extends AppCompatActivity {
     Snackbar snackbar;
     View view;
 
+    ImageView backButton;
+
     LayoutInflater inflater;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class StaffActivity extends AppCompatActivity {
         emptyList = findViewById(R.id.emptyListStaff);
         listView.setEmptyView(emptyList);
 
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = firebaseDatabase.getReference("PG/"+firebaseUser.getUid() + "/Staff/");
 
@@ -84,6 +88,9 @@ public class StaffActivity extends AppCompatActivity {
         contact = findViewById(R.id.contactEditText);
         salary = findViewById(R.id.salaryEditText);
         dateOfJoining = findViewById(R.id.dateOfJoiningEditText);
+
+        backButton = findViewById(R.id.imageView3);
+
 
         snackbar = Snackbar.make(view, "Tap item to edit and hold to delete", Snackbar.LENGTH_LONG);
         View snackbarView = snackbar.getView();
@@ -138,7 +145,7 @@ public class StaffActivity extends AppCompatActivity {
                         calendar.set(Calendar.MONTH, i1);
                         calendar.set(Calendar.DAY_OF_MONTH, i2);
 
-                        String myFormat = "dd/MM/yy";
+                        String myFormat = "dd/MM/yyyy";
                         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
 
                         dateOfJoining.setText(sdf.format(calendar.getTime()));
@@ -211,7 +218,19 @@ public class StaffActivity extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(StaffActivity.this, HomePageActivity.class));
+                finish();
+            }
+        });
+
+
+
+
     }
+
 
     @Override
     public void onBackPressed() {

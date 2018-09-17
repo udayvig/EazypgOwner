@@ -1,6 +1,8 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailsClasses.BillDetails;
@@ -66,10 +69,23 @@ public class BillCollectionDetailList extends RecyclerView.Adapter<BillCollectio
         holder.messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
-                msg91.composeMessage("EazyPG", "Hi " + tenantDetailList.get(position).name + ". Your rent is due for this month.");
-                msg91.to(tenantDetailList.get(position).phone);
-                String sendStatus = msg91.send();
+                final MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                final EditText inputMessageEditText = new EditText(context);
+                builder.setView(inputMessageEditText);
+                inputMessageEditText.setText("Hi " + tenantDetailList.get(position).name + ". Your rent is due for this month.");
+                builder.setTitle("Send Message");
+                builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String message = inputMessageEditText.getText().toString();
+                        msg91.composeMessage("EazyPG", message);
+                        msg91.to(tenantDetailList.get(position).phone);
+                        String sendStatus = msg91.send();
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
             }
         });
 

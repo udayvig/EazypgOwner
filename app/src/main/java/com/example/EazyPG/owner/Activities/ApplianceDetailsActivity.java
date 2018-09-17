@@ -233,6 +233,12 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
                     break;
 
+                    case "d2h" :
+                     bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.d2h);
+                     applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
 
                 case "Other" :
                     bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.more);
@@ -1818,5 +1824,11 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
         builder.show();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ApplianceDetailsActivity.this , ApplianceActivity.class ));
+        finish();
     }
 }

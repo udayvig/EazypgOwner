@@ -1,5 +1,6 @@
 package com.example.EazyPG.owner.Activities;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -39,8 +41,11 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.katepratik.msg91api.MSG91;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class TenantActivity extends AppCompatActivity {
 
@@ -56,7 +61,9 @@ public class TenantActivity extends AppCompatActivity {
     ImageView addTenant, qrImage;
 
     Button previousTenants , ok , cancel;
-    EditText name, phone, room, dateOfJoining, rentAmount , email;
+    EditText name, phone, room, rentAmount , email;
+
+    TextView dateOfJoining;
 
     Snackbar snackbar;
     View view;
@@ -64,6 +71,8 @@ public class TenantActivity extends AppCompatActivity {
     String pgName;
 
     LayoutInflater inflater;
+
+    ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +103,15 @@ public class TenantActivity extends AppCompatActivity {
         room = findViewById(R.id.tenantRoomEditText);
         dateOfJoining = findViewById(R.id.tenantDateEditText);
         rentAmount = findViewById(R.id.tenantRentEditText);
+
+        backButton = findViewById(R.id.imageView3);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TenantActivity.this,HomePageActivity.class));
+                finish();
+            }
+        });
 
         snackbar = Snackbar.make(view, "Tap item to view. Long Press to Remove", Snackbar.LENGTH_LONG);
         View snackbarView = snackbar.getView();
@@ -148,7 +166,7 @@ public class TenantActivity extends AppCompatActivity {
                 name = dialog.findViewById(R.id.tenantNameEditText);
                 phone = dialog.findViewById(R.id.tenantPhoneEditText);
                 room = dialog.findViewById(R.id.tenantRoomEditText);
-                dateOfJoining = dialog.findViewById(R.id.tenantDateEditText);
+                dateOfJoining = dialog.findViewById(R.id.dateOfJoining);
                 rentAmount = dialog.findViewById(R.id.tenantRentEditText);
                 ok = dialog.findViewById(R.id.okButton);
                 cancel = dialog.findViewById(R.id.cancelButton);
@@ -169,7 +187,36 @@ public class TenantActivity extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
+
                 });
+
+
+                final Calendar calendar = Calendar.getInstance();
+
+
+                final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener(){
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendar.set(Calendar.YEAR, i);
+                        calendar.set(Calendar.MONTH, i1);
+                        calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+                        String myFormat = "dd/MM/yyyy";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+
+                        dateOfJoining.setText(sdf.format(calendar.getTime()));
+                    }
+                };
+
+                dateOfJoining.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(TenantActivity.this, date, calendar
+                                .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                                calendar.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
 
 
                 ok.setOnClickListener(new View.OnClickListener() {

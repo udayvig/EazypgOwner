@@ -62,6 +62,8 @@ public class BillCollectionActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tenantList.clear();
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
                     tenantList.add(tenantDetails);
@@ -77,6 +79,12 @@ public class BillCollectionActivity extends AppCompatActivity {
                 databaseReference1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        billList.clear();
+                        gasBillList.clear();
+                        wifiBillList.clear();
+                        electricityBillList.clear();
+                        otherBillList.clear();
+
                         for(int i = 0; i < tenantList.size(); i++){
                             BillDetails billDetails = dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Bills").child(dateString).getValue(BillDetails.class);
                             billList.add(billDetails);

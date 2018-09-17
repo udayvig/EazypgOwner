@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailList.ComplaintDetailList;
@@ -51,6 +52,8 @@ public class ComplaintActivity extends AppCompatActivity {
 
     Date date;
     DateFormat dateFormat;
+
+    ImageView backButton;
 
     CardView firstComplaintCard, secondComplaintCard, thirdComplaintCard, fourthComplaintCard, fifthComplaintCard;
 
@@ -137,6 +140,9 @@ public class ComplaintActivity extends AppCompatActivity {
         thirdComplaintCard = findViewById(R.id.thirdComplaintCard);
         fourthComplaintCard = findViewById(R.id.fourthComplaintCard);
         fifthComplaintCard = findViewById(R.id.fifthComplaintCard);
+
+        backButton = findViewById(R.id.imageView3);
+
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Complaint/Bedroom/");
 
@@ -447,6 +453,14 @@ public class ComplaintActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(ComplaintActivity.this, SecurityComplaintsFragmentActivity.class));
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ComplaintActivity.this, HomePageActivity.class));
+                finish();
             }
         });
     }

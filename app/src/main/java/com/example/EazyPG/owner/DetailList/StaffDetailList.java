@@ -126,7 +126,9 @@ public class StaffDetailList extends ArrayAdapter<StaffDetails> {
 
                 final View viewDialog = inflater.inflate(R.layout.dialog_staff, null);
 
-                final EditText first, second, third, fourth, fifth;
+                final EditText first, second, third, fourth;
+
+                final TextView fifth;
 
                 final View titleView = inflater.inflate(R.layout.custom_title3, null);
                 staffDetailView = titleView.findViewById(R.id.staffCustomTitle);

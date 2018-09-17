@@ -43,7 +43,8 @@ public class HomePageActivity extends AppCompatActivity {
     CardView feedback;
     CardView staff;
     CardView food;
-    CardView appliances;
+    CardView complaints;
+    ImageView appliances;
 
 
     private  int someVarA;
@@ -80,6 +81,7 @@ public class HomePageActivity extends AppCompatActivity {
         staff = findViewById(R.id.staffImageView);
         food = findViewById(R.id.foodButton);
         appliances = findViewById(R.id.appliancesCardView);
+        complaints = findViewById(R.id.complaintsCardView);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -142,7 +144,7 @@ public class HomePageActivity extends AppCompatActivity {
         accounts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomePageActivity.this, ExpenseActivity.class));
+                startActivity(new Intent(HomePageActivity.this, AccountsFragmentActivity.class));
                 finish();
             }
         });
@@ -150,7 +152,7 @@ public class HomePageActivity extends AppCompatActivity {
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePageActivity.this , NotificationActivity.class));
+                startActivity(new Intent(HomePageActivity.this , LogFragmentActivity.class));
                 finish();
             }
         });
@@ -158,7 +160,7 @@ public class HomePageActivity extends AppCompatActivity {
        rentBill.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               startActivity(new Intent(HomePageActivity.this , RentCollectionActivity.class));
+               startActivity(new Intent(HomePageActivity.this , RentBillCollectionFragment.class));
                finish();
            }
        });
@@ -171,6 +173,13 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
+        complaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageActivity.this, ComplaintActivity.class));
+                finish();
+            }
+        });
 
 
 

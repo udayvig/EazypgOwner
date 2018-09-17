@@ -13,12 +13,12 @@
         android:layout_height="?android:attr/actionBarSize"
         app:cardCornerRadius="0dp"
         android:elevation="100dp"
-        app:cardBackgroundColor="#2E7D32">
+        app:cardBackgroundColor="@color/actionBarColor">
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_height="match_parent"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"

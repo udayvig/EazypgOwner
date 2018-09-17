@@ -140,6 +140,10 @@ public class PassbookActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                allDetailsList.clear();
+                incomeDetailsList.clear();
+                expensesDetailsList.clear();
+
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     CashflowDetails cashflowDetails = snapshot.getValue(CashflowDetails.class);
                     allDetailsList.add(cashflowDetails);
@@ -163,9 +167,9 @@ public class PassbookActivity extends AppCompatActivity {
 
                 balance = income - expenses;
 
-                incomeTextView.setText(income);
-                expensesTextView.setText(expenses);
-                balanceTextView.setText(balance);
+                incomeTextView.setText(Integer.toString(income));
+                expensesTextView.setText(Integer.toString(expenses));
+                balanceTextView.setText(Integer.toString(balance));
 
                 allPassbookDetailList = new AllPassbookDetailList(allDetailsList, context);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);

@@ -2,6 +2,7 @@ package com.example.EazyPG.owner.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -10,12 +11,11 @@ import android.widget.EditText;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.google.firebase.database.ValueEventListener;
 
 public class FineRentBillActivity extends AppCompatActivity {
 
@@ -25,6 +25,8 @@ public class FineRentBillActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     EditText fineAmountEditText;
+
+    String fineAmount;
 
     Button fineOkButton;
 
@@ -44,25 +46,42 @@ public class FineRentBillActivity extends AppCompatActivity {
         fineOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fineAmount = fineAmountEditText.getText().toString();
-
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                Date date = new Date();
-                String dateStr = dateFormat.format(date);
-
-                String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
+                fineAmount = fineAmountEditText.getText().toString();
 
                 databaseReference = firebaseDatabase.getReference("Tenants/" + tenantId + "/");
                 String fineId = databaseReference.push().getKey();
                 FineDetails fineDetails = new FineDetails(fineId, fineAmount, false);
 
-                databaseReference.child("Accounts").child("Fines").child(fineId).setValue(fineDetails);
+                final DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + tenantRoom + "/Tenant/CurrentTenants/" + tenantId);
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String prevFine = dataSnapshot.child("Fine").getValue(String.class);
 
-                DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantId);
-                databaseReference1.child("Accounts").child("Fines").child(fineId).setValue(fineDetails);
+                        String fine = fineAmount;
 
-                DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + tenantRoom + "/Tenant/CurrentTenants/" + tenantId);
-                databaseReference2.child("Accounts").child("Fines").child(fineId).setValue(fineDetails);
+                        if(prevFine != null){
+                            fine = Integer.toString(Integer.parseInt(prevFine) + Integer.parseInt(fineAmount));
+                        }
+
+                        databaseReference.child("Fine").setValue(fine);
+
+                        DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantId);
+                        databaseReference2.child("Fine").setValue(fine);
+
+                        DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantId);
+                        databaseReference3.child("fine").setValue(fine);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                DatabaseReference databaseReference4 = firebaseDatabase.getReference("Tenants/" + tenantId);
+
+                databaseReference4.child("Accounts").child("Fines").child(fineId).setValue(fineDetails);
             }
         });
     }

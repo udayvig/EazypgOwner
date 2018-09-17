@@ -2,6 +2,7 @@ package com.example.EazyPG.owner.Activities;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
@@ -50,6 +52,8 @@ public class FeedbackActivity extends AppCompatActivity {
     EditText input5;
     EditText input6;
 
+    ImageView backButton;
+
     float foodRatingNumber, comfortRatingNumber, managementRatingNumber, hygieneRatingNumber, roomRatingNumber, othersRatingNumber;
     float finalRating;
 
@@ -73,6 +77,9 @@ public class FeedbackActivity extends AppCompatActivity {
         hygieneRating = findViewById(R.id.hygieneRating);
         roomRating = findViewById(R.id.roomRating);
         othersRating = findViewById(R.id.othersRating);
+
+        backButton = findViewById(R.id.backButton);
+
 
         foodButton = findViewById(R.id.foodButton);
         comfortButton = findViewById(R.id.comfortButton);
@@ -124,8 +131,14 @@ public class FeedbackActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     FeedbackRating feedbackRating = snapshot.child("Food").getValue(FeedbackRating.class);
-                    sum += Float.parseFloat(feedbackRating.rating);
-                    count++;
+
+                    if (feedbackRating != null) {
+
+                        sum += Float.parseFloat(feedbackRating.rating);
+                        count++;
+                    }
+
+
 
                 }
 
@@ -151,8 +164,12 @@ public class FeedbackActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     FeedbackRating feedbackRating = snapshot.child("Comfort").getValue(FeedbackRating.class);
-                    sum += Float.parseFloat(feedbackRating.rating);
-                    count ++;
+                    if (feedbackRating != null) {
+
+                        sum += Float.parseFloat(feedbackRating.rating);
+                        count++;
+                    }
+
 
                 }
 
@@ -178,9 +195,12 @@ public class FeedbackActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     FeedbackRating feedbackRating = snapshot.child("Management").getValue(FeedbackRating.class);
-                    sum += Float.parseFloat(feedbackRating.rating);
+                    if (feedbackRating != null) {
 
-                    count++;
+                        sum += Float.parseFloat(feedbackRating.rating);
+                        count++;
+                    }
+
 
                 }
 
@@ -206,9 +226,12 @@ public class FeedbackActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     FeedbackRating feedbackRating = snapshot.child("Hygiene").getValue(FeedbackRating.class);
-                    sum += Float.parseFloat(feedbackRating.rating);
+                    if (feedbackRating != null) {
 
-                    count++;
+                        sum += Float.parseFloat(feedbackRating.rating);
+                        count++;
+                    }
+
 
                 }
 
@@ -234,9 +257,12 @@ public class FeedbackActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     FeedbackRating feedbackRating = snapshot.child("Room").getValue(FeedbackRating.class);
-                    sum += Float.parseFloat(feedbackRating.rating);
+                    if (feedbackRating != null) {
 
-                    count++;
+                        sum += Float.parseFloat(feedbackRating.rating);
+                        count++;
+                    }
+
                 }
 
                 roomRatingNumber = sum/count;
@@ -261,9 +287,12 @@ public class FeedbackActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     FeedbackRating feedbackRating = snapshot.child("Others").getValue(FeedbackRating.class);
-                    sum += Float.parseFloat(feedbackRating.rating);
+                    if (feedbackRating != null) {
 
-                    count++;
+                        sum += Float.parseFloat(feedbackRating.rating);
+                        count++;
+                    }
+
                 }
 
                 othersRatingNumber = sum/count;
@@ -569,5 +598,19 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FeedbackActivity.this,HomePageActivity.class));
+                finish();
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(FeedbackActivity.this,HomePageActivity.class));
+        finish();
     }
 }

@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class AddBillRoomWifiDetailList extends RecyclerView.Adapter<AddBillRoomW
         holder.roomNumberTextView.setText(roomNumber);
         holder.roomTypeTextView.setText(roomType);
 
-        final List<TenantDetails> tenantList = new ArrayList<>();
+        //final List<TenantDetails> tenantList = new ArrayList<>();
 
         holder.saveFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +74,7 @@ public class AddBillRoomWifiDetailList extends RecyclerView.Adapter<AddBillRoomW
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        tenantList.clear();
+                        //tenantList.clear();
 
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
 
@@ -83,23 +82,23 @@ public class AddBillRoomWifiDetailList extends RecyclerView.Adapter<AddBillRoomW
 
                             Log.e("Id", tenantDetails.id + "");
 
-                                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                                Date date = new Date();
-                                String dateStr = dateFormat.format(date);
+                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                            Date date = new Date();
+                            String dateStr = dateFormat.format(date);
 
-                                String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
+                            String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
-                                String billId = databaseReference.push().getKey();
-                                final String billAmount = holder.amountEditText.getText().toString();
-                                BillDetails billDetails = new BillDetails(billId, "Wifi", billAmount, false);
+                            String billId = databaseReference.push().getKey();
+                            final String billAmount = holder.amountEditText.getText().toString();
+                            BillDetails billDetails = new BillDetails(billId, "Wifi", billAmount, false, "", dateString);
                                 /*DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
                                 databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);*/
 
-                                DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantDetails.id);
-                                databaseReference2.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
+                            DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantDetails.id);
+                            databaseReference2.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
 
-                                DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantDetails.id);
-                                databaseReference3.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
+                            DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantDetails.id);
+                            databaseReference3.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
 
                         }
 

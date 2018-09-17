@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:elevation="10dp"
+        app:cardElevation="10dp"
         app:cardCornerRadius="6dp"
         android:layout_marginBottom="8dp"
         >
@@ -38,15 +38,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/currentMonthTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="January : "
-                    android:layout_gravity="center_horizontal"
+                    android:text="JANUARY "
+                    android:layout_gravity="end"
                     android:gravity="center"
-                    android:fontFamily="@font/comfortabold"
+                    android:fontFamily="@font/productsansmedium"
                     android:textColor="#000000"
                     />
             </LinearLayout>
@@ -60,19 +61,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Income : "
-                    android:background="@drawable/roundedcorners"
+                    android:text="Income  "
                     android:layout_marginStart="15dp"
                     android:textSize="18sp"
                     android:fontFamily="@font/productsansbold"
                     />
+
                 <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:src="@drawable/rupee"
-                    android:layout_marginTop="14dp"
+                    android:layout_width="16dp"
+                    android:layout_height="20dp"
                     android:layout_marginStart="37dp"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/rupee" />
+
                 <TextView
                     android:id="@+id/incomeTextView"
                     android:layout_marginStart="8dp"
@@ -98,15 +99,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:fontFamily="@font/productsansbold"
-                    android:text="Expenses : "
-                    android:background="@drawable/roundedcorners"
+                    android:text="Expenses "
                     android:textSize="18sp" />
 
                 <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_width="16dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/rupee" />
 
                 <TextView
@@ -137,18 +137,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/roundedcorners"
-                    android:text="Balance : "
+                    android:text="Balance "
                     android:layout_marginStart="15dp"
                     android:textSize="18sp"
                     android:fontFamily="@font/productsansbold"
                     />
 
                 <ImageView
-                    android:layout_width="13dp"
-                    android:layout_height="14dp"
+                    android:layout_width="16dp"
+                    android:layout_height="20dp"
                     android:layout_marginStart="37dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/rupee" />
                 <TextView
                     android:id="@+id/balanceTextView"
@@ -178,6 +177,10 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:text="ALL"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:fontFamily="@font/productsansmedium"
             android:layout_weight="1"
             android:textColor="@color/yello"
             android:background="@drawable/rectangle"
@@ -187,8 +190,11 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:text="INCOME"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:textColor="@color/green"
-            android:textStyle="bold"
+            android:fontFamily="@font/productsansmedium"
             android:layout_weight="1"
             android:background="@drawable/rectangle"
             />
@@ -198,8 +204,11 @@
             android:layout_height="55dp"
             android:text="EXPENSE"
             android:textColor="@color/red"
-            android:textStyle="bold"
             android:layout_weight="1"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:fontFamily="@font/productsansmedium"
             android:background="@drawable/rectangle"
             />
     </LinearLayout>

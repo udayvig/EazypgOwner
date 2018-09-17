@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddBillRoomActivity extends AppCompatActivity {
+
+    ImageView backButton;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -48,6 +52,8 @@ public class AddBillRoomActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
+        backButton = findViewById(R.id.backButton);
 
         addBillRoomRecyclerView = findViewById(R.id.addBillRoomRecyclerView);
 
@@ -115,10 +121,21 @@ public class AddBillRoomActivity extends AppCompatActivity {
                 }
             }
 
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddBillRoomActivity.this , AddBillActivity.class));
+                finish();
+            }
+        });
+
     }
 }

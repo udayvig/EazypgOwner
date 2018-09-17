@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity;
-import com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity;
+import com.example.EazyPG.owner.Activities.RoomClickActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +37,9 @@ public class RoomsDetailList extends ArrayAdapter<String> {
     private List<TenantDetails> tenantList = new ArrayList<>();
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static final String EXTRA_MESSAGE2 = "com.example.myfirstapp.MESSAGE2";
+    public static final String EXTRA_MESSAGE3 = "com.example.myfirstapp.MESSAGE3";
+    public static final String EXTRA_MESSAGE4 = "com.example.myfirstapp.MESSAGE4";
 
     private Button applianceButton, tenantButton;
 
@@ -76,7 +79,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         name3TextView = listViewItemRoom.findViewById(R.id.name3TextView);
 
         applianceButton = listViewItemRoom.findViewById(R.id.appliancesButton);
-        tenantButton = listViewItemRoom.findViewById(R.id.tenantButton);
+        //tenantButton = listViewItemRoom.findViewById(R.id.tenantButton);
 
         third.setText(roomList.get(position));
         fourth.setText(roomTypeList.get(position));
@@ -92,12 +95,12 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             }
         });
 
-        tenantButton.setOnClickListener(new View.OnClickListener() {
+        /*tenantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
-        });
+        });*/
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants");
 
@@ -147,10 +150,34 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         listViewItemRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, RoomTenantDetailsActivity.class);
+                /*Intent intent = new Intent(context, RoomTenantDetailsActivity.class);
                 String message = roomList.get(position);
                 intent.putExtra(EXTRA_MESSAGE, message);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
+
+                DatabaseReference databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/PG Details/");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String rentDueDate = dataSnapshot.child("rentDueDate").getValue(String.class);
+                        String billDueDate = dataSnapshot.child("billDueDate").getValue(String.class);
+
+                        Intent intent = new Intent(context, RoomClickActivity.class);
+                        String roomNumber = roomList.get(position);
+                        String roomType = roomTypeList.get(position);
+                        intent.putExtra(EXTRA_MESSAGE, roomNumber);
+                        intent.putExtra(EXTRA_MESSAGE2, roomType);
+                        intent.putExtra(EXTRA_MESSAGE3, rentDueDate);
+                        intent.putExtra(EXTRA_MESSAGE4, billDueDate);
+
+                        context.startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 

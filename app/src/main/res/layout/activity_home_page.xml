@@ -20,6 +20,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <ImageView
+            android:id="@+id/appliancesCardView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/ripple"
+            app:layout_constraintBottom_toTopOf="@+id/profileCard"
+            app:layout_constraintEnd_toStartOf="@+id/notificationImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.571"
+            app:srcCompat="@drawable/bulb" />
+
+
         <ImageView
             android:id="@+id/notificationImage"
             android:layout_width="30dp"
@@ -39,15 +57,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/productsansbold"
             android:text="EazyPG"
             android:textColor="@android:color/white"
             android:textSize="17dp"
             app:layout_constraintBottom_toTopOf="@+id/profileCard"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +111,7 @@
                     android:fontFamily="@font/productsansbold"
                     android:text="KrishnaKunj Homes"
                     android:textColor="@android:color/black"
-                    android:textSize="24dp"
+                    android:textSize="22dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView15"
                     app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
@@ -110,7 +126,7 @@
                     android:numStars="5"
                     android:progressBackgroundTint="@android:color/black"
                     android:progressTint="#FFC107"
-                    android:rating="3"
+                    android:rating="5"
                     android:stepSize="0.1"
                     app:layout_constraintStart_toStartOf="@+id/pgNameTextView"
                     app:layout_constraintTop_toBottomOf="@+id/pgNameTextView" />
@@ -583,7 +599,7 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/appliancesCardView"
+                    android:id="@+id/complaintsCardView"
                     android:layout_width="95dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="5dp"
@@ -610,7 +626,7 @@
                             android:layout_marginRight="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="12dp"
-                            android:background="@drawable/bulb"
+                            android:background="@drawable/complaintsbw"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -622,7 +638,7 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/productsansmedium"
-                            android:text="Applicances"
+                            android:text="Complaints"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.533"

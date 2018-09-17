@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  >
+
+    <TextView
+        android:id="@+id/roomNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/productsansmedium"
+        android:text="Room Number"
+        android:textColor="#000"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayoutFirst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roomNumberTextView">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/tenant1CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginBottom="10dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/tenant1NameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Tenant 1"
+                    android:textColor="#1A237E"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="Rent"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant1NameTextView" />
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="Electricity"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="WiFi"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tenant1WifiBillPaidOrUnpaid"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant1NameTextView" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+
+                    android:text="Gas"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tenant1GasBillPaidOrUnpaid"
+                    app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+                <TextView
+                    android:id="@+id/tenant1RentPaidOrUnpaidTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="17dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Unpaid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView31"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant1NameTextView" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tenant1ElectricityBillPaidOrUnpaid">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant1CallButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/ic_call_black_24dp"
+                        android:text="Call"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant1NameTextView"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant1MessageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/ic_textsms_black_24dp"
+                        android:text="Message"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tenant1AddFineButton"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant1RentPaidOrUnpaidTextView" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant1AddFineButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/fine"
+                        android:text="Add Fine"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tenant1CallButton"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant1NameTextView"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tenant1ElectricityBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Paid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView34"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant1RentPaidOrUnpaidTextView" />
+
+                <TextView
+                    android:id="@+id/tenant1WifiBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Paid"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant1NameTextView" />
+
+                <TextView
+                    android:id="@+id/tenant1GasBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text=" Paid "
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant1WifiBillPaidOrUnpaid" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayoutSecond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayoutFirst">
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/tenant2CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/tenant2NameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Tenant 2"
+                    android:textColor="#1A237E"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="Rent"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant2NameTextView" />
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="Electricity"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="WiFi"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tenant2WifiBillPaidOrUnpaid"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant2NameTextView" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+
+                    android:text="Gas"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tenant2GasBillPaidOrUnpaid"
+                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+                <TextView
+                    android:id="@+id/tenant2RentPaidOrUnpaidTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="17dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Unpaid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView25"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant2NameTextView" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tenant2ElectricityBillPaidOrUnpaid">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant2CallButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/ic_call_black_24dp"
+                        android:text="Call"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant2NameTextView"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant2MessageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/ic_textsms_black_24dp"
+                        android:text="Message"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tenant2AddFineButton"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant2RentPaidOrUnpaidTextView" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant2AddFineButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/fine"
+                        android:text="Add Fine"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tenant2CallButton"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant2NameTextView"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tenant2ElectricityBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Paid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView29"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant2RentPaidOrUnpaidTextView" />
+
+                <TextView
+                    android:id="@+id/tenant2WifiBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Paid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant2NameTextView" />
+
+                <TextView
+                    android:id="@+id/tenant2GasBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text=" Paid "
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant2WifiBillPaidOrUnpaid" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLyoutThird"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayoutSecond">
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/tenant3CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginBottom="10dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tenant3NameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Tenant 3"
+                    android:textColor="#1A237E"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="Rent"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant3NameTextView" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="Electricity"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="WiFi"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tenant3WifiBillPaidOrUnpaid"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant3NameTextView" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/productsans"
+                    android:text="Gas"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tenant3GasBillPaidOrUnpaid"
+                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+                <TextView
+                    android:id="@+id/tenant3RentPaidOrUnpaidTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="17dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Unpaid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView21"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant3NameTextView" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant3ElectricityBillPaidOrUnpaid">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant3CallButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/ic_call_black_24dp"
+                        android:text="Call"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant3NameTextView"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant3MessageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/ic_textsms_black_24dp"
+                        android:text="Message"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tenant3AddFineButton"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant3RentPaidOrUnpaidTextView" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/tenant3AddFineButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#64DD17"
+                        android:backgroundTint="#64DD17"
+                        android:src="@drawable/fine"
+                        android:text="Add Fine"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tenant3CallButton"
+                        app:layout_constraintTop_toBottomOf="@+id/tenant3NameTextView"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tenant3ElectricityBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Paid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView24"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant3RentPaidOrUnpaidTextView" />
+
+                <TextView
+                    android:id="@+id/tenant3WifiBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text="Paid"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant3NameTextView" />
+
+                <TextView
+                    android:id="@+id/tenant3GasBillPaidOrUnpaid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/productsansmedium"
+                    android:text=" Paid "
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tenant3WifiBillPaidOrUnpaid" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
+</ScrollView>

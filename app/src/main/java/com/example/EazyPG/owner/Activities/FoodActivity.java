@@ -1,6 +1,7 @@
 package com.example.EazyPG.owner.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +53,8 @@ public class FoodActivity extends AppCompatActivity {
     Button saveFoodButton;
     HorizontalScrollView scrollView;
 
+    ImageView backButton;
+
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
@@ -63,12 +67,13 @@ public class FoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
-
+/*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.rgb(0,60,74));
-        }
+        }*/
+        backButton = findViewById(R.id.imageView3);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -263,8 +268,21 @@ public class FoodActivity extends AppCompatActivity {
 
             }
         });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodActivity.this,HomePageActivity.class));
+                finish();
+            }
+        });
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(FoodActivity.this , HomePageActivity.class));
+        finish();
     }
 }
