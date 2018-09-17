@@ -186,7 +186,6 @@ public class RoomsActivity extends AppCompatActivity {
                 builder.setCustomTitle(custom_title);
                 builder.setView(viewDialog);
 
-
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -197,11 +196,20 @@ public class RoomsActivity extends AppCompatActivity {
                         final String room = roomEditText.getText().toString();
                         String roomType = radioButton.getText().toString();
 
-                        databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
-                        databaseReference1.child("Rooms").child(room).child("Room Type").setValue(roomType);
+                        if (selectedButtonId != -1) {
 
-                        getRoomDetails(room);
-                        getTenantDetails(room);
+                            databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
+                            databaseReference1.child("Rooms").child(room).child("Room Type").setValue(roomType);
+
+                            getRoomDetails(room);
+                            getTenantDetails(room);
+
+                        }
+                        else {
+
+                            radioButton.setError("Required");
+                        }
+
                     }
                 });
 

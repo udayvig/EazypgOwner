@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -39,6 +41,10 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.katepratik.msg91api.MSG91;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +59,7 @@ public class TenantActivity extends AppCompatActivity {
     DatabaseReference databaseReference, databaseReference1;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-    ImageView addTenant, qrImage;
+    ImageView addTenant, qrImage, qrShareImage;
 
     Button previousTenants , ok , cancel;
     EditText name, phone, room, dateOfJoining, rentAmount , email;
@@ -134,13 +140,7 @@ public class TenantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                // final View viewDialog = inflater.inflate(R.layout.dialog_tenant, null);
                 final Dialog dialog = new Dialog(TenantActivity.this);
-                /*final TextView tenantCustomTitle*/
-
-                /*final View addTitleView = inflater.inflate(R.layout.custom_title4, null);
-                tenantCustomTitle = addTitleView.findViewById(R.id.tenantCustomTitle);*/
 
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 Window window = dialog.getWindow();
@@ -186,6 +186,7 @@ public class TenantActivity extends AppCompatActivity {
 
                         final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
                         qrImage = viewDialog.findViewById(R.id.qrImageView);
+                        qrShareImage = viewDialog.findViewById(R.id.qrShareImageView);
 
                         QRCodeWriter writer = new QRCodeWriter();
                         try {
@@ -198,7 +199,7 @@ public class TenantActivity extends AppCompatActivity {
                             BitMatrix bitMatrix = writer.encode(content , BarcodeFormat.QR_CODE, 512, 512);
                             int width = bitMatrix.getWidth();
                             int height = bitMatrix.getHeight();
-                            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                            final Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
                             for (int x = 0; x < width; x++) {
                                 for (int y = 0; y < height; y++) {
                                     bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
@@ -211,6 +212,27 @@ public class TenantActivity extends AppCompatActivity {
                             builder1.setMessage("This QR Code is shown only once.");
                             builder1.setView(viewDialog);
                             builder1.setCancelable(false);
+
+                            qrShareImage.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent share = new Intent(Intent.ACTION_SEND);
+                                    share.setType("image/jpeg");
+                                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                                    bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                                    File f = new File(Environment.getExternalStorageDirectory() + File.separator + "temporary_file.jpg");
+                                    try {
+                                        f.createNewFile();
+                                        FileOutputStream fo = new FileOutputStream(f);
+                                        fo.write(bytes.toByteArray());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/temporary_file.jpg"));
+                                    startActivity(Intent.createChooser(share, "Share Image"));
+                                }
+                            });
+
                             builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
