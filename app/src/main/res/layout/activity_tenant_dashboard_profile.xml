@@ -462,18 +462,6 @@
             </LinearLayout>
 
 
-
-            <!-- <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:fontFamily="@font/productsansmedium"
-                 android:text="Father"
-                 android:textColor="@android:color/black"
-                 android:textSize="25dp"
-                 tools:layout_editor_absoluteX="360dp"
-                 tools:layout_editor_absoluteY="335dp" />-->
-
-
             <TextView
                 android:id="@+id/fatherTextView"
                 android:layout_width="wrap_content"

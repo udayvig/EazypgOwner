@@ -11,61 +11,67 @@
         android:id="@+id/addButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginTop="8dp"
-        android:elevation="800dp"
         android:clickable="true"
+        android:elevation="800dp"
         android:focusable="true"
         android:src="@drawable/ic_add_black_24dp"
         app:backgroundTint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="@+id/applianceNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+        app:layout_constraintTop_toTopOf="@+id/applianceImageView" />
 
     <TextView
         android:id="@+id/applianceNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/productsansmedium"
-        android:text="Appliance Name"
+        android:layout_marginTop="16dp"
         android:clickable="true"
+        android:textAlignment="center"
         android:focusable="true"
+        android:fontFamily="@font/productsansmedium"
+        android:text=""
         android:textColor="@android:color/white"
         android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        app:layout_constraintEnd_toEndOf="@+id/applianceImageView"
+        app:layout_constraintStart_toStartOf="@+id/applianceImageView"
+        app:layout_constraintTop_toBottomOf="@+id/applianceImageView" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
+        android:id="@+id/applianceImageView"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
         android:src="@drawable/dummyimage"
-        app:layout_constraintEnd_toEndOf="@+id/applianceNameTextView"
-        app:layout_constraintStart_toStartOf="@+id/applianceNameTextView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_marginTop="150dp"
+    android:background="@drawable/bg"
+    android:layout_height="match_parent">
 
     <ListView
         android:id="@+id/listViewAppliances"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="8dp"
         android:padding="1dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/applianceNameTextView">
+        app:layout_constraintTop_toTopOf="parent">
 
     </ListView>
+
+</android.support.constraint.ConstraintLayout>
+
+
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/emptyAppliancesLayout"

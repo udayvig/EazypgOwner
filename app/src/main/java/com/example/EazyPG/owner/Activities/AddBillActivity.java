@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.ainesh.eazypg_owner.R;
 
@@ -13,6 +14,7 @@ public class AddBillActivity extends AppCompatActivity {
     public static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     CardView electricityBillCardView, wifiBillCardView, gasBillCardView, otherBillCardView;
+    ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class AddBillActivity extends AppCompatActivity {
         wifiBillCardView = findViewById(R.id.wifiBillCardView);
         gasBillCardView = findViewById(R.id.gasBillCardView);
         otherBillCardView = findViewById(R.id.otherBillCardView);
+        backButton = findViewById(R.id.backButton);
 
         electricityBillCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,5 +62,24 @@ public class AddBillActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(AddBillActivity.this , HomePageActivity.class));
+                finish();
+
+            }
+        });
     }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(AddBillActivity.this , HomePageActivity.class));
+        finish();
+    }
+
 }

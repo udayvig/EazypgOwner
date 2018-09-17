@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -23,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -58,6 +61,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ApplianceDetailsActivity extends AppCompatActivity {
 
     ListView listView;
@@ -87,6 +92,10 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
 
+    CircleImageView applianceImage;
+
+    Bitmap bitmap;
+
     ConstraintLayout emptyLayout;
     TextView customTitle;
 
@@ -107,16 +116,134 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
 
         emptyLayout = findViewById(R.id.emptyAppliancesLayout);
 
+        applianceImage = findViewById(R.id.applianceImageView);
+
         listView = findViewById(R.id.listViewAppliances);
         listView.setEmptyView(emptyLayout);
         textView = findViewById(R.id.applianceNameTextView);
         addButton = findViewById(R.id.addButton);
+
+
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         Intent intent = getIntent();
         final String applianceName = intent.getStringExtra(ApplianceActivity.EXTRA_MESSAGE);
+
+        switch (applianceName) {
+
+                case "AC" :
+
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.ac);
+                    applianceImage.setImageBitmap(bitmap);
+                break;
+
+
+                case "CCTV" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.cctv);
+                    applianceImage.setImageBitmap(bitmap);
+                    break;
+
+                case "Dishwasher" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.dishwashing);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+                case "Fan" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.fan);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                 case "Geyser" :
+                     bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.geyser);
+                     applianceImage.setImageBitmap(bitmap);
+
+                     break;
+
+                 case "Heater" :
+                     bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.heaterhot);
+                     applianceImage.setImageBitmap(bitmap);
+
+                     break;
+
+
+                case "Induction" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.induction_hot);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "Iron" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.iron_hot);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "Lift" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.lift);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "Microwave" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.microwave);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "Refrigerator" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.fridge);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "RO" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.ro);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "Router" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.router);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "TV" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.tv);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "Washing Machine" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.washinemachine);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+                case "Other" :
+                    bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources() ,R.drawable.more);
+                    applianceImage.setImageBitmap(bitmap);
+
+                    break;
+
+
+
+
+        }
 
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
 
