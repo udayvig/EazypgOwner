@@ -119,52 +119,6 @@ public class SignupActivity extends AppCompatActivity {
 
                                 progressDialog.dismiss();
 
-                                {
-
-                                    locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-                                    final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "Getting Required Data", "Please make sure you are connected to network", true);
-
-                                    listener = new LocationListener() {
-                                        @Override
-                                        public void onLocationChanged(Location location) {
-
-                                            progressDialog.dismiss();
-
-                                            databaseReference1 = firebaseDatabase.getReference("PG/" + mFirebaseAuth.getCurrentUser().getUid() + "/Attendance/");
-                                            databaseReference1.child("Latitude").setValue(Double.toString(location.getLatitude()));
-                                            databaseReference1.child("Longitude").setValue(Double.toString(location.getLongitude()));
-
-                                        }
-
-                                        @Override
-                                        public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                                        }
-
-                                        @Override
-                                        public void onProviderEnabled(String s) {
-
-                                        }
-
-                                        @Override
-                                        public void onProviderDisabled(String s) {
-
-                                        }
-                                    };
-
-                                    if (ActivityCompat.checkSelfPermission(SignupActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SignupActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,
-                                                            Manifest.permission.INTERNET}
-                                                    , 10);
-                                        }
-                                        return;
-                                    }
-                                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, listener);
-
-                                }
-
                                 final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, "","Loading..", true);
 
                                 mFirebaseAuth.sendPasswordResetEmail(userEmail)
@@ -261,8 +215,7 @@ public class SignupActivity extends AppCompatActivity {
 
         for (int i = 0; i < 8; i++)
         {
-            // Use of charAt() method : to get character value
-            // Use of nextInt() as it is scanning the value as int
+
             password[i] =
                     values.charAt(rndm_method.nextInt(values.length()));
 

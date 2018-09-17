@@ -50,7 +50,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
     public static final String EXTRA_MESSAGE3 = "com.example.myfirstapp.MESSAGE3";
     public String id;
     private FloatingActionButton callButton, paymentButton;
-    private Button deleteTenant, fineButton, billButton;
+    private FloatingActionButton deleteTenant, fineButton, billButton;
 
     public TenantDetailList(Activity context, List<TenantDetails> tenantList) {
         super(context, R.layout.tenant_row, tenantList);
