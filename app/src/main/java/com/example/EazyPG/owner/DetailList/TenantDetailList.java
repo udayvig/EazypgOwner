@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.EazyPG.owner.Activities.AddBillActivity;
 import com.example.EazyPG.owner.Activities.FineActivity;
 import com.example.EazyPG.owner.Activities.PaymentActivity;
+import com.example.EazyPG.owner.Activities.TenantDashboardFragmentActivity;
 import com.example.EazyPG.owner.Activities.TenantDashboardProfile;
 import com.example.EazyPG.owner.Activities.TenantDocumentsActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
@@ -50,7 +51,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
     public static final String EXTRA_MESSAGE3 = "com.example.myfirstapp.MESSAGE3";
     public String id;
     private FloatingActionButton callButton, paymentButton;
-    private Button deleteTenant, fineButton, billButton;
+    private FloatingActionButton deleteTenant, fineButton, billButton;
 
     public TenantDetailList(Activity context, List<TenantDetails> tenantList) {
         super(context, R.layout.tenant_row, tenantList);
@@ -107,7 +108,7 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, TenantDocumentsActivity.class);
+                Intent intent = new Intent(context, TenantDashboardFragmentActivity.class);
                 intent.putExtra(EXTRA_MESSAGE3, ids.get(position));
                 context.startActivity(intent);
 

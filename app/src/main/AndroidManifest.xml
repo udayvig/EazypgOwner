@@ -89,6 +89,8 @@
             android:name="com.example.EazyPG.owner.Activities.ExpenseActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name="com.example.EazyPG.owner.Activities.TenantDashboardFragmentActivity"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
