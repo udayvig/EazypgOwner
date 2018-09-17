@@ -7,8 +7,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,23 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--
-        <service
-            android:name=".MyFirebaseMessagingService"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </service>
-
-        <service android:name=".MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-        -->
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -43,24 +29,31 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <activity android:name="com.example.EazyPG.owner.Activities.RentCollectionActivity"/>
 
-        <activity android:name="com.example.EazyPG.owner.Activities.RentCollectionActivity" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name="com.example.EazyPG.owner.Activities.FeedbackActivity"/>
         <activity
             android:name="com.example.EazyPG.owner.Activities.SignupActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.EazyPG.owner.Activities.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.AccountsFragmentActivity"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.RentBillCollectionFragment"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.TenantDocumentsActivity"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.LogFragmentActivity"/>
         <activity
             android:name="com.example.EazyPG.owner.MyIntro"
             android:screenOrientation="portrait" />
@@ -108,24 +101,19 @@
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
             android:screenOrientation="portrait" />
         <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.AccountsFragmentActivity"/>
-        <activity android:name="com.example.EazyPG.owner.Activities.RentBillCollectionFragment"/>
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousTenantsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.PreviousRoomTenantsActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.LogFragmentActivity"/>
         <activity android:name="com.example.EazyPG.owner.Activities.LateCheckinLogActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.BedroomComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.FacilityComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.TenantDashboardProfile" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.AddBillActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.AddBillRoomActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.AddCreditActivity" />
-        <activity android:name="com.example.EazyPG.owner.Activities.RoomClickActivity"></activity>
+        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name="com.example.EazyPG.owner.Activities.AddBillActivity"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.AddBillRoomActivity"/>
     </application>
 
 </manifest>

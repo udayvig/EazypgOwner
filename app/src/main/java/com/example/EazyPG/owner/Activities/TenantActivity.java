@@ -174,7 +174,6 @@ public class TenantActivity extends AppCompatActivity {
                 window.setBackgroundDrawableResource(android.R.color.transparent);
                 dialog.show();
 
-
                 databaseReference1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
