@@ -1,22 +1,19 @@
 package com.example.EazyPG.owner.Activities;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.EazyPG.owner.DetailsClasses.BillDetails;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
-import com.katepratik.msg91api.MSG91;
 
 import java.util.List;
 
@@ -69,7 +66,7 @@ public class BillCollectionDetailList extends RecyclerView.Adapter<BillCollectio
         holder.messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
+                /*final MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 final EditText inputMessageEditText = new EditText(context);
                 builder.setView(inputMessageEditText);
@@ -85,11 +82,20 @@ public class BillCollectionDetailList extends RecyclerView.Adapter<BillCollectio
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
-                builder.show();
+                builder.show();*/
+                Log.e("MsgBtn", "onClick: chala");
             }
         });
 
-
+        holder.addFineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, FineRentBillActivity.class);
+                intent.putExtra(RentCollectionPaidDetailList.EXTRA_MESSAGE, tenantDetailList.get(position).id);
+                intent.putExtra(RentCollectionPaidDetailList.EXTRA_MESSAGE2, tenantDetailList.get(position).room);
+                context.startActivity(intent);
+            }
+        });
     }
 
     public class MyHolder extends RecyclerView.ViewHolder{

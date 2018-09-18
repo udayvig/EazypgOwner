@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -47,7 +46,7 @@ public class RoomClickActivity extends AppCompatActivity {
 
     EditText tenant1MessageEditText, tenant2MessageEditText, tenant3MessageEditText;
 
-    FloatingActionButton tenant1CallButton, tenant1MessageButton, tenant1AddFineButton, tenant2CallButton, tenant2MessageButton, tenant2AddFineButton, tenant3CallButton, tenant3MessageButton, tenant3AddFineButton;
+    Button tenant1CallButton, tenant1MessageButton, tenant1AddFineButton, tenant2CallButton, tenant2MessageButton, tenant2AddFineButton, tenant3CallButton, tenant3MessageButton, tenant3AddFineButton;
 
     CardView tenant1CardView, tenant2CardView, tenant3CardView;
 
@@ -61,6 +60,7 @@ public class RoomClickActivity extends AppCompatActivity {
 
     List<TenantDetails> tenantList = new ArrayList<>();
     List<BillDetails> billsList = new ArrayList<>();
+    List<BillDetails> billsList2 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,14 +203,14 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Rent/" + dateString);
+                    DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Passbook/Rent/" + dateString);
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             CashflowDetails status = dataSnapshot.getValue(CashflowDetails.class);
 
                             if(status != null){
-                                tenant1RentPaidOrUnpaidTextView.setText("Rent " + status);
+                                tenant1RentPaidOrUnpaidTextView.setText("Rent paid on " + status.date);
                             }else{
                                 tenant1RentPaidOrUnpaidTextView.setText("Rent due by " + rentDueDate + "/" + month + "/" + year);
                             }
@@ -222,7 +222,7 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Bills/" + dateString);
+                    DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Passbook/Bills/" + dateString);
                     databaseReference3.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -236,16 +236,10 @@ public class RoomClickActivity extends AppCompatActivity {
                             for(int i = 0; i < billsList.size(); i++){
                                 if(billsList.get(i).category.equals("Electricity") && billsList.get(i).paidOrUnpaid){
                                     tenant1ElectricityBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Electricity") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Wifi") && billsList.get(i).paidOrUnpaid){
                                     tenant1WifiBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Wifi") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Gas") && billsList.get(i).paidOrUnpaid){
                                     tenant1GasBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Gas") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }
                             }
                         }
@@ -255,6 +249,35 @@ public class RoomClickActivity extends AppCompatActivity {
 
                         }
                     });
+
+                    DatabaseReference databaseReference30 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Bills/" + dateString);
+                    databaseReference30.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            billsList2.clear();
+
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                BillDetails billDetails = snapshot.getValue(BillDetails.class);
+                                billsList2.add(billDetails);
+                            }
+
+                            for(int i = 0; i < billsList.size(); i++){
+                                if(billsList2.get(i).category.equals("Electricity") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Wifi") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Gas") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                     tenant2CardView.setVisibility(View.GONE);
                     tenant3CardView.setVisibility(View.GONE);
 
@@ -338,7 +361,7 @@ public class RoomClickActivity extends AppCompatActivity {
                             String message = "Hey " + tenantList.get(1).name + ". Please pay your rent/bill to avoid fine. Download the EazyPGTenant App" +
                                     "to know more. " + "Ignore if already paid."; // Add Tenant App Link
 
-                            tenant1MessageEditText.setText(message);
+                            tenant2MessageEditText.setText(message);
                             AlertDialog.Builder builder = new AlertDialog.Builder(RoomClickActivity.this);
                             builder.setTitle("Send Message");
                             builder.setNegativeButton("Cancel", null);
@@ -377,14 +400,14 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Rent/" + dateString);
+                    DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Passbook/Rent/" + dateString);
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String status = dataSnapshot.getValue(String.class);
+                            CashflowDetails status = dataSnapshot.getValue(CashflowDetails.class);
 
                             if(status != null){
-                                tenant1RentPaidOrUnpaidTextView.setText("Rent " + status);
+                                tenant1RentPaidOrUnpaidTextView.setText("Rent paid on " + status.date);
                             }else{
                                 tenant1RentPaidOrUnpaidTextView.setText("Rent due by " + rentDueDate + "/" + month + "/" + year);
                             }
@@ -396,14 +419,14 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference4 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Accounts/Rent/" + dateString);
+                    DatabaseReference databaseReference4 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Passbook/Rent/" + dateString);
                     databaseReference4.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String status = dataSnapshot.getValue(String.class);
+                            CashflowDetails status = dataSnapshot.getValue(CashflowDetails.class);
 
                             if(status != null){
-                                tenant2RentPaidOrUnpaidTextView.setText("Rent " + status);
+                                tenant2RentPaidOrUnpaidTextView.setText("Rent " + status.date);
                             }else{
                                 tenant2RentPaidOrUnpaidTextView.setText("Rent due by " + rentDueDate + "/" + month + "/" + year);
                             }
@@ -415,7 +438,7 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Bills/" + dateString);
+                    DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Passbook/Bills/" + dateString);
                     databaseReference3.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -429,16 +452,10 @@ public class RoomClickActivity extends AppCompatActivity {
                             for(int i = 0; i < billsList.size(); i++){
                                 if(billsList.get(i).category.equals("Electricity") && billsList.get(i).paidOrUnpaid){
                                     tenant1ElectricityBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Electricity") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Wifi") && billsList.get(i).paidOrUnpaid){
                                     tenant1WifiBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Wifi") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Gas") && billsList.get(i).paidOrUnpaid){
                                     tenant1GasBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Gas") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }
                             }
                         }
@@ -449,7 +466,35 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference5 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Accounts/Bills/" + dateString);
+                    DatabaseReference databaseReference30 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Bills/" + dateString);
+                    databaseReference30.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            billsList2.clear();
+
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                BillDetails billDetails = snapshot.getValue(BillDetails.class);
+                                billsList2.add(billDetails);
+                            }
+
+                            for(int i = 0; i < billsList.size(); i++){
+                                if(billsList2.get(i).category.equals("Electricity") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Wifi") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Gas") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    DatabaseReference databaseReference5 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Passbook/Bills/" + dateString);
                     databaseReference5.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -463,16 +508,38 @@ public class RoomClickActivity extends AppCompatActivity {
                             for(int i = 0; i < billsList.size(); i++){
                                 if(billsList.get(i).category.equals("Electricity") && billsList.get(i).paidOrUnpaid){
                                     tenant2ElectricityBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Electricity") && !billsList.get(i).paidOrUnpaid){
-                                    tenant2ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Wifi") && billsList.get(i).paidOrUnpaid){
                                     tenant2WifiBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Wifi") && !billsList.get(i).paidOrUnpaid){
-                                    tenant2WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Gas") && billsList.get(i).paidOrUnpaid){
                                     tenant2GasBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Gas") && !billsList.get(i).paidOrUnpaid){
-                                    tenant2GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    DatabaseReference databaseReference31 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Accounts/Bills/" + dateString);
+                    databaseReference31.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            billsList2.clear();
+
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                BillDetails billDetails = snapshot.getValue(BillDetails.class);
+                                billsList2.add(billDetails);
+                            }
+
+                            for(int i = 0; i < billsList.size(); i++){
+                                if(billsList2.get(i).category.equals("Electricity") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant2ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Wifi") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant2WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Gas") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant2GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
                                 }
                             }
                         }
@@ -584,7 +651,7 @@ public class RoomClickActivity extends AppCompatActivity {
                             String message = "Hey " + tenantList.get(1).name + ". Please pay your rent/bill to avoid fine. Download the EazyPGTenant App" +
                                     "to know more. " + "Ignore if already paid."; // Add Tenant App Link
 
-                            tenant1MessageEditText.setText(message);
+                            tenant2MessageEditText.setText(message);
                             AlertDialog.Builder builder = new AlertDialog.Builder(RoomClickActivity.this);
                             builder.setTitle("Send Message");
                             builder.setNegativeButton("Cancel", null);
@@ -614,7 +681,7 @@ public class RoomClickActivity extends AppCompatActivity {
                             String message = "Hey " + tenantList.get(2).name + ". Please pay your rent/bill to avoid fine. Download the EazyPGTenant App" +
                                     "to know more. " + "Ignore if already paid."; // Add Tenant App Link
 
-                            tenant1MessageEditText.setText(message);
+                            tenant3MessageEditText.setText(message);
                             AlertDialog.Builder builder = new AlertDialog.Builder(RoomClickActivity.this);
                             builder.setTitle("Send Message");
                             builder.setNegativeButton("Cancel", null);
@@ -663,14 +730,14 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Rent/" + dateString);
+                    DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Passbook/Rent/" + dateString);
                     databaseReference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String status = dataSnapshot.getValue(String.class);
+                            CashflowDetails status = dataSnapshot.getValue(CashflowDetails.class);
 
                             if(status != null){
-                                tenant1RentPaidOrUnpaidTextView.setText("Rent " + status);
+                                tenant1RentPaidOrUnpaidTextView.setText("Rent " + status.date);
                             }else{
                                 tenant1RentPaidOrUnpaidTextView.setText("Rent due by " + rentDueDate + "/" + month + "/" + year);
                             }
@@ -682,14 +749,14 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference4 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Accounts/Rent/" + dateString);
+                    DatabaseReference databaseReference4 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Passbook/Rent/" + dateString);
                     databaseReference4.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String status = dataSnapshot.getValue(String.class);
+                            CashflowDetails status = dataSnapshot.getValue(CashflowDetails.class);
 
                             if(status != null){
-                                tenant2RentPaidOrUnpaidTextView.setText("Rent " + status);
+                                tenant2RentPaidOrUnpaidTextView.setText("Rent " + status.date);
                             }else{
                                 tenant2RentPaidOrUnpaidTextView.setText("Rent due by " + rentDueDate + "/" + month + "/" + year);
                             }
@@ -701,7 +768,7 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Bills/" + dateString);
+                    DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Passbook/Bills/" + dateString);
                     databaseReference3.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -715,16 +782,10 @@ public class RoomClickActivity extends AppCompatActivity {
                             for(int i = 0; i < billsList.size(); i++){
                                 if(billsList.get(i).category.equals("Electricity") && billsList.get(i).paidOrUnpaid){
                                     tenant1ElectricityBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Electricity") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Wifi") && billsList.get(i).paidOrUnpaid){
                                     tenant1WifiBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Wifi") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Gas") && billsList.get(i).paidOrUnpaid){
                                     tenant1GasBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Gas") && !billsList.get(i).paidOrUnpaid){
-                                    tenant1GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }
                             }
                         }
@@ -735,7 +796,35 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference5 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Accounts/Bills/" + dateString);
+                    DatabaseReference databaseReference30 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(0).id + "/Accounts/Bills/" + dateString);
+                    databaseReference30.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            billsList2.clear();
+
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                BillDetails billDetails = snapshot.getValue(BillDetails.class);
+                                billsList2.add(billDetails);
+                            }
+
+                            for(int i = 0; i < billsList.size(); i++){
+                                if(billsList2.get(i).category.equals("Electricity") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Wifi") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Gas") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant1GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    DatabaseReference databaseReference5 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Passbook/Bills/" + dateString);
                     databaseReference5.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -749,16 +838,10 @@ public class RoomClickActivity extends AppCompatActivity {
                             for(int i = 0; i < billsList.size(); i++){
                                 if(billsList.get(i).category.equals("Electricity") && billsList.get(i).paidOrUnpaid){
                                     tenant2ElectricityBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Electricity") && !billsList.get(i).paidOrUnpaid){
-                                    tenant2ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Wifi") && billsList.get(i).paidOrUnpaid){
                                     tenant2WifiBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Wifi") && !billsList.get(i).paidOrUnpaid){
-                                    tenant2WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Gas") && billsList.get(i).paidOrUnpaid){
                                     tenant2GasBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Gas") && !billsList.get(i).paidOrUnpaid){
-                                    tenant2GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }
                             }
                         }
@@ -769,14 +852,42 @@ public class RoomClickActivity extends AppCompatActivity {
                         }
                     });
 
-                    DatabaseReference databaseReference6 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(2).id + "/Accounts/Rent/" + dateString);
+                    DatabaseReference databaseReference31 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(1).id + "/Accounts/Bills/" + dateString);
+                    databaseReference31.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            billsList2.clear();
+
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                BillDetails billDetails = snapshot.getValue(BillDetails.class);
+                                billsList2.add(billDetails);
+                            }
+
+                            for(int i = 0; i < billsList.size(); i++){
+                                if(billsList2.get(i).category.equals("Electricity") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant2ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Wifi") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant2WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Gas") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant2GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    DatabaseReference databaseReference6 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(2).id + "/Passbook/Rent/" + dateString);
                     databaseReference6.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String status = dataSnapshot.getValue(String.class);
+                            CashflowDetails status = dataSnapshot.getValue(CashflowDetails.class);
 
                             if(status != null){
-                                tenant3RentPaidOrUnpaidTextView.setText("Rent " + status);
+                                tenant3RentPaidOrUnpaidTextView.setText("Rent " + status.date);
                             }else{
                                 tenant3RentPaidOrUnpaidTextView.setText("Rent due by " + rentDueDate + "/" + month + "/" + year);
                             }
@@ -787,7 +898,8 @@ public class RoomClickActivity extends AppCompatActivity {
 
                         }
                     });
-                    DatabaseReference databaseReference7 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(2).id + "/Accounts/Bills/" + dateString);
+
+                    DatabaseReference databaseReference7 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(2).id + "/Passbook/Bills/" + dateString);
                     databaseReference7.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -801,16 +913,38 @@ public class RoomClickActivity extends AppCompatActivity {
                             for(int i = 0; i < billsList.size(); i++){
                                 if(billsList.get(i).category.equals("Electricity") && billsList.get(i).paidOrUnpaid){
                                     tenant3ElectricityBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Electricity") && !billsList.get(i).paidOrUnpaid){
-                                    tenant3ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Wifi") && billsList.get(i).paidOrUnpaid){
                                     tenant3WifiBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Wifi") && !billsList.get(i).paidOrUnpaid){
-                                    tenant3WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
                                 }else if(billsList.get(i).category.equals("Gas") && billsList.get(i).paidOrUnpaid){
                                     tenant3GasBillPaidOrUnpaid.setText("Bill paid on " + billsList.get(i).datePaid);
-                                }else if(billsList.get(i).category.equals("Gas") && !billsList.get(i).paidOrUnpaid){
-                                    tenant3GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    DatabaseReference databaseReference32 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantList.get(2).id + "/Accounts/Bills/" + dateString);
+                    databaseReference32.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            billsList2.clear();
+
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                BillDetails billDetails = snapshot.getValue(BillDetails.class);
+                                billsList2.add(billDetails);
+                            }
+
+                            for(int i = 0; i < billsList.size(); i++){
+                                if(billsList2.get(i).category.equals("Electricity") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant3ElectricityBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Wifi") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant3WifiBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
+                                }else if(billsList2.get(i).category.equals("Gas") && !billsList2.get(i).paidOrUnpaid){
+                                    tenant3GasBillPaidOrUnpaid.setText("Bill due by " + billDueDate + "/" + month + "/" + year);
                                 }
                             }
                         }

@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +23,16 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +43,7 @@ public class ExpenseFragment extends Fragment {
     View view2;
 
     ListView listView;
-    List<CashflowDetails> cashflowDetailsList;
+    List<CashflowDetails> expensesDetailsList = new ArrayList<>();
 
 
     FirebaseAuth firebaseAuth;
@@ -52,13 +56,13 @@ public class ExpenseFragment extends Fragment {
     View emptyList;
 
     LayoutInflater inflater;
-    CardView servicesCardView, groceryCardView, staffCardView, maintenanceCardView, marketingCardView, taxesAmcCardView;
+    CardView servicesCardView, groceryCardView, staffCardView, maintenanceCardView, marketingCardView, taxesAmcCardView, firstExpenseCardView, secondExpenseCardView, thirdExpenseCardView, fourthExpenseCardView, fifthExpenseCardView;
 
-    TextView tenantNameTextView1, tenantNameTextView2, tenantNameTextView3, tenantNameTextView4, tenantNameTextView5
+    TextView paidByNameTextView1, paidByNameTextView2, paidByNameTextView3, paidByNameTextView4, paidByNameTextView5
             ,dateTextView1, dateTextView2, dateTextView3, dateTextView4, dateTextView5
             ,categoryTextView1, categoryTextView2, categoryTextView3, categoryTextView4, categoryTextView5
             ,amountTextView1, amountTextView2, amountTextView3, amountTextView4, amountTextView5
-            ,roomNumberTenantTextView1, roomNumberTenantTextView2, roomNumberTenantTextView3, roomNumberTenantTextView4, roomNumberTenantTextView5
+            ,paidToTextView1, paidToTextView2, paidToTextView3, paidToTextView4, paidToTextView5
             ,descriptionTetView1, descriptionTetView2, descriptionTetView3, descriptionTetView4, descriptionTetView5;
 
     @Nullable
@@ -74,11 +78,17 @@ public class ExpenseFragment extends Fragment {
         marketingCardView = view2.findViewById(R.id.marketingCardView);
         taxesAmcCardView = view2.findViewById(R.id.taxesAmcCardView);
 
-        tenantNameTextView1 = view2.findViewById(R.id.tenantNameTextView1);
-        tenantNameTextView2 = view2.findViewById(R.id.tenantNameTextView2);
-        tenantNameTextView3 = view2.findViewById(R.id.tenantNameTextView3);
-        tenantNameTextView4 = view2.findViewById(R.id.tenantNameTextView4);
-        tenantNameTextView5 = view2.findViewById(R.id.tenantNameTextView5);
+        firstExpenseCardView = view2.findViewById(R.id.firstExpense);
+        secondExpenseCardView = view2.findViewById(R.id.secondExpense);
+        thirdExpenseCardView = view2.findViewById(R.id.thirdExpense);
+        fourthExpenseCardView = view2.findViewById(R.id.fourthExpense);
+        fifthExpenseCardView = view2.findViewById(R.id.fifthExpense);
+
+        paidByNameTextView1 = view2.findViewById(R.id.tenantNameTextView1);
+        paidByNameTextView2 = view2.findViewById(R.id.tenantNameTextView2);
+        paidByNameTextView3 = view2.findViewById(R.id.tenantNameTextView3);
+        paidByNameTextView4 = view2.findViewById(R.id.tenantNameTextView4);
+        paidByNameTextView5 = view2.findViewById(R.id.tenantNameTextView5);
 
         dateTextView1 = view2.findViewById(R.id.dateTextView1);
         dateTextView2 = view2.findViewById(R.id.dateTextView2);
@@ -98,22 +108,187 @@ public class ExpenseFragment extends Fragment {
         amountTextView4 = view2.findViewById(R.id.amountTextView4);
         amountTextView5 = view2.findViewById(R.id.amountTextView5);
 
-        roomNumberTenantTextView1 = view2.findViewById(R.id.roomNumberTenantTextView1);
-        roomNumberTenantTextView2 = view2.findViewById(R.id.roomNumberTenantTextView2);
-        roomNumberTenantTextView3 = view2.findViewById(R.id.roomNumberTenantTextView3);
-        roomNumberTenantTextView4 = view2.findViewById(R.id.roomNumberTenantTextView4);
-        roomNumberTenantTextView5 = view2.findViewById(R.id.roomNumberTenantTextView5);
+        paidToTextView1 = view2.findViewById(R.id.roomNumberTenantTextView1);
+        paidToTextView2 = view2.findViewById(R.id.roomNumberTenantTextView2);
+        paidToTextView3 = view2.findViewById(R.id.roomNumberTenantTextView3);
+        paidToTextView4 = view2.findViewById(R.id.roomNumberTenantTextView4);
+        paidToTextView5 = view2.findViewById(R.id.roomNumberTenantTextView5);
 
         descriptionTetView1 = view2.findViewById(R.id.descriptionTextView1);
         descriptionTetView2 = view2.findViewById(R.id.descriptionTextView2);
         descriptionTetView3 = view2.findViewById(R.id.descriptionTextView3);
         descriptionTetView4 = view2.findViewById(R.id.descriptionTextView4);
-        descriptionTetView5 = view2.    findViewById(R.id.descriptionTextView5);
+        descriptionTetView5 = view2.findViewById(R.id.descriptionTextView5);
 
         inflater = getLayoutInflater();
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Cashflow/");
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    CashflowDetails cashflowDetails = snapshot.getValue(CashflowDetails.class);
+                    if(!cashflowDetails.inout){
+                        expensesDetailsList.add(cashflowDetails);
+                    }
+                }
+
+                int size = expensesDetailsList.size();
+
+                Collections.sort(expensesDetailsList, Collections.<CashflowDetails>reverseOrder());
+
+                switch(size){
+                    case 0:
+                        firstExpenseCardView.setVisibility(View.GONE);
+                        secondExpenseCardView.setVisibility(View.GONE);
+                        thirdExpenseCardView.setVisibility(View.GONE);
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        break;
+
+                    case 1:
+                        secondExpenseCardView.setVisibility(View.GONE);
+                        thirdExpenseCardView.setVisibility(View.GONE);
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        break;
+
+                    case 2:
+                        thirdExpenseCardView.setVisibility(View.GONE);
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        break;
+
+                    case 3:
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        paidByNameTextView3.setText(expensesDetailsList.get(2).paidBy);
+                        dateTextView3.setText(expensesDetailsList.get(2).date);
+                        categoryTextView3.setText(expensesDetailsList.get(2).category);
+                        amountTextView3.setText(expensesDetailsList.get(2).amount);
+                        descriptionTetView3.setText(expensesDetailsList.get(2).description);
+                        paidToTextView3.setText(expensesDetailsList.get(2).paidTo);
+
+                        break;
+
+                    case 4:
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        paidByNameTextView3.setText(expensesDetailsList.get(2).paidBy);
+                        dateTextView3.setText(expensesDetailsList.get(2).date);
+                        categoryTextView3.setText(expensesDetailsList.get(2).category);
+                        amountTextView3.setText(expensesDetailsList.get(2).amount);
+                        descriptionTetView3.setText(expensesDetailsList.get(2).description);
+                        paidToTextView3.setText(expensesDetailsList.get(2).paidTo);
+
+                        paidByNameTextView4.setText(expensesDetailsList.get(3).paidBy);
+                        dateTextView4.setText(expensesDetailsList.get(3).date);
+                        categoryTextView4.setText(expensesDetailsList.get(3).category);
+                        amountTextView4.setText(expensesDetailsList.get(3).amount);
+                        descriptionTetView4.setText(expensesDetailsList.get(3).description);
+                        paidToTextView4.setText(expensesDetailsList.get(3).paidTo);
+
+                        break;
+
+                    default:
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        paidByNameTextView3.setText(expensesDetailsList.get(2).paidBy);
+                        dateTextView3.setText(expensesDetailsList.get(2).date);
+                        categoryTextView3.setText(expensesDetailsList.get(2).category);
+                        amountTextView3.setText(expensesDetailsList.get(2).amount);
+                        descriptionTetView3.setText(expensesDetailsList.get(2).description);
+                        paidToTextView3.setText(expensesDetailsList.get(2).paidTo);
+
+                        paidByNameTextView4.setText(expensesDetailsList.get(3).paidBy);
+                        dateTextView4.setText(expensesDetailsList.get(3).date);
+                        categoryTextView4.setText(expensesDetailsList.get(3).category);
+                        amountTextView4.setText(expensesDetailsList.get(3).amount);
+                        descriptionTetView4.setText(expensesDetailsList.get(3).description);
+                        paidToTextView4.setText(expensesDetailsList.get(3).paidTo);
+
+                        paidByNameTextView5.setText(expensesDetailsList.get(4).paidBy);
+                        dateTextView5.setText(expensesDetailsList.get(4).date);
+                        categoryTextView5.setText(expensesDetailsList.get(4).category);
+                        amountTextView5.setText(expensesDetailsList.get(4).amount);
+                        descriptionTetView5.setText(expensesDetailsList.get(4).description);
+                        paidToTextView5.setText(expensesDetailsList.get(4).paidTo);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         final LayoutInflater finalInflater = inflater;
         servicesCardView.setOnClickListener(new View.OnClickListener() {

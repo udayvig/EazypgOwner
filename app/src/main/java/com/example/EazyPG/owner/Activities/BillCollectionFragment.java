@@ -84,7 +84,9 @@ public class BillCollectionFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (int i = 0; i < tenantList.size(); i++) {
                             BillDetails billDetails = dataSnapshot.child(tenantList.get(i).id).child("Accounts").child("Bills").child(dateString).getValue(BillDetails.class);
-                            billList.add(billDetails);
+                            if(billDetails != null){
+                                billList.add(billDetails);
+                            }
                         }
 
                         for (int i = 0; i < billList.size(); i++) {

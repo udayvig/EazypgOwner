@@ -16,10 +16,10 @@ import com.katepratik.msg91api.MSG91;
 
 import java.util.List;
 
-public class RentCollectionUnpaidDetailList extends RecyclerView.Adapter<RentCollectionUnpaidDetailList.MyHolder>{
+import static com.example.EazyPG.owner.Activities.RentCollectionPaidDetailList.EXTRA_MESSAGE;
+import static com.example.EazyPG.owner.Activities.RentCollectionPaidDetailList.EXTRA_MESSAGE2;
 
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    public static final String EXTRA_MESSAGE2 = "com.example.myfirstapp.MESSAGE2";
+public class RentCollectionUnpaidDetailList extends RecyclerView.Adapter<RentCollectionUnpaidDetailList.MyHolder>{
 
     List<TenantDetails> tenantDetails;
     List<TenantDetails> tenantUnpaidDetails;

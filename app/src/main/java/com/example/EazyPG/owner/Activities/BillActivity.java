@@ -57,7 +57,7 @@ public class BillActivity extends AppCompatActivity {
 
                 databaseReference = firebaseDatabase.getReference("Tenants/" + tenantId + "/");
                 String billId = databaseReference.push().getKey();
-                BillDetails billDetails = new BillDetails(billId, billCategory, billAmount, false);
+                BillDetails billDetails = new BillDetails(billId, billCategory, billAmount, false, "");
 
                 databaseReference.child("Accounts").child("Bills").child(billId).setValue(billDetails);
 
@@ -66,6 +66,9 @@ public class BillActivity extends AppCompatActivity {
 
                 DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + tenantRoom + "/Tenant/CurrentTenants" + tenantId);
                 databaseReference2.child("Accounts").child("Bills").child(billId).setValue(billDetails);
+
+                DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantId);
+                databaseReference3.child("Passbook").child("Bills").child(billId).setValue(billDetails);
             }
         });
     }

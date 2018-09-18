@@ -162,7 +162,7 @@ public class PassbookActivity extends AppCompatActivity {
                 }
 
                 for(int i = 0; i < expensesDetailsList.size(); i++){
-                    expenses += Integer.parseInt(incomeDetailsList.get(i).amount);
+                    expenses += Integer.parseInt(expensesDetailsList.get(i).amount);
                 }
 
                 balance = income - expenses;

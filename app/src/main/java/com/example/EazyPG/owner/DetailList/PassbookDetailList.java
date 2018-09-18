@@ -1,3 +1,4 @@
+/*
 package com.example.EazyPG.owner.DetailList;
 
 import android.app.Activity;
@@ -63,7 +64,8 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
             }
         });
 
-        /*listViewItemPassbook.setOnLongClickListener(new View.OnLongClickListener() {
+        */
+/*listViewItemPassbook.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -107,7 +109,8 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
 
                 return true;
             }
-        });*/
+        });*//*
+
 
         listViewItemPassbook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +172,7 @@ public class PassbookDetailList extends ArrayAdapter<CashflowDetails> {
             iv.setImageResource(R.drawable.ic_arrow_upward_black_24dp);
         }*/
 
-        return listViewItemPassbook;
+ /*       return listViewItemPassbook;
     }
-}
+}*/
+

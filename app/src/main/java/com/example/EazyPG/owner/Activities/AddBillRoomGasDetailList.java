@@ -78,24 +78,24 @@ public class AddBillRoomGasDetailList extends RecyclerView.Adapter<AddBillRoomGa
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             TenantDetails tenantDetails = snapshot.getValue(TenantDetails.class);
 
-                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                            Date date = new Date();
-                            String dateStr = dateFormat.format(date);
+                                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                                Date date = new Date();
+                                String dateStr = dateFormat.format(date);
 
-                            String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
+                                String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
-                            final String billAmount = holder.amountEditText.getText().toString();
+                                final String billAmount = holder.amountEditText.getText().toString();
 
-                            String billId = databaseReference.push().getKey();
-                            BillDetails billDetails = new BillDetails(billId, "Gas", billAmount, false, "", dateString);
+                                String billId = databaseReference.push().getKey();
+                                BillDetails billDetails = new BillDetails(billId, "Gas", billAmount, false, "", dateString);
                                 /*DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Rooms/" + roomNumber + "/Tenant/CurrentTenants/" + tenantDetails.id);
                                 databaseReference1.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);*/
 
-                            DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantDetails.id);
-                            databaseReference2.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
+                                DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantDetails.id);
+                                databaseReference2.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
 
-                            DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantDetails.id);
-                            databaseReference3.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
+                                DatabaseReference databaseReference3 = firebaseDatabase.getReference("Tenants/" + tenantDetails.id);
+                                databaseReference3.child("Accounts").child("Bills").child(dateString).child(billId).setValue(billDetails);
 
                         }
 

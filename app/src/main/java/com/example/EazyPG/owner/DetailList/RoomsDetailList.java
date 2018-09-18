@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
 
     private Activity context;
     private List<String> roomList;
-    private TextView first, second , third , fourth, tenant1NameTextView, tenant2NameTextView, tenant3NameTextView, name2TextView, name3TextView;
+    private TextView first, second , third , fourth, tenant1NameTextView, tenant2NameTextView, tenant3NameTextView, name1TextView, name2TextView, name3TextView;
     private ListView dialogListView;
     private List<String> roomTypeList;
     private List<TenantDetails> tenantList = new ArrayList<>();
@@ -75,6 +76,7 @@ public class RoomsDetailList extends ArrayAdapter<String> {
         tenant1NameTextView = listViewItemRoom.findViewById(R.id.tenant1NameTextView);
         tenant2NameTextView = listViewItemRoom.findViewById(R.id.tenant2NameTextView);
         tenant3NameTextView = listViewItemRoom.findViewById(R.id.tenant3NameTextView);
+        name1TextView = listViewItemRoom.findViewById(R.id.name1TextView);
         name2TextView = listViewItemRoom.findViewById(R.id.name2TextView);
         name3TextView = listViewItemRoom.findViewById(R.id.name3TextView);
 
@@ -102,6 +104,13 @@ public class RoomsDetailList extends ArrayAdapter<String> {
             }
         });*/
 
+        name1TextView.setVisibility(View.GONE);
+        name2TextView.setVisibility(View.GONE);
+        name3TextView.setVisibility(View.GONE);
+        tenant1NameTextView.setVisibility(View.GONE);
+        tenant2NameTextView.setVisibility(View.GONE);
+        tenant3NameTextView.setVisibility(View.GONE);
+
         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -117,19 +126,33 @@ public class RoomsDetailList extends ArrayAdapter<String> {
                 databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
 
                 if(roomTypeList.get(position).equals("One Bed")){
-                    tenant2NameTextView.setVisibility(View.GONE);
-                    tenant3NameTextView.setVisibility(View.GONE);
-                    name2TextView.setVisibility(View.GONE);
-                    name3TextView.setVisibility(View.GONE);
+                    tenant1NameTextView.setVisibility(View.VISIBLE);
+                    name1TextView.setVisibility(View.VISIBLE);
                 }
 
                 if(roomTypeList.get(position).equals("Two Bed")){
-                    tenant3NameTextView.setVisibility(View.GONE);
-                    name3TextView.setVisibility(View.GONE);
+                    tenant1NameTextView.setVisibility(View.VISIBLE);
+                    tenant2NameTextView.setVisibility(View.VISIBLE);
+                    name1TextView.setVisibility(View.VISIBLE);
+                    name2TextView.setVisibility(View.VISIBLE);
                 }
 
+                if(roomTypeList.get(position).equals("Three Bed")){
+                    tenant1NameTextView.setVisibility(View.VISIBLE);
+                    tenant2NameTextView.setVisibility(View.VISIBLE);
+                    tenant3NameTextView.setVisibility(View.VISIBLE);
+                    name1TextView.setVisibility(View.VISIBLE);
+                    name2TextView.setVisibility(View.VISIBLE);
+                    name3TextView.setVisibility(View.VISIBLE);
+                }
+
+                Log.e("RDL", "onDataChange: " + roomTypeList.get(position) + "");
+                Log.e("RDL", "onDataChange: " + roomList.get(position) + "");
+
+                boolean a = false;
                 for(int i = 0; i < tenantList.size(); i++){
                     if (tenantList.get(i).room.equals(roomList.get(position))) {
+                        a = true;
                         if(tenant1NameTextView.getText().toString().isEmpty()){
                             tenant1NameTextView.setText(tenantList.get(i).name);
                         }else if(!tenant1NameTextView.getText().toString().isEmpty() && tenant2NameTextView.getVisibility() == View.VISIBLE){
@@ -138,6 +161,13 @@ public class RoomsDetailList extends ArrayAdapter<String> {
                             tenant3NameTextView.setText(tenantList.get(i).name);
                         }
                     }
+                }
+                if(!a){
+                    name2TextView.setVisibility(View.GONE);
+                    name3TextView.setVisibility(View.GONE);
+                    tenant1NameTextView.setVisibility(View.GONE);
+                    tenant2NameTextView.setVisibility(View.GONE);
+                    tenant3NameTextView.setVisibility(View.GONE);
                 }
             }
 

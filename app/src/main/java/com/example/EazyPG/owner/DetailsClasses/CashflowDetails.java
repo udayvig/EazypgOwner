@@ -1,6 +1,8 @@
 package com.example.EazyPG.owner.DetailsClasses;
 
-public class CashflowDetails {
+import android.support.annotation.NonNull;
+
+public class CashflowDetails implements Comparable<CashflowDetails>{
     public String expenseId, amount, category, description, paidBy, paidTo, date;
     public boolean inout;
 
@@ -86,5 +88,10 @@ public class CashflowDetails {
 
     public String getDate() {
         return date;
+    }
+
+    @Override
+    public int compareTo(@NonNull CashflowDetails cashflowDetails) {
+        return getDate().compareTo(cashflowDetails.getDate());
     }
 }

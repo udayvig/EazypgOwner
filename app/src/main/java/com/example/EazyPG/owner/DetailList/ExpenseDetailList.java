@@ -43,7 +43,7 @@ public class ExpenseDetailList extends ArrayAdapter<CashflowDetails> {
         this.expenseList = expenseList;
     }
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Cashflow/");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PG/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/Cashflow/");
     List<String> ids = new ArrayList<>();
 
     @NonNull

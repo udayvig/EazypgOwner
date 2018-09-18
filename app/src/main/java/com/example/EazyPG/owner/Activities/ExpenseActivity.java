@@ -22,19 +22,23 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 public class ExpenseActivity extends AppCompatActivity {
 
     ListView listView;
-    List<CashflowDetails> cashflowDetailsList;
-
+    List<CashflowDetails> expensesDetailsList = new ArrayList<>();
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -47,13 +51,14 @@ public class ExpenseActivity extends AppCompatActivity {
     View emptyList;
 
     LayoutInflater inflater;
-    CardView servicesCardView, groceryCardView, staffCardView, maintenanceCardView, marketingCardView, taxesAmcCardView;
+    CardView servicesCardView, groceryCardView, staffCardView, maintenanceCardView, marketingCardView, taxesAmcCardView
+            ,firstExpenseCardView, secondExpenseCardView, thirdExpenseCardView, fourthExpenseCardView, fifthExpenseCardView;
 
-    TextView tenantNameTextView1, tenantNameTextView2, tenantNameTextView3, tenantNameTextView4, tenantNameTextView5
+    TextView paidByNameTextView1, paidByNameTextView2, paidByNameTextView3, paidByNameTextView4, paidByNameTextView5
             ,dateTextView1, dateTextView2, dateTextView3, dateTextView4, dateTextView5
             ,categoryTextView1, categoryTextView2, categoryTextView3, categoryTextView4, categoryTextView5
             ,amountTextView1, amountTextView2, amountTextView3, amountTextView4, amountTextView5
-            ,roomNumberTenantTextView1, roomNumberTenantTextView2, roomNumberTenantTextView3, roomNumberTenantTextView4, roomNumberTenantTextView5
+            ,paidToTextView1, paidToTextView2, paidToTextView3, paidToTextView4, paidToTextView5
             ,descriptionTetView1, descriptionTetView2, descriptionTetView3, descriptionTetView4, descriptionTetView5;
 
     @Override
@@ -68,11 +73,17 @@ public class ExpenseActivity extends AppCompatActivity {
         marketingCardView = findViewById(R.id.marketingCardView);
         taxesAmcCardView = findViewById(R.id.taxesAmcCardView);
 
-        tenantNameTextView1 = findViewById(R.id.tenantNameTextView1);
-        tenantNameTextView2 = findViewById(R.id.tenantNameTextView2);
-        tenantNameTextView3 = findViewById(R.id.tenantNameTextView3);
-        tenantNameTextView4 = findViewById(R.id.tenantNameTextView4);
-        tenantNameTextView5 = findViewById(R.id.tenantNameTextView5);
+        firstExpenseCardView = findViewById(R.id.firstExpense);
+        secondExpenseCardView = findViewById(R.id.secondExpense);
+        thirdExpenseCardView = findViewById(R.id.thirdExpense);
+        fourthExpenseCardView = findViewById(R.id.fourthExpense);
+        fifthExpenseCardView = findViewById(R.id.fifthExpense);
+
+        paidByNameTextView1 = findViewById(R.id.tenantNameTextView1);
+        paidByNameTextView2 = findViewById(R.id.tenantNameTextView2);
+        paidByNameTextView3 = findViewById(R.id.tenantNameTextView3);
+        paidByNameTextView4 = findViewById(R.id.tenantNameTextView4);
+        paidByNameTextView5 = findViewById(R.id.tenantNameTextView5);
 
         dateTextView1 = findViewById(R.id.dateTextView1);
         dateTextView2 = findViewById(R.id.dateTextView2);
@@ -92,11 +103,11 @@ public class ExpenseActivity extends AppCompatActivity {
         amountTextView4 = findViewById(R.id.amountTextView4);
         amountTextView5 = findViewById(R.id.amountTextView5);
 
-        roomNumberTenantTextView1 = findViewById(R.id.roomNumberTenantTextView1);
-        roomNumberTenantTextView2 = findViewById(R.id.roomNumberTenantTextView2);
-        roomNumberTenantTextView3 = findViewById(R.id.roomNumberTenantTextView3);
-        roomNumberTenantTextView4 = findViewById(R.id.roomNumberTenantTextView4);
-        roomNumberTenantTextView5 = findViewById(R.id.roomNumberTenantTextView5);
+        paidToTextView1 = findViewById(R.id.roomNumberTenantTextView1);
+        paidToTextView2 = findViewById(R.id.roomNumberTenantTextView2);
+        paidToTextView3 = findViewById(R.id.roomNumberTenantTextView3);
+        paidToTextView4 = findViewById(R.id.roomNumberTenantTextView4);
+        paidToTextView5 = findViewById(R.id.roomNumberTenantTextView5);
 
         descriptionTetView1 = findViewById(R.id.descriptionTextView1);
         descriptionTetView2 = findViewById(R.id.descriptionTextView2);
@@ -108,6 +119,171 @@ public class ExpenseActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Cashflow/");
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    CashflowDetails cashflowDetails = snapshot.getValue(CashflowDetails.class);
+                    if(!cashflowDetails.inout){
+                        expensesDetailsList.add(cashflowDetails);
+                    }
+                }
+
+                int size = expensesDetailsList.size();
+
+                Collections.sort(expensesDetailsList, Collections.<CashflowDetails>reverseOrder());
+
+                switch(size){
+                    case 0:
+                        firstExpenseCardView.setVisibility(View.GONE);
+                        secondExpenseCardView.setVisibility(View.GONE);
+                        thirdExpenseCardView.setVisibility(View.GONE);
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        break;
+
+                    case 1:
+                        secondExpenseCardView.setVisibility(View.GONE);
+                        thirdExpenseCardView.setVisibility(View.GONE);
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        break;
+
+                    case 2:
+                        thirdExpenseCardView.setVisibility(View.GONE);
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        break;
+
+                    case 3:
+                        fourthExpenseCardView.setVisibility(View.GONE);
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        paidByNameTextView3.setText(expensesDetailsList.get(2).paidBy);
+                        dateTextView3.setText(expensesDetailsList.get(2).date);
+                        categoryTextView3.setText(expensesDetailsList.get(2).category);
+                        amountTextView3.setText(expensesDetailsList.get(2).amount);
+                        descriptionTetView3.setText(expensesDetailsList.get(2).description);
+                        paidToTextView3.setText(expensesDetailsList.get(2).paidTo);
+
+                        break;
+
+                    case 4:
+                        fifthExpenseCardView.setVisibility(View.GONE);
+
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        paidByNameTextView3.setText(expensesDetailsList.get(2).paidBy);
+                        dateTextView3.setText(expensesDetailsList.get(2).date);
+                        categoryTextView3.setText(expensesDetailsList.get(2).category);
+                        amountTextView3.setText(expensesDetailsList.get(2).amount);
+                        descriptionTetView3.setText(expensesDetailsList.get(2).description);
+                        paidToTextView3.setText(expensesDetailsList.get(2).paidTo);
+
+                        paidByNameTextView4.setText(expensesDetailsList.get(3).paidBy);
+                        dateTextView4.setText(expensesDetailsList.get(3).date);
+                        categoryTextView4.setText(expensesDetailsList.get(3).category);
+                        amountTextView4.setText(expensesDetailsList.get(3).amount);
+                        descriptionTetView4.setText(expensesDetailsList.get(3).description);
+                        paidToTextView4.setText(expensesDetailsList.get(3).paidTo);
+
+                        break;
+
+                    default:
+                        paidByNameTextView1.setText(expensesDetailsList.get(0).paidBy);
+                        dateTextView1.setText(expensesDetailsList.get(0).date);
+                        categoryTextView1.setText(expensesDetailsList.get(0).category);
+                        amountTextView1.setText(expensesDetailsList.get(0).amount);
+                        descriptionTetView1.setText(expensesDetailsList.get(0).description);
+                        paidToTextView1.setText(expensesDetailsList.get(0).paidTo);
+
+                        paidByNameTextView2.setText(expensesDetailsList.get(1).paidBy);
+                        dateTextView2.setText(expensesDetailsList.get(1).date);
+                        categoryTextView2.setText(expensesDetailsList.get(1).category);
+                        amountTextView2.setText(expensesDetailsList.get(1).amount);
+                        descriptionTetView2.setText(expensesDetailsList.get(1).description);
+                        paidToTextView2.setText(expensesDetailsList.get(1).paidTo);
+
+                        paidByNameTextView3.setText(expensesDetailsList.get(2).paidBy);
+                        dateTextView3.setText(expensesDetailsList.get(2).date);
+                        categoryTextView3.setText(expensesDetailsList.get(2).category);
+                        amountTextView3.setText(expensesDetailsList.get(2).amount);
+                        descriptionTetView3.setText(expensesDetailsList.get(2).description);
+                        paidToTextView3.setText(expensesDetailsList.get(2).paidTo);
+
+                        paidByNameTextView4.setText(expensesDetailsList.get(3).paidBy);
+                        dateTextView4.setText(expensesDetailsList.get(3).date);
+                        categoryTextView4.setText(expensesDetailsList.get(3).category);
+                        amountTextView4.setText(expensesDetailsList.get(3).amount);
+                        descriptionTetView4.setText(expensesDetailsList.get(3).description);
+                        paidToTextView4.setText(expensesDetailsList.get(3).paidTo);
+
+                        paidByNameTextView5.setText(expensesDetailsList.get(4).paidBy);
+                        dateTextView5.setText(expensesDetailsList.get(4).date);
+                        categoryTextView5.setText(expensesDetailsList.get(4).category);
+                        amountTextView5.setText(expensesDetailsList.get(4).amount);
+                        descriptionTetView5.setText(expensesDetailsList.get(4).description);
+                        paidToTextView5.setText(expensesDetailsList.get(4).paidTo);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         servicesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,10 +301,9 @@ public class ExpenseActivity extends AppCompatActivity {
                         .setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
-
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
                         String amountString = amount.getText().toString();
                         String categoryString = "Services";
                         String descriptionString = description.getText().toString();
@@ -183,10 +358,10 @@ public class ExpenseActivity extends AppCompatActivity {
                         .setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
-
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
+
                         String amountString = amount.getText().toString();
                         String categoryString = "Grocery";
                         String descriptionString = description.getText().toString();
@@ -241,10 +416,10 @@ public class ExpenseActivity extends AppCompatActivity {
                         .setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
-
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
+
                         String amountString = amount.getText().toString();
                         String categoryString = "Staff";
                         String descriptionString = description.getText().toString();
@@ -299,10 +474,11 @@ public class ExpenseActivity extends AppCompatActivity {
                         .setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
 
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
+
                         String amountString = amount.getText().toString();
                         String categoryString = "Maintenance";
                         String descriptionString = description.getText().toString();
@@ -357,15 +533,16 @@ public class ExpenseActivity extends AppCompatActivity {
                         .setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
-
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
+
                         String amountString = amount.getText().toString();
                         String categoryString = "Marketing";
                         String descriptionString = description.getText().toString();
                         String paidByString = paidBy.getText().toString();
                         String paidToString = paidTo.getText().toString();
+
 
                         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
                         String uidExpense = databaseReference.push().getKey();
@@ -398,6 +575,7 @@ public class ExpenseActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+
         taxesAmcCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -414,18 +592,18 @@ public class ExpenseActivity extends AppCompatActivity {
                         .setView(viewDialog);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
-
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final ProgressDialog progressDialog = ProgressDialog.show(ExpenseActivity.this, "", "Saving...", true);
+
                         String amountString = amount.getText().toString();
                         String categoryString = "Taxes and AMC";
                         String descriptionString = description.getText().toString();
                         String paidByString = paidBy.getText().toString();
                         String paidToString = paidTo.getText().toString();
+                        String uidExpense = databaseReference.push().getKey();
 
                         databaseReference = firebaseDatabase.getReference("PG/" + firebaseUser.getUid());
-                        String uidExpense = databaseReference.push().getKey();
 
                         if(amountString.isEmpty()){
                             Toast.makeText(ExpenseActivity.this, "Amount Required!", Toast.LENGTH_SHORT).show();

@@ -6,13 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -221,55 +220,51 @@ public class TenantActivity extends AppCompatActivity {
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                                MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
+                                msg91.composeMessage("EazyPG", "Hi " + name.getText().toString() + ". Welcome to " + pgName + ". Get you EazyPG App. Follow the link: ");
+                                msg91.to(phone.getText().toString());
+                                String sendStatus = msg91.send();
 
+                                Log.i("MyMSGStatus", sendStatus);
 
-                        MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
-                        msg91.composeMessage("EazyPG", "Hi " + name.getText().toString() + ". Welcome to " + pgName + ". Get you EazyPG App. Follow the link: ");
-                        msg91.to(phone.getText().toString());
-                        String sendStatus = msg91.send();
+                                final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
+                                qrImage = viewDialog.findViewById(R.id.qrImageView);
 
-                        Log.i("MyMSGStatus", sendStatus);
+                                QRCodeWriter writer = new QRCodeWriter();
+                                try {
 
-                        final View viewDialog = inflater.inflate(R.layout.dialog_qr, null);
-                        qrImage = viewDialog.findViewById(R.id.qrImageView);
+                                    String content = FirebaseAuth.getInstance().getCurrentUser().getUid() + " " +
+                                            name.getText().toString() + " " + phone.getText().toString() + " " + email.getText().toString() + " " +
+                                            room.getText().toString() + " " + dateOfJoining.getText().toString() + " " +
+                                            rentAmount.getText().toString();
 
-                        QRCodeWriter writer = new QRCodeWriter();
-                        try {
+                                    BitMatrix bitMatrix = writer.encode(content , BarcodeFormat.QR_CODE, 512, 512);
+                                    int width = bitMatrix.getWidth();
+                                    int height = bitMatrix.getHeight();
+                                    Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                                    for (int x = 0; x < width; x++) {
+                                        for (int y = 0; y < height; y++) {
+                                            bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                                        }
+                                    }
+                                    qrImage.setImageBitmap(bmp);
 
-                            String content = FirebaseAuth.getInstance().getCurrentUser().getUid() + " " +
-                                    name.getText().toString() + " " + phone.getText().toString() + " " + email.getText().toString() + " " +
-                                    room.getText().toString() + " " + dateOfJoining.getText().toString() + " " +
-                                    rentAmount.getText().toString();
+                                    final AlertDialog.Builder builder1 = new AlertDialog.Builder(TenantActivity.this);
+                                    builder1.setTitle("Scan to connect");
+                                    builder1.setMessage("This QR Code is shown only once.");
+                                    builder1.setView(viewDialog);
+                                    builder1.setCancelable(false);
+                                    builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
 
-                            BitMatrix bitMatrix = writer.encode(content , BarcodeFormat.QR_CODE, 512, 512);
-                            int width = bitMatrix.getWidth();
-                            int height = bitMatrix.getHeight();
-                            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-                            for (int x = 0; x < width; x++) {
-                                for (int y = 0; y < height; y++) {
-                                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                                        }
+                                    });
+                                    builder1.show();
+
+                                } catch (WriterException e) {
+                                    e.printStackTrace();
                                 }
-                            }
-                            qrImage.setImageBitmap(bmp);
-
-                            final AlertDialog.Builder builder1 = new AlertDialog.Builder(TenantActivity.this);
-                            builder1.setTitle("Scan to connect");
-                            builder1.setMessage("This QR Code is shown only once.");
-                            builder1.setView(viewDialog);
-                            builder1.setCancelable(false);
-                            builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                            builder1.show();
-
-                        } catch (WriterException e) {
-                            e.printStackTrace();
-                        }
-
-
                     }
                 });
 

@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.EazyPG.owner.DetailsClasses.BillDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,12 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AddBillRoomActivity extends AppCompatActivity {
-
-    ImageView backButton;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -36,6 +40,12 @@ public class AddBillRoomActivity extends AppCompatActivity {
     List<String> roomsList = new ArrayList<>();
 
     RecyclerView addBillRoomRecyclerView;
+
+    EditText billAmountEditText;
+
+    FloatingActionButton saveAllFab;
+
+    ImageView backButton;
 
     AddBillRoomElectricityDetailList addBillRoomElectricityDetailList;
     AddBillRoomWifiDetailList addBillRoomWifiDetailList;
@@ -53,11 +63,20 @@ public class AddBillRoomActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        backButton = findViewById(R.id.backButton);
-
         addBillRoomRecyclerView = findViewById(R.id.addBillRoomRecyclerView);
 
+        billAmountEditText = findViewById(R.id.amountEditText);
+        saveAllFab = findViewById(R.id.saveAllFab);
+
+        backButton = findViewById(R.id.backButton);
+
         context = getApplicationContext();
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String dateStr = dateFormat.format(date);
+
+        final String dateString = dateStr.substring(6,10) + "-" + dateStr.substring(3,5);
 
         Intent intent = getIntent();
         final String billType = intent.getStringExtra(AddBillActivity.EXTRA_MESSAGE);
@@ -121,11 +140,54 @@ public class AddBillRoomActivity extends AppCompatActivity {
                 }
             }
 
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        saveAllFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String amount = billAmountEditText.getText().toString();
+                final List<String> tenantIds = new ArrayList<>();
+
+                DatabaseReference databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
+                databaseReference1.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            String id = snapshot.getValue(String.class);
+                            tenantIds.add(id);
+                        }
+
+                        DatabaseReference databaseReference2 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/");
+                        databaseReference2.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for(int i = 0; i < tenantIds.size(); i++){
+                                    DatabaseReference databaseReference3 = firebaseDatabase.getReference("PG/" + firebaseUser.getUid() + "/Tenants/CurrentTenants/" + tenantIds.get(i) + "/Accounts/Bills/" + dateString);
+                                    String billId = databaseReference3.push().getKey();
+                                    BillDetails billDetails = new BillDetails(billId, billType, amount, false, "", dateString);
+                                    databaseReference3.setValue(billDetails);
+
+                                    DatabaseReference databaseReference4 = firebaseDatabase.getReference("Tenants/" + tenantIds.get(i) + "/Accounts/Bills/" + dateString);
+                                    databaseReference4.child(billId).setValue(billDetails);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 
@@ -136,6 +198,5 @@ public class AddBillRoomActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }
