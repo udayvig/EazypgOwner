@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import io.fabric.sdk.android.Fabric;
 
 public class TenantDocumentsFragment extends Fragment {
 
@@ -59,6 +62,9 @@ public class TenantDocumentsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Fabric.with(getContext(), new Crashlytics());
+
         view = inflater.inflate(R.layout.activity_tenant_documents, container, false);
 
         Intent intent = getActivity().getIntent();

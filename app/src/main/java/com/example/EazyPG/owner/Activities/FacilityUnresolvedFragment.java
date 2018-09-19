@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.ComplaintDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ComplaintDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -26,6 +27,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class FacilityUnresolvedFragment extends Fragment {
 
@@ -49,6 +52,8 @@ public class FacilityUnresolvedFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Fabric.with(getContext(), new Crashlytics());
 
         view = inflater.inflate(R.layout.facility_unresolved_fragment, container, false);
 

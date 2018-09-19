@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.PaymentDetailList;
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.EazyPG.owner.DetailsClasses.PaymentDetails;
@@ -25,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -47,6 +50,8 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        Fabric.with(this, new Crashlytics());
 
         Toolbar toolbar = findViewById(R.id.paymentToolbar);
         setSupportActionBar(toolbar);

@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner.Activities;
+package com.example.EazyPG.owner.DetailList;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,6 +29,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.fabric.sdk.android.Fabric;
 
 public class TenantProfileFragment extends Fragment {
 
@@ -60,6 +62,9 @@ public class TenantProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Fabric.with(getContext(), new Crashlytics());
+
         view = inflater.inflate(R.layout.activity_tenant_dashboard_profile, container, false);
 
         Intent intent = getActivity().getIntent();

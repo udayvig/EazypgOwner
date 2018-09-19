@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import com.example.EazyPG.owner.DetailList.AllPassbookDetailList;
+import com.example.EazyPG.owner.DetailList.ExpensePassbookDetailList;
+import com.example.EazyPG.owner.DetailList.IncomePassbookDetailList;
 import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +34,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class PassbookFragment extends Fragment {
 
@@ -63,6 +69,8 @@ public class PassbookFragment extends Fragment {
         final Context context = getContext();
 
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        Fabric.with(getContext(), new Crashlytics());
 
         monthTextView = view.findViewById(R.id.currentMonthTextView);
         incomeTextView = view.findViewById(R.id.incomeTextView);

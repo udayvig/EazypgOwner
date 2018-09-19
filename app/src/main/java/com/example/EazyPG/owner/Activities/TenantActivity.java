@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -45,6 +46,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import io.fabric.sdk.android.Fabric;
 
 public class TenantActivity extends AppCompatActivity {
 
@@ -77,6 +80,8 @@ public class TenantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tenant);
+
+        Fabric.with(this, new Crashlytics());
 
         Toolbar toolbar = findViewById(R.id.tenantToolbar);
         setSupportActionBar(toolbar);

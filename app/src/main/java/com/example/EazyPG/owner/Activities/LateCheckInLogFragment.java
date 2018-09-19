@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.LateCheckinDetailList;
 import com.example.EazyPG.owner.DetailsClasses.LateCheckInDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -24,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class LateCheckInLogFragment extends Fragment {
     View view;
@@ -42,6 +45,8 @@ public class LateCheckInLogFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Fabric.with(getContext(), new Crashlytics());
 
         view = inflater.inflate(R.layout.activity_late_checkin_log, container, false);
 

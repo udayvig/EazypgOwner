@@ -13,6 +13,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
+import com.example.EazyPG.owner.DetailList.AddBillRoomElectricityDetailList;
+import com.example.EazyPG.owner.DetailList.AddBillRoomGasDetailList;
+import com.example.EazyPG.owner.DetailList.AddBillRoomOtherDetailList;
+import com.example.EazyPG.owner.DetailList.AddBillRoomWifiDetailList;
 import com.example.EazyPG.owner.DetailsClasses.BillDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class AddBillRoomActivity extends AppCompatActivity {
 
@@ -58,6 +65,8 @@ public class AddBillRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bill_room);
+
+        Fabric.with(this, new Crashlytics());
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();

@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner.Activities;
+package com.example.EazyPG.owner.DetailList;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.EazyPG.owner.Activities.FineRentBillActivity;
 import com.example.EazyPG.owner.DetailsClasses.BillDetails;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;

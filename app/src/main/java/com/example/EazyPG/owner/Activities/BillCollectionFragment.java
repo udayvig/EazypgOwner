@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
+import com.example.EazyPG.owner.DetailList.BillCollectionDetailList;
 import com.example.EazyPG.owner.DetailsClasses.BillDetails;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -28,6 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class BillCollectionFragment extends Fragment {
     View view;
@@ -53,6 +57,8 @@ public class BillCollectionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Fabric.with(getContext(), new Crashlytics());
+
         view = inflater.inflate(R.layout.activity_bill_collection, container, false);
 
         firebaseDatabase = FirebaseDatabase.getInstance();

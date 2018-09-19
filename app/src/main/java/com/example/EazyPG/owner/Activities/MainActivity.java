@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.MyIntro;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.oned.MultiFormatOneDReader;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Fabric.with(this, new Crashlytics());
 
         Thread t = new Thread(new Runnable() {
             @Override

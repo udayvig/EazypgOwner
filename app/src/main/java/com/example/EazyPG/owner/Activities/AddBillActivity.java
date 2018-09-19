@@ -7,7 +7,10 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.ainesh.eazypg_owner.R;
+
+import io.fabric.sdk.android.Fabric;
 
 public class AddBillActivity extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class AddBillActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bill);
+
+        Fabric.with(this, new Crashlytics());
 
         electricityBillCardView = findViewById(R.id.electricityBillCardView);
         wifiBillCardView = findViewById(R.id.wifiBillCardView);

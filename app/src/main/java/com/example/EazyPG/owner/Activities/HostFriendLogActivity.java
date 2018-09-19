@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.HostFriendDetailList;
 import com.example.EazyPG.owner.DetailsClasses.GuestDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -22,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class HostFriendLogActivity extends AppCompatActivity {
 
@@ -40,6 +43,8 @@ public class HostFriendLogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_friend_log);
+
+        Fabric.with(this, new Crashlytics());
 
         recyclerView = findViewById(R.id.hostFriendLogRecyclerView);
 

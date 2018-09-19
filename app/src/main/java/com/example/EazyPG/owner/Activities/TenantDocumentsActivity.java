@@ -94,71 +94,7 @@ public class TenantDocumentsActivity extends AppCompatActivity {
                 collegeIdBackId = dataSnapshot.child("CollegeID Back").getValue(String.class);
                 collegeIdFrontId = dataSnapshot.child("CollegeID Front").getValue(String.class);
 
-                if (id != null) {
-
-                    if (aadharFrontId != null) {
-
-                        storageReference.child(id).child(aadharFrontId).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                            @Override
-                            public void onSuccess(byte[] bytes) {
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                aadharFrontImageView.setImageBitmap(bitmap);
-
-                                progressDialog.dismiss();
-                                loaded = true;
-                            }
-                        });
-
-                    }
-
-                    if (aadharBackId != null) {
-
-                        storageReference.child(id).child(aadharBackId).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                            @Override
-                            public void onSuccess(byte[] bytes) {
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                aadharBackImageView.setImageBitmap(bitmap);
-
-                                progressDialog.dismiss();
-                                loaded = true;
-                            }
-                        });
-
-                    }
-
-                    if (collegeIdBackId != null) {
-
-                        storageReference.child(id).child(collegeIdBackId).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                            @Override
-                            public void onSuccess(byte[] bytes) {
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                collegeIdBackImageView.setImageBitmap(bitmap);
-
-                                progressDialog.dismiss();
-                                loaded = true;
-                            }
-                        });
-
-                    }
-
-                    if (collegeIdFrontId != null) {
-
-                        storageReference.child(id).child(collegeIdFrontId).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                            @Override
-                            public void onSuccess(byte[] bytes) {
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                collegeIdFrontImageView.setImageBitmap(bitmap);
-
-                                progressDialog.dismiss();
-                                loaded = true;
-
-                            }
-                        });
-
-                    }
-
-                }
-
+                
             }
 
             @Override

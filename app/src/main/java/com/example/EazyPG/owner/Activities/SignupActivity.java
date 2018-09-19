@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
+
+import io.fabric.sdk.android.Fabric;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -58,6 +61,8 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        Fabric.with(this, new Crashlytics());
 
         btnSignUp = findViewById(R.id.btnSignUp);
         etUserEmail = findViewById(R.id.emailEditText);       //Test

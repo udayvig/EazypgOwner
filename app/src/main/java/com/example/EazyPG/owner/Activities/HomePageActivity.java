@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.Adapter.MyAdapter;
 import com.example.EazyPG.owner.Model.Item;
 import com.example.ainesh.eazypg_owner.NotificationActivity;
@@ -28,6 +29,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import io.fabric.sdk.android.Fabric;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -61,6 +64,8 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        Fabric.with(this, new Crashlytics());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

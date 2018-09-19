@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.HostFriendDetailList;
 import com.example.EazyPG.owner.DetailList.LateCheckinDetailList;
 import com.example.EazyPG.owner.DetailsClasses.GuestDetails;
@@ -22,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class LateCheckinLogActivity extends AppCompatActivity {
 
@@ -40,6 +43,8 @@ public class LateCheckinLogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_late_checkin_log);
+
+        Fabric.with(this, new Crashlytics());
 
         recyclerView = findViewById(R.id.lateCheckinRecyclerView);
 

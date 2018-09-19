@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +25,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.fabric.sdk.android.Fabric;
 
 public class TenantDashboardProfile extends AppCompatActivity {
 
@@ -55,6 +57,8 @@ public class TenantDashboardProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tenant_dashboard_profile);
+
+        Fabric.with(this, new Crashlytics());
 
         Intent intent = getIntent();
         id = intent.getStringExtra(TenantDetailList.EXTRA_MESSAGE3);

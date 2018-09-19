@@ -18,6 +18,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.ComplaintDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ComplaintDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -36,6 +37,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import io.fabric.sdk.android.Fabric;
 
 public class ComplaintActivity extends AppCompatActivity {
 
@@ -70,6 +73,8 @@ public class ComplaintActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
+
+        Fabric.with(this, new Crashlytics());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

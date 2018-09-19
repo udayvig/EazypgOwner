@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.PreviousTenantDetailList;
 import com.example.EazyPG.owner.DetailList.TenantDetailList;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
@@ -22,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.fabric.sdk.android.Fabric;
+
 public class PreviousTenantsActivity extends AppCompatActivity {
 
     DatabaseReference databaseReference;
@@ -35,6 +38,8 @@ public class PreviousTenantsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previous_tenants);
+
+        Fabric.with(this, new Crashlytics());
 
         Toolbar toolbar = findViewById(R.id.previousTenantToolbar);
         setSupportActionBar(toolbar);

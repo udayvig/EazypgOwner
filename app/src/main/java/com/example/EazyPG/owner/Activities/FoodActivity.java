@@ -22,6 +22,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.Activities.FoodDetails.FridayFoodDetails;
 import com.example.EazyPG.owner.Activities.FoodDetails.MondayFoodDetails;
 import com.example.EazyPG.owner.Activities.FoodDetails.SaturdayFoodDetails;
@@ -38,6 +39,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import io.fabric.sdk.android.Fabric;
 
 public class FoodActivity extends AppCompatActivity {
 
@@ -67,6 +70,8 @@ public class FoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+
+        Fabric.with(this, new Crashlytics());
 /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

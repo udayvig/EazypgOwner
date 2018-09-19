@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailsClasses.BillDetails;
 import com.example.EazyPG.owner.DetailsClasses.CashflowDetails;
@@ -35,6 +36,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class RoomClickActivity extends AppCompatActivity {
 
@@ -66,6 +69,8 @@ public class RoomClickActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_click);
+
+        Fabric.with(this, new Crashlytics());
 
         Intent intent = getIntent();
         String roomNumber = intent.getStringExtra(RoomsDetailList.EXTRA_MESSAGE);

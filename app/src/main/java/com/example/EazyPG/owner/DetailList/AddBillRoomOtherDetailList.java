@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner.Activities;
+package com.example.EazyPG.owner.DetailList;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

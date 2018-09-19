@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner.Activities;
+package com.example.EazyPG.owner.DetailList;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,19 +12,19 @@ import com.example.ainesh.eazypg_owner.R;
 
 import java.util.List;
 
-public class ExpensePassbookDetailList extends RecyclerView.Adapter<ExpensePassbookDetailList.MyHolder>{
+public class IncomePassbookDetailList extends RecyclerView.Adapter<IncomePassbookDetailList.MyHolder>{
 
-    List<CashflowDetails> expensesPassbookDetailList;
+    List<CashflowDetails> incomePassbookDetailList;
     Context context;
 
-    public ExpensePassbookDetailList(List<CashflowDetails> expensesPassbookDetailList, Context context) {
-        this.expensesPassbookDetailList = expensesPassbookDetailList;
+    public IncomePassbookDetailList(List<CashflowDetails> incomePassbookDetailList, Context context) {
+        this.incomePassbookDetailList = incomePassbookDetailList;
         this.context = context;
     }
 
     @Override
     public int getItemCount() {
-        return expensesPassbookDetailList.size();
+        return incomePassbookDetailList.size();
     }
 
     @Override
@@ -32,12 +32,12 @@ public class ExpensePassbookDetailList extends RecyclerView.Adapter<ExpensePassb
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.passbook_row, parent, false);
 
-        return new ExpensePassbookDetailList.MyHolder(itemView);
+        return new IncomePassbookDetailList.MyHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        CashflowDetails cashflowDetails = expensesPassbookDetailList.get(position);
+        CashflowDetails cashflowDetails = incomePassbookDetailList.get(position);
 
         holder.amountTextView.setText(cashflowDetails.amount);
         holder.categoryTextView.setText(cashflowDetails.category);

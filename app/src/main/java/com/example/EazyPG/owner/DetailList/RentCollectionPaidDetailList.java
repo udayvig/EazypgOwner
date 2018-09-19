@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner.Activities;
+package com.example.EazyPG.owner.DetailList;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,30 +10,31 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.EazyPG.owner.Activities.FineRentBillActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.katepratik.msg91api.MSG91;
 
 import java.util.List;
 
-import static com.example.EazyPG.owner.Activities.RentCollectionPaidDetailList.EXTRA_MESSAGE;
-import static com.example.EazyPG.owner.Activities.RentCollectionPaidDetailList.EXTRA_MESSAGE2;
+public class RentCollectionPaidDetailList extends RecyclerView.Adapter<RentCollectionPaidDetailList.MyHolder>{
 
-public class RentCollectionUnpaidDetailList extends RecyclerView.Adapter<RentCollectionUnpaidDetailList.MyHolder>{
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static final String EXTRA_MESSAGE2 = "com.example.myfirstapp.MESSAGE2";
 
     List<TenantDetails> tenantDetails;
-    List<TenantDetails> tenantUnpaidDetails;
+    List<TenantDetails> tenantPaidDetails;
     Context context;
 
-    public RentCollectionUnpaidDetailList(List<TenantDetails> tenantDetails, List<TenantDetails> tenantUnpaidDetails, Context context) {
+    public RentCollectionPaidDetailList(List<TenantDetails> tenantDetails, List<TenantDetails> tenantPaidDetails, Context context) {
         this.tenantDetails = tenantDetails;
-        this.tenantUnpaidDetails = tenantUnpaidDetails;
+        this.tenantPaidDetails = tenantPaidDetails;
         this.context = context;
     }
 
     @Override
     public int getItemCount() {
-        return tenantUnpaidDetails.size();
+        return tenantPaidDetails.size();
     }
 
     @Override
@@ -41,20 +42,20 @@ public class RentCollectionUnpaidDetailList extends RecyclerView.Adapter<RentCol
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rent_bill_collection_rent_row, parent, false);
 
-        return new RentCollectionUnpaidDetailList.MyHolder(itemView);
+        return new RentCollectionPaidDetailList.MyHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyHolder holder, final int position) {
-        holder.rentAmountTextView.setText(tenantUnpaidDetails.get(position).rentAmount);
-        holder.tenantRoomTextView.setText(tenantUnpaidDetails.get(position).room);
-        holder.tenantNameTextView.setText(tenantUnpaidDetails.get(position).name);
+        holder.rentAmountTextView.setText(tenantPaidDetails.get(position).rentAmount);
+        holder.tenantRoomTextView.setText(tenantPaidDetails.get(position).room);
+        holder.tenantNameTextView.setText(tenantPaidDetails.get(position).name);
 
         holder.phoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" + tenantUnpaidDetails.get(position).phone));
+                callIntent.setData(Uri.parse("tel:" + tenantPaidDetails.get(position).phone));
                 context.startActivity(callIntent);
             }
         });
@@ -63,8 +64,8 @@ public class RentCollectionUnpaidDetailList extends RecyclerView.Adapter<RentCol
             @Override
             public void onClick(View view) {
                 MSG91 msg91 = new MSG91("163776AiifTBEVMZl5aae0bce");
-                msg91.composeMessage("EazyPG", "Hi " + tenantUnpaidDetails.get(position).name + ". Your rent is due for this month.");
-                msg91.to(tenantUnpaidDetails.get(position).phone);
+                msg91.composeMessage("EazyPG", "Hi " + tenantPaidDetails.get(position).name + ". Your rent is due for this month.");
+                msg91.to(tenantPaidDetails.get(position).phone);
                 String sendStatus = msg91.send();
             }
         });
@@ -73,8 +74,8 @@ public class RentCollectionUnpaidDetailList extends RecyclerView.Adapter<RentCol
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, FineRentBillActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, tenantUnpaidDetails.get(position).id);
-                intent.putExtra(EXTRA_MESSAGE2, tenantUnpaidDetails.get(position).room);
+                intent.putExtra(EXTRA_MESSAGE, tenantPaidDetails.get(position).id);
+                intent.putExtra(EXTRA_MESSAGE2, tenantPaidDetails.get(position).room);
                 context.startActivity(intent);
             }
         });

@@ -12,7 +12,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.ainesh.eazypg_owner.R;
+
+import io.fabric.sdk.android.Fabric;
 
 public class ApplianceActivity extends AppCompatActivity {
 
@@ -26,6 +29,7 @@ public class ApplianceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appliance);
 
+        Fabric.with(this, new Crashlytics());
 
         acButton = findViewById(R.id.acButton);
         cctvButton = findViewById(R.id.cctvButton);

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.EazyPG.owner.DetailList.TenantDetailList;
+import com.example.EazyPG.owner.DetailList.TenantProfileFragment;
 import com.example.ainesh.eazypg_owner.R;
 
 public class TenantDashboardFragmentActivity extends AppCompatActivity {
@@ -47,7 +47,7 @@ public class TenantDashboardFragmentActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(TenantDashboardFragmentActivity.this, TenantDetailList.class));
+        startActivity(new Intent(TenantDashboardFragmentActivity.this, TenantActivity.class));
         finish();
     }
 }

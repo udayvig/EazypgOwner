@@ -21,6 +21,9 @@
         android:theme="@style/AppTheme">
 
         <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
+        <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
         <meta-data
@@ -81,9 +84,6 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.ExpenseActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name="com.example.EazyPG.owner.Activities.TenantDashboardFragmentActivity"/>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -100,6 +100,7 @@
         <activity
             android:name="com.example.EazyPG.owner.Activities.RoomsActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.example.EazyPG.owner.Activities.TenantDashboardFragmentActivity"/>
         <activity android:name="com.example.EazyPG.owner.Activities.FoodActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomApplianceDetailsActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.RoomTenantDetailsActivity" />
@@ -111,7 +112,7 @@
         <activity android:name="com.example.EazyPG.owner.Activities.FoodComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.SecurityComplaintsFragmentActivity" />
         <activity android:name="com.example.EazyPG.owner.Activities.TenantDashboardProfile" />
-        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".NotificationActivity"/>
         <activity android:name="com.example.EazyPG.owner.Activities.AddBillActivity"/>
         <activity android:name="com.example.EazyPG.owner.Activities.AddBillRoomActivity"/>
         <activity android:name="com.example.EazyPG.owner.Activities.FineRentBillActivity"/>

@@ -1,4 +1,4 @@
-package com.example.EazyPG.owner.Activities;
+package com.example.EazyPG.owner.DetailList;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,19 +12,19 @@ import com.example.ainesh.eazypg_owner.R;
 
 import java.util.List;
 
-public class AllPassbookDetailList extends RecyclerView.Adapter<AllPassbookDetailList.MyHolder>{
+public class ExpensePassbookDetailList extends RecyclerView.Adapter<ExpensePassbookDetailList.MyHolder>{
 
-    List<CashflowDetails> allPassbookDetailList;
+    List<CashflowDetails> expensesPassbookDetailList;
     Context context;
 
-    public AllPassbookDetailList(List<CashflowDetails> allPassbookDetailList, Context context) {
-        this.allPassbookDetailList = allPassbookDetailList;
+    public ExpensePassbookDetailList(List<CashflowDetails> expensesPassbookDetailList, Context context) {
+        this.expensesPassbookDetailList = expensesPassbookDetailList;
         this.context = context;
     }
 
     @Override
     public int getItemCount() {
-        return allPassbookDetailList.size();
+        return expensesPassbookDetailList.size();
     }
 
     @Override
@@ -32,23 +32,19 @@ public class AllPassbookDetailList extends RecyclerView.Adapter<AllPassbookDetai
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.passbook_row, parent, false);
 
-        return new AllPassbookDetailList.MyHolder(itemView);
+        return new ExpensePassbookDetailList.MyHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        CashflowDetails cashflowDetails = allPassbookDetailList.get(position);
+        CashflowDetails cashflowDetails = expensesPassbookDetailList.get(position);
 
         holder.amountTextView.setText(cashflowDetails.amount);
         holder.categoryTextView.setText(cashflowDetails.category);
         holder.timestampTextView.setText(cashflowDetails.date);
         holder.paidTextView.setText(cashflowDetails.paidBy);
 
-        if(cashflowDetails.inout){
-            holder.inflowOrOutflowTextView.setText("Inflow");
-        }else{
-            holder.inflowOrOutflowTextView.setText("Outflow");
-        }
+        holder.inflowOrOutflowTextView.setVisibility(View.GONE);
     }
 
     public class MyHolder extends RecyclerView.ViewHolder{

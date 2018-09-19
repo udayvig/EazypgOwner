@@ -31,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.ACDetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.CCTVDetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.D2HDetails;
@@ -62,6 +63,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.fabric.sdk.android.Fabric;
 
 public class ApplianceDetailsActivity extends AppCompatActivity {
 
@@ -107,6 +109,8 @@ public class ApplianceDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appliance_details);
+
+        Fabric.with(this, new Crashlytics());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

@@ -31,6 +31,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailsClasses.PG;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,6 +48,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MyPGActivity extends AppCompatActivity {
 
@@ -87,6 +90,8 @@ public class MyPGActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pg);
+
+        Fabric.with(this, new Crashlytics());
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -154,7 +159,12 @@ public class MyPGActivity extends AppCompatActivity {
 
                                     databaseReference1 = firebaseDatabase.getReference("PG/" + firebaseAuth.getCurrentUser().getUid() + "/Attendance/");
                                     databaseReference1.child("Latitude").setValue(Double.toString(location.getLatitude()));
-                                    databaseReference1.child("Longitude").setValue(Double.toString(location.getLongitude()));
+                                    databaseReference1.child("Longitude").setValue(Double.toString(location.getLongitude())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(MyPGActivity.this, "Coordinates Stored", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
 
                                 }
 
@@ -180,9 +190,15 @@ public class MyPGActivity extends AppCompatActivity {
                                                     Manifest.permission.INTERNET}
                                             , 10);
                                 }
+                                progressDialog1.dismiss();
                                 return;
                             }
-                            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, listener);
+
+                            if (ActivityCompat.checkSelfPermission(MyPGActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MyPGActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, listener);
+
+                            }
+
 
                         }
 

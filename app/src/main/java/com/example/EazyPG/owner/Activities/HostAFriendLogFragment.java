@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.HostFriendDetailList;
 import com.example.EazyPG.owner.DetailsClasses.GuestDetails;
 import com.example.ainesh.eazypg_owner.R;
@@ -24,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class HostAFriendLogFragment extends Fragment {
 
@@ -43,6 +46,9 @@ public class HostAFriendLogFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        Fabric.with(getContext(), new Crashlytics());
+
         view = inflater.inflate(R.layout.activity_host_friend_log, container, false);
 
         recyclerView = view.findViewById(R.id.hostFriendLogRecyclerView);

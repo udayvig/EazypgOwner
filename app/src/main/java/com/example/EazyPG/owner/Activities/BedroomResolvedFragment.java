@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.ainesh.eazypg_owner.R;
+
+import io.fabric.sdk.android.Fabric;
 
 public class BedroomResolvedFragment extends Fragment {
 
@@ -23,7 +26,7 @@ public class BedroomResolvedFragment extends Fragment {
 
         view = inflater.inflate(R.layout.bedroom_resolved_fragment, container, false);
 
-
+        Fabric.with(getContext(), new Crashlytics());
         return view;
     }
 }

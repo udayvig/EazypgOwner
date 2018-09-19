@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.ainesh.eazypg_owner.R;
+
+import io.fabric.sdk.android.Fabric;
 
 public class FoodComplaintsFragmentActivity extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class FoodComplaintsFragmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_complaints_fragment);
+
+        Fabric.with(this, new Crashlytics());
 
         tabLayout = findViewById(R.id.tabLayoutID);
         pager = findViewById(R.id.viewPagerID);

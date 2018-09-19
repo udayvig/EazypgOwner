@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.RoomApplianceDetailList;
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailsClasses.RoomApplianceDetails;
@@ -20,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class RoomApplianceDetailsActivity extends AppCompatActivity {
 
@@ -36,6 +39,8 @@ public class RoomApplianceDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_appliance_details);
+
+        Fabric.with(this, new Crashlytics());
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();

@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import com.example.EazyPG.owner.DetailList.RentCollectionPaidDetailList;
+import com.example.EazyPG.owner.DetailList.RentCollectionUnpaidDetailList;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class RentCollectionFragment extends Fragment {
     View view;
@@ -56,6 +61,8 @@ public class RentCollectionFragment extends Fragment {
         view = inflater.inflate(R.layout.activity_rent_collection, container, false);
 
         final Context context = getContext();
+
+        Fabric.with(getContext(), new Crashlytics());
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();

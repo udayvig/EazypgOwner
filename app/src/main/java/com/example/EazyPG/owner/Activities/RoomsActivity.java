@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.EazyPG.owner.DetailList.RoomsDetailList;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.ACDetails;
 import com.example.EazyPG.owner.DetailsClasses.ApplianceDetailClasses.CCTVDetails;
@@ -48,6 +49,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class RoomsActivity extends AppCompatActivity {
 
@@ -99,6 +102,8 @@ public class RoomsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
+
+        Fabric.with(this, new Crashlytics());
 
         Toolbar toolbar = findViewById(R.id.roomsToolbar);
         setSupportActionBar(toolbar);
