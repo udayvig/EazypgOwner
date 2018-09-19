@@ -163,7 +163,7 @@ public class PassbookFragment extends Fragment {
                 }
 
                 for(int i = 0; i < expensesDetailsList.size(); i++){
-                    expenses += Integer.parseInt(incomeDetailsList.get(i).amount);
+                    expenses += Integer.parseInt(expensesDetailsList.get(i).amount);
                 }
 
                 balance = income - expenses;
@@ -202,6 +202,7 @@ public class PassbookFragment extends Fragment {
             public void onClick(View view) {
                 incomeRecyclerView.setVisibility(View.GONE);
                 expensesRecyclerView.setVisibility(View.GONE);
+                allRecyclerView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -210,6 +211,7 @@ public class PassbookFragment extends Fragment {
             public void onClick(View view) {
                 allRecyclerView.setVisibility(View.GONE);
                 expensesRecyclerView.setVisibility(View.GONE);
+                incomeRecyclerView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -218,6 +220,7 @@ public class PassbookFragment extends Fragment {
             public void onClick(View view) {
                 allRecyclerView.setVisibility(View.GONE);
                 incomeRecyclerView.setVisibility(View.GONE);
+                expensesRecyclerView.setVisibility(View.VISIBLE);
             }
         });
 

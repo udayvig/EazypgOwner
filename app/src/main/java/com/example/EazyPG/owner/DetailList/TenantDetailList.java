@@ -7,14 +7,10 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +18,6 @@ import com.example.EazyPG.owner.Activities.AddBillActivity;
 import com.example.EazyPG.owner.Activities.FineActivity;
 import com.example.EazyPG.owner.Activities.PaymentActivity;
 import com.example.EazyPG.owner.Activities.TenantDashboardFragmentActivity;
-import com.example.EazyPG.owner.Activities.TenantDashboardProfile;
-import com.example.EazyPG.owner.Activities.TenantDocumentsActivity;
 import com.example.EazyPG.owner.DetailsClasses.TenantDetails;
 import com.example.ainesh.eazypg_owner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -126,7 +120,6 @@ public class TenantDetailList extends ArrayAdapter<TenantDetails> {
                 Intent intent = new Intent(context, PaymentActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, ids.get(position));
                 context.startActivity(intent);
-
             }
         });
 
