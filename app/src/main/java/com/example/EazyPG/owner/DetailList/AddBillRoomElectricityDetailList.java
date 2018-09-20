@@ -143,7 +143,12 @@ public class AddBillRoomElectricityDetailList extends RecyclerView.Adapter<AddBi
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String prevReading = dataSnapshot.getValue(String.class);
 
-                                String billAmount = Integer.toString((Integer.parseInt(unitsThisMonth) - Integer.parseInt(prevReading)) * Integer.parseInt(unitCost));
+                                String billAmount;
+                                if(prevReading != null){
+                                    billAmount = Integer.toString((Integer.parseInt(unitsThisMonth) - Integer.parseInt(prevReading)) * Integer.parseInt(unitCost));
+                                }else{
+                                    billAmount = Integer.toString((Integer.parseInt(unitsThisMonth)) * Integer.parseInt(unitCost));
+                                }
 
                                 for(int i = 0; i < tenantRoomList.size(); i++){
 

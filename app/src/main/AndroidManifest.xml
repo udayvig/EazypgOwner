@@ -118,6 +118,7 @@
         <activity android:name="com.example.EazyPG.owner.Activities.FineRentBillActivity"/>
         <activity android:name="com.example.EazyPG.owner.Activities.FeedbackActivity"/>
         <activity android:name="com.example.EazyPG.owner.Activities.FineActivity"/>
+        <activity android:name="com.example.EazyPG.owner.Activities.RoomClickActivity"/>
     </application>
 
 </manifest>
