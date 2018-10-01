@@ -5,7 +5,7 @@
     android:id="@+id/myPgLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.EazyPG.owner.Activities.MyPGActivity">
+    tools:context="com.eazypg.EazyPG.owner.Activities.MyPGActivity">
 
 
     <android.support.constraint.ConstraintLayout

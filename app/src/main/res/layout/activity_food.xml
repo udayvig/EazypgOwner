@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0B5362"
-    tools:context="com.example.EazyPG.owner.Activities.FoodActivity">
+    tools:context="com.eazypg.EazyPG.owner.Activities.FoodActivity">
 
 
     <android.support.v7.widget.CardView

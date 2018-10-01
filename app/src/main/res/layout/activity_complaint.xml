@@ -919,7 +919,7 @@
             android:orientation="vertical"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
-            tools:context="com.example.EazyPG.owner.Activities.ComplaintActivity">
+            tools:context="com.eazypg.EazyPG.owner.Activities.ComplaintActivity">
 
 
             <TextView

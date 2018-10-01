@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.EazyPG.owner.Activities.BedroomComplaintsFragmentActivity"
+    tools:context="com.eazypg.EazyPG.owner.Activities.BedroomComplaintsFragmentActivity"
     >
 
     <android.support.v7.widget.CardView

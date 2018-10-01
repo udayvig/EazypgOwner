@@ -7,7 +7,7 @@
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.EazyPG.owner.Activities.RentCollectionActivity">
+    tools:context="com.eazypg.EazyPG.owner.Activities.RentCollectionActivity">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView3"

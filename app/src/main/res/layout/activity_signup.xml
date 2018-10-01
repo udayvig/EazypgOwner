@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/signupwalli"
-    tools:context="com.example.EazyPG.owner.Activities.SignupActivity">
+    tools:context="com.eazypg.EazyPG.owner.Activities.SignupActivity">
 
     <TextView
         android:id="@+id/textView3"
