@@ -6,6 +6,7 @@ This is the Owner side Version of the Eazypg homes app built for owners to manag
 their abilities using the tools provided by our company 
 
 Built by :
-Ainesh Chhetri
-Uday Vig
 Vardaan
+Uday Vig
+Ainesh Chhetri
+Yash Singodia
